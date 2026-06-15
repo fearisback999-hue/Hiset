@@ -19,6 +19,12 @@ const state = {
   essayPromptId: null,
   essayText: "",
   showEssayRubric: false,
+  skillId: null,
+  skillTab: "learn",        // "learn" | "spot" | "write"
+  skillMcqIndex: 0,
+  skillMcqAnswer: null,
+  skillDrillIndex: 0,
+  skillDrillRevealed: false,
   progress: loadProgress()
 };
 
@@ -79,6 +85,7 @@ function render() {
     case "essay":        app.appendChild(renderEssayMenu()); break;
     case "essay-write":  app.appendChild(renderEssayWrite()); break;
     case "essay-rubric": app.appendChild(renderEssayRubric()); break;
+    case "essay-skill":  app.appendChild(renderEssaySkill()); break;
     case "progress":     app.appendChild(renderProgress()); break;
     case "cheatsheet":   app.appendChild(renderCheatSheet()); break;
     default:             app.appendChild(renderHome());
@@ -620,7 +627,19 @@ function renderEssayMenu() {
       <button class="btn btn-text" onclick="navigate('essay-rubric')">View Full Scoring Rubric →</button>
     </div>
 
-    <h2>Choose a Practice Prompt</h2>
+    <h2>Practice One Piece at a Time</h2>
+    <p class="subtitle" style="margin-bottom:.75rem">Build the essay skills individually — thesis, topic sentences, intros, body paragraphs, and conclusions.</p>
+    <div class="skill-grid">
+      ${ESSAY_SKILLS.map(s => `
+        <button class="skill-card" onclick="navigate('essay-skill', {skillId: '${s.id}', skillTab: 'learn', skillMcqIndex: 0, skillMcqAnswer: null})">
+          <span class="skill-icon">${s.icon}</span>
+          <span class="skill-name">${s.title}</span>
+          <span class="skill-tagline">${s.tagline}</span>
+        </button>
+      `).join("")}
+    </div>
+
+    <h2>Write a Full Essay</h2>
     <div class="essay-prompts">
       ${ESSAY_PROMPTS.map(ep => `
         <div class="essay-prompt-card card" onclick="navigate('essay-write', {essayPromptId: ${ep.id}})">
@@ -804,6 +823,220 @@ function renderEssayRubric() {
     </div>
   `;
   return div;
+}
+
+// ─── ESSAY SKILL DRILLS ──────────────────────────────────────────────────────
+
+function renderEssaySkill() {
+  const skill = ESSAY_SKILLS.find(s => s.id === state.skillId);
+  if (!skill) return renderEssayMenu();
+
+  const div = el("div", "skill-view");
+  div.innerHTML = `
+    <div class="skill-header">
+      <button class="btn-back" onclick="navigate('essay')">← Essay Lab</button>
+    </div>
+    <div class="skill-title-row">
+      <span class="skill-icon-lg">${skill.icon}</span>
+      <div>
+        <h1>${skill.title}</h1>
+        <p class="subtitle">${skill.tagline}</p>
+      </div>
+    </div>
+
+    <div class="skill-tabs">
+      <button class="skill-tab ${state.skillTab === "learn" ? "active" : ""}" onclick="setSkillTab('learn')">📖 Learn</button>
+      <button class="skill-tab ${state.skillTab === "spot" ? "active" : ""}" onclick="setSkillTab('spot')">✅ Spot the Best</button>
+      <button class="skill-tab ${state.skillTab === "write" ? "active" : ""}" onclick="setSkillTab('write')">✍️ Write It</button>
+    </div>
+
+    <div id="skill-body"></div>
+  `;
+
+  // Render the active tab body after the shell exists
+  setTimeout(() => renderSkillBody(skill), 0);
+  return div;
+}
+
+function setSkillTab(tab) {
+  state.skillTab = tab;
+  state.skillMcqIndex = 0;
+  state.skillMcqAnswer = null;
+  state.skillDrillIndex = 0;
+  state.skillDrillRevealed = false;
+  const skill = ESSAY_SKILLS.find(s => s.id === state.skillId);
+  document.querySelectorAll(".skill-tab").forEach(t => {
+    t.classList.toggle("active", t.textContent.toLowerCase().includes(
+      tab === "learn" ? "learn" : tab === "spot" ? "spot" : "write"
+    ));
+  });
+  renderSkillBody(skill);
+}
+
+function renderSkillBody(skill) {
+  const body = document.getElementById("skill-body");
+  if (!body) return;
+
+  if (state.skillTab === "learn") {
+    body.innerHTML = renderSkillLearn(skill);
+  } else if (state.skillTab === "spot") {
+    body.innerHTML = renderSkillSpot(skill);
+  } else {
+    body.innerHTML = renderSkillWrite(skill);
+  }
+  window.scrollTo(0, 0);
+}
+
+function renderSkillLearn(skill) {
+  const l = skill.lesson;
+  return `
+    <div class="card">
+      <h2>What it is</h2>
+      <p style="color:var(--text)">${l.what}</p>
+      <div class="skill-formula">${l.formula}</div>
+    </div>
+
+    <div class="card">
+      <h2>Tips for a Top Score</h2>
+      <ul class="tips-list">
+        ${l.tips.map(t => `<li>${t}</li>`).join("")}
+      </ul>
+    </div>
+
+    ${l.goodVsBad.map(ex => `
+      <div class="card">
+        <h2>Weak vs. Strong</h2>
+        <div class="gb-block gb-bad">
+          <div class="gb-label">❌ Weak</div>
+          <div class="gb-text">${ex.bad}</div>
+          <div class="gb-why">${ex.why_bad}</div>
+        </div>
+        <div class="gb-block gb-good">
+          <div class="gb-label">✅ Strong</div>
+          <div class="gb-text">${ex.good}</div>
+          <div class="gb-why">${ex.why_good}</div>
+        </div>
+      </div>
+    `).join("")}
+
+    <div class="skill-cta">
+      <button class="btn btn-primary" onclick="setSkillTab('spot')">Try "Spot the Best" →</button>
+    </div>
+  `;
+}
+
+function renderSkillSpot(skill) {
+  const items = skill.mcq;
+  const idx = state.skillMcqIndex;
+  const item = items[idx];
+  const answered = state.skillMcqAnswer;
+
+  return `
+    <div class="card">
+      <div class="spot-progress">Question ${idx + 1} of ${items.length}</div>
+      <div class="spot-scenario">${item.scenario}</div>
+      <div class="choices" id="skill-choices">
+        ${item.choices.map((c, i) => {
+          let cls = "choice";
+          if (answered !== null) {
+            if (i === item.correct) cls += " correct";
+            else if (i === answered) cls += " incorrect";
+          }
+          return `<button class="${cls}" ${answered !== null ? "disabled" : ""} onclick="answerSkillMcq(${i})">
+            <span class="choice-letter">${"ABCD"[i]}</span>
+            <span class="choice-text">${c}</span>
+          </button>`;
+        }).join("")}
+      </div>
+      ${answered !== null ? `
+        <div class="explanation-box">
+          ${answered === item.correct ? "<strong>✅ Correct!</strong> " : "<strong>❌ Not quite.</strong> "}
+          ${item.explanation}
+        </div>
+        <div class="skill-cta">
+          ${idx < items.length - 1
+            ? `<button class="btn btn-primary" onclick="nextSkillMcq()">Next Question →</button>`
+            : `<button class="btn btn-primary" onclick="setSkillTab('write')">Now Try Writing It →</button>`}
+        </div>
+      ` : ""}
+    </div>
+  `;
+}
+
+function answerSkillMcq(i) {
+  if (state.skillMcqAnswer !== null) return;
+  state.skillMcqAnswer = i;
+  const skill = ESSAY_SKILLS.find(s => s.id === state.skillId);
+  renderSkillBody(skill);
+}
+
+function nextSkillMcq() {
+  state.skillMcqIndex++;
+  state.skillMcqAnswer = null;
+  const skill = ESSAY_SKILLS.find(s => s.id === state.skillId);
+  renderSkillBody(skill);
+}
+
+function renderSkillWrite(skill) {
+  const drills = skill.drills;
+  const idx = state.skillDrillIndex;
+  const drill = drills[idx];
+  const revealed = state.skillDrillRevealed;
+
+  return `
+    <div class="card">
+      <div class="spot-progress">Drill ${idx + 1} of ${drills.length}</div>
+      <div class="drill-scenario">${drill.scenario}</div>
+      <textarea id="skill-textarea" class="skill-textarea" placeholder="Write your response here..."></textarea>
+
+      <div class="skill-checklist">
+        <div class="checklist-title">Self-Check — does your answer do all of these?</div>
+        ${drill.checklist.map((c, i) => `
+          <label class="checklist-item">
+            <input type="checkbox" id="chk-${i}"> <span>${c}</span>
+          </label>
+        `).join("")}
+      </div>
+
+      <div class="skill-cta">
+        <button class="btn ${revealed ? "btn-secondary" : "btn-primary"}" onclick="toggleModelAnswer()">
+          ${revealed ? "Hide Model Answer" : "Show Model Answer"}
+        </button>
+      </div>
+
+      ${revealed ? `
+        <div class="model-answer">
+          <div class="model-label">⭐ Model Answer</div>
+          <div class="model-text">${drill.model}</div>
+          <div class="model-note">Compare yours to this. Did you hit every item on the checklist? Yours doesn't need to match word-for-word — focus on the structure.</div>
+        </div>
+      ` : ""}
+
+      <div class="skill-cta">
+        ${idx < drills.length - 1
+          ? `<button class="btn btn-secondary" onclick="nextSkillDrill()">Next Drill →</button>`
+          : `<button class="btn btn-secondary" onclick="navigate('essay')">Back to Essay Lab</button>`}
+      </div>
+    </div>
+  `;
+}
+
+function toggleModelAnswer() {
+  // preserve textarea content
+  const ta = document.getElementById("skill-textarea");
+  const saved = ta ? ta.value : "";
+  state.skillDrillRevealed = !state.skillDrillRevealed;
+  const skill = ESSAY_SKILLS.find(s => s.id === state.skillId);
+  renderSkillBody(skill);
+  const ta2 = document.getElementById("skill-textarea");
+  if (ta2) ta2.value = saved;
+}
+
+function nextSkillDrill() {
+  state.skillDrillIndex++;
+  state.skillDrillRevealed = false;
+  const skill = ESSAY_SKILLS.find(s => s.id === state.skillId);
+  renderSkillBody(skill);
 }
 
 // ─── PROGRESS ────────────────────────────────────────────────────────────────
