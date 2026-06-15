@@ -1,0 +1,12 @@
+{
+  "name": "hiset-writing-prep",
+  "version": "1.0.0",
+  "description": "HiSET Language Arts – Writing study app",
+  "scripts": {
+    "dev": "http-server -p 8000 -o",
+    "start": "http-server -p 8000"
+  },
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+}
