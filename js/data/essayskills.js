@@ -70,6 +70,39 @@ const ESSAY_SKILLS = [
         ],
         correct: 1,
         explanation: "The thesis typically comes at the END of your introduction, after you've briefly introduced the topic. It then guides the body paragraphs that follow."
+      },
+      {
+        scenario: "Which thesis correctly handles a counter-argument while still taking a side?",
+        choices: [
+          "Although Passage A raises some points, both passages are equally strong.",
+          "While Passage B makes a fair point about cost, Passage A is ultimately more convincing because it backs its claims with statistics and real-world examples.",
+          "Passage A is right and Passage B is completely wrong about everything.",
+          "I cannot decide which passage is better supported."
+        ],
+        correct: 1,
+        explanation: "Option B acknowledges the other side ('While Passage B makes a fair point...') yet still commits clearly to one position with previewed reasons. That nuance scores higher than refusing to choose or dismissing the other side entirely."
+      },
+      {
+        scenario: "A student writes: \"Passage A is more convincing because of its evidence.\" How can this thesis be improved?",
+        choices: [
+          "Remove the word 'because' to make it shorter.",
+          "Name the SPECIFIC evidence/reasons instead of the vague phrase 'its evidence.'",
+          "Change 'Passage A' to 'the passage' so it's less specific.",
+          "Nothing — it is already a perfect thesis."
+        ],
+        correct: 1,
+        explanation: "The thesis takes a side and uses 'because,' but 'its evidence' is vague. Naming the specific reasons (e.g., 'because it cites a 28% drop in discipline incidents and explains how uniforms build unity') makes it far stronger."
+      },
+      {
+        scenario: "Which is the BEST-constructed thesis?",
+        choices: [
+          "School lunches are an important topic that people argue about a lot.",
+          "Passage B presents the more convincing argument that schools should offer free lunch to all students, because it shows that universal programs reduce stigma and that well-fed students perform better academically.",
+          "Maybe Passage A is right, but Passage B also makes sense in some ways.",
+          "This essay will look at two passages about school lunch."
+        ],
+        correct: 1,
+        explanation: "Only option B takes a clear side, names the claim, and previews two specific, distinct reasons — the formula for a top-scoring thesis."
       }
     ],
     drills: [
@@ -91,6 +124,36 @@ const ESSAY_SKILLS = [
           "Did you name the claim, not just \"Passage B\"?",
           "Did you preview two distinct reasons?",
           "Could a reader predict your body paragraphs from this sentence?"
+        ]
+      },
+      {
+        scenario: "Prompt: Two passages debate banning cell phones in classrooms. You think the PRO-ban passage is stronger. Write a thesis that previews two reasons.",
+        model: "Passage A presents the more convincing case for banning cell phones in classrooms, because it cites a study showing measurable test-score gains and explains how phones fuel cheating and distraction.",
+        checklist: [
+          "Does it name Passage A as stronger?",
+          "Does it state the claim (ban phones)?",
+          "Does it preview two specific reasons?",
+          "Is it one sentence with precise language?"
+        ]
+      },
+      {
+        scenario: "Prompt: Two passages debate year-round school. Write a thesis that ACKNOWLEDGES the other side but still commits to one position (use 'While...').",
+        model: "While Passage A makes a reasonable point about summer learning loss, Passage B presents the stronger argument against year-round school, because it cites research finding little lasting benefit and details the high costs and lost summer opportunities.",
+        checklist: [
+          "Does it begin by fairly acknowledging the other side?",
+          "Does it then commit clearly to one passage?",
+          "Does it preview two specific reasons?",
+          "Is it still one focused sentence?"
+        ]
+      },
+      {
+        scenario: "Prompt: Two passages debate standardized testing. Pick the side you find stronger and write a thesis. Avoid ALL vague words (good, bad, interesting).",
+        model: "Passage B offers the more convincing argument against relying heavily on standardized tests, because it shows that test pressure narrows the curriculum and that scores often reflect family income rather than true ability.",
+        checklist: [
+          "Did you avoid vague words entirely?",
+          "Did you commit to one side and name the claim?",
+          "Did you preview two distinct, specific reasons?",
+          "Would the auto-grader give this a high score? (Try it!)"
         ]
       }
     ]

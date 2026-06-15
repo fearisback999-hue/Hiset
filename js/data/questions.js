@@ -1,4 +1,4 @@
-// HiSET Language Arts – Writing: 90 multiple-choice practice questions
+// HiSET Language Arts – Writing: 120 multiple-choice practice questions
 // Format mirrors actual HiSET passage-based items
 
 const QUESTIONS = [
@@ -1162,6 +1162,329 @@ const QUESTIONS = [
     ],
     correct: 3,
     explanation: "'Not only…but also' is a correlative conjunction pair. 'Not only improve vocabulary but also strengthen critical thinking' is parallel and correct. No change is needed."
+  },
+
+  // ── ADDITIONAL POOL (91–120) — mixed, for full-length tests ───────────────
+
+  {
+    id: 91,
+    category: "Subject-Verb Agreement",
+    passage: "A list of approved vendors (1)__are__ posted on the company website every quarter.",
+    question: "Which is the best version of the underlined word marked (1)?",
+    choices: ["(No change) are", "is", "were", "have been"],
+    correct: 1,
+    explanation: "The subject is 'list' (singular), not 'vendors.' The phrase 'of approved vendors' is just a modifier, so the verb is 'is.'"
+  },
+  {
+    id: 92,
+    category: "Subject-Verb Agreement",
+    passage: "Either the teachers or the principal (1)__are__ going to lead the assembly tomorrow.",
+    question: "Which is the best version of the underlined word marked (1)?",
+    choices: ["(No change) are", "is", "were", "have been"],
+    correct: 1,
+    explanation: "With 'either…or,' the verb agrees with the nearer subject. 'Principal' is singular, so 'is' is correct."
+  },
+  {
+    id: 93,
+    category: "Pronoun Agreement & Case",
+    passage: "Neither of the brothers remembered to bring (1)__their__ permission slip on the day of the trip.",
+    question: "Which is the best version of the underlined word marked (1)?",
+    choices: ["(No change) their", "his", "its", "they're"],
+    correct: 1,
+    explanation: "'Neither' is singular, so it takes a singular pronoun. Since the brothers are male, 'his' is correct."
+  },
+  {
+    id: 94,
+    category: "Pronoun Agreement & Case",
+    passage: "The coach gave detailed feedback to my teammate and (1)__I__ after the championship game.",
+    question: "Which is the best version of the underlined word marked (1)?",
+    choices: ["(No change) I", "me", "myself", "we"],
+    correct: 1,
+    explanation: "The pronoun is an object of the preposition 'to.' Remove 'my teammate and' to test: 'gave feedback to me.' Use 'me.'"
+  },
+  {
+    id: 95,
+    category: "Verb Tense & Consistency",
+    passage: "By next June, she (1)__will work__ at the hospital for ten years.",
+    question: "Which is the best version of the underlined portion marked (1)?",
+    choices: ["(No change) will work", "will have worked", "worked", "has worked"],
+    correct: 1,
+    explanation: "An action completed by a point in the future uses the future perfect: 'will have worked.'"
+  },
+  {
+    id: 96,
+    category: "Verb Tense & Consistency",
+    passage: "The volunteers planted trees all morning and then (1)__clean__ up the trash along the riverbank.",
+    question: "Which is the best version of the underlined word marked (1)?",
+    choices: ["(No change) clean", "cleaned", "cleans", "will clean"],
+    correct: 1,
+    explanation: "The sentence is in the past ('planted'). To stay consistent, the second verb must be past tense: 'cleaned.'"
+  },
+  {
+    id: 97,
+    category: "Sentence Fragments & Run-Ons",
+    passage: "(1)__The museum offers free admission on Sundays this attracts large crowds.__",
+    question: "Which is the best revision of sentence (1)?",
+    choices: [
+      "(No change)",
+      "The museum offers free admission on Sundays, this attracts large crowds.",
+      "The museum offers free admission on Sundays, which attracts large crowds.",
+      "The museum offers free admission on Sundays this, attracts large crowds."
+    ],
+    correct: 2,
+    explanation: "The original is a run-on (fused sentence). Adding ', which' turns the second clause into a dependent clause and fixes it."
+  },
+  {
+    id: 98,
+    category: "Sentence Fragments & Run-Ons",
+    passage: "He practiced for weeks. (1)__In order to perfect his audition piece.__",
+    question: "Which is the best revision of sentence (1)?",
+    choices: [
+      "(No change)",
+      "He practiced for weeks in order to perfect his audition piece.",
+      "In order to perfecting his audition piece.",
+      "In order, to perfect his audition piece."
+    ],
+    correct: 1,
+    explanation: "'In order to perfect his audition piece' is a fragment. Attaching it to the previous sentence creates a complete thought."
+  },
+  {
+    id: 99,
+    category: "Parallel Structure",
+    passage: "The internship taught her how to manage a budget, how to lead a team, and (1)__communicating with clients.__",
+    question: "Which is the best version of the underlined portion marked (1)?",
+    choices: [
+      "(No change)",
+      "how to communicate with clients.",
+      "she communicated with clients.",
+      "client communication skills."
+    ],
+    correct: 1,
+    explanation: "The series uses 'how to + verb': 'how to manage,' 'how to lead,' and 'how to communicate.' All must match."
+  },
+  {
+    id: 100,
+    category: "Misplaced & Dangling Modifiers",
+    passage: "(1)__Covered in fresh snow, the children admired the mountains.__",
+    question: "Which is the best revision of sentence (1)?",
+    choices: [
+      "(No change)",
+      "Covered in fresh snow, the mountains were admired by the children.",
+      "The children admired the mountains, covered in fresh snow.",
+      "Covered in fresh snow the children, admired the mountains."
+    ],
+    correct: 2,
+    explanation: "In the original, 'Covered in fresh snow' wrongly modifies 'the children.' Placing the phrase next to 'mountains' fixes the misplaced modifier."
+  },
+  {
+    id: 101,
+    category: "Comma Usage",
+    passage: "When the meeting finally ended (1)__ everyone hurried to catch the last train home.",
+    question: "Which punctuation belongs in the blank marked (1)?",
+    choices: ["(No change) — no comma", ", (comma)", "; (semicolon)", ": (colon)"],
+    correct: 1,
+    explanation: "An introductory dependent clause ('When the meeting finally ended') is followed by a comma before the main clause."
+  },
+  {
+    id: 102,
+    category: "Comma Usage",
+    passage: "My oldest friend (1)__Daniel__ is moving across the country next week.",
+    question: "Which is the best punctuation for the underlined name marked (1)?",
+    choices: ["(No change) Daniel", ", Daniel,", "; Daniel;", ": Daniel:"],
+    correct: 0,
+    explanation: "Because 'Daniel' specifies which friend (essential/restrictive appositive when you have many friends), no commas are needed. The name identifies the friend."
+  },
+  {
+    id: 103,
+    category: "Semicolons, Colons & Dashes",
+    passage: "We visited three cities on our trip (1)__ Boston, Chicago, and Seattle.",
+    question: "Which punctuation belongs in the blank marked (1)?",
+    choices: [", (comma)", "; (semicolon)", ": (colon)", "— no punctuation"],
+    correct: 2,
+    explanation: "A complete clause ('We visited three cities on our trip') followed by a list takes a colon."
+  },
+  {
+    id: 104,
+    category: "Apostrophes & Possessives",
+    passage: "Both (1)__witnesses'__ accounts matched, which strengthened the case.",
+    question: "Which is the best version of the underlined word marked (1)?",
+    choices: ["(No change) witnesses'", "witness's", "witnesses", "witnesses's"],
+    correct: 0,
+    explanation: "'Witnesses' is the plural; the accounts belong to both of them, so the plural possessive is 'witnesses'' (apostrophe after the s)."
+  },
+  {
+    id: 105,
+    category: "Capitalization",
+    passage: "Next year I plan to take (1)__Spanish__ and a (2)__History__ course at the local college.",
+    question: "Which words are correctly capitalized?",
+    choices: [
+      "Both are correct as written.",
+      "'Spanish' is correct; 'History' should be lowercase 'history.'",
+      "'Spanish' should be lowercase; 'History' is correct.",
+      "Both should be lowercase."
+    ],
+    correct: 1,
+    explanation: "Languages ('Spanish') are always capitalized. General subjects like 'history' are lowercase unless part of a specific course title (e.g., 'History 101')."
+  },
+  {
+    id: 106,
+    category: "Commonly Confused Words",
+    passage: "The medication had a strong (1)__affect__ on his energy levels throughout the day.",
+    question: "Which is the best version of the underlined word marked (1)?",
+    choices: ["(No change) affect", "effect", "affects", "effects"],
+    correct: 1,
+    explanation: "As a noun meaning 'result/impact,' the correct word is 'effect': 'a strong effect.'"
+  },
+  {
+    id: 107,
+    category: "Commonly Confused Words",
+    passage: "There were far (1)__less__ people at the second showing than at the first.",
+    question: "Which is the best version of the underlined word marked (1)?",
+    choices: ["(No change) less", "fewer", "lesser", "least"],
+    correct: 1,
+    explanation: "'People' can be counted, so use 'fewer,' not 'less.'"
+  },
+  {
+    id: 108,
+    category: "Transitions & Organization",
+    passage: "The first design was over budget. (1)__Therefore,__ the team chose a simpler, more affordable plan.",
+    question: "Which transition best fits the blank marked (1)?",
+    choices: ["(No change) Therefore,", "Nevertheless,", "For example,", "Similarly,"],
+    correct: 0,
+    explanation: "The second sentence shows a result of the first (over budget → chose a cheaper plan). 'Therefore' signals cause and effect."
+  },
+  {
+    id: 109,
+    category: "Transitions & Organization",
+    passage: "Paragraph: (1) Recycling conserves natural resources. (2) It also reduces the amount of waste sent to landfills. (3) The mayor enjoys playing golf on weekends. (4) For these reasons, many cities have expanded their recycling programs.",
+    question: "Which sentence should be removed to improve the paragraph's unity?",
+    choices: ["Sentence 1", "Sentence 2", "Sentence 3", "Sentence 4"],
+    correct: 2,
+    explanation: "Sentence 3 about the mayor's golf hobby is unrelated to recycling and breaks the paragraph's unity."
+  },
+  {
+    id: 110,
+    category: "Word Choice, Clarity & Conciseness",
+    passage: "Due to the fact that the bridge was closed, we (1)__had to take__ a longer route.",
+    question: "Which revision makes the sentence more concise?",
+    choices: [
+      "(No change) Due to the fact that the bridge was closed",
+      "Because the bridge was closed",
+      "On account of the fact the bridge being closed",
+      "In light of the fact that the bridge was in a closed state"
+    ],
+    correct: 1,
+    explanation: "'Due to the fact that' is wordy. 'Because' says the same thing in one word."
+  },
+  {
+    id: 111,
+    category: "Word Choice, Clarity & Conciseness",
+    passage: "The committee will (1)__collaborate together__ on the final report.",
+    question: "Which is the best revision of the underlined portion marked (1)?",
+    choices: ["(No change) collaborate together", "collaborate", "collaborate jointly together", "all collaborate together as a group"],
+    correct: 1,
+    explanation: "'Collaborate' already means to work together, so 'together' is redundant. Just 'collaborate' is correct."
+  },
+  {
+    id: 112,
+    category: "Subject-Verb Agreement",
+    passage: "The data from the experiments (1)__suggest__ a clear trend.",
+    question: "Which is the best version of the underlined word marked (1)?",
+    choices: ["(No change) suggest", "suggests", "is suggesting", "has suggested"],
+    correct: 0,
+    explanation: "In formal/scientific usage, 'data' is the plural of 'datum' and takes a plural verb: 'data suggest.' (HiSET follows formal convention here.)"
+  },
+  {
+    id: 113,
+    category: "Pronoun Agreement & Case",
+    passage: "The scholarship will go to (1)__whomever__ writes the most compelling essay.",
+    question: "Which is the best version of the underlined word marked (1)?",
+    choices: ["(No change) whomever", "whoever", "whom", "who"],
+    correct: 1,
+    explanation: "The pronoun is the subject of 'writes,' so use the subject form 'whoever' (it works like 'he writes')."
+  },
+  {
+    id: 114,
+    category: "Verb Tense & Consistency",
+    passage: "If she (1)__had trained__ harder last season, she might have made the varsity team.",
+    question: "Which is the best version of the underlined portion marked (1)?",
+    choices: ["(No change) had trained", "would have trained", "has trained", "trained"],
+    correct: 0,
+    explanation: "In a past conditional 'if' clause, use the past perfect: 'If she had trained harder...' (not 'would have' in the if-clause)."
+  },
+  {
+    id: 115,
+    category: "Sentence Fragments & Run-Ons",
+    passage: "(1)__The recipe calls for fresh basil, however, dried basil can work in a pinch.__",
+    question: "Which is the best revision of sentence (1)?",
+    choices: [
+      "(No change)",
+      "The recipe calls for fresh basil; however, dried basil can work in a pinch.",
+      "The recipe calls for fresh basil however dried basil can work in a pinch.",
+      "The recipe calls for fresh basil, however dried basil, can work in a pinch."
+    ],
+    correct: 1,
+    explanation: "'However' joining two independent clauses needs a semicolon before it and a comma after it. The original is a comma splice."
+  },
+  {
+    id: 116,
+    category: "Comma Usage",
+    passage: "The old (1)__wooden rocking__ chair creaked with every movement.",
+    question: "Should there be a comma between 'wooden' and 'rocking'?",
+    choices: [
+      "Yes — they are coordinate adjectives needing a comma.",
+      "No — 'wooden rocking chair' reads as a unit; the adjectives are not coordinate.",
+      "Yes — all stacked adjectives require commas.",
+      "No — adjectives never take commas."
+    ],
+    correct: 1,
+    explanation: "Test: you wouldn't say 'rocking wooden chair' or 'wooden and rocking chair.' They aren't coordinate, so no comma is needed."
+  },
+  {
+    id: 117,
+    category: "Commonly Confused Words",
+    passage: "Walking to school takes longer (1)__then__ riding the bus.",
+    question: "Which is the best version of the underlined word marked (1)?",
+    choices: ["(No change) then", "than", "thain", "thеn"],
+    correct: 1,
+    explanation: "'Than' is used for comparisons. 'Then' refers to time. Comparing two options requires 'than.'"
+  },
+  {
+    id: 118,
+    category: "Transitions & Organization",
+    passage: "Sentences out of order: (A) Finally, frost the cooled cupcakes. (B) First, preheat the oven and line the pan. (C) Then bake for eighteen minutes. (D) Next, spoon the batter into the liners.",
+    question: "What is the correct logical order?",
+    choices: ["B, D, C, A", "B, C, D, A", "A, B, C, D", "D, B, C, A"],
+    correct: 0,
+    explanation: "Process order: preheat/line (B) → spoon batter (D) → bake (C) → frost (A). The sequence is B, D, C, A."
+  },
+  {
+    id: 119,
+    category: "Misplaced & Dangling Modifiers",
+    passage: "She served sandwiches to the guests (1)__on paper plates.__",
+    question: "Where should 'on paper plates' go for the clearest meaning (the sandwiches are on the plates)?",
+    choices: [
+      "(No change) ...to the guests on paper plates.",
+      "She served sandwiches on paper plates to the guests.",
+      "On paper plates she served to the guests sandwiches.",
+      "She served to the guests sandwiches on paper plates."
+    ],
+    correct: 1,
+    explanation: "As written, 'on paper plates' seems to modify 'guests.' Moving it next to 'sandwiches' makes the meaning clear."
+  },
+  {
+    id: 120,
+    category: "Word Choice, Clarity & Conciseness",
+    passage: "At this point in time, the company is unable to (1)__make a decision regarding__ the merger.",
+    question: "Which revision is clearest and most concise?",
+    choices: [
+      "(No change) At this point in time...make a decision regarding",
+      "Currently, the company cannot decide on",
+      "At the present moment in time, the company is not able to decide about",
+      "Right now at this time, the company is unable to make a decision about"
+    ],
+    correct: 1,
+    explanation: "'At this point in time' = 'currently,' and 'make a decision regarding' = 'decide on.' The concise version is clearest."
   }
 ];
 
@@ -1205,5 +1528,57 @@ const ESSAY_PROMPTS = [
       text: `While the four-day school week sounds appealing, its long-term effects on student learning are concerning. Most districts compress the same number of instructional hours into longer school days, leaving younger children exhausted and less able to absorb information by the end of the day. For working parents, a four-day school week creates a childcare crisis—many families cannot afford or find care for an extra day each week. Research from economists at Georgia State University found that, while test score effects were mixed in the short term, students from low-income families showed declines in academic performance compared to peers in five-day schools. For students who depend on school for meals, supervision, and a safe environment, removing a school day can have serious consequences that outweigh any cost savings.`
     },
     prompt: "The passages above present two perspectives on the four-day school week. Analyze both arguments and explain which is more effectively supported. Cite specific evidence from both passages in your response."
+  },
+  {
+    id: 4,
+    title: "Cell Phones in Class",
+    passageA: {
+      title: "Ban Cell Phones in the Classroom",
+      text: `Allowing cell phones in classrooms undermines learning, and schools should ban them during instructional time. Numerous studies have found that the mere presence of a phone on a desk reduces students' ability to concentrate, even when the phone is turned off. One large study found that test scores rose by the equivalent of an extra week of schooling in classrooms where phones were prohibited, with the largest gains among struggling students. Phones are also a primary tool for cheating and a constant source of cyberbullying that can spill into the school day. Teachers report spending valuable class time policing devices instead of teaching. A clear, schoolwide ban removes the temptation, levels the playing field, and helps students develop the focus they will need in college and careers.`
+    },
+    passageB: {
+      title: "Phones Are Learning Tools — Don't Ban Them",
+      text: `A blanket ban on cell phones ignores their genuine educational value and the realities of modern life. Smartphones put a research library, a calculator, a translator, and countless learning apps in every student's pocket. Teachers who integrate phones into lessons—through polls, document scanning, or quick fact-checking—report higher engagement. Banning phones also raises safety concerns: in an emergency, parents and students want to be able to reach one another immediately. Moreover, confiscating phones treats students like children rather than teaching the self-regulation they need for adulthood. Instead of an outright ban, schools should teach responsible "digital citizenship" and set clear classroom norms, preparing students for a world where managing technology is an essential life skill.`
+    },
+    prompt: "The two passages present opposing views on whether schools should ban cell phones in the classroom. Analyze both arguments and explain which one is better supported by evidence and reasoning. Use specific evidence from both passages in your response."
+  },
+  {
+    id: 5,
+    title: "Year-Round School",
+    passageA: {
+      title: "Switch to Year-Round School",
+      text: `The traditional nine-month calendar was designed for an agricultural era that no longer exists, and schools should switch to a year-round schedule. During the long summer break, students lose a significant amount of what they learned—a phenomenon researchers call the "summer slide." Studies estimate that students can lose up to two months of reading and math skills over the summer, and teachers must spend weeks each fall re-teaching old material. Year-round calendars, which spread shorter breaks throughout the year, reduce this loss and improve retention. The shorter, more frequent breaks also help prevent student and teacher burnout. For working families, a year-round schedule can provide more reliable, consistent childcare than the long summer gap.`
+    },
+    passageB: {
+      title: "Keep the Traditional School Calendar",
+      text: `Year-round schooling sounds promising, but the evidence does not justify abandoning the traditional calendar. Large reviews of research have found little to no lasting difference in academic achievement between year-round and traditional schools once other factors are accounted for. Meanwhile, the costs are real: running schools through the summer dramatically increases air-conditioning, transportation, and staffing expenses. Summer break also provides irreplaceable opportunities—internships, camps, family travel, and summer jobs that teach responsibility and independence. Many teachers use the extended break to pursue further education and recharge. Disrupting a calendar that families, employers, and communities have organized their lives around, for uncertain benefits, is not a wise trade.`
+    },
+    prompt: "The passages above present two perspectives on whether schools should adopt a year-round calendar. Analyze both arguments and determine which is more effectively supported. Cite specific evidence from both passages."
+  },
+  {
+    id: 6,
+    title: "Standardized Testing",
+    passageA: {
+      title: "Standardized Tests Are Necessary",
+      text: `Standardized tests remain the fairest, most objective way to measure student learning, and they should continue to play a central role in education. Unlike classroom grades, which vary widely from teacher to teacher, standardized tests hold every student to the same measuring stick. This objectivity is essential for identifying achievement gaps: without comparable data, struggling schools and underserved students can be overlooked. Tests also provide accountability, giving parents and taxpayers evidence of whether schools are doing their job. Colleges and employers rely on this common metric to compare applicants from thousands of different schools fairly. Far from being obstacles, standardized tests are a vital tool for ensuring that no student's education is quietly neglected.`
+    },
+    passageB: {
+      title: "Standardized Tests Do More Harm Than Good",
+      text: `Standardized testing has come to dominate education in ways that harm the very students it claims to help. Because school funding and teacher evaluations are often tied to scores, classrooms increasingly "teach to the test," narrowing the curriculum and squeezing out art, music, and critical thinking. A single high-pressure exam cannot capture a student's creativity, persistence, or growth over time, yet these tests can determine graduation and college admission. Worse, the exams often reflect socioeconomic advantages—wealthier students can afford tutoring and test prep—so the scores frequently measure family income as much as ability. Relying so heavily on one narrow number gives a distorted picture of learning and pressures students in counterproductive ways.`
+    },
+    prompt: "The two passages present opposing views on the value of standardized testing. Analyze both arguments and explain which position is better supported. Use specific evidence from both passages in your response."
+  },
+  {
+    id: 7,
+    title: "Community Service Requirement",
+    passageA: {
+      title: "Require Community Service to Graduate",
+      text: `High schools should require community service hours for graduation because the benefits to students and society are substantial. Service learning connects classroom lessons to the real world, helping students develop empathy, responsibility, and practical skills they cannot gain from textbooks alone. Research shows that students who participate in service are more likely to vote, volunteer, and stay civically engaged as adults. Required service also exposes young people to needs and perspectives outside their own communities, broadening their understanding of the world. For students applying to college or jobs, documented service experience strengthens their applications. By making service a graduation requirement, schools ensure that every student—not just those who already volunteer—gains these lasting benefits.`
+    },
+    passageB: {
+      title: "Don't Make Community Service Mandatory",
+      text: `Forcing students to complete community service undermines the very spirit of volunteering. Service that is required is no longer voluntary; it becomes just another box to check, and studies suggest that compelled service can actually reduce students' long-term interest in giving back. Mandatory hours also place an unfair burden on students who already juggle jobs, family responsibilities, or long commutes—often the very students with the least free time. Tracking and verifying hours creates significant administrative work for schools, diverting resources from instruction. Genuine generosity cannot be manufactured by a graduation rule. Schools would do better to offer rich, optional service opportunities and inspire students to choose them, rather than coercing participation.`
+    },
+    prompt: "The passages above present two perspectives on whether community service should be required for high school graduation. Analyze both arguments and explain which is more convincingly supported. Cite specific evidence from both passages."
   }
 ];

@@ -12,8 +12,9 @@ const state = {
   testQuestions: [],
   testIndex: 0,
   testAnswers: [],
-  testMode: "full",        // "full" | "quick" | "category"
+  testMode: "full",        // "full" | "quick" | "category" | "exam"
   testCategory: null,
+  testExamNum: null,
   testStartTime: null,
   testTimerInterval: null,
   essayPromptId: null,
@@ -25,6 +26,7 @@ const state = {
   skillMcqAnswer: null,
   skillDrillIndex: 0,
   skillDrillRevealed: false,
+  skillDraft: "",
   progress: loadProgress()
 };
 
@@ -327,12 +329,31 @@ function renderPracticeMenu() {
     <h1>Practice Tests</h1>
     <p class="subtitle">Test yourself under timed conditions — just like the real HiSET.</p>
 
+    <h2 class="section-title">📘 Full-Length Practice Exams</h2>
+    <p class="subtitle" style="margin-bottom:1rem">Fixed, exam-style sets of 40 questions — the same questions every time, so you can track real improvement.</p>
+    <div class="exam-grid">
+      ${FIXED_TESTS.map((t, i) => {
+        const hist = state.progress.testHistory.filter(h => h.mode === "exam" && h.examNum === i + 1);
+        const best = hist.length ? Math.max(...hist.map(h => Math.round((h.score / h.total) * 100))) : null;
+        return `
+        <button class="exam-card" onclick="startFixedTest(${i + 1})">
+          <div class="exam-card-top">
+            <span class="exam-badge">Exam ${i + 1}</span>
+            ${best !== null ? `<span class="exam-best ${best >= 80 ? "green" : best >= 60 ? "yellow" : "red"}">Best: ${best}%</span>` : `<span class="exam-best gray">New</span>`}
+          </div>
+          <div class="exam-card-title">${t.title}</div>
+          <div class="exam-card-meta">${t.ids.length} questions · timed</div>
+        </button>`;
+      }).join("")}
+    </div>
+
+    <h2 class="section-title">⚡ Quick Modes</h2>
     <div class="practice-options">
       <div class="practice-card card" onclick="startTest('full')">
-        <div class="pc-icon">📋</div>
-        <div class="pc-title">Full Practice Test</div>
-        <div class="pc-desc">50 questions · 75 minutes · All topics · Mirrors the real exam</div>
-        <button class="btn btn-primary mt-1">Start Full Test</button>
+        <div class="pc-icon">🎲</div>
+        <div class="pc-title">Random Full Test</div>
+        <div class="pc-desc">50 random questions · All topics · A fresh mix every time</div>
+        <button class="btn btn-primary mt-1">Start Random Test</button>
       </div>
       <div class="practice-card card" onclick="startTest('quick')">
         <div class="pc-icon">⚡</div>
@@ -342,7 +363,7 @@ function renderPracticeMenu() {
       </div>
     </div>
 
-    <h2 class="section-title">Practice by Topic</h2>
+    <h2 class="section-title">🎯 Practice by Topic</h2>
     <div class="category-grid">
       ${categories.map(cat => {
         const catQs = QUESTIONS.filter(q => q.category === cat);
@@ -372,7 +393,37 @@ function getCategoryStats(cat) {
 
 // ─── TEST ENGINE ─────────────────────────────────────────────────────────────
 
+// Fixed, repeatable full-length exams (deterministic question sets)
+const FIXED_TESTS = [
+  { title: "Comprehensive Exam A", ids: range(1, 40) },
+  { title: "Comprehensive Exam B", ids: range(41, 80) },
+  { title: "Comprehensive Exam C", ids: range(81, 120) }
+];
+
+function range(a, b) {
+  const out = [];
+  for (let i = a; i <= b; i++) out.push(i);
+  return out;
+}
+
+function startFixedTest(examNum) {
+  const test = FIXED_TESTS[examNum - 1];
+  // Preserve the fixed order; do not shuffle so the exam is repeatable
+  const pool = test.ids.map(id => QUESTIONS.find(q => q.id === id)).filter(Boolean);
+
+  state.testQuestions = pool;
+  state.testIndex = 0;
+  state.testAnswers = new Array(pool.length).fill(null);
+  state.testMode = "exam";
+  state.testCategory = null;
+  state.testExamNum = examNum;
+  state.testStartTime = Date.now();
+
+  navigate("test");
+}
+
 function startTest(mode, category = null, specificIds = null) {
+  state.testExamNum = null;
   let pool;
   if (specificIds) {
     pool = QUESTIONS.filter(q => specificIds.includes(q.id));
@@ -402,6 +453,8 @@ function renderTest() {
   const q = state.testQuestions[state.testIndex];
   const total = state.testQuestions.length;
   const answered = state.testAnswers[state.testIndex];
+  const hasAnswered = answered !== null && answered !== undefined;
+  const isCorrect = hasAnswered && answered === q.correct;
   const pct = ((state.testIndex) / total) * 100;
 
   const div = el("div", "test-view");
@@ -420,28 +473,37 @@ function renderTest() {
       ${q.passage ? `<div class="passage-box">${formatPassage(q.passage)}</div>` : ""}
       <div class="question-text">${q.question}</div>
       <div class="choices" id="choices">
-        ${q.choices.map((c, i) => `
-          <button class="choice ${answered === i ? "selected" : ""}"
-                  onclick="selectAnswer(${i})"
-                  data-index="${i}">
+        ${q.choices.map((c, i) => {
+          let cls = "choice";
+          if (hasAnswered) {
+            if (i === q.correct) cls += " correct";
+            else if (i === answered) cls += " incorrect";
+          }
+          return `
+          <button class="${cls}" ${hasAnswered ? "disabled" : ""}
+                  onclick="selectAnswer(${i})" data-index="${i}">
             <span class="choice-letter">${"ABCD"[i]}</span>
             <span class="choice-text">${c}</span>
-          </button>
-        `).join("")}
+          </button>`;
+        }).join("")}
       </div>
+
+      ${hasAnswered ? `
+        <div class="explanation-box ${isCorrect ? "exp-correct" : "exp-wrong"}">
+          <strong>${isCorrect ? "✅ Correct!" : "❌ Not quite."}</strong> ${q.explanation}
+        </div>
+      ` : ""}
     </div>
 
     <div class="test-nav">
       <button class="btn btn-secondary" onclick="prevQuestion()" ${state.testIndex === 0 ? "disabled" : ""}>← Back</button>
       <div class="test-nav-center">
-        ${answered !== null ? `<button class="btn-text" onclick="toggleExplanation()">💡 Explanation</button>` : ""}
+        <span class="test-counter">${state.testAnswers.filter(a => a !== null && a !== undefined).length}/${total} answered</span>
       </div>
-      <button class="btn btn-primary" onclick="nextQuestion()" ${answered === null ? "disabled" : ""}>
+      <button class="btn btn-primary" onclick="nextQuestion()" ${!hasAnswered ? "disabled" : ""}>
         ${state.testIndex === total - 1 ? "Finish Test ✓" : "Next →"}
       </button>
     </div>
-
-    <div id="explanation" class="explanation-box hidden"></div>
   `;
   return div;
 }
@@ -451,7 +513,8 @@ function formatPassage(text) {
 }
 
 function selectAnswer(choiceIndex) {
-  if (state.testAnswers[state.testIndex] !== null) return; // already answered
+  // Guard: ignore if this question was already answered
+  if (state.testAnswers[state.testIndex] !== null && state.testAnswers[state.testIndex] !== undefined) return;
 
   state.testAnswers[state.testIndex] = choiceIndex;
 
@@ -470,44 +533,8 @@ function selectAnswer(choiceIndex) {
   if (isCorrect) state.progress.totalCorrect++;
   saveProgress();
 
-  // Highlight choices
-  document.querySelectorAll(".choice").forEach((btn, i) => {
-    if (i === q.correct) btn.classList.add("correct");
-    else if (i === choiceIndex && !isCorrect) btn.classList.add("incorrect");
-    btn.disabled = true;
-  });
-
-  // Unlock Next button and show explanation link without full re-render
-  const nav = document.querySelector(".test-nav");
-  if (nav) {
-    const total = state.testQuestions.length;
-    const idx = state.testIndex;
-    nav.innerHTML = `
-      <button class="btn btn-secondary" onclick="prevQuestion()" ${idx === 0 ? "disabled" : ""}>← Back</button>
-      <div class="test-nav-center">
-        <button class="btn-text" onclick="toggleExplanation()">💡 Explanation</button>
-      </div>
-      <button class="btn btn-primary" onclick="nextQuestion()">
-        ${idx === total - 1 ? "Finish Test ✓" : "Next →"}
-      </button>
-    `;
-  }
-
-  // Auto-show explanation
-  showExplanation();
-}
-
-function showExplanation() {
-  const q = state.testQuestions[state.testIndex];
-  const box = document.getElementById("explanation");
-  if (!box) return;
-  box.classList.remove("hidden");
-  box.innerHTML = `<strong>💡 Explanation:</strong> ${q.explanation}`;
-}
-
-function toggleExplanation() {
-  const box = document.getElementById("explanation");
-  if (box) box.classList.toggle("hidden");
+  // Full re-render — guarantees choices highlight, explanation shows, and Next enables
+  render();
 }
 
 function nextQuestion() {
@@ -537,6 +564,7 @@ function finishTest() {
     date: new Date().toLocaleDateString(),
     mode: state.testMode,
     category: state.testCategory,
+    examNum: state.testExamNum || null,
     total: state.testQuestions.length,
     score,
     elapsed
@@ -577,7 +605,7 @@ function renderResults() {
     </div>
 
     <div class="results-actions">
-      <button class="btn btn-primary" onclick="startTest('${state.testMode}', ${state.testCategory ? `'${state.testCategory}'` : "null"})">Retake Test</button>
+      <button class="btn btn-primary" onclick="${state.testMode === "exam" ? `startFixedTest(${state.testExamNum})` : `startTest('${state.testMode}', ${state.testCategory ? `'${state.testCategory}'` : "null"})`}">Retake Test</button>
       <button class="btn btn-secondary" onclick="navigate('practice')">Other Tests</button>
       <button class="btn btn-secondary" onclick="navigate('home')">Home</button>
     </div>
@@ -880,6 +908,7 @@ function setSkillTab(tab) {
   state.skillMcqAnswer = null;
   state.skillDrillIndex = 0;
   state.skillDrillRevealed = false;
+  state.skillDraft = "";
   const skill = ESSAY_SKILLS.find(s => s.id === state.skillId);
   document.querySelectorAll(".skill-tab").forEach(t => {
     t.classList.toggle("active", t.textContent.toLowerCase().includes(
@@ -1003,7 +1032,15 @@ function renderSkillWrite(skill) {
     <div class="card">
       <div class="spot-progress">Drill ${idx + 1} of ${drills.length}</div>
       <div class="drill-scenario">${drill.scenario}</div>
-      <textarea id="skill-textarea" class="skill-textarea" placeholder="Write your response here..."></textarea>
+      <textarea id="skill-textarea" class="skill-textarea" placeholder="Write your response here, then tap Grade My Writing..."
+        oninput="liveWordCount()">${state.skillDraft || ""}</textarea>
+      <div class="draft-meta"><span id="draft-words">0 words</span></div>
+
+      <div class="skill-cta grade-cta">
+        <button class="btn btn-primary btn-grade" onclick="gradeMyWriting()">⚡ Grade My Writing</button>
+      </div>
+
+      <div id="grade-result"></div>
 
       <div class="skill-checklist">
         <div class="checklist-title">Self-Check — does your answer do all of these?</div>
@@ -1015,7 +1052,7 @@ function renderSkillWrite(skill) {
       </div>
 
       <div class="skill-cta">
-        <button class="btn ${revealed ? "btn-secondary" : "btn-primary"}" onclick="toggleModelAnswer()">
+        <button class="btn ${revealed ? "btn-secondary" : "btn-secondary"}" onclick="toggleModelAnswer()">
           ${revealed ? "Hide Model Answer" : "Show Model Answer"}
         </button>
       </div>
@@ -1024,7 +1061,7 @@ function renderSkillWrite(skill) {
         <div class="model-answer">
           <div class="model-label">⭐ Model Answer</div>
           <div class="model-text">${drill.model}</div>
-          <div class="model-note">Compare yours to this. Did you hit every item on the checklist? Yours doesn't need to match word-for-word — focus on the structure.</div>
+          <div class="model-note">Compare yours to this. Yours doesn't need to match word-for-word — focus on the structure.</div>
         </div>
       ` : ""}
 
@@ -1037,20 +1074,72 @@ function renderSkillWrite(skill) {
   `;
 }
 
-function toggleModelAnswer() {
-  // preserve textarea content
+function liveWordCount() {
   const ta = document.getElementById("skill-textarea");
-  const saved = ta ? ta.value : "";
+  const out = document.getElementById("draft-words");
+  if (ta && out) {
+    state.skillDraft = ta.value;
+    const n = ta.value.trim() === "" ? 0 : ta.value.trim().split(/\s+/).length;
+    out.textContent = `${n} word${n === 1 ? "" : "s"}`;
+  }
+}
+
+function gradeMyWriting() {
+  const ta = document.getElementById("skill-textarea");
+  const box = document.getElementById("grade-result");
+  if (!ta || !box) return;
+  const text = ta.value;
+  state.skillDraft = text;
+
+  const result = gradeSkill(state.skillId, text);
+
+  if (result.error) {
+    box.innerHTML = `<div class="grade-error">${result.error}</div>`;
+    return;
+  }
+
+  box.innerHTML = `
+    <div class="grade-card">
+      <div class="grade-head ${result.bandClass}">
+        <div class="grade-score-ring">
+          <span class="grade-score">${result.score}</span>
+          <span class="grade-outof">/100</span>
+        </div>
+        <div class="grade-band">
+          <div class="grade-band-name">${result.band}</div>
+          <div class="grade-band-msg">${result.bandMsg}</div>
+        </div>
+      </div>
+      <div class="grade-checks">
+        ${result.checks.map(c => `
+          <div class="grade-check ${c.pass ? "gc-pass" : "gc-fail"}">
+            <span class="gc-icon">${c.pass ? "✅" : "❌"}</span>
+            <div class="gc-body">
+              <div class="gc-label">${c.label}</div>
+              <div class="gc-msg">${c.pass ? c.good : c.bad}</div>
+            </div>
+          </div>
+        `).join("")}
+      </div>
+      <div class="grade-foot">This is an automated practice score based on structure. Compare with the Model Answer for the full picture.</div>
+    </div>
+  `;
+  box.scrollIntoView({ behavior: "smooth", block: "nearest" });
+}
+
+function toggleModelAnswer() {
+  // preserve textarea content via state
+  const ta = document.getElementById("skill-textarea");
+  if (ta) state.skillDraft = ta.value;
   state.skillDrillRevealed = !state.skillDrillRevealed;
   const skill = ESSAY_SKILLS.find(s => s.id === state.skillId);
   renderSkillBody(skill);
-  const ta2 = document.getElementById("skill-textarea");
-  if (ta2) ta2.value = saved;
 }
 
 function nextSkillDrill() {
   state.skillDrillIndex++;
   state.skillDrillRevealed = false;
+  state.skillDraft = "";
   const skill = ESSAY_SKILLS.find(s => s.id === state.skillId);
   renderSkillBody(skill);
 }
@@ -1109,7 +1198,7 @@ function renderProgress() {
             return `
               <div class="history-row">
                 <span class="hist-date">${t.date}</span>
-                <span class="hist-type">${t.mode === "full" ? "Full Test" : t.mode === "category" ? t.category : "Quick Drill"}</span>
+                <span class="hist-type">${t.mode === "exam" ? "Exam " + t.examNum : t.mode === "full" ? "Random Test" : t.mode === "category" ? t.category : "Quick Drill"}</span>
                 <span class="hist-score ${pct >= 80 ? "green" : pct >= 60 ? "yellow" : "red"}">${t.score}/${t.total} (${pct}%)</span>
               </div>
             `;
