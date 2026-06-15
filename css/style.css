@@ -529,6 +529,19 @@ th { background: var(--bg); font-weight: 700; }
 .essay-template { display: flex; flex-direction: column; gap: .7rem; }
 .et-para { background: linear-gradient(135deg, var(--bg), #f8fafc); border: 2px solid var(--border); border-radius: 12px; padding: 1.1rem 1.3rem; font-size: .95rem; line-height: 1.75; }
 
+/* ── OFFICIAL RUBRIC VIEW ─────────────────────────────────────────────────── */
+.rubric-header { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
+.rubric-header h1 { margin: 0; font-size: 1.7rem; flex: 1; }
+.rubric-trait { margin-bottom: 1.5rem; }
+.rubric-trait h2 { margin-top: 0; font-size: 1.15rem; }
+.rubric-table { width: 100%; border-collapse: collapse; font-size: .92rem; margin-top: .75rem; }
+.rubric-table th { background: var(--primary); color: #fff; font-weight: 800; padding: .6rem .9rem; text-align: left; }
+.rubric-table td { padding: .65rem .9rem; border-bottom: 1px solid var(--border); vertical-align: top; line-height: 1.5; }
+.rubric-table tr:nth-child(even) td { background: var(--surface2); }
+.rubric-table tr:last-child td { border-bottom: none; }
+.rubric-table td:first-child { font-size: 1.3rem; font-weight: 900; text-align: center; color: var(--primary); min-width: 50px; }
+.rubric-boost { background: linear-gradient(135deg, #eff6ff, #dbeafe); border: 2px solid #93c5fd; border-radius: 10px; padding: .85rem 1.1rem; margin-top: 1rem; font-size: .93rem; line-height: 1.65; color: #1e3a5f; }
+
 /* ── Responsive ───────────────────────────────────────────────────────────── */
 @media (max-width: 500px) {
   #app { padding: 1.2rem .8rem 2rem; }

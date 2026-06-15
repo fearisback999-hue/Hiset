@@ -447,5 +447,129 @@ const ESSAY_SKILLS = [
         ]
       }
     ]
+  },
+
+  {
+    id: "evidence",
+    title: "Using Evidence from Passages",
+    icon: "📎",
+    tagline: "The skill that separates a 4 from a 6 on Development",
+    lesson: {
+      what: `On the HiSET essay, your score on <b>Development</b> — the most important trait — depends almost entirely on how well you use evidence from the two passages. A high-scoring essay doesn't just say "Passage A is better." It quotes or paraphrases specific details and then <b>explains why those details matter</b>.`,
+      formula: `<b>The E-E-E Formula for each piece of evidence:</b>
+<b>E</b>vidence — Introduce and cite the specific detail
+<b>E</b>xplain — Tell the reader what the evidence proves
+<b>E</b>levate — Connect it back to your thesis or the bigger argument
+
+Example:
+<i>Evidence:</i> "Passage A notes that 'rates of discipline incidents dropped by as much as 28%' after uniforms were introduced."
+<i>Explain:</i> "This statistic shows a concrete, measurable impact — not a vague promise."
+<i>Elevate:</i> "By grounding its argument in data rather than opinion, Passage A demonstrates exactly the kind of evidence-based reasoning that makes an argument persuasive."`,
+      tips: [
+        "Use signal phrases to introduce evidence: 'Passage A states...,' 'According to the second passage...,' 'The author of Passage B argues...'",
+        "Never drop a quote without explaining it. The explanation is what earns points — not the quote alone.",
+        "Cite evidence from BOTH passages, even from the one you disagree with (to show you engaged with it).",
+        "Paraphrasing counts as evidence — you don't need to quote word-for-word, but be accurate.",
+        "Avoid stacking evidence without explanation: don't list three quotes in a row — explain each one before moving to the next."
+      ],
+      goodVsBad: [
+        {
+          bad: "Passage A is stronger because it has good evidence. The author talks about statistics and facts that support the argument.",
+          why_bad: "Vague — the reader has no idea what the statistics say or why they're convincing.",
+          good: "Passage A is stronger because its evidence is specific and measurable. For instance, it cites a 28% drop in discipline incidents after uniforms were introduced. This kind of concrete data is far more convincing than the emotional appeals in Passage B, which relies on phrases like 'students deserve freedom' without backing them up.",
+          why_good: "Names the exact statistic, explains why it's convincing (concrete/measurable), and even uses Passage B as a contrast to strengthen the argument."
+        }
+      ]
+    },
+    mcq: [
+      {
+        scenario: "Which sentence BEST integrates evidence from a passage?",
+        choices: [
+          "Passage A has good evidence about uniforms.",
+          "The author of Passage A uses statistics, which is good for an argument.",
+          "Passage A strengthens its case by citing a 28% reduction in discipline incidents, demonstrating that uniforms have a measurable, positive impact on school climate.",
+          "Statistics are more convincing than personal stories, which is why Passage A is better."
+        ],
+        correct: 2,
+        explanation: "Option C names the specific statistic, identifies what it demonstrates, and connects it to a claim about the argument's strength. Options A and B are vague. Option D makes a general claim without citing any actual evidence from the passage."
+      },
+      {
+        scenario: "Which is the BEST signal phrase to introduce a paraphrase from Passage B?",
+        choices: [
+          "I think Passage B says that social media restrictions don't work.",
+          "According to the author of Passage B, age restrictions are easily bypassed because teens can lie about their ages online.",
+          "Passage B has a counterargument about age restrictions.",
+          "The second passage also talks about some problems with restrictions."
+        ],
+        correct: 1,
+        explanation: "Option B uses a professional signal phrase ('According to the author of Passage B'), accurately paraphrases a specific claim, and includes the supporting reason. The others are vague or informal."
+      },
+      {
+        scenario: "An essay body paragraph ends: '...Passage A clearly supports its position with strong evidence.' What is MISSING?",
+        choices: [
+          "A transition word at the beginning",
+          "An explanation of what the evidence proves and why it matters",
+          "A quote from the passage",
+          "A restatement of the thesis"
+        ],
+        correct: 1,
+        explanation: "Stating that evidence is 'strong' without explaining WHY is one of the most common essay weaknesses. The paragraph needs to explain what the evidence demonstrates and how that connects to the argument."
+      },
+      {
+        scenario: "You are arguing that Passage A is stronger. Should you mention Passage B at all?",
+        choices: [
+          "No — only discuss the passage you support.",
+          "Yes — mention Passage B to show you read both, and briefly acknowledge or rebut its claims.",
+          "Yes — but only in the conclusion.",
+          "Only mention Passage B if you think it's wrong about everything."
+        ],
+        correct: 1,
+        explanation: "High-scoring essays engage with BOTH passages. Ignoring the passage you disagree with suggests you didn't fully analyze the prompt. Even a brief acknowledgment — 'While Passage B raises a fair point about cost, Passage A's data on outcomes is more compelling' — earns points for Development."
+      },
+      {
+        scenario: "Which strategy earns the MOST points on the Development trait?",
+        choices: [
+          "Write as many paragraphs as possible, regardless of evidence.",
+          "Quote both passages extensively and let the quotes speak for themselves.",
+          "Select the most specific, relevant evidence from both passages and explain how each piece supports your argument.",
+          "Focus entirely on your personal opinion about the topic."
+        ],
+        correct: 2,
+        explanation: "The Development trait rewards specific, relevant evidence that is explained and connected to your argument. Quotes without explanation, irrelevant evidence, and personal opinion without textual support all earn lower scores."
+      }
+    ],
+    drills: [
+      {
+        scenario: "You are writing about the school uniforms prompt. Write one body paragraph (5–7 sentences) arguing that Passage A is stronger because of its use of statistics. Use the E-E-E formula: introduce the evidence, explain what it proves, and connect it to your thesis.",
+        model: "One of the most persuasive elements of Passage A is its reliance on concrete, measurable data. The passage reports that after uniform policies were implemented, 'rates of discipline incidents dropped by as much as 28%' — a specific, verifiable statistic that gives the argument real credibility. This kind of evidence is far more convincing than a general claim, because it demonstrates that uniforms have produced a real, documented outcome. Furthermore, by citing multiple types of evidence — discipline statistics, reduced morning stress, and a sense of community — Passage A builds a layered case that addresses the issue from several angles. In contrast, Passage B relies primarily on abstract principles such as 'self-expression' and 'individuality' without offering comparable data. Because Passage A's argument is grounded in measurable results rather than philosophy alone, it is ultimately more persuasive.",
+        checklist: [
+          "Does the paragraph open with a topic sentence (a claim, not just a topic)?",
+          "Is specific evidence from Passage A named or quoted?",
+          "Is there an explanation of WHY the evidence is convincing?",
+          "Is there at least one reference to Passage B for contrast?",
+          "Does the paragraph end by linking back to the thesis?"
+        ]
+      },
+      {
+        scenario: "Write a 4–5 sentence 'counter-argument and rebuttal' paragraph. Acknowledge the strongest point from the weaker passage (Passage B on uniforms), then explain why Passage A's evidence still wins.",
+        model: "To be fair, Passage B raises a legitimate concern: requiring uniforms may burden low-income families who must purchase them in addition to everyday clothing. This is a real practical issue that should not be dismissed. However, Passage A addresses economic equity from a different angle — by making economic differences invisible at school, uniforms actually protect lower-income students from the social stigma of wearing less fashionable clothing. Moreover, Passage A's data shows district-wide improvements in discipline and morale, benefits that extend to all students regardless of income. Weighed against each other, Passage A's evidence of broad, measurable gains outweighs Passage B's concern about one implementation challenge.",
+        checklist: [
+          "Does it acknowledge a genuine point from Passage B (not a straw man)?",
+          "Does it use a transition to pivot to the rebuttal ('However,' 'Nevertheless,' etc.)?",
+          "Does it cite specific evidence from Passage A to counter the point?",
+          "Does it end by reinforcing why Passage A still wins overall?"
+        ]
+      },
+      {
+        scenario: "Write a 3–4 sentence evidence integration for the remote work essay: cite the Stanford productivity statistic from Passage A, explain it, and connect it to your thesis that Passage A is stronger.",
+        model: "The most compelling piece of evidence in Passage A is its citation of a Stanford University study tracking 16,000 workers, which found that remote employees were 13% more productive than their office counterparts. This is not a small or anecdotal finding — it is a large-scale, peer-reviewed study that directly measures the core claim that remote work improves performance. The productivity gain was attributed to fewer interruptions and time saved by eliminating the commute, both specific and replicable conditions. This level of specificity and scale makes Passage A's central claim far more credible than Passage B's reliance on surveys and general observations about workplace culture.",
+        checklist: [
+          "Is the source of the evidence identified (Stanford study)?",
+          "Is the specific statistic named (13%)?",
+          "Is there an explanation of WHY this evidence is convincing?",
+          "Is Passage B referenced as a contrast to sharpen the comparison?"
+        ]
+      }
+    ]
   }
 ];

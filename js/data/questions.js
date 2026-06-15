@@ -1,4 +1,4 @@
-// HiSET Language Arts – Writing: 120 multiple-choice practice questions
+// HiSET Language Arts – Writing: 160 multiple-choice practice questions
 // Format mirrors actual HiSET passage-based items
 
 const QUESTIONS = [
@@ -1485,6 +1485,479 @@ const QUESTIONS = [
     ],
     correct: 1,
     explanation: "'At this point in time' = 'currently,' and 'make a decision regarding' = 'decide on.' The concise version is clearest."
+  },
+
+  // ── EXAM D POOL (121–160) — passage-based, organization, style ─────────────
+
+  // Organization & Structure
+  {
+    id: 121,
+    category: "Transitions & Organization",
+    passage: "The new community garden has brought residents together in unexpected ways. Neighbors who never spoke before now chat regularly while tending their plots. (1)__Therefore,__ the garden has also reduced the neighborhood's overall stress levels, according to a recent survey.",
+    question: "Which transition BEST replaces (1)?",
+    choices: ["(No change) Therefore,", "However,", "Furthermore,", "Despite this,"],
+    correct: 2,
+    explanation: "The second sentence adds an additional benefit (stress reduction) rather than showing a logical result or contrast. 'Furthermore' correctly signals that more related information is being added."
+  },
+  {
+    id: 122,
+    category: "Transitions & Organization",
+    passage: "Paragraph: (1) Many employees now work from home full time. (2) Remote work has been shown to increase productivity for some workers. (3) Cats are popular household pets in many countries. (4) However, some employees struggle with the isolation of working alone.",
+    question: "Which sentence should be removed to improve the paragraph's unity?",
+    choices: ["Sentence 1", "Sentence 2", "Sentence 3", "Sentence 4"],
+    correct: 2,
+    explanation: "Sentences 1, 2, and 4 all discuss remote work and its effects on employees. Sentence 3 about cats is completely unrelated to the paragraph's topic and disrupts its unity."
+  },
+  {
+    id: 123,
+    category: "Transitions & Organization",
+    passage: "The monarch butterfly's annual migration is one of nature's most remarkable long-distance journeys. (1)__[TOPIC SENTENCE]__ Monarchs travel up to 3,000 miles each year from Canada to Mexico, navigating without a map.",
+    question: "Which sentence BEST serves as the topic sentence for the paragraph above?",
+    choices: [
+      "Butterflies are beautiful insects found around the world.",
+      "The monarch butterfly's annual migration is one of nature's most remarkable long-distance journeys.",
+      "Many insects migrate during the fall and winter months.",
+      "Scientists study animal behavior in laboratories and in the wild."
+    ],
+    correct: 1,
+    explanation: "A strong topic sentence introduces the specific main idea. 'The monarch butterfly's annual migration is one of nature's most remarkable long-distance journeys' sets up the specific topic and direction — the passage develops exactly this idea."
+  },
+  {
+    id: 124,
+    category: "Transitions & Organization",
+    passage: "The following sentences are out of order: (A) Finally, bake the bread for 30–35 minutes until golden brown. (B) Mix the flour, yeast, salt, and water until a smooth dough forms. (C) Let the dough rise in a warm place for one hour. (D) Preheat your oven to 375°F.",
+    question: "What is the CORRECT sequence for these baking instructions?",
+    choices: ["B, C, A, D", "D, B, C, A", "B, D, C, A", "A, D, B, C"],
+    correct: 1,
+    explanation: "The steps follow a logical baking process: preheat oven (D) → mix dough (B) → let dough rise (C) → bake (A). The correct sequence is D, B, C, A."
+  },
+  {
+    id: 125,
+    category: "Transitions & Organization",
+    passage: "City parks provide essential benefits to urban residents. They offer spaces for exercise that improve physical and mental health. Parks also serve as gathering places that strengthen community bonds. Children develop social skills through unstructured outdoor play.",
+    question: "Which sentence would make the BEST closing sentence for this paragraph?",
+    choices: [
+      "Some cities have fewer parks than others.",
+      "Clearly, preserving and expanding urban parks is an investment in the health and well-being of all residents.",
+      "Parks sometimes have problems with maintenance and litter.",
+      "Children enjoy playing in parks every day."
+    ],
+    correct: 1,
+    explanation: "A strong closing sentence reinforces the paragraph's main idea without introducing new content. Option B synthesizes all the benefits mentioned and ends with a clear takeaway."
+  },
+  {
+    id: 126,
+    category: "Transitions & Organization",
+    passage: "She earned her degree despite working full time. (1)__[TRANSITION]__ she graduated with honors.",
+    question: "Which transition BEST fills the blank to show the most accurate relationship?",
+    choices: ["Therefore,", "Remarkably,", "However,", "In contrast,"],
+    correct: 1,
+    explanation: "'Remarkably' highlights that graduating with honors while working full time is impressive. 'Therefore' implies a direct logical result, which is too neutral for the emphasis this context calls for."
+  },
+  {
+    id: 127,
+    category: "Transitions & Organization",
+    passage: "Paragraph: (1) Bees play a crucial role in pollinating food crops that humans depend on. (2) Without bees, many fruits, vegetables, and nuts could not be produced. (3) Beeswax has been used in cosmetics and candles for thousands of years. (4) Declining bee populations pose a serious threat to global food security.",
+    question: "Which sentence should be REMOVED to best improve the paragraph's focus on food security?",
+    choices: ["Sentence 1", "Sentence 2", "Sentence 3", "Sentence 4"],
+    correct: 2,
+    explanation: "Sentences 1, 2, and 4 all relate to bees and the food supply. Sentence 3 about beeswax in cosmetics is off-topic and interrupts the paragraph's focus on food security."
+  },
+  {
+    id: 128,
+    category: "Transitions & Organization",
+    passage: "Students who read for pleasure score significantly higher on standardized tests. They also develop stronger vocabulary and writing skills. Additionally, reading fiction has been shown to improve empathy by exposing readers to different perspectives.",
+    question: "Which sentence would make the BEST topic sentence for this paragraph?",
+    choices: [
+      "Reading can be a fun activity for many students.",
+      "Reading for pleasure provides students with measurable academic and social benefits.",
+      "Many students do not have time to read for fun.",
+      "Books are available in many formats today, including digital and audiobooks."
+    ],
+    correct: 1,
+    explanation: "The paragraph lists specific academic and social benefits of pleasure reading. The topic sentence should introduce that main idea broadly before the details are given. Option B does this directly and specifically."
+  },
+  {
+    id: 129,
+    category: "Transitions & Organization",
+    passage: "Research consistently shows that sleep deprivation impairs memory and focus. (1)__[TRANSITION]__, teenagers are especially vulnerable, as their brains are still developing and require more sleep than adults.",
+    question: "Which transition BEST fills the blank?",
+    choices: ["However", "Furthermore", "In contrast", "Instead"],
+    correct: 1,
+    explanation: "The second sentence adds more related information about who is most at risk, not a contrast. 'Furthermore' correctly signals that an additional point is being made."
+  },
+  {
+    id: 130,
+    category: "Transitions & Organization",
+    passage: "The following sentences are out of order: (A) As a result, researchers urgently began developing new vaccines. (B) In 2019, a previously unknown virus emerged and began spreading rapidly. (C) By early 2020, the virus had reached dozens of countries across the globe. (D) Within two years, several highly effective vaccines were available worldwide.",
+    question: "What is the most LOGICAL sequence for these sentences?",
+    choices: ["B, C, A, D", "A, B, D, C", "C, B, A, D", "D, A, B, C"],
+    correct: 0,
+    explanation: "The events follow a chronological cause-and-effect chain: virus emerges (B) → spreads globally (C) → vaccine research begins (A) → vaccines become available (D). The correct order is B, C, A, D."
+  },
+
+  // Word Choice / Clarity / Conciseness
+  {
+    id: 131,
+    category: "Word Choice, Clarity & Conciseness",
+    passage: "The committee was unable to come to an agreement (1)__due to the fact that there was a disagreement about the budget.__",
+    question: "Which revision makes the underlined portion MOST concise?",
+    choices: [
+      "(No change) due to the fact that there was a disagreement",
+      "because they disagreed about the budget.",
+      "on account of the fact that they had a disagreement regarding",
+      "seeing as how there existed a disagreement about"
+    ],
+    correct: 1,
+    explanation: "'Because they disagreed about the budget' replaces the wordy 'due to the fact that there was a disagreement about the budget.' Never use 'due to the fact that' when 'because' will do."
+  },
+  {
+    id: 132,
+    category: "Word Choice, Clarity & Conciseness",
+    passage: "The CEO delivered (1)__a speech that was very long and contained many detailed points__ about the company's strategy.",
+    question: "Which revision BEST replaces the underlined portion with precise, concise language?",
+    choices: [
+      "(No change)",
+      "an extensive, detailed speech",
+      "a speech that was long in length and quite detailed in nature",
+      "a speech that went on for a long time and included numerous details"
+    ],
+    correct: 1,
+    explanation: "'An extensive, detailed speech' replaces a wordy noun clause with two precise adjectives. Concise writing uses exact words instead of wordy descriptions."
+  },
+  {
+    id: 133,
+    category: "Word Choice, Clarity & Conciseness",
+    passage: "The (1)__end result__ of the negotiation was a compromise that satisfied both parties.",
+    question: "Which change BEST corrects the underlined phrase?",
+    choices: ["(No change) end result", "result", "final end result", "resulting end"],
+    correct: 1,
+    explanation: "'End result' is redundant because a 'result' is already the final outcome. Simply using 'result' eliminates the repetition."
+  },
+  {
+    id: 134,
+    category: "Word Choice, Clarity & Conciseness",
+    passage: "She is (1)__a person who has a lot of experience working in__ the medical field.",
+    question: "Which revision is MOST concise while preserving the meaning?",
+    choices: [
+      "(No change)",
+      "an experienced professional in",
+      "someone who is very experienced in working in",
+      "a person with much experience in the field of"
+    ],
+    correct: 1,
+    explanation: "'An experienced professional in' replaces 'a person who has a lot of experience working in' with a tight noun phrase. Eliminate wordy structures like 'a person who' by converting them to adjectives."
+  },
+  {
+    id: 135,
+    category: "Word Choice, Clarity & Conciseness",
+    passage: "The (1)__future plans__ of the organization include expanding to three new cities over the next decade.",
+    question: "Which revision eliminates the redundancy in the underlined phrase?",
+    choices: ["(No change) future plans", "plans", "future outlooks and plans", "upcoming future plans"],
+    correct: 1,
+    explanation: "'Plans' are by definition about the future, so 'future plans' is redundant. Simply writing 'plans' eliminates the unnecessary word."
+  },
+  {
+    id: 136,
+    category: "Word Choice, Clarity & Conciseness",
+    passage: "The report was written (1)__in a clear and easy-to-understand manner__ so that all stakeholders could follow it.",
+    question: "Which is the MOST concise revision of the underlined portion?",
+    choices: [
+      "(No change) in a clear and easy-to-understand manner",
+      "clearly",
+      "with a manner of clarity that was easy to understand",
+      "in a very clear way that was easy for people to follow"
+    ],
+    correct: 1,
+    explanation: "The single adverb 'clearly' replaces the entire phrase 'in a clear and easy-to-understand manner.' When one word can replace many, use it."
+  },
+  {
+    id: 137,
+    category: "Word Choice, Clarity & Conciseness",
+    passage: "We should (1)__collaborate together__ on this project to ensure the best possible outcome for everyone involved.",
+    question: "Which revision BEST corrects the underlined phrase?",
+    choices: [
+      "(No change) collaborate together",
+      "collaborate",
+      "work together in collaboration",
+      "jointly collaborate with one another"
+    ],
+    correct: 1,
+    explanation: "'Collaborate' already means 'to work together,' making 'together' redundant. Simply using 'collaborate' eliminates the repetition."
+  },
+  {
+    id: 138,
+    category: "Word Choice, Clarity & Conciseness",
+    passage: "The reason the project was delayed was (1)__due to the fact that__ the funding was not approved on time.",
+    question: "Which is the MOST concise revision of the underlined portion?",
+    choices: [
+      "(No change) due to the fact that",
+      "because",
+      "on account of the fact that",
+      "as a result of the fact that"
+    ],
+    correct: 1,
+    explanation: "'Because' is the most concise causal connector. Note also that 'The reason...was because' is redundant — the full concise version would be 'The project was delayed because the funding was not approved on time.'"
+  },
+  {
+    id: 139,
+    category: "Word Choice, Clarity & Conciseness",
+    passage: "She returned the book to the library (1)__that she had borrowed two weeks ago.__",
+    question: "Which revision BEST clarifies that it was the book — not the library — that was borrowed?",
+    choices: [
+      "(No change)",
+      "She returned the book that she had borrowed two weeks ago to the library.",
+      "That she had borrowed two weeks ago, she returned the book to the library.",
+      "She, having borrowed the book two weeks ago, returned it."
+    ],
+    correct: 1,
+    explanation: "As written, 'that she had borrowed two weeks ago' is placed next to 'library,' suggesting she borrowed the library. Moving the clause directly after 'book' makes it clear she borrowed the book."
+  },
+  {
+    id: 140,
+    category: "Word Choice, Clarity & Conciseness",
+    passage: "The new employee was praised for (1)__her punctuality, her ability to communicate effectively, and how hard she worked.__",
+    question: "Which revision BEST corrects the parallel structure?",
+    choices: [
+      "(No change)",
+      "her punctuality, her effective communication, and her hard work.",
+      "being punctual, her effective communication, and working hard.",
+      "punctuality, communicating effectively, and her hard work."
+    ],
+    correct: 1,
+    explanation: "All three items should use the same grammatical form. 'Her punctuality, her effective communication, and her hard work' uses three parallel noun phrases. The original mixes noun phrases with a subordinate clause ('how hard she worked')."
+  },
+
+  // Passage-Based Grammar in Context
+  {
+    id: 141,
+    category: "Subject-Verb Agreement",
+    passage: "The number of complaints received by the customer service department (1)__have__ increased dramatically this quarter.",
+    question: "Which is the best version of the underlined word marked (1)?",
+    choices: ["(No change) have", "has", "were", "are"],
+    correct: 1,
+    explanation: "'The number of' takes a singular verb. The subject is 'number,' not 'complaints,' so the correct verb is 'has.' (Contrast: 'A number of complaints have been filed' — 'a number of' takes plural.)"
+  },
+  {
+    id: 142,
+    category: "Subject-Verb Agreement",
+    passage: "Both the principal and the superintendent (1)__has__ agreed to attend the community forum next Thursday evening.",
+    question: "Which is the best version of the underlined word marked (1)?",
+    choices: ["(No change) has", "have", "having", "is"],
+    correct: 1,
+    explanation: "When two subjects are joined by 'both...and,' they form a compound plural subject requiring a plural verb: 'Both...have agreed.'"
+  },
+  {
+    id: 143,
+    category: "Verb Tense & Consistency",
+    passage: "The explorer (1)__discovers__ the ancient ruins in 1922 and immediately notified the local authorities.",
+    question: "Which is the best version of the underlined word marked (1)?",
+    choices: ["(No change) discovers", "discovered", "was discovering", "has discovered"],
+    correct: 1,
+    explanation: "The sentence describes a completed historical event ('in 1922') and 'notified' is past tense. Parallel past tense requires 'discovered' for tense consistency."
+  },
+  {
+    id: 144,
+    category: "Verb Tense & Consistency",
+    passage: "By the time the ambulance arrived, the bystanders (1)__administer__ first aid to the injured driver.",
+    question: "Which is the best version of the underlined word marked (1)?",
+    choices: ["(No change) administer", "had already administered", "have administered", "are administering"],
+    correct: 1,
+    explanation: "The past perfect 'had already administered' is required because this action was completed before another past action (the ambulance arriving). The phrase 'By the time' signals this time sequence."
+  },
+  {
+    id: 145,
+    category: "Sentence Fragments & Run-Ons",
+    passage: "(1)__The scientist published her research, the findings were groundbreaking.__",
+    question: "Which is the best revision of sentence (1)?",
+    choices: [
+      "(No change)",
+      "The scientist published her research; the findings were groundbreaking.",
+      "The scientist published her research, and the findings were groundbreaking,",
+      "The scientist published her groundbreaking research findings."
+    ],
+    correct: 1,
+    explanation: "The original is a comma splice — two independent clauses joined only by a comma. A semicolon correctly joins two closely related independent clauses without a conjunction."
+  },
+  {
+    id: 146,
+    category: "Sentence Fragments & Run-Ons",
+    passage: "The library will close for renovations in August. (1)__Which means students will need to find alternative study spaces.__",
+    question: "Which is the best revision of sentence (1)?",
+    choices: [
+      "(No change)",
+      "This means students will need to find alternative study spaces.",
+      "Which meaning students will need to find alternative study spaces.",
+      "Students needing to find alternative study spaces."
+    ],
+    correct: 1,
+    explanation: "'Which means...' is a dependent clause fragment that cannot stand alone. Changing 'Which' to 'This' creates an independent clause with a clear subject."
+  },
+  {
+    id: 147,
+    category: "Parallel Structure",
+    passage: "The new employee is responsible for answering phone calls, (1)__to manage__ client accounts, and filing documents.",
+    question: "Which is the best version of the underlined portion marked (1)?",
+    choices: [
+      "(No change) to manage",
+      "managing",
+      "management of",
+      "the managing of"
+    ],
+    correct: 1,
+    explanation: "The list uses gerunds: 'answering,' '___,' 'filing.' To maintain parallel structure, the middle item must also be a gerund: 'managing.'"
+  },
+  {
+    id: 148,
+    category: "Parallel Structure",
+    passage: "The fitness instructor encouraged her class to stretch carefully, (1)__hydrating frequently,__ and to cool down slowly after each session.",
+    question: "Which revision maintains CORRECT parallel structure with the other items?",
+    choices: [
+      "(No change) hydrating frequently,",
+      "to hydrate frequently,",
+      "frequent hydration,",
+      "having hydrated frequently,"
+    ],
+    correct: 1,
+    explanation: "The series uses 'to + verb' infinitives: 'to stretch,' '___,' 'to cool down.' The middle item must use the same form: 'to hydrate frequently.' A gerund ('hydrating') breaks the parallel structure."
+  },
+  {
+    id: 149,
+    category: "Misplaced & Dangling Modifiers",
+    passage: "(1)__Having finished her homework, the movie was finally turned on by Sara.__",
+    question: "Which is the best revision of sentence (1)?",
+    choices: [
+      "(No change)",
+      "Having finished her homework, Sara finally turned on the movie.",
+      "The movie was turned on by Sara, having finished her homework.",
+      "Sara, having finished her homework, the movie was finally turned on."
+    ],
+    correct: 1,
+    explanation: "The participial phrase 'Having finished her homework' must modify the subject that directly follows it. 'The movie' cannot finish homework. Making Sara the subject fixes the dangling modifier."
+  },
+  {
+    id: 150,
+    category: "Misplaced & Dangling Modifiers",
+    passage: "The professor handed back the exams to the students (1)__that were graded poorly.__",
+    question: "Which revision BEST clarifies that it was the exams — not the students — that were graded poorly?",
+    choices: [
+      "(No change)",
+      "The professor handed back the poorly graded exams to the students.",
+      "The professor, grading them poorly, handed the exams back to students.",
+      "To the students, the professor handed back the exams that were poorly graded."
+    ],
+    correct: 1,
+    explanation: "As written, 'that were graded poorly' is next to 'students,' implying the students were graded. Moving the modifier to directly follow 'exams' clarifies the intended meaning."
+  },
+  {
+    id: 151,
+    category: "Comma Usage",
+    passage: "After the storm passed (1)__ __ the residents began returning to assess the damage to their homes.",
+    question: "What punctuation, if any, is needed at position (1)?",
+    choices: [
+      "A comma: 'After the storm passed, the residents began...'",
+      "A semicolon: 'After the storm passed; the residents began...'",
+      "No punctuation is needed.",
+      "A colon: 'After the storm passed: the residents began...'"
+    ],
+    correct: 0,
+    explanation: "When an introductory subordinate clause precedes the main clause, it must be followed by a comma. 'After the storm passed' is an introductory adverb clause — place a comma after it."
+  },
+  {
+    id: 152,
+    category: "Comma Usage",
+    passage: "Marcus, (1)__who had studied medicine for twelve years,__ decided to open his own practice.",
+    question: "Is the punctuation around the underlined clause correct?",
+    choices: [
+      "No — the clause should not be set off with commas.",
+      "Yes — the commas correctly set off the nonessential relative clause.",
+      "No — semicolons should be used instead of commas.",
+      "No — only one comma is needed, after 'Marcus.'"
+    ],
+    correct: 1,
+    explanation: "The clause 'who had studied medicine for twelve years' is nonessential — it adds information but is not needed to identify Marcus. Nonessential clauses are set off by commas on both sides."
+  },
+  {
+    id: 153,
+    category: "Apostrophes & Possessives",
+    passage: "The (1)__mens'__ locker room was renovated last summer at a cost of $50,000.",
+    question: "Which is the correct version of the underlined word marked (1)?",
+    choices: ["(No change) mens'", "men's", "men's'", "mens"],
+    correct: 1,
+    explanation: "'Men' is already an irregular plural noun (not formed with -s), so the possessive adds 's directly: 'men's.' The same rule applies to 'women's,' 'children's,' 'people's.'"
+  },
+  {
+    id: 154,
+    category: "Apostrophes & Possessives",
+    passage: "(1)__Its'__ been three weeks since the team submitted its proposal to the board.",
+    question: "Which is the best version of the underlined word marked (1)?",
+    choices: ["(No change) Its'", "It's", "Its", "It is'"],
+    correct: 1,
+    explanation: "'It's' = 'it is' or 'it has' (a contraction). 'Its' = possessive pronoun. The sentence means 'It has been three weeks,' so the contraction 'It's' is correct. 'Its'' does not exist."
+  },
+  {
+    id: 155,
+    category: "Semicolons/Colons/Dashes",
+    passage: "She had always dreamed of visiting three specific countries (1)__,__ Italy, Japan, and Brazil.",
+    question: "Which punctuation BEST replaces (1) to introduce the list correctly?",
+    choices: ["(No change) ,", ":", ";", "—"],
+    correct: 1,
+    explanation: "A colon introduces a list or elaboration when it follows a complete independent clause ('She had always dreamed of visiting three specific countries' is complete). A comma alone is insufficient."
+  },
+  {
+    id: 156,
+    category: "Semicolons/Colons/Dashes",
+    passage: "The keynote speaker made three main points (1)__:__ the importance of education, the value of hard work, and the need for community support.",
+    question: "Is the colon used correctly at position (1)?",
+    choices: [
+      "No — a semicolon should be used instead.",
+      "No — a comma should be used instead.",
+      "Yes — a colon correctly introduces a list after a complete independent clause.",
+      "No — no punctuation is needed before the list."
+    ],
+    correct: 2,
+    explanation: "A colon can introduce a list when the preceding statement is a complete independent clause. 'The keynote speaker made three main points' is a complete clause, making the colon correct. No change needed."
+  },
+  {
+    id: 157,
+    category: "Subject-Verb Agreement",
+    passage: "Neither the coaches nor the referee (1)__were__ aware of the rule change until after the game had ended.",
+    question: "Which is the best version of the underlined word marked (1)?",
+    choices: ["(No change) were", "was", "have been", "are"],
+    correct: 1,
+    explanation: "With 'neither...nor,' the verb agrees with the subject closest to it. 'Referee' is singular, so the verb must be singular: 'was.' (If 'coaches' were closer, 'were' would be correct.)"
+  },
+  {
+    id: 158,
+    category: "Pronoun Agreement & Case",
+    passage: "The company announced that (1)__they__ would be relocating its headquarters to Austin, Texas, next spring.",
+    question: "Which is the best version of the underlined word marked (1)?",
+    choices: ["(No change) they", "it", "them", "those"],
+    correct: 1,
+    explanation: "A company is a singular entity and takes singular pronouns. The sentence already uses 'its' (singular) later, so the pronoun should be 'it' for consistency."
+  },
+  {
+    id: 159,
+    category: "Capitalization",
+    passage: "We visited (1)__mount Rushmore__ on our cross-country trip and were amazed by its scale.",
+    question: "Which is the best version of the underlined words marked (1)?",
+    choices: ["(No change) mount Rushmore", "Mount Rushmore", "mount rushmore", "Mount rushmore"],
+    correct: 1,
+    explanation: "Proper nouns — names of specific places and landmarks — must be fully capitalized. 'Mount Rushmore' is the official name of a specific national monument; both words require capitalization."
+  },
+  {
+    id: 160,
+    category: "Commonly Confused Words",
+    passage: "The therapist (1)__assured__ her clients that all sessions were completely confidential and that no information would be shared.",
+    question: "Is the underlined word marked (1) correct?",
+    choices: [
+      "No — it should be 'ensured.'",
+      "No — it should be 'insured.'",
+      "Yes — 'assured' is correct because it means to reassure a person.",
+      "No change needed — both 'assured' and 'ensured' work here."
+    ],
+    correct: 2,
+    explanation: "'Assure' means to promise or reassure a person. 'Ensure' means to make something certain. 'Insure' relates to insurance. Reassuring clients → 'assured' is the correct choice."
   }
 ];
 
@@ -1580,5 +2053,44 @@ const ESSAY_PROMPTS = [
       text: `Forcing students to complete community service undermines the very spirit of volunteering. Service that is required is no longer voluntary; it becomes just another box to check, and studies suggest that compelled service can actually reduce students' long-term interest in giving back. Mandatory hours also place an unfair burden on students who already juggle jobs, family responsibilities, or long commutes—often the very students with the least free time. Tracking and verifying hours creates significant administrative work for schools, diverting resources from instruction. Genuine generosity cannot be manufactured by a graduation rule. Schools would do better to offer rich, optional service opportunities and inspire students to choose them, rather than coercing participation.`
     },
     prompt: "The passages above present two perspectives on whether community service should be required for high school graduation. Analyze both arguments and explain which is more convincingly supported. Cite specific evidence from both passages."
+  },
+  {
+    id: 8,
+    title: "Screen Time for Children",
+    passageA: {
+      title: "Limiting Children's Screen Time Is Essential",
+      text: `Research increasingly shows that excessive screen time harms children's development in measurable ways. The American Academy of Pediatrics recommends no more than one hour of screen time per day for children ages 2–5 and consistent limits for older children. Studies show that children who spend more than two hours daily on screens score lower on cognitive and language tests than those with limited screen time. Heavy device use is also linked to disrupted sleep — the blue light emitted by screens suppresses melatonin production, making it harder for children to fall and stay asleep. Sleep deprivation in turn impairs learning, memory, and emotional regulation. Additionally, time spent on screens replaces time that could be spent on physical activity, creative play, and face-to-face interaction — all critical for healthy development. Parents and educators must set firm boundaries on screen use to protect children's cognitive and social growth.`
+    },
+    passageB: {
+      title: "Digital Engagement Prepares Children for the Modern World",
+      text: `In an era when digital literacy is a core life skill, restricting children's screen time may do more harm than good. The question is not how much time children spend with technology but how they use it. High-quality educational apps, interactive coding platforms, and curated video content can accelerate learning in ways traditional methods cannot match. Research from Northwestern University found that children who used educational apps showed significant gains in early literacy and math skills. Moreover, digital communication tools help children who are shy or socially anxious build confidence in low-stakes environments. As automation and artificial intelligence reshape the workforce, children who grow up comfortable with technology will have a competitive advantage. Rather than imposing rigid limits, parents should focus on guiding children toward productive, creative digital activities.`
+    },
+    prompt: "The passages above present two perspectives on children's screen time. Analyze both arguments and explain which position is more convincingly supported by evidence and reasoning. Use specific evidence from both passages in your response."
+  },
+  {
+    id: 9,
+    title: "Universal Basic Income",
+    passageA: {
+      title: "Universal Basic Income Can Transform Society",
+      text: `Universal Basic Income (UBI) — a program in which the government provides every citizen with a regular unconditional cash payment — has gained serious support from economists and policymakers as automation displaces workers across industries. A UBI would provide a financial safety net that allows workers to transition to new careers without fear of destitution. Pilot programs have produced promising results: in Stockton, California, residents who received $500 monthly showed improvements in employment, mental health, and financial stability compared to a control group. By decoupling survival from any single job, UBI also empowers people to start businesses, care for family members, or pursue education — activities that benefit society as a whole. Finland's two-year UBI experiment found participants reported better well-being and were more likely to seek employment than those on traditional welfare. A thoughtfully designed UBI could reduce poverty and inequality while preparing society for an automated future.`
+    },
+    passageB: {
+      title: "Universal Basic Income Is Unaffordable and Counterproductive",
+      text: `While the idea of Universal Basic Income is appealing in theory, its practical implementation would create serious economic problems. Providing a meaningful income to every adult in the United States — say, $1,000 per month — would cost approximately $3 trillion per year, more than the entire current federal budget. Funding this through taxes would require dramatic tax increases on businesses and individuals, potentially slowing economic growth and discouraging investment. Critics also warn that a guaranteed income could reduce the motivation to work, particularly in lower-wage sectors where employers already struggle to find workers. Furthermore, giving everyone the same payment regardless of need is an inefficient use of resources — targeted programs that support those in genuine poverty deliver more impact per dollar. The pilot programs cited by UBI advocates are too small and short-term to capture the economic ripple effects of a nationwide program. Before pursuing an untested policy of this magnitude, governments should invest in improving existing targeted safety nets.`
+    },
+    prompt: "The two passages present opposing perspectives on Universal Basic Income. Analyze both arguments and explain which position is better supported by evidence and reasoning. Cite specific evidence from both passages in your response."
+  },
+  {
+    id: 10,
+    title: "Remote Work vs. Office Work",
+    passageA: {
+      title: "Remote Work Is Better for Employees and Employers",
+      text: `The widespread adoption of remote work during and after the pandemic revealed that many jobs can be performed just as effectively — or more so — outside a traditional office. A Stanford University study tracking 16,000 workers found that remote employees were 13% more productive than their office counterparts, largely because they experienced fewer interruptions and spent no time commuting. The average American commuter spends 55 minutes per day traveling to and from work; eliminating this commute gives workers nearly two weeks of time back each year. Remote workers also report significantly higher job satisfaction and lower stress levels. For employers, remote work reduces overhead costs: companies can operate with less office space, lowering real estate and utilities expenses by as much as 30%. Remote arrangements also allow companies to recruit talent from a much wider geographic pool rather than being limited to a single city. The evidence is clear that remote work benefits both productivity and employee well-being.`
+    },
+    passageB: {
+      title: "In-Person Work Remains Essential for Collaboration and Culture",
+      text: `While remote work offers genuine convenience, it comes with significant costs to collaboration, professional development, and company culture that are difficult to quantify but impossible to ignore. Spontaneous interactions — a hallway conversation, a whiteboard session, a shared lunch — generate creative ideas that rarely emerge from scheduled video calls. A Microsoft study of 60,000 employees found that remote work caused professional networks to become more siloed and insular, weakening cross-team collaboration. Young employees are disproportionately harmed: those early in their careers miss the informal mentorship and observation of experienced colleagues that office environments provide. Many workers also struggle with the isolation of remote work — surveys consistently show that loneliness and disconnection are among the top complaints of fully remote employees. Without the physical boundaries of an office, many workers find it harder to disconnect, leading to longer hours and eventual burnout. A strong, innovative company culture is hard to build and easy to erode when employees never meet in person.`
+    },
+    prompt: "The passages above present two perspectives on remote work versus in-person office work. Analyze both arguments and explain which position is more convincingly supported. Use specific evidence from both passages to support your analysis."
   }
 ];

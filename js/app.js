@@ -397,7 +397,8 @@ function getCategoryStats(cat) {
 const FIXED_TESTS = [
   { title: "Comprehensive Exam A", ids: range(1, 40) },
   { title: "Comprehensive Exam B", ids: range(41, 80) },
-  { title: "Comprehensive Exam C", ids: range(81, 120) }
+  { title: "Comprehensive Exam C", ids: range(81, 120) },
+  { title: "Exam D: Passage & Style Focus", ids: range(121, 160) }
 ];
 
 function range(a, b) {
@@ -806,63 +807,79 @@ function renderEssayRubric() {
   div.innerHTML = `
     <div class="rubric-header">
       <button class="btn-back" onclick="navigate('essay')">← Essay Lab</button>
-      <h1>HiSET Essay Scoring Rubric</h1>
+      <h1>Official HiSET Essay Scoring Rubric</h1>
     </div>
-    <p>The essay is scored on four traits, each rated 0–3. Two raters score independently; scores are averaged. Total: 0–12.</p>
 
-    <div class="rubric-trait card">
-      <h2>Trait 1: Development of Ideas (0–3)</h2>
-      <table class="rubric-table">
-        <tr><th>Score</th><th>Description</th></tr>
-        <tr><td>3</td><td>The essay clearly analyzes which argument is better supported. Uses specific, relevant evidence directly from both passages. Reasoning is thorough and convincing. Explores complexity of the issue.</td></tr>
-        <tr><td>2</td><td>Essay identifies the stronger argument and provides adequate evidence from the passages, but reasoning may be somewhat general or not fully developed. Some evidence cited.</td></tr>
-        <tr><td>1</td><td>Some attempt to address the task but evidence is vague, irrelevant, or relies mostly on personal opinion rather than the passages. Argument is underdeveloped.</td></tr>
-        <tr><td>0</td><td>No meaningful response, off-topic, or no use of passage evidence.</td></tr>
-      </table>
+    <div class="card" style="background:var(--surface2);border-left:4px solid var(--primary);margin-bottom:1.5rem">
+      <p style="margin:0"><strong>How scoring works:</strong> Two trained raters each score your essay on 4 traits (0–3 per trait, max 12 per rater). The two scores are averaged. Minimum raw score of <strong>2</strong> is required; aim for <strong>4+ per rater</strong> on every trait for a strong score. The essay contributes to your overall 1–20 Writing scaled score.</p>
     </div>
 
     <div class="rubric-trait card">
-      <h2>Trait 2: Organization (0–3)</h2>
+      <h2>Trait 1: Development of Ideas &amp; Evidence <span style="color:var(--primary)">(0–3)</span></h2>
+      <p style="color:var(--text2);margin-top:0">This is the highest-weight trait. It measures how well you use passage evidence to support your argument.</p>
       <table class="rubric-table">
-        <tr><th>Score</th><th>Description</th></tr>
-        <tr><td>3</td><td>Essay has a clear, logical structure: strong introduction with thesis, well-organized body paragraphs with topic sentences, smooth transitions, and a coherent conclusion. Ideas flow naturally.</td></tr>
-        <tr><td>2</td><td>Essay has an identifiable structure with intro, body, and conclusion. Transitions are present but may be formulaic. Organization is adequate but not seamless.</td></tr>
-        <tr><td>1</td><td>Essay shows some organizational attempt but may lack a clear thesis, have weak transitions, or present ideas in a disjointed way. Structure is difficult to follow.</td></tr>
-        <tr><td>0</td><td>No discernible organization or structure.</td></tr>
+        <tr><th>Score</th><th>What It Looks Like</th><th>Key Signal</th></tr>
+        <tr><td><strong>3</strong></td><td>Takes a clear position. Uses specific, named evidence from both passages. Explains how evidence supports the argument. Explores complexity — acknowledges and rebuts the opposing passage.</td><td>✅ Specific stats, quotes, or paraphrases cited by name from both passages</td></tr>
+        <tr><td><strong>2</strong></td><td>Takes a position. References passage content but may be general ("the author mentions studies") rather than specific. Some explanation of evidence but not fully developed.</td><td>⚠️ Passage content mentioned but not precisely cited or explained</td></tr>
+        <tr><td><strong>1</strong></td><td>Attempts to address the task but relies heavily on personal opinion. Evidence is vague, irrelevant, or barely drawn from the passages. Argument is thin or one-sided.</td><td>❌ Little to no specific passage evidence; mostly personal views</td></tr>
+        <tr><td><strong>0</strong></td><td>No meaningful response, completely off-topic, or does not use passage evidence at all.</td><td>❌ Blank, copied text, or personal essay unrelated to passages</td></tr>
       </table>
+      <div class="rubric-boost">⭐ <strong>Score a 3:</strong> Name specific evidence ("Passage A cites a 28% drop in discipline incidents"). Then explain WHY it's convincing. Reference BOTH passages — even the one you disagree with.</div>
     </div>
 
     <div class="rubric-trait card">
-      <h2>Trait 3: Clarity of Language (0–3)</h2>
+      <h2>Trait 2: Organization &amp; Structure <span style="color:var(--primary)">(0–3)</span></h2>
+      <p style="color:var(--text2);margin-top:0">Clear structure guides readers through your argument. Every paragraph should have a purpose.</p>
       <table class="rubric-table">
-        <tr><th>Score</th><th>Description</th></tr>
-        <tr><td>3</td><td>Uses precise, varied vocabulary. Sentences are varied in structure and length. Language is clear, formal, and appropriate. No or minimal repetition or wordiness.</td></tr>
-        <tr><td>2</td><td>Language is generally clear. Some word choice is imprecise or repetitive. Sentence structure shows some variety. Tone is mostly appropriate.</td></tr>
-        <tr><td>1</td><td>Language is frequently unclear, vague, or repetitive. Limited vocabulary. Sentences are simple and monotonous. Meaning is sometimes obscured.</td></tr>
-        <tr><td>0</td><td>Language is so unclear that meaning cannot be determined.</td></tr>
+        <tr><th>Score</th><th>What It Looks Like</th><th>Key Signal</th></tr>
+        <tr><td><strong>3</strong></td><td>Clear introduction with a specific thesis. Body paragraphs each have a topic sentence. Smooth, varied transitions connect ideas. Conclusion restates thesis and wraps up without introducing new content.</td><td>✅ Intro + thesis + 2–3 focused body paragraphs + conclusion</td></tr>
+        <tr><td><strong>2</strong></td><td>Identifiable intro, body, and conclusion. Thesis is present but may be vague. Transitions exist but may be formulaic ("First," "Second," "In conclusion"). Structure is adequate but not seamless.</td><td>⚠️ Thesis present but body may wander; transitions are basic</td></tr>
+        <tr><td><strong>1</strong></td><td>Some organizational attempt but lacks a clear thesis or conclusion. Ideas may be disjointed or jump between topics. Transitions are absent or misused.</td><td>❌ No clear thesis; paragraphs lack topic sentences; ideas not linked</td></tr>
+        <tr><td><strong>0</strong></td><td>No discernible organization or structure. Ideas are random or incoherent.</td><td>❌ Stream of consciousness with no paragraphing</td></tr>
       </table>
+      <div class="rubric-boost">⭐ <strong>Score a 3:</strong> End your introduction with a thesis. Open each body paragraph with a claim sentence. Use transition words beyond "First/Second": "This is further supported by…," "In contrast, Passage B argues…," "Despite this point…"</div>
     </div>
 
     <div class="rubric-trait card">
-      <h2>Trait 4: Language Conventions (0–3)</h2>
+      <h2>Trait 3: Language Facility &amp; Word Choice <span style="color:var(--primary)">(0–3)</span></h2>
+      <p style="color:var(--text2);margin-top:0">Measures vocabulary precision, sentence variety, and overall clarity of expression.</p>
       <table class="rubric-table">
-        <tr><th>Score</th><th>Description</th></tr>
-        <tr><td>3</td><td>Demonstrates consistent control of grammar, usage, punctuation, capitalization, and spelling. Errors are rare and do not interfere with communication.</td></tr>
-        <tr><td>2</td><td>Generally correct grammar and mechanics. Some errors present but do not significantly impede understanding. Shows basic control of standard written English.</td></tr>
-        <tr><td>1</td><td>Frequent errors in grammar, usage, or punctuation that impede understanding. Limited control of sentence boundaries (fragments, run-ons common).</td></tr>
-        <tr><td>0</td><td>Pervasive errors that make the essay largely incomprehensible.</td></tr>
+        <tr><th>Score</th><th>What It Looks Like</th><th>Key Signal</th></tr>
+        <tr><td><strong>3</strong></td><td>Precise, mature vocabulary chosen for effect. Sentence structure is varied (complex, compound, and simple sentences mixed). Tone is consistently formal and appropriate. Minimal wordiness or repetition.</td><td>✅ "demonstrates," "substantiates," "concedes" — precise verbs; varied sentence lengths</td></tr>
+        <tr><td><strong>2</strong></td><td>Generally clear language. Some imprecise word choices ("good," "bad," "says"). Sentences show some variety but may rely on one pattern. Tone is mostly appropriate.</td><td>⚠️ Adequate but not precise vocabulary; some sentence monotony</td></tr>
+        <tr><td><strong>1</strong></td><td>Frequent vague, repetitive, or informal language. Limited vocabulary. Sentences are mostly simple and monotonous. Meaning is sometimes unclear due to word choice.</td><td>❌ "The passage is good because it has stuff about…"; repetitive sentence starts</td></tr>
+        <tr><td><strong>0</strong></td><td>Language is so unclear or informal that meaning cannot be determined.</td><td>❌ Incomprehensible or entirely colloquial</td></tr>
       </table>
+      <div class="rubric-boost">⭐ <strong>Score a 3:</strong> Replace vague words: "says" → "argues/demonstrates/contends"; "good" → "compelling/persuasive/specific." Vary your sentence openers: don't start 5 sentences in a row with "The author." Mix short sentences with longer complex ones.</div>
     </div>
 
-    <div class="rubric-tips card">
-      <h2>Tips to Score a 3 on Every Trait</h2>
-      <ul>
-        <li>Always write a clear thesis in your first paragraph: "Passage A presents a more convincing argument because…"</li>
-        <li>Quote or paraphrase specific evidence from BOTH passages — even the one you disagree with.</li>
-        <li>Use transition words between paragraphs: "Furthermore," "In contrast," "This is supported by…"</li>
-        <li>Vary your sentence beginnings — don't start five sentences in a row with "The author says…"</li>
-        <li>Leave 3–5 minutes to proofread for comma splices, fragments, and subject-verb errors.</li>
-        <li>Write at least 300 words — a very short essay cannot score a 3 on Development.</li>
+    <div class="rubric-trait card">
+      <h2>Trait 4: Language Conventions <span style="color:var(--primary)">(0–3)</span></h2>
+      <p style="color:var(--text2);margin-top:0">Grammar, spelling, punctuation, and capitalization. The most "learnable" trait — errors here are preventable.</p>
+      <table class="rubric-table">
+        <tr><th>Score</th><th>What It Looks Like</th><th>Key Signal</th></tr>
+        <tr><td><strong>3</strong></td><td>Demonstrates consistent control of grammar, punctuation, capitalization, and spelling. Errors are rare (1–2 minor slips) and do not interfere with communication.</td><td>✅ Clean sentences; correct comma use; no run-ons or fragments</td></tr>
+        <tr><td><strong>2</strong></td><td>Generally correct mechanics with some noticeable errors. Errors do not significantly impede understanding. Shows basic control of standard written English.</td><td>⚠️ Occasional comma splice or agreement error; still clearly readable</td></tr>
+        <tr><td><strong>1</strong></td><td>Frequent errors in grammar, usage, or punctuation that impede understanding. Run-ons, fragments, and agreement errors are common throughout.</td><td>❌ Multiple sentence boundary errors; consistent subject-verb issues</td></tr>
+        <tr><td><strong>0</strong></td><td>Pervasive errors that make the essay largely incomprehensible.</td><td>❌ Nearly every sentence contains a major error</td></tr>
+      </table>
+      <div class="rubric-boost">⭐ <strong>Score a 3:</strong> Save 3–5 minutes to proofread. Look specifically for: comma splices (join with semicolon or "and"), fragments (every sentence needs a subject + verb), subject-verb agreement, and apostrophe errors. These are the four most common essay errors.</div>
+    </div>
+
+    <div class="rubric-trait card" style="background:linear-gradient(135deg,#1e1b4b 0%,#312e81 100%)">
+      <h2 style="color:#e0e7ff">Perfect Score Checklist ✓</h2>
+      <p style="color:#a5b4fc;margin-top:0">Use this before you finish your essay.</p>
+      <ul style="color:#c7d2fe;line-height:2">
+        <li>✅ My <strong>thesis</strong> takes a clear side and previews my reasons</li>
+        <li>✅ I cite <strong>specific evidence</strong> from Passage A (statistic, fact, quote, or paraphrase)</li>
+        <li>✅ I cite <strong>specific evidence</strong> from Passage B — even the passage I disagree with</li>
+        <li>✅ I <strong>explain</strong> how each piece of evidence supports my argument</li>
+        <li>✅ Each body paragraph has a <strong>topic sentence</strong> (a claim, not just a topic)</li>
+        <li>✅ I use at least <strong>3 different transition words/phrases</strong> across the essay</li>
+        <li>✅ My vocabulary is <strong>precise and formal</strong> (no "good," "bad," "says," "stuff")</li>
+        <li>✅ I have a <strong>conclusion</strong> that restates my thesis without adding new evidence</li>
+        <li>✅ I proofread for <strong>comma splices, fragments, and subject-verb errors</strong></li>
+        <li>✅ My essay is at least <strong>300 words</strong> (shorter essays cannot earn a 3 on Development)</li>
       </ul>
     </div>
   `;

@@ -817,5 +817,197 @@ Active is usually clearer and more direct:
       }
     ],
     quickQuizIds: [82, 83, 88, 90]
+  },
+
+  {
+    id: 16,
+    title: "HiSET Exam Strategy & Format",
+    category: "Exam Strategies",
+    icon: "🎯",
+    estimatedMinutes: 20,
+    intro: "Know the exam cold before test day. Understanding the exact format, timing, and scoring of the HiSET Writing test lets you allocate your effort strategically — and avoid surprises.",
+    sections: [
+      {
+        heading: "Test Overview",
+        content: `The HiSET Language Arts – Writing test has <b>two parts</b> completed in <b>2 hours total</b>:
+
+<b>Part 1 — Multiple Choice</b>
+• 50 questions
+• ~75 minutes recommended
+• Passage-based editing: you read written passages and choose the best revision of underlined portions
+• Tests three areas: Writing Conventions (~60%), Language Facility (~20%), Organization (~20%)
+
+<b>Part 2 — Extended Response (Essay)</b>
+• 1 essay prompt
+• ~45 minutes recommended
+• You read two short passages presenting different perspectives on an issue
+• You write an argumentative essay explaining which passage makes the STRONGER argument, using evidence from BOTH passages
+• Minimum score of 2 (out of 6) required; aim for 4–6 for a strong result
+
+<div class="tip"><b>Key insight:</b> The essay is NOT a personal opinion essay — it is an <b>evidence-based argument</b> about which of two passages is better supported. This is the most common misconception.</div>`
+      },
+      {
+        heading: "Part 1: Multiple-Choice Strategy",
+        content: `<b>How the questions work:</b>
+Each question presents a short passage (usually 1–5 sentences) with an underlined portion marked (1). You choose the best revision — or confirm "No change."
+
+<b>Step-by-step approach:</b>
+1. <b>Read the full passage first</b> — context matters. A word that looks wrong alone may be correct in context.
+2. <b>Identify the error type</b> — is it grammar, punctuation, word choice, or organization?
+3. <b>Eliminate obviously wrong answers</b> — often 1–2 choices introduce new errors.
+4. <b>Say it aloud (mentally)</b> — if an answer sounds awkward, it probably is wrong.
+5. <b>Don't over-correct</b> — "No change" is correct roughly 15–20% of the time.
+
+<b>Content area weights (approximate):</b>
+| Area | Questions | Examples |
+|---|---|---|
+| Writing Conventions | ~30 | Grammar, punctuation, spelling |
+| Organization | ~10 | Transitions, topic sentences, sentence order |
+| Language Facility | ~10 | Word choice, conciseness, tone |
+
+<div class="tip"><b>Time tip:</b> At 75 minutes for 50 questions, you have about 90 seconds per question. Don't spend more than 2 minutes on any single item — mark it and move on.</div>`
+      },
+      {
+        heading: "Part 2: Essay Strategy",
+        content: `<b>The Two-Passage Format:</b>
+You will read two passages of 200–400 words each. They present opposing views on a debatable topic (education, technology, social policy, etc.). Your job: argue which passage makes the <b>better-supported</b> argument.
+
+<b>Recommended time split (45 minutes):</b>
+• 5 min — Read both passages, underline key evidence
+• 5 min — Choose your side and plan your essay outline
+• 30 min — Write your essay
+• 5 min — Proofread for grammar, punctuation, and clarity
+
+<b>Essay structure (5–6 paragraphs):</b>
+1. <b>Introduction</b> — introduce the issue + thesis (which passage wins and why)
+2. <b>Body 1</b> — strongest reason Passage A/B is better, with evidence
+3. <b>Body 2</b> — second reason, with evidence
+4. <b>Body 3 (optional)</b> — acknowledge the other passage, then rebut it
+5. <b>Conclusion</b> — restate thesis in fresh words, brief summary
+
+<b>Essay must-haves for a high score:</b>
+✅ A clear thesis that takes a side
+✅ At least 2 specific pieces of evidence from the STRONGER passage
+✅ At least 1 reference to the WEAKER passage (to show you read both)
+✅ Smooth transitions between paragraphs
+✅ Proofread final 5 minutes`
+      },
+      {
+        heading: "Scoring & What You Need",
+        content: `<b>Part 1 Scoring:</b>
+• Raw score → scaled score of 1–20
+• Passing: scaled score of <b>8 or higher</b>
+• Perfect score: 20
+• Each correct answer counts equally; there is NO penalty for wrong answers, so always guess if unsure
+
+<b>Part 2 (Essay) Scoring:</b>
+Two trained raters each score your essay on 4 traits (0–3 each):
+| Trait | What They Look For |
+|---|---|
+| Development | Clear claim + specific evidence from passages |
+| Organization | Intro, body, conclusion; smooth transitions |
+| Language Facility | Precise vocabulary, sentence variety |
+| Conventions | Grammar, punctuation, spelling |
+
+• Each rater scores 0–12; scores are averaged
+• Minimum essay score of <b>2 raw</b> required to pass
+• Aim for 4+ per rater on each trait for a competitive score
+
+<b>Overall Writing Score:</b>
+Combined into a 1–20 scale. Scores of 15–20 are considered strong.
+
+<div class="tip"><b>Perfect score tip:</b> You cannot earn a perfect 20 by ignoring the essay. Both the MC and essay contribute. Focus 60% of your prep time on grammar/conventions (most MC questions) and 40% on essay structure and evidence skills.</div>`
+      }
+    ],
+    quickQuizIds: [121, 122, 124, 128, 130]
+  },
+
+  {
+    id: 17,
+    title: "Passage-Based Editing Technique",
+    category: "Exam Strategies",
+    icon: "✏️",
+    estimatedMinutes: 18,
+    intro: "Every multiple-choice question on Part 1 of the HiSET Writing test is passage-based — you revise written text, not just isolated sentences. This lesson teaches the exact approach to maximize your score.",
+    sections: [
+      {
+        heading: "How Passage-Based Questions Work",
+        content: `The HiSET doesn't ask you abstract grammar rules in isolation — it embeds those rules in real written passages. You'll see a paragraph or set of sentences with specific portions underlined and labeled (1), (2), etc. Your job is to choose the best revision of each underlined portion.
+
+<b>Three types of underlined portions:</b>
+1. <b>Single words</b> — a verb, a pronoun, a transition word
+2. <b>Phrases</b> — a prepositional phrase, a modifier, a clause
+3. <b>Whole sentences</b> — especially for organization questions (sentence removal, sentence insertion)
+
+<b>Why context is critical:</b>
+The same word can be correct or incorrect depending on the sentence around it. Always read the full passage before evaluating the underlined portion.
+
+Example:
+Passage: "The committee, along with several advisors, (1)__have__ decided to delay the vote."
+Out of context, 'have' looks fine. In context, you see 'committee' is the singular subject — 'has' is correct.`
+      },
+      {
+        heading: "Four Question Types You Will See",
+        content: `<b>Type 1: Error Correction</b>
+A grammatical or mechanical error is underlined. Choose the correct revision.
+Strategy: Identify the exact error type (verb tense? punctuation? modifier?), fix it, then check that your fix doesn't create a new error.
+
+<b>Type 2: Best Revision</b>
+The underlined text may not contain an obvious error — but one of the choices is noticeably clearer, more concise, or more effective.
+Strategy: Read each choice back into the full sentence. The "best" choice is usually the most concise, precise, and grammatically clean option.
+
+<b>Type 3: Sentence Removal</b>
+"Which sentence should be removed to improve the unity of this paragraph?"
+Strategy: Identify the paragraph's main idea (usually the topic sentence). Any sentence that introduces an unrelated idea is the answer.
+
+<b>Type 4: Sentence Insertion/Ordering</b>
+"Which is the best place to insert this sentence?" or "What is the correct logical order?"
+Strategy: Identify where the inserted sentence logically connects. Look for cause-effect links, sequence signals (First/Then/Finally), and pronoun references (if the sentence says "it," there must be an antecedent before it).`
+      },
+      {
+        heading: "Common Traps to Avoid",
+        content: `<b>Trap 1: The long answer trap</b>
+Wrong answers are often wordy. On word-choice questions, the shortest, clearest option is usually correct.
+❌ "due to the fact that there was a disagreement" ✅ "because they disagreed"
+
+<b>Trap 2: The almost-right answer</b>
+One wrong choice will fix the identified error but introduce a new one. Check every choice carefully.
+Example: Fixing a comma splice with a semicolon is correct. But if the choice also changes the tense wrongly, it's still wrong.
+
+<b>Trap 3: Over-correcting "No change"</b>
+If the original sentence sounds right, choose "No change" — don't change something just because you're unsure. About 15–20% of HiSET answers are "No change."
+
+<b>Trap 4: Ignoring passage context for organization questions</b>
+For "which sentence doesn't belong?" always re-read the topic sentence to identify the paragraph's controlling idea. The wrong sentence is off-topic relative to that controlling idea — not just different in tone.
+
+<b>Trap 5: Transition type mismatch</b>
+"However" ≠ "Therefore" ≠ "Furthermore." Know the four transition categories cold:
+• <b>Contrast:</b> however, yet, on the other hand
+• <b>Addition:</b> furthermore, moreover, in addition
+• <b>Cause-effect:</b> therefore, as a result, consequently
+• <b>Example:</b> for example, specifically, for instance`
+      },
+      {
+        heading: "Pacing and Process",
+        content: `<b>Recommended process for each question (90 seconds max):</b>
+1. Read the full passage (10 sec)
+2. Read the question and underlined portion (5 sec)
+3. Identify the error type or question type (5 sec)
+4. Eliminate 1–2 clearly wrong choices (15 sec)
+5. Test the remaining choices by reading them back into the passage (30 sec)
+6. Choose the best answer and move on (5 sec)
+
+<b>If you're stuck:</b>
+• Skip the question, mark it, and return at the end
+• On the actual HiSET, you can review questions before moving to the essay
+• Never leave a question blank — eliminate as many choices as you can and guess from the remaining options
+
+<b>Practice strategy:</b>
+When you practice, don't just check if you got it right — read the explanation for EVERY question, including correct ones. Understanding why an answer is correct builds pattern recognition faster than just checking a score.
+
+<div class="tip"><b>Golden rule:</b> Read the full passage, identify the error type, eliminate bad choices, test your answer in the sentence. These four steps, done consistently, will earn you the maximum Part 1 score.</div>`
+      }
+    ],
+    quickQuizIds: [127, 131, 133, 136, 138]
   }
 ];
