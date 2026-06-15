@@ -477,6 +477,22 @@ function selectAnswer(choiceIndex) {
     btn.disabled = true;
   });
 
+  // Unlock Next button and show explanation link without full re-render
+  const nav = document.querySelector(".test-nav");
+  if (nav) {
+    const total = state.testQuestions.length;
+    const idx = state.testIndex;
+    nav.innerHTML = `
+      <button class="btn btn-secondary" onclick="prevQuestion()" ${idx === 0 ? "disabled" : ""}>← Back</button>
+      <div class="test-nav-center">
+        <button class="btn-text" onclick="toggleExplanation()">💡 Explanation</button>
+      </div>
+      <button class="btn btn-primary" onclick="nextQuestion()">
+        ${idx === total - 1 ? "Finish Test ✓" : "Next →"}
+      </button>
+    `;
+  }
+
   // Auto-show explanation
   showExplanation();
 }
