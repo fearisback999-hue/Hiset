@@ -1,0 +1,1013 @@
+// HiSET Writing Study App — Main Application Logic
+
+const APP_VERSION = "1.0.0";
+const STORAGE_KEY = "hiset_progress";
+
+// ─── State ────────────────────────────────────────────────────────────────────
+
+const state = {
+  currentView: "home",
+  lessonId: null,
+  lessonSection: 0,
+  testQuestions: [],
+  testIndex: 0,
+  testAnswers: [],
+  testMode: "full",        // "full" | "quick" | "category"
+  testCategory: null,
+  testStartTime: null,
+  testTimerInterval: null,
+  essayPromptId: null,
+  essayText: "",
+  showEssayRubric: false,
+  progress: loadProgress()
+};
+
+// ─── Progress Persistence ─────────────────────────────────────────────────────
+
+function loadProgress() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    return raw ? JSON.parse(raw) : defaultProgress();
+  } catch { return defaultProgress(); }
+}
+
+function defaultProgress() {
+  return {
+    lessonsCompleted: [],
+    testHistory: [],
+    questionStats: {},   // { qId: { correct: n, total: n } }
+    streakDays: 0,
+    lastStudyDate: null,
+    totalQuestionsAnswered: 0,
+    totalCorrect: 0
+  };
+}
+
+function saveProgress() {
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state.progress)); } catch {}
+}
+
+// ─── Router ──────────────────────────────────────────────────────────────────
+
+function navigate(view, params = {}) {
+  // Clear test timer if leaving test
+  if (state.testTimerInterval) {
+    clearInterval(state.testTimerInterval);
+    state.testTimerInterval = null;
+  }
+  state.currentView = view;
+  Object.assign(state, params);
+  render();
+  window.scrollTo(0, 0);
+}
+
+// ─── Render dispatcher ───────────────────────────────────────────────────────
+
+function render() {
+  const app = document.getElementById("app");
+  app.innerHTML = "";
+
+  updateNav();
+
+  switch (state.currentView) {
+    case "home":         app.appendChild(renderHome()); break;
+    case "lessons":      app.appendChild(renderLessonsMenu()); break;
+    case "lesson":       app.appendChild(renderLesson()); break;
+    case "practice":     app.appendChild(renderPracticeMenu()); break;
+    case "test":         app.appendChild(renderTest()); break;
+    case "results":      app.appendChild(renderResults()); break;
+    case "essay":        app.appendChild(renderEssayMenu()); break;
+    case "essay-write":  app.appendChild(renderEssayWrite()); break;
+    case "essay-rubric": app.appendChild(renderEssayRubric()); break;
+    case "progress":     app.appendChild(renderProgress()); break;
+    case "cheatsheet":   app.appendChild(renderCheatSheet()); break;
+    default:             app.appendChild(renderHome());
+  }
+}
+
+function updateNav() {
+  document.querySelectorAll(".nav-item").forEach(el => {
+    el.classList.toggle("active", el.dataset.view === state.currentView);
+  });
+}
+
+// ─── HOME ────────────────────────────────────────────────────────────────────
+
+function renderHome() {
+  const p = state.progress;
+  const pct = p.totalQuestionsAnswered > 0
+    ? Math.round((p.totalCorrect / p.totalQuestionsAnswered) * 100) : 0;
+  const lessonsTotal = LESSONS.length;
+  const lessonsDone = p.lessonsCompleted.length;
+  const testsTaken = p.testHistory.length;
+
+  // Update streak
+  updateStreak();
+
+  const div = el("div", "home-view");
+  div.innerHTML = `
+    <div class="home-hero">
+      <h1>HiSET Writing Prep</h1>
+      <p class="subtitle">Master every topic. Score a 20.</p>
+    </div>
+
+    <div class="stat-cards">
+      <div class="stat-card">
+        <div class="stat-num">${pct}%</div>
+        <div class="stat-label">Accuracy</div>
+        <div class="stat-sub">${p.totalCorrect} / ${p.totalQuestionsAnswered} correct</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">${lessonsDone}/${lessonsTotal}</div>
+        <div class="stat-label">Lessons Done</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">${testsTaken}</div>
+        <div class="stat-label">Tests Taken</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">${p.streakDays}</div>
+        <div class="stat-label">Day Streak 🔥</div>
+      </div>
+    </div>
+
+    <div class="home-grid">
+      <button class="home-card card-lessons" onclick="navigate('lessons')">
+        <div class="card-icon">📚</div>
+        <div class="card-title">Lessons</div>
+        <div class="card-desc">15 topics — grammar, punctuation, style, and organization</div>
+      </button>
+      <button class="home-card card-practice" onclick="navigate('practice')">
+        <div class="card-icon">✏️</div>
+        <div class="card-title">Practice Tests</div>
+        <div class="card-desc">Full 50-question test or quick 10-question drills by topic</div>
+      </button>
+      <button class="home-card card-essay" onclick="navigate('essay')">
+        <div class="card-icon">📝</div>
+        <div class="card-title">Essay Lab</div>
+        <div class="card-desc">Practice extended responses with the official scoring rubric</div>
+      </button>
+      <button class="home-card card-cheat" onclick="navigate('cheatsheet')">
+        <div class="card-icon">⚡</div>
+        <div class="card-title">Quick Reference</div>
+        <div class="card-desc">Grammar rules, transition words, and test tips at a glance</div>
+      </button>
+    </div>
+
+    <div class="exam-overview card">
+      <h2>About the HiSET Writing Test</h2>
+      <div class="overview-grid">
+        <div class="overview-item">
+          <span class="ov-label">Format</span>
+          <span class="ov-val">50 Multiple Choice + 1 Essay</span>
+        </div>
+        <div class="overview-item">
+          <span class="ov-label">Time</span>
+          <span class="ov-val">120 minutes total</span>
+        </div>
+        <div class="overview-item">
+          <span class="ov-label">MC Time</span>
+          <span class="ov-val">75 minutes</span>
+        </div>
+        <div class="overview-item">
+          <span class="ov-label">Essay Time</span>
+          <span class="ov-val">45 minutes</span>
+        </div>
+        <div class="overview-item">
+          <span class="ov-label">Score Scale</span>
+          <span class="ov-val">1–20 (combined)</span>
+        </div>
+        <div class="overview-item">
+          <span class="ov-label">Passing Score</span>
+          <span class="ov-val">8/20 (varies by state)</span>
+        </div>
+        <div class="overview-item">
+          <span class="ov-label">Essay Scoring</span>
+          <span class="ov-val">4 traits, 0–3 each (0–12 total)</span>
+        </div>
+        <div class="overview-item">
+          <span class="ov-label">Content</span>
+          <span class="ov-val">Organization, Language Facility, Writing Conventions</span>
+        </div>
+      </div>
+    </div>
+  `;
+  return div;
+}
+
+function updateStreak() {
+  const today = new Date().toDateString();
+  if (state.progress.lastStudyDate !== today) {
+    const yesterday = new Date(Date.now() - 86400000).toDateString();
+    if (state.progress.lastStudyDate === yesterday) {
+      state.progress.streakDays = (state.progress.streakDays || 0) + 1;
+    } else if (state.progress.lastStudyDate !== today) {
+      state.progress.streakDays = 1;
+    }
+    state.progress.lastStudyDate = today;
+    saveProgress();
+  }
+}
+
+// ─── LESSONS MENU ────────────────────────────────────────────────────────────
+
+function renderLessonsMenu() {
+  const div = el("div", "lessons-view");
+  div.innerHTML = `<h1>Lessons</h1><p class="subtitle">Master every grammar and writing skill tested on the HiSET.</p>`;
+
+  const categories = [...new Set(LESSONS.map(l => l.category))];
+
+  categories.forEach(cat => {
+    const section = el("div", "lesson-section");
+    section.innerHTML = `<h2 class="lesson-cat-title">${cat}</h2>`;
+    const grid = el("div", "lesson-grid");
+
+    LESSONS.filter(l => l.category === cat).forEach(lesson => {
+      const done = state.progress.lessonsCompleted.includes(lesson.id);
+      const card = el("button", `lesson-card ${done ? "lesson-done" : ""}`);
+      card.innerHTML = `
+        <div class="lesson-icon">${lesson.icon}</div>
+        <div class="lesson-info">
+          <div class="lesson-name">${lesson.title}</div>
+          <div class="lesson-meta">~${lesson.estimatedMinutes} min ${done ? "✅" : ""}</div>
+        </div>
+      `;
+      card.onclick = () => navigate("lesson", { lessonId: lesson.id, lessonSection: 0 });
+      grid.appendChild(card);
+    });
+
+    section.appendChild(grid);
+    div.appendChild(section);
+  });
+
+  return div;
+}
+
+// ─── LESSON VIEW ─────────────────────────────────────────────────────────────
+
+function renderLesson() {
+  const lesson = LESSONS.find(l => l.id === state.lessonId);
+  if (!lesson) return renderLessonsMenu();
+
+  const sec = lesson.sections[state.lessonSection];
+  const isFirst = state.lessonSection === 0;
+  const isLast = state.lessonSection === lesson.sections.length - 1;
+  const totalSections = lesson.sections.length;
+
+  const div = el("div", "lesson-view");
+  div.innerHTML = `
+    <div class="lesson-header">
+      <button class="btn-back" onclick="navigate('lessons')">← Lessons</button>
+      <div class="lesson-progress-bar">
+        <div class="lesson-progress-fill" style="width:${((state.lessonSection + 1) / totalSections) * 100}%"></div>
+      </div>
+      <span class="lesson-progress-label">${state.lessonSection + 1} / ${totalSections}</span>
+    </div>
+
+    <div class="lesson-content card">
+      <div class="lesson-title-row">
+        <span class="lesson-icon-lg">${lesson.icon}</span>
+        <h1>${lesson.title}</h1>
+      </div>
+      ${isFirst ? `<p class="lesson-intro">${lesson.intro}</p>` : ""}
+      <h2 class="section-heading">${sec.heading}</h2>
+      <div class="section-body">${sec.content}</div>
+    </div>
+
+    <div class="lesson-nav">
+      <button class="btn btn-secondary ${isFirst ? "invisible" : ""}" onclick="prevSection()">← Previous</button>
+      <button class="btn btn-primary" onclick="${isLast ? "finishLesson()" : "nextSection()"}">
+        ${isLast ? "Finish & Practice ✓" : "Next →"}
+      </button>
+    </div>
+  `;
+  return div;
+}
+
+function nextSection() {
+  const lesson = LESSONS.find(l => l.id === state.lessonId);
+  if (state.lessonSection < lesson.sections.length - 1) {
+    state.lessonSection++;
+    render();
+    window.scrollTo(0, 0);
+  }
+}
+
+function prevSection() {
+  if (state.lessonSection > 0) {
+    state.lessonSection--;
+    render();
+    window.scrollTo(0, 0);
+  }
+}
+
+function finishLesson() {
+  const lesson = LESSONS.find(l => l.id === state.lessonId);
+  if (!state.progress.lessonsCompleted.includes(state.lessonId)) {
+    state.progress.lessonsCompleted.push(state.lessonId);
+    saveProgress();
+  }
+  // Go to quick quiz on that lesson's questions
+  startTest("quick", null, lesson.quickQuizIds);
+}
+
+// ─── PRACTICE MENU ───────────────────────────────────────────────────────────
+
+function renderPracticeMenu() {
+  const categories = [...new Set(QUESTIONS.map(q => q.category))];
+  const div = el("div", "practice-view");
+  div.innerHTML = `
+    <h1>Practice Tests</h1>
+    <p class="subtitle">Test yourself under timed conditions — just like the real HiSET.</p>
+
+    <div class="practice-options">
+      <div class="practice-card card" onclick="startTest('full')">
+        <div class="pc-icon">📋</div>
+        <div class="pc-title">Full Practice Test</div>
+        <div class="pc-desc">50 questions · 75 minutes · All topics · Mirrors the real exam</div>
+        <button class="btn btn-primary mt-1">Start Full Test</button>
+      </div>
+      <div class="practice-card card" onclick="startTest('quick')">
+        <div class="pc-icon">⚡</div>
+        <div class="pc-title">Quick Drill</div>
+        <div class="pc-desc">10 random questions · No time limit · Great for daily practice</div>
+        <button class="btn btn-secondary mt-1">Start Quick Drill</button>
+      </div>
+    </div>
+
+    <h2 class="section-title">Practice by Topic</h2>
+    <div class="category-grid">
+      ${categories.map(cat => {
+        const catQs = QUESTIONS.filter(q => q.category === cat);
+        const stats = getCategoryStats(cat);
+        const pct = stats.total > 0 ? Math.round((stats.correct / stats.total) * 100) : null;
+        return `
+          <button class="category-card" onclick="startTest('category', '${cat}')">
+            <div class="cc-name">${cat}</div>
+            <div class="cc-meta">${catQs.length} questions</div>
+            ${pct !== null ? `<div class="cc-score ${pct >= 80 ? "green" : pct >= 60 ? "yellow" : "red"}">${pct}%</div>` : '<div class="cc-score gray">Not started</div>'}
+          </button>
+        `;
+      }).join("")}
+    </div>
+  `;
+  return div;
+}
+
+function getCategoryStats(cat) {
+  let correct = 0, total = 0;
+  QUESTIONS.filter(q => q.category === cat).forEach(q => {
+    const s = state.progress.questionStats[q.id];
+    if (s) { correct += s.correct; total += s.total; }
+  });
+  return { correct, total };
+}
+
+// ─── TEST ENGINE ─────────────────────────────────────────────────────────────
+
+function startTest(mode, category = null, specificIds = null) {
+  let pool;
+  if (specificIds) {
+    pool = QUESTIONS.filter(q => specificIds.includes(q.id));
+  } else if (mode === "full") {
+    pool = shuffle([...QUESTIONS]).slice(0, Math.min(50, QUESTIONS.length));
+  } else if (mode === "category") {
+    pool = shuffle(QUESTIONS.filter(q => q.category === category));
+  } else {
+    pool = shuffle([...QUESTIONS]).slice(0, 10);
+  }
+
+  state.testQuestions = pool;
+  state.testIndex = 0;
+  state.testAnswers = new Array(pool.length).fill(null);
+  state.testMode = mode;
+  state.testCategory = category;
+  state.testStartTime = Date.now();
+
+  navigate("test");
+}
+
+function renderTest() {
+  if (state.testIndex >= state.testQuestions.length) {
+    return renderResultsTransition();
+  }
+
+  const q = state.testQuestions[state.testIndex];
+  const total = state.testQuestions.length;
+  const answered = state.testAnswers[state.testIndex];
+  const pct = ((state.testIndex) / total) * 100;
+
+  const div = el("div", "test-view");
+  div.innerHTML = `
+    <div class="test-header">
+      <div class="test-meta">
+        <span>Question ${state.testIndex + 1} of ${total}</span>
+        <span class="test-category-tag">${q.category}</span>
+      </div>
+      <div class="test-progress-bar">
+        <div class="test-progress-fill" style="width:${pct}%"></div>
+      </div>
+    </div>
+
+    <div class="question-card card">
+      ${q.passage ? `<div class="passage-box">${formatPassage(q.passage)}</div>` : ""}
+      <div class="question-text">${q.question}</div>
+      <div class="choices" id="choices">
+        ${q.choices.map((c, i) => `
+          <button class="choice ${answered === i ? "selected" : ""}"
+                  onclick="selectAnswer(${i})"
+                  data-index="${i}">
+            <span class="choice-letter">${"ABCD"[i]}</span>
+            <span class="choice-text">${c}</span>
+          </button>
+        `).join("")}
+      </div>
+    </div>
+
+    <div class="test-nav">
+      <button class="btn btn-secondary" onclick="prevQuestion()" ${state.testIndex === 0 ? "disabled" : ""}>← Back</button>
+      <div class="test-nav-center">
+        ${answered !== null ? `<button class="btn-text" onclick="toggleExplanation()">💡 Explanation</button>` : ""}
+      </div>
+      <button class="btn btn-primary" onclick="nextQuestion()" ${answered === null ? "disabled" : ""}>
+        ${state.testIndex === total - 1 ? "Finish Test ✓" : "Next →"}
+      </button>
+    </div>
+
+    <div id="explanation" class="explanation-box hidden"></div>
+  `;
+  return div;
+}
+
+function formatPassage(text) {
+  return text.replace(/\((\d+)\)__(.*?)__/g, '<span class="underline-q">($1) <u>$2</u></span>');
+}
+
+function selectAnswer(choiceIndex) {
+  if (state.testAnswers[state.testIndex] !== null) return; // already answered
+
+  state.testAnswers[state.testIndex] = choiceIndex;
+
+  const q = state.testQuestions[state.testIndex];
+  const isCorrect = choiceIndex === q.correct;
+
+  // Update stats
+  const qId = q.id;
+  if (!state.progress.questionStats[qId]) {
+    state.progress.questionStats[qId] = { correct: 0, total: 0 };
+  }
+  state.progress.questionStats[qId].total++;
+  if (isCorrect) state.progress.questionStats[qId].correct++;
+
+  state.progress.totalQuestionsAnswered++;
+  if (isCorrect) state.progress.totalCorrect++;
+  saveProgress();
+
+  // Highlight choices
+  document.querySelectorAll(".choice").forEach((btn, i) => {
+    if (i === q.correct) btn.classList.add("correct");
+    else if (i === choiceIndex && !isCorrect) btn.classList.add("incorrect");
+    btn.disabled = true;
+  });
+
+  // Auto-show explanation
+  showExplanation();
+}
+
+function showExplanation() {
+  const q = state.testQuestions[state.testIndex];
+  const box = document.getElementById("explanation");
+  if (!box) return;
+  box.classList.remove("hidden");
+  box.innerHTML = `<strong>💡 Explanation:</strong> ${q.explanation}`;
+}
+
+function toggleExplanation() {
+  const box = document.getElementById("explanation");
+  if (box) box.classList.toggle("hidden");
+}
+
+function nextQuestion() {
+  if (state.testIndex < state.testQuestions.length - 1) {
+    state.testIndex++;
+    render();
+  } else {
+    finishTest();
+  }
+}
+
+function prevQuestion() {
+  if (state.testIndex > 0) {
+    state.testIndex--;
+    render();
+  }
+}
+
+function finishTest() {
+  const score = state.testAnswers.reduce((acc, ans, i) => {
+    return acc + (ans === state.testQuestions[i].correct ? 1 : 0);
+  }, 0);
+
+  const elapsed = Math.round((Date.now() - state.testStartTime) / 1000);
+
+  state.progress.testHistory.push({
+    date: new Date().toLocaleDateString(),
+    mode: state.testMode,
+    category: state.testCategory,
+    total: state.testQuestions.length,
+    score,
+    elapsed
+  });
+  saveProgress();
+
+  navigate("results");
+}
+
+function renderResultsTransition() {
+  finishTest();
+  return el("div", "");
+}
+
+// ─── RESULTS ─────────────────────────────────────────────────────────────────
+
+function renderResults() {
+  const history = state.progress.testHistory;
+  const last = history[history.length - 1];
+  if (!last) return renderHome();
+
+  const pct = Math.round((last.score / last.total) * 100);
+  const grade = pct >= 90 ? "🏆 Excellent!" : pct >= 75 ? "👍 Good Job!" : pct >= 60 ? "📈 Keep Practicing" : "💪 More Study Needed";
+  const mins = Math.floor(last.elapsed / 60);
+  const secs = last.elapsed % 60;
+
+  const missed = state.testQuestions
+    .map((q, i) => ({ q, answered: state.testAnswers[i] }))
+    .filter(({ q, answered }) => answered !== q.correct);
+
+  const div = el("div", "results-view");
+  div.innerHTML = `
+    <div class="results-hero ${pct >= 80 ? "hero-green" : pct >= 60 ? "hero-yellow" : "hero-red"}">
+      <div class="score-circle">${pct}%</div>
+      <div class="score-label">${last.score} / ${last.total} correct</div>
+      <div class="score-grade">${grade}</div>
+      <div class="score-time">Time: ${mins}m ${secs}s</div>
+    </div>
+
+    <div class="results-actions">
+      <button class="btn btn-primary" onclick="startTest('${state.testMode}', ${state.testCategory ? `'${state.testCategory}'` : "null"})">Retake Test</button>
+      <button class="btn btn-secondary" onclick="navigate('practice')">Other Tests</button>
+      <button class="btn btn-secondary" onclick="navigate('home')">Home</button>
+    </div>
+
+    ${missed.length > 0 ? `
+      <div class="missed-section">
+        <h2>Review Missed Questions (${missed.length})</h2>
+        ${missed.map(({ q, answered }) => `
+          <div class="review-card card">
+            <div class="review-category">${q.category}</div>
+            ${q.passage ? `<div class="review-passage">${formatPassage(q.passage)}</div>` : ""}
+            <div class="review-question">${q.question}</div>
+            <div class="review-choices">
+              ${q.choices.map((c, i) => `
+                <div class="review-choice ${i === q.correct ? "correct" : i === answered ? "incorrect" : ""}">
+                  <span class="choice-letter">${"ABCD"[i]}</span> ${c}
+                </div>
+              `).join("")}
+            </div>
+            <div class="review-explanation">💡 ${q.explanation}</div>
+          </div>
+        `).join("")}
+      </div>
+    ` : "<div class='perfect-score card'>🎉 Perfect Score! You answered every question correctly!</div>"}
+  `;
+  return div;
+}
+
+// ─── ESSAY ───────────────────────────────────────────────────────────────────
+
+function renderEssayMenu() {
+  const div = el("div", "essay-view");
+  div.innerHTML = `
+    <h1>Essay Lab</h1>
+    <p class="subtitle">The HiSET Extended Response: 45 minutes, two source passages, one argumentative essay.</p>
+
+    <div class="essay-intro card">
+      <h2>What the Essay Tests</h2>
+      <p>You will read two short passages presenting <strong>opposing views</strong> on a topic. You must write an essay analyzing which argument is <strong>better supported</strong>. You are NOT just giving your opinion — you must use evidence from BOTH passages.</p>
+      <div class="essay-traits">
+        <div class="trait">
+          <div class="trait-name">Development of Ideas</div>
+          <div class="trait-score">0–3 points</div>
+          <div class="trait-desc">Use specific evidence from the passages to support your argument</div>
+        </div>
+        <div class="trait">
+          <div class="trait-name">Organization</div>
+          <div class="trait-score">0–3 points</div>
+          <div class="trait-desc">Clear intro, body paragraphs with topic sentences, logical conclusion</div>
+        </div>
+        <div class="trait">
+          <div class="trait-name">Clarity of Language</div>
+          <div class="trait-score">0–3 points</div>
+          <div class="trait-desc">Precise word choice, varied sentence structure, clear expression</div>
+        </div>
+        <div class="trait">
+          <div class="trait-name">Language Conventions</div>
+          <div class="trait-score">0–3 points</div>
+          <div class="trait-desc">Correct grammar, spelling, punctuation, and capitalization</div>
+        </div>
+      </div>
+      <p class="mt-1"><strong>Total:</strong> 0–12 points → converted to part of the 1–20 HiSET score</p>
+      <button class="btn btn-text" onclick="navigate('essay-rubric')">View Full Scoring Rubric →</button>
+    </div>
+
+    <h2>Choose a Practice Prompt</h2>
+    <div class="essay-prompts">
+      ${ESSAY_PROMPTS.map(ep => `
+        <div class="essay-prompt-card card" onclick="navigate('essay-write', {essayPromptId: ${ep.id}})">
+          <div class="ep-title">${ep.title}</div>
+          <div class="ep-preview">${ep.passageA.title} vs. ${ep.passageB.title}</div>
+          <button class="btn btn-primary mt-1">Write This Essay</button>
+        </div>
+      `).join("")}
+    </div>
+
+    <div class="essay-tips card mt-2">
+      <h2>High-Score Essay Strategy</h2>
+      <ol class="tips-list">
+        <li><strong>Read both passages</strong> (5–7 min): Identify the main claim, key evidence, and weaknesses in each.</li>
+        <li><strong>Plan your essay</strong> (3–5 min): Decide which argument is better supported. Outline 3 body paragraphs.</li>
+        <li><strong>Write your essay</strong> (30 min):
+          <ul>
+            <li><em>Intro:</em> Introduce the topic, state which argument is better and why.</li>
+            <li><em>Body P1:</em> Strongest evidence supporting your chosen argument (cite from passage).</li>
+            <li><em>Body P2:</em> Second piece of evidence — more detail from the passage.</li>
+            <li><em>Body P3:</em> Address the opposing argument — acknowledge its point, but explain why it's weaker.</li>
+            <li><em>Conclusion:</em> Restate your position and the strongest reasons.</li>
+          </ul>
+        </li>
+        <li><strong>Revise</strong> (3–5 min): Check grammar, spelling, and clarity.</li>
+      </ol>
+    </div>
+  `;
+  return div;
+}
+
+function renderEssayWrite() {
+  const ep = ESSAY_PROMPTS.find(e => e.id === state.essayPromptId);
+  if (!ep) return renderEssayMenu();
+
+  const div = el("div", "essay-write-view");
+  div.innerHTML = `
+    <div class="essay-write-header">
+      <button class="btn-back" onclick="navigate('essay')">← Essay Lab</button>
+      <h1>${ep.title}</h1>
+      <div id="essay-timer" class="essay-timer">45:00</div>
+    </div>
+
+    <div class="passages-grid">
+      <div class="passage-col card">
+        <h3>${ep.passageA.title}</h3>
+        <p>${ep.passageA.text}</p>
+      </div>
+      <div class="passage-col card">
+        <h3>${ep.passageB.title}</h3>
+        <p>${ep.passageB.text}</p>
+      </div>
+    </div>
+
+    <div class="essay-task card">
+      <strong>Writing Task:</strong> ${ep.prompt}
+    </div>
+
+    <div class="essay-write-area card">
+      <div class="essay-write-toolbar">
+        <span id="word-count" class="word-count">0 words</span>
+        <span class="target">Target: 300–500 words</span>
+      </div>
+      <textarea id="essay-textarea" class="essay-textarea" placeholder="Write your essay here..."
+        oninput="updateWordCount()">${state.essayText || ""}</textarea>
+    </div>
+
+    <div class="essay-write-footer">
+      <button class="btn btn-secondary" onclick="navigate('essay-rubric')">View Rubric</button>
+      <button class="btn btn-primary" onclick="saveEssay()">Save Essay</button>
+    </div>
+  `;
+
+  // Start timer
+  startEssayTimer(45 * 60);
+  return div;
+}
+
+function updateWordCount() {
+  const ta = document.getElementById("essay-textarea");
+  const wc = document.getElementById("word-count");
+  if (ta && wc) {
+    const words = ta.value.trim() === "" ? 0 : ta.value.trim().split(/\s+/).length;
+    wc.textContent = `${words} word${words !== 1 ? "s" : ""}`;
+    state.essayText = ta.value;
+  }
+}
+
+function saveEssay() {
+  const ta = document.getElementById("essay-textarea");
+  if (ta) state.essayText = ta.value;
+  alert("Essay saved! Review the rubric to score your own writing.");
+}
+
+let essayTimerInterval = null;
+
+function startEssayTimer(seconds) {
+  if (essayTimerInterval) clearInterval(essayTimerInterval);
+  let remaining = seconds;
+  const updateTimer = () => {
+    const el = document.getElementById("essay-timer");
+    if (!el) { clearInterval(essayTimerInterval); return; }
+    const m = Math.floor(remaining / 60);
+    const s = remaining % 60;
+    el.textContent = `${String(m).padStart(2, "0")}:${String(s).padStart(2, "0")}`;
+    el.className = "essay-timer" + (remaining <= 300 ? " timer-warning" : "");
+    if (remaining <= 0) {
+      clearInterval(essayTimerInterval);
+      el.textContent = "TIME'S UP";
+      el.className = "essay-timer timer-done";
+    }
+    remaining--;
+  };
+  updateTimer();
+  essayTimerInterval = setInterval(updateTimer, 1000);
+}
+
+function renderEssayRubric() {
+  const div = el("div", "rubric-view");
+  div.innerHTML = `
+    <div class="rubric-header">
+      <button class="btn-back" onclick="navigate('essay')">← Essay Lab</button>
+      <h1>HiSET Essay Scoring Rubric</h1>
+    </div>
+    <p>The essay is scored on four traits, each rated 0–3. Two raters score independently; scores are averaged. Total: 0–12.</p>
+
+    <div class="rubric-trait card">
+      <h2>Trait 1: Development of Ideas (0–3)</h2>
+      <table class="rubric-table">
+        <tr><th>Score</th><th>Description</th></tr>
+        <tr><td>3</td><td>The essay clearly analyzes which argument is better supported. Uses specific, relevant evidence directly from both passages. Reasoning is thorough and convincing. Explores complexity of the issue.</td></tr>
+        <tr><td>2</td><td>Essay identifies the stronger argument and provides adequate evidence from the passages, but reasoning may be somewhat general or not fully developed. Some evidence cited.</td></tr>
+        <tr><td>1</td><td>Some attempt to address the task but evidence is vague, irrelevant, or relies mostly on personal opinion rather than the passages. Argument is underdeveloped.</td></tr>
+        <tr><td>0</td><td>No meaningful response, off-topic, or no use of passage evidence.</td></tr>
+      </table>
+    </div>
+
+    <div class="rubric-trait card">
+      <h2>Trait 2: Organization (0–3)</h2>
+      <table class="rubric-table">
+        <tr><th>Score</th><th>Description</th></tr>
+        <tr><td>3</td><td>Essay has a clear, logical structure: strong introduction with thesis, well-organized body paragraphs with topic sentences, smooth transitions, and a coherent conclusion. Ideas flow naturally.</td></tr>
+        <tr><td>2</td><td>Essay has an identifiable structure with intro, body, and conclusion. Transitions are present but may be formulaic. Organization is adequate but not seamless.</td></tr>
+        <tr><td>1</td><td>Essay shows some organizational attempt but may lack a clear thesis, have weak transitions, or present ideas in a disjointed way. Structure is difficult to follow.</td></tr>
+        <tr><td>0</td><td>No discernible organization or structure.</td></tr>
+      </table>
+    </div>
+
+    <div class="rubric-trait card">
+      <h2>Trait 3: Clarity of Language (0–3)</h2>
+      <table class="rubric-table">
+        <tr><th>Score</th><th>Description</th></tr>
+        <tr><td>3</td><td>Uses precise, varied vocabulary. Sentences are varied in structure and length. Language is clear, formal, and appropriate. No or minimal repetition or wordiness.</td></tr>
+        <tr><td>2</td><td>Language is generally clear. Some word choice is imprecise or repetitive. Sentence structure shows some variety. Tone is mostly appropriate.</td></tr>
+        <tr><td>1</td><td>Language is frequently unclear, vague, or repetitive. Limited vocabulary. Sentences are simple and monotonous. Meaning is sometimes obscured.</td></tr>
+        <tr><td>0</td><td>Language is so unclear that meaning cannot be determined.</td></tr>
+      </table>
+    </div>
+
+    <div class="rubric-trait card">
+      <h2>Trait 4: Language Conventions (0–3)</h2>
+      <table class="rubric-table">
+        <tr><th>Score</th><th>Description</th></tr>
+        <tr><td>3</td><td>Demonstrates consistent control of grammar, usage, punctuation, capitalization, and spelling. Errors are rare and do not interfere with communication.</td></tr>
+        <tr><td>2</td><td>Generally correct grammar and mechanics. Some errors present but do not significantly impede understanding. Shows basic control of standard written English.</td></tr>
+        <tr><td>1</td><td>Frequent errors in grammar, usage, or punctuation that impede understanding. Limited control of sentence boundaries (fragments, run-ons common).</td></tr>
+        <tr><td>0</td><td>Pervasive errors that make the essay largely incomprehensible.</td></tr>
+      </table>
+    </div>
+
+    <div class="rubric-tips card">
+      <h2>Tips to Score a 3 on Every Trait</h2>
+      <ul>
+        <li>Always write a clear thesis in your first paragraph: "Passage A presents a more convincing argument because…"</li>
+        <li>Quote or paraphrase specific evidence from BOTH passages — even the one you disagree with.</li>
+        <li>Use transition words between paragraphs: "Furthermore," "In contrast," "This is supported by…"</li>
+        <li>Vary your sentence beginnings — don't start five sentences in a row with "The author says…"</li>
+        <li>Leave 3–5 minutes to proofread for comma splices, fragments, and subject-verb errors.</li>
+        <li>Write at least 300 words — a very short essay cannot score a 3 on Development.</li>
+      </ul>
+    </div>
+  `;
+  return div;
+}
+
+// ─── PROGRESS ────────────────────────────────────────────────────────────────
+
+function renderProgress() {
+  const p = state.progress;
+  const overallPct = p.totalQuestionsAnswered > 0
+    ? Math.round((p.totalCorrect / p.totalQuestionsAnswered) * 100) : 0;
+
+  const categories = [...new Set(QUESTIONS.map(q => q.category))];
+  const catData = categories.map(cat => {
+    const s = getCategoryStats(cat);
+    return { cat, ...s, pct: s.total > 0 ? Math.round((s.correct / s.total) * 100) : null };
+  });
+
+  const div = el("div", "progress-view");
+  div.innerHTML = `
+    <h1>Your Progress</h1>
+
+    <div class="overall-stat card">
+      <div class="big-circle ${overallPct >= 80 ? "circle-green" : overallPct >= 60 ? "circle-yellow" : "circle-red"}">
+        <span>${overallPct}%</span>
+        <small>Overall</small>
+      </div>
+      <div class="overall-details">
+        <div>Total Questions: <strong>${p.totalQuestionsAnswered}</strong></div>
+        <div>Correct: <strong>${p.totalCorrect}</strong></div>
+        <div>Lessons Completed: <strong>${p.lessonsCompleted.length} / ${LESSONS.length}</strong></div>
+        <div>Tests Taken: <strong>${p.testHistory.length}</strong></div>
+        <div>Study Streak: <strong>${p.streakDays} day${p.streakDays !== 1 ? "s" : ""} 🔥</strong></div>
+      </div>
+    </div>
+
+    <h2>Performance by Topic</h2>
+    <div class="topic-bars">
+      ${catData.map(d => `
+        <div class="topic-bar-row">
+          <div class="topic-bar-label">${d.cat}</div>
+          <div class="topic-bar-track">
+            <div class="topic-bar-fill ${d.pct === null ? "bar-empty" : d.pct >= 80 ? "bar-green" : d.pct >= 60 ? "bar-yellow" : "bar-red"}"
+                 style="width:${d.pct !== null ? d.pct : 0}%"></div>
+          </div>
+          <div class="topic-bar-pct">${d.pct !== null ? d.pct + "%" : "—"}</div>
+        </div>
+      `).join("")}
+    </div>
+
+    <h2>Test History</h2>
+    ${p.testHistory.length === 0
+      ? "<p class='muted'>No tests taken yet. Take your first practice test!</p>"
+      : `<div class="test-history">
+          ${[...p.testHistory].reverse().slice(0, 20).map(t => {
+            const pct = Math.round((t.score / t.total) * 100);
+            return `
+              <div class="history-row">
+                <span class="hist-date">${t.date}</span>
+                <span class="hist-type">${t.mode === "full" ? "Full Test" : t.mode === "category" ? t.category : "Quick Drill"}</span>
+                <span class="hist-score ${pct >= 80 ? "green" : pct >= 60 ? "yellow" : "red"}">${t.score}/${t.total} (${pct}%)</span>
+              </div>
+            `;
+          }).join("")}
+        </div>`
+    }
+
+    <div class="danger-zone card mt-2">
+      <h2>Reset Progress</h2>
+      <p>This will erase all your saved progress, scores, and streaks.</p>
+      <button class="btn btn-danger" onclick="resetProgress()">Reset All Progress</button>
+    </div>
+  `;
+  return div;
+}
+
+function resetProgress() {
+  if (confirm("Are you sure? This will delete all your progress.")) {
+    state.progress = defaultProgress();
+    saveProgress();
+    navigate("home");
+  }
+}
+
+// ─── CHEAT SHEET ─────────────────────────────────────────────────────────────
+
+function renderCheatSheet() {
+  const div = el("div", "cheat-view");
+  div.innerHTML = `
+    <h1>Quick Reference Guide</h1>
+    <p class="subtitle">Everything you need to know — at a glance.</p>
+
+    <div class="cheat-section card">
+      <h2>Exam Overview</h2>
+      <ul>
+        <li><strong>Multiple Choice:</strong> 50 questions, 75 minutes — passage-based editing/revision items</li>
+        <li><strong>Extended Response:</strong> 1 essay, 45 minutes — argue which of two passages makes a better case</li>
+        <li><strong>Score:</strong> 1–20 scale. Minimum passing is usually 8 (check your state).</li>
+        <li><strong>Essay scored on 4 traits:</strong> Development (0–3), Organization (0–3), Clarity (0–3), Conventions (0–3)</li>
+      </ul>
+    </div>
+
+    <div class="cheat-section card">
+      <h2>Subject-Verb Agreement Rules</h2>
+      <ul>
+        <li>Collective nouns (team, class, committee) → singular: "The team <u>is</u> ready."</li>
+        <li>Each / every / anyone / everyone / someone → singular: "Everyone <u>has</u> a role."</li>
+        <li>Neither…nor / Either…or → verb agrees with the closer subject</li>
+        <li>"There is/are" → agree with what follows: "There <u>are</u> three options."</li>
+        <li>Fields ending in -ics → singular: "Mathematics <u>is</u> hard."</li>
+        <li>Amounts of money/time/distance → singular: "Ten miles <u>is</u> far."</li>
+      </ul>
+    </div>
+
+    <div class="cheat-section card">
+      <h2>Pronoun Rules</h2>
+      <ul>
+        <li>After prepositions → object pronoun: "between you and <u>me</u>" ✓</li>
+        <li>Possessives → NO apostrophe: <u>its</u>, <u>whose</u>, <u>their</u>, <u>your</u></li>
+        <li>it's = it is | who's = who is | they're = they are</li>
+        <li>Who (subject) vs. Whom (object): "Give it to <u>whom</u>?" | "<u>Who</u> called?"</li>
+        <li>Singular antecedents → singular pronoun: "Each student has <u>his or her</u> ID."</li>
+      </ul>
+    </div>
+
+    <div class="cheat-section card">
+      <h2>Punctuation Quick Rules</h2>
+      <ul>
+        <li><strong>Semicolon:</strong> Joins two independent clauses. Before conjunctive adverbs (however, therefore): "; however,"</li>
+        <li><strong>Colon:</strong> After a complete clause to introduce a list or explanation</li>
+        <li><strong>Comma:</strong> Before FANBOYS joining two clauses | After introductory phrases | Around nonrestrictive clauses | In lists of 3+</li>
+        <li><strong>Apostrophe:</strong> In contractions (it's, can't) and possessives (Maria's, the dogs')</li>
+        <li><strong>No comma before "because"</strong> when "because" clause ends the sentence</li>
+      </ul>
+    </div>
+
+    <div class="cheat-section card">
+      <h2>FANBOYS — Coordinating Conjunctions</h2>
+      <div class="fanboys">
+        <span>For</span><span>And</span><span>Nor</span><span>But</span><span>Or</span><span>Yet</span><span>So</span>
+      </div>
+      <p>Use a comma before FANBOYS when joining two complete sentences.</p>
+    </div>
+
+    <div class="cheat-section card">
+      <h2>Transition Words by Category</h2>
+      <div class="transition-grid">
+        <div><strong>Addition:</strong> furthermore, moreover, in addition, also, additionally</div>
+        <div><strong>Contrast:</strong> however, nevertheless, on the other hand, yet, in contrast</div>
+        <div><strong>Cause/Effect:</strong> therefore, consequently, as a result, thus, hence</div>
+        <div><strong>Example:</strong> for example, for instance, to illustrate, specifically</div>
+        <div><strong>Sequence:</strong> first, next, then, finally, subsequently, previously</div>
+        <div><strong>Summary:</strong> in conclusion, to summarize, ultimately, overall</div>
+      </div>
+    </div>
+
+    <div class="cheat-section card">
+      <h2>Commonly Confused Words</h2>
+      <div class="confused-grid">
+        <div><strong>affect</strong> (verb) vs. <strong>effect</strong> (noun)</div>
+        <div><strong>fewer</strong> (countable) vs. <strong>less</strong> (mass noun)</div>
+        <div><strong>lie/lay/lain</strong> (recline) vs. <strong>lay/laid/laid</strong> (place)</div>
+        <div><strong>further</strong> (figurative) vs. <strong>farther</strong> (physical distance)</div>
+        <div><strong>principle</strong> (rule) vs. <strong>principal</strong> (main/school head)</div>
+        <div><strong>ensure</strong> (make sure) vs. <strong>insure</strong> (get insurance)</div>
+        <div><strong>accept</strong> (receive) vs. <strong>except</strong> (excluding)</div>
+        <div><strong>than</strong> (comparison) vs. <strong>then</strong> (time)</div>
+      </div>
+    </div>
+
+    <div class="cheat-section card">
+      <h2>Essay Template</h2>
+      <div class="essay-template">
+        <div class="et-para"><strong>Paragraph 1 — Introduction (3–4 sentences)</strong><br>
+        Hook → introduce the two passages → thesis: "Passage [A/B] makes a more convincing argument because [reason 1] and [reason 2]."</div>
+        <div class="et-para"><strong>Paragraph 2 — First Main Reason</strong><br>
+        Topic sentence → evidence from stronger passage (paraphrase or quote) → explain why it supports your claim → counter the other passage</div>
+        <div class="et-para"><strong>Paragraph 3 — Second Main Reason</strong><br>
+        Topic sentence → another piece of evidence → analysis → connect back to thesis</div>
+        <div class="et-para"><strong>Paragraph 4 — Address Opposing Argument</strong><br>
+        Acknowledge a point from the weaker passage → explain why it doesn't outweigh the evidence → reinforce your claim</div>
+        <div class="et-para"><strong>Paragraph 5 — Conclusion (2–3 sentences)</strong><br>
+        Restate thesis in new words → summarize strongest reasons → closing thought</div>
+      </div>
+    </div>
+  `;
+  return div;
+}
+
+// ─── Utilities ────────────────────────────────────────────────────────────────
+
+function el(tag, className = "") {
+  const e = document.createElement(tag);
+  if (className) e.className = className;
+  return e;
+}
+
+function shuffle(arr) {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+
+// ─── Boot ─────────────────────────────────────────────────────────────────────
+
+document.addEventListener("DOMContentLoaded", () => {
+  render();
+});
