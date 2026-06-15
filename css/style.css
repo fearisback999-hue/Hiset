@@ -28,6 +28,10 @@ body {
   padding-bottom: 90px;
 }
 
+/* Suppress Grammarly highlights */
+.grammarly-highlight { background: none !important; }
+
+
 h1 { font-size: 1.75rem; font-weight: 700; margin-bottom: .25rem; }
 h2 { font-size: 1.2rem; font-weight: 600; margin: 1.25rem 0 .5rem; }
 p  { color: var(--text-muted); margin-bottom: .75rem; }
