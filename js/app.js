@@ -27,6 +27,11 @@ const state = {
   skillDrillIndex: 0,
   skillDrillRevealed: false,
   skillDraft: "",
+  structureTab: "learn",     // "learn" | "quiz"
+  structureQ: 0,
+  structureAnswers: {},
+  structureOrderItems: [],
+  structureOrderLocked: false,
   progress: loadProgress()
 };
 
@@ -88,6 +93,7 @@ function render() {
     case "essay-write":  app.appendChild(renderEssayWrite()); break;
     case "essay-rubric": app.appendChild(renderEssayRubric()); break;
     case "essay-skill":  app.appendChild(renderEssaySkill()); break;
+    case "essay-structure": app.appendChild(renderEssayStructure()); break;
     case "progress":     app.appendChild(renderProgress()); break;
     case "cheatsheet":   app.appendChild(renderCheatSheet()); break;
     default:             app.appendChild(renderHome());
@@ -650,28 +656,24 @@ function renderEssayMenu() {
       <p>You will read two short passages presenting <strong>opposing views</strong> on a topic. You must write an essay analyzing which argument is <strong>better supported</strong>. You are NOT just giving your opinion — you must use evidence from BOTH passages.</p>
       <div class="essay-traits">
         <div class="trait">
-          <div class="trait-name">Development of Ideas</div>
-          <div class="trait-score">0–3 points</div>
-          <div class="trait-desc">Use specific evidence from the passages to support your argument</div>
+          <div class="trait-name">Holistic Score</div>
+          <div class="trait-score">1–6 per rater</div>
+          <div class="trait-desc">Two raters each give a score from 1 (Weak) to 6 (Superior) based on the overall quality</div>
         </div>
         <div class="trait">
-          <div class="trait-name">Organization</div>
-          <div class="trait-score">0–3 points</div>
-          <div class="trait-desc">Clear intro, body paragraphs with topic sentences, logical conclusion</div>
-        </div>
-        <div class="trait">
-          <div class="trait-name">Clarity of Language</div>
-          <div class="trait-score">0–3 points</div>
-          <div class="trait-desc">Precise word choice, varied sentence structure, clear expression</div>
-        </div>
-        <div class="trait">
-          <div class="trait-name">Language Conventions</div>
-          <div class="trait-score">0–3 points</div>
-          <div class="trait-desc">Correct grammar, spelling, punctuation, and capitalization</div>
+          <div class="trait-name">What They Evaluate</div>
+          <div class="trait-score">4 areas</div>
+          <div class="trait-desc">Development of ideas, organization, language facility, and conventions</div>
         </div>
       </div>
-      <p class="mt-1"><strong>Total:</strong> 0–12 points → converted to part of the 1–20 HiSET score</p>
+      <p class="mt-1"><strong>Scoring:</strong> Two raters each score 1–6 holistically. Scores are combined for a total of 2–12.</p>
       <button class="btn btn-text" onclick="navigate('essay-rubric')">View Full Scoring Rubric →</button>
+    </div>
+
+    <div class="structure-cta card" style="background: linear-gradient(135deg, #4f46e5, #7c3aed); color: #fff; cursor: pointer;" onclick="navigate('essay-structure')">
+      <h2 style="color:#fff; margin:0 0 .5rem">🏗️ Essay Structure Quiz</h2>
+      <p style="color:#e0e7ff; margin:0; font-size:1.1rem">Learn the exact structure of a perfect HiSET argumentative essay — then prove you know it with interactive quizzes.</p>
+      <button class="btn" style="background:#fff; color:#4f46e5; font-weight:700; margin-top:1rem;">Start the Structure Quiz →</button>
     </div>
 
     <h2>Practice One Piece at a Time</h2>
@@ -1186,6 +1188,529 @@ function nextSkillDrill() {
   state.skillDraft = "";
   const skill = ESSAY_SKILLS.find(s => s.id === state.skillId);
   renderSkillBody(skill);
+}
+
+// ─── ESSAY STRUCTURE QUIZ ────────────────────────────────────────────────────
+
+const STRUCTURE_QUIZ = [
+  {
+    type: "order",
+    instruction: "Put these 5 essay sections in the correct order (drag or tap to reorder):",
+    items: ["Body Paragraph 1: Strongest Evidence", "Introduction with Thesis", "Conclusion", "Body Paragraph 3: Counter the Other Side", "Body Paragraph 2: More Supporting Evidence"],
+    correctOrder: ["Introduction with Thesis", "Body Paragraph 1: Strongest Evidence", "Body Paragraph 2: More Supporting Evidence", "Body Paragraph 3: Counter the Other Side", "Conclusion"],
+    explanation: "A HiSET argumentative essay follows this 5-paragraph structure: Introduction (with thesis) → Body 1 (strongest point) → Body 2 (second point) → Body 3 (address the opposing argument) → Conclusion."
+  },
+  {
+    type: "mcq",
+    question: "What is the LAST sentence of your introduction paragraph?",
+    choices: ["A hook that grabs the reader's attention", "A summary of both passages", "Your thesis statement — which side you're arguing and why", "A transition to the first body paragraph"],
+    correct: 2,
+    explanation: "Your thesis statement is ALWAYS the last sentence of the introduction. It states which passage's argument is stronger and previews your reasons. The hook comes first, then context, then the thesis."
+  },
+  {
+    type: "mcq",
+    question: "What should the FIRST sentence of each body paragraph do?",
+    choices: ["Quote directly from the passage", "State the topic of that paragraph (topic sentence)", "Restate the thesis", "Give your personal opinion"],
+    correct: 1,
+    explanation: "Each body paragraph starts with a TOPIC SENTENCE that tells the reader what that paragraph will prove. Think of it as a mini-thesis for that paragraph."
+  },
+  {
+    type: "order",
+    instruction: "Put these parts of a SINGLE BODY PARAGRAPH in the correct order:",
+    items: ["Explain how this evidence supports your argument", "Quote or paraphrase specific evidence from the passage", "Topic sentence stating this paragraph's point", "Closing sentence connecting back to your thesis"],
+    correctOrder: ["Topic sentence stating this paragraph's point", "Quote or paraphrase specific evidence from the passage", "Explain how this evidence supports your argument", "Closing sentence connecting back to your thesis"],
+    explanation: "Each body paragraph follows the T-E-E-C pattern: Topic sentence → Evidence (from the passage) → Explanation (why it matters) → Connection (link back to thesis). This is the structure graders look for."
+  },
+  {
+    type: "mcq",
+    question: "In Body Paragraph 3, you should address the opposing passage. What's the RIGHT way to do this?",
+    choices: [
+      "Ignore the other passage completely",
+      "Say the other passage is stupid and wrong",
+      "Acknowledge the other side's point, then explain why it's weaker or flawed",
+      "Agree with both sides equally"
+    ],
+    correct: 2,
+    explanation: "The highest-scoring essays ACKNOWLEDGE the opposing argument ('While Passage B argues that...') then explain why it's less convincing ('however, this evidence is weaker because...'). This shows critical thinking."
+  },
+  {
+    type: "identify",
+    question: "Read this paragraph. What part of the essay is it?",
+    passage: "The debate over school start times has been ongoing for years, with strong opinions on both sides. Some argue that later start times benefit student health, while others worry about disruptions to family schedules. After examining both arguments, Passage A presents the more convincing case for later start times because it provides specific scientific research on teen sleep patterns and demonstrates measurable improvements in schools that have already made the change.",
+    choices: ["Body Paragraph 1", "Introduction", "Conclusion", "Body Paragraph 3 (counterargument)"],
+    correct: 1,
+    explanation: "This is an INTRODUCTION. It has all three parts: a hook/context (the debate), a brief summary of both sides, and a thesis statement (last sentence) that picks a side and previews reasons."
+  },
+  {
+    type: "identify",
+    question: "Read this paragraph. What part of the essay is it?",
+    passage: "One of the strongest pieces of evidence in Passage A is the study from the University of Minnesota, which tracked 9,000 students across eight high schools. The study found that when schools shifted start times to 8:30 a.m. or later, students showed significant improvements in attendance, test scores, and mental health. This data directly supports the claim that later start times benefit students because it demonstrates real, measurable results from real schools — not just theories or opinions.",
+    choices: ["Introduction", "Body Paragraph (supporting evidence)", "Conclusion", "Body Paragraph (counterargument)"],
+    correct: 1,
+    explanation: "This is a BODY PARAGRAPH with supporting evidence. Notice the structure: Topic sentence (strongest evidence) → Evidence (the Minnesota study) → Explanation (why this data supports the argument). It follows the T-E-E pattern."
+  },
+  {
+    type: "identify",
+    question: "Read this paragraph. What part of the essay is it?",
+    passage: "While Passage B raises a valid concern about the impact on parents' work schedules, this argument is less convincing because it relies primarily on speculation rather than data. Passage B offers no studies or statistics showing that later start times actually harm families, whereas Passage A provides multiple research studies with concrete results. The inconvenience to some parents' schedules does not outweigh the documented health and academic benefits for thousands of students.",
+    choices: ["Introduction", "Body Paragraph 1 (first evidence)", "Body Paragraph 3 (counterargument)", "Conclusion"],
+    correct: 2,
+    explanation: "This is the COUNTERARGUMENT paragraph. Notice how it: (1) Acknowledges the other side ('While Passage B raises a valid concern...'), (2) Explains why it's weaker ('relies on speculation rather than data'), and (3) Contrasts it with the stronger passage. This is exactly what graders want to see."
+  },
+  {
+    type: "identify",
+    question: "Read this paragraph. What part of the essay is it?",
+    passage: "In conclusion, Passage A presents the more convincing argument for later school start times. The scientific research on adolescent sleep needs, combined with the real-world success of schools that have already made the switch, provides strong evidence that this change benefits students. While concerns about scheduling disruptions are understandable, the health and academic improvements documented in Passage A clearly outweigh these logistical challenges. School districts should follow the evidence and prioritize student well-being.",
+    choices: ["Introduction", "Body Paragraph 2", "Body Paragraph 3 (counterargument)", "Conclusion"],
+    correct: 3,
+    explanation: "This is a CONCLUSION. It restates the thesis (Passage A is stronger), summarizes the key evidence, briefly acknowledges the other side one last time, and ends with a strong closing statement. It does NOT introduce new evidence."
+  },
+  {
+    type: "mcq",
+    question: "Which of these should you NEVER do in your conclusion?",
+    choices: [
+      "Restate your thesis in different words",
+      "Introduce brand-new evidence you haven't discussed yet",
+      "Briefly mention the opposing argument one more time",
+      "End with a strong closing statement"
+    ],
+    correct: 1,
+    explanation: "NEVER introduce new evidence or arguments in your conclusion. The conclusion is for wrapping up — restate your thesis, summarize your strongest points, and end strong. New information belongs in body paragraphs."
+  },
+  {
+    type: "order",
+    instruction: "Put these parts of an INTRODUCTION in the correct order:",
+    items: ["Thesis statement (your argument + reasons)", "Brief summary of both sides of the debate", "Hook — an interesting opening that introduces the topic"],
+    correctOrder: ["Hook — an interesting opening that introduces the topic", "Brief summary of both sides of the debate", "Thesis statement (your argument + reasons)"],
+    explanation: "The introduction funnel: Start broad (hook/topic) → narrow to the two sides → land on your specific thesis. The thesis is ALWAYS last. Graders look for this exact flow."
+  },
+  {
+    type: "mcq",
+    question: "How many body paragraphs should your HiSET essay have?",
+    choices: ["1 — keep it short", "2 — one for each passage", "3 — two supporting + one counterargument", "5 — as many as possible"],
+    correct: 2,
+    explanation: "Three body paragraphs is the sweet spot: Body 1 = strongest evidence for your side, Body 2 = more supporting evidence, Body 3 = address and refute the opposing argument. This shows depth AND critical thinking."
+  },
+  {
+    type: "order",
+    instruction: "Put these parts of a CONCLUSION in the correct order:",
+    items: ["Strong closing statement or call to action", "Restate your thesis in new words", "Summarize your 2-3 strongest points"],
+    correctOrder: ["Restate your thesis in new words", "Summarize your 2-3 strongest points", "Strong closing statement or call to action"],
+    explanation: "The conclusion mirrors the introduction in reverse: thesis restatement → summary of evidence → strong ending. Keep it tight — 3 to 5 sentences is enough."
+  },
+  {
+    type: "mcq",
+    question: "What word or phrase should you use to START your counterargument paragraph?",
+    choices: [
+      "\"First of all...\"",
+      "\"In conclusion...\"",
+      "\"While Passage B argues...\" or \"Although the opposing view claims...\"",
+      "\"I personally believe...\""
+    ],
+    correct: 2,
+    explanation: "Counterargument paragraphs should begin with a concession phrase like 'While...', 'Although...', or 'Admittedly...' This shows the grader that you understand the other side before you explain why your side is stronger."
+  },
+  {
+    type: "mcq",
+    question: "Which transition word works best to START Body Paragraph 2 (your second piece of evidence)?",
+    choices: [
+      "\"However...\"",
+      "\"Furthermore...\" or \"In addition...\"",
+      "\"In conclusion...\"",
+      "\"On the other hand...\""
+    ],
+    correct: 1,
+    explanation: "\"Furthermore\" or \"In addition\" signals that you're adding MORE evidence to support your thesis. \"However\" and \"On the other hand\" signal contrast (save those for the counterargument). \"In conclusion\" is only for the last paragraph."
+  }
+];
+
+function renderEssayStructure() {
+  const div = el("div", "essay-structure-view");
+
+  const tab = state.structureTab;
+  div.innerHTML = `
+    <button class="btn btn-text" onclick="navigate('essay')" style="margin-bottom:1rem">← Back to Essay Lab</button>
+    <h1>🏗️ Essay Structure Master Class</h1>
+    <p class="subtitle">Learn the exact blueprint for a perfect HiSET argumentative essay — then prove you know it.</p>
+
+    <div class="skill-tabs" style="margin-bottom:1.5rem">
+      <button class="skill-tab ${tab === "learn" ? "active" : ""}" onclick="setStructureTab('learn')">📖 Learn the Structure</button>
+      <button class="skill-tab ${tab === "quiz" ? "active" : ""}" onclick="setStructureTab('quiz')">🧠 Structure Quiz</button>
+    </div>
+
+    <div id="structure-body"></div>
+  `;
+
+  setTimeout(() => {
+    const body = document.getElementById("structure-body");
+    if (!body) return;
+    if (tab === "learn") {
+      body.innerHTML = renderStructureLearn();
+    } else {
+      body.innerHTML = renderStructureQuiz();
+      initOrderInteractions();
+    }
+  }, 0);
+
+  return div;
+}
+
+function setStructureTab(tab) {
+  state.structureTab = tab;
+  if (tab === "quiz") {
+    state.structureQ = 0;
+    state.structureAnswers = {};
+    state.structureOrderItems = [];
+    state.structureOrderLocked = false;
+  }
+  render();
+}
+
+function renderStructureLearn() {
+  return `
+    <div class="structure-diagram card">
+      <h2>The 5-Paragraph Argumentative Essay</h2>
+      <p style="margin-bottom:1.5rem; color: var(--muted)">This is the exact structure that earns top scores on the HiSET. Memorize it.</p>
+
+      <div class="structure-block intro-block">
+        <div class="block-label">PARAGRAPH 1: INTRODUCTION</div>
+        <div class="block-parts">
+          <div class="block-part">
+            <span class="part-num">1</span>
+            <div>
+              <strong>Hook</strong>
+              <p>An interesting opening sentence about the topic. Can be a question, a surprising fact, or a bold statement.</p>
+              <div class="part-example">"The question of whether schools should start later has sparked heated debate among educators, parents, and sleep scientists."</div>
+            </div>
+          </div>
+          <div class="block-part">
+            <span class="part-num">2</span>
+            <div>
+              <strong>Context / Both Sides</strong>
+              <p>Briefly explain that there are two sides to this issue. Mention what each passage argues.</p>
+              <div class="part-example">"While some argue that later start times improve student health, others worry about the logistical challenges for families and schools."</div>
+            </div>
+          </div>
+          <div class="block-part">
+            <span class="part-num">3</span>
+            <div>
+              <strong>THESIS STATEMENT ⭐</strong>
+              <p>The most important sentence in the entire essay. States which passage is stronger and WHY (preview 2 reasons). <strong>Always the LAST sentence of the introduction.</strong></p>
+              <div class="part-example">"Passage A presents the more convincing argument because it provides rigorous scientific data on teen sleep needs and demonstrates proven results from schools that have already made the change."</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="structure-arrow">↓</div>
+
+      <div class="structure-block body1-block">
+        <div class="block-label">PARAGRAPH 2: BODY 1 — Strongest Evidence</div>
+        <div class="block-parts">
+          <div class="block-part">
+            <span class="part-num">T</span>
+            <div>
+              <strong>Topic Sentence</strong>
+              <p>States the main point of this paragraph. Like a mini-thesis.</p>
+              <div class="part-example">"The most compelling evidence in Passage A is the University of Minnesota study tracking 9,000 students."</div>
+            </div>
+          </div>
+          <div class="block-part">
+            <span class="part-num">E</span>
+            <div>
+              <strong>Evidence</strong>
+              <p>Quote or paraphrase specific facts/data from the passage.</p>
+              <div class="part-example">"The study found that students at schools starting at 8:30 a.m. or later showed a 15% increase in attendance and significant improvements in test scores."</div>
+            </div>
+          </div>
+          <div class="block-part">
+            <span class="part-num">E</span>
+            <div>
+              <strong>Explanation</strong>
+              <p>Explain WHY this evidence supports your argument. Don't just drop a quote — analyze it.</p>
+              <div class="part-example">"This data is persuasive because it comes from a large-scale, multi-school study — not just a single anecdote — demonstrating that later start times produce measurable academic benefits."</div>
+            </div>
+          </div>
+          <div class="block-part">
+            <span class="part-num">C</span>
+            <div>
+              <strong>Connection</strong>
+              <p>Link back to your thesis with a closing sentence.</p>
+              <div class="part-example">"This strong research support is exactly why Passage A's argument is more convincing."</div>
+            </div>
+          </div>
+        </div>
+        <div class="block-formula">T-E-E-C: Topic → Evidence → Explanation → Connection</div>
+      </div>
+
+      <div class="structure-arrow">↓</div>
+
+      <div class="structure-block body2-block">
+        <div class="block-label">PARAGRAPH 3: BODY 2 — More Evidence</div>
+        <div class="block-parts">
+          <div class="block-part">
+            <span class="part-num">T</span>
+            <div>
+              <strong>Topic Sentence</strong> — Start with "Furthermore," "In addition," or "Another key point..."
+              <div class="part-example">"Furthermore, Passage A strengthens its argument by citing the documented mental health improvements in students who get adequate sleep."</div>
+            </div>
+          </div>
+          <div class="block-part"><span class="part-num">E</span><div><strong>Evidence</strong> — Different evidence from the same passage</div></div>
+          <div class="block-part"><span class="part-num">E</span><div><strong>Explanation</strong> — Why this matters</div></div>
+          <div class="block-part"><span class="part-num">C</span><div><strong>Connection</strong> — Link back to thesis</div></div>
+        </div>
+        <div class="block-formula">Same T-E-E-C pattern — different evidence</div>
+      </div>
+
+      <div class="structure-arrow">↓</div>
+
+      <div class="structure-block body3-block">
+        <div class="block-label">PARAGRAPH 4: BODY 3 — Counter the Other Side</div>
+        <div class="block-parts">
+          <div class="block-part">
+            <span class="part-num">A</span>
+            <div>
+              <strong>Acknowledge</strong> — Concede the other side has a point. Start with "While," "Although," or "Admittedly."
+              <div class="part-example">"While Passage B raises a valid concern about the disruption to parents' work schedules..."</div>
+            </div>
+          </div>
+          <div class="block-part">
+            <span class="part-num">R</span>
+            <div>
+              <strong>Refute</strong> — Explain WHY the other side's argument is weaker.
+              <div class="part-example">"...this argument relies primarily on speculation rather than evidence. Passage B offers no studies or data showing that later start times actually harm families."</div>
+            </div>
+          </div>
+          <div class="block-part">
+            <span class="part-num">C</span>
+            <div>
+              <strong>Contrast</strong> — Show how your side's evidence is stronger.
+              <div class="part-example">"In contrast, Passage A provides multiple peer-reviewed studies with concrete, measurable results."</div>
+            </div>
+          </div>
+        </div>
+        <div class="block-formula">A-R-C: Acknowledge → Refute → Contrast</div>
+      </div>
+
+      <div class="structure-arrow">↓</div>
+
+      <div class="structure-block conclusion-block">
+        <div class="block-label">PARAGRAPH 5: CONCLUSION</div>
+        <div class="block-parts">
+          <div class="block-part">
+            <span class="part-num">1</span>
+            <div>
+              <strong>Restate Thesis</strong> — Same idea, different words. Don't copy-paste your intro thesis.
+              <div class="part-example">"Ultimately, Passage A makes the stronger case for later school start times."</div>
+            </div>
+          </div>
+          <div class="block-part">
+            <span class="part-num">2</span>
+            <div>
+              <strong>Summarize Key Points</strong> — Hit your 2-3 strongest reasons in 1-2 sentences.
+              <div class="part-example">"Its large-scale research data and documented health improvements provide far more persuasive evidence than Passage B's unsupported concerns."</div>
+            </div>
+          </div>
+          <div class="block-part">
+            <span class="part-num">3</span>
+            <div>
+              <strong>Strong Closing</strong> — End with impact. A call to action or forward-looking statement.
+              <div class="part-example">"The science is clear — school districts should prioritize student well-being and follow the evidence."</div>
+            </div>
+          </div>
+        </div>
+        <div class="block-formula">⚠️ NEVER introduce new evidence in the conclusion</div>
+      </div>
+    </div>
+
+    <div class="card mt-2" style="background: linear-gradient(135deg, #eff6ff, #dbeafe); border: 2px solid #93c5fd;">
+      <h2>Quick Reference: Transition Words</h2>
+      <div class="transition-grid">
+        <div class="transition-cat">
+          <h4>Adding Evidence (Body 1 & 2)</h4>
+          <p>Furthermore, In addition, Moreover, Another key point, Additionally, Similarly</p>
+        </div>
+        <div class="transition-cat">
+          <h4>Counterargument (Body 3)</h4>
+          <p>While, Although, Admittedly, Despite, Even though, Opponents may argue</p>
+        </div>
+        <div class="transition-cat">
+          <h4>Contrasting</h4>
+          <p>However, In contrast, On the other hand, Nevertheless, Conversely, Yet</p>
+        </div>
+        <div class="transition-cat">
+          <h4>Concluding</h4>
+          <p>In conclusion, Ultimately, Therefore, In summary, As demonstrated, Clearly</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-center mt-2">
+      <button class="btn btn-primary btn-lg" onclick="setStructureTab('quiz')">Ready? Take the Structure Quiz →</button>
+    </div>
+  `;
+}
+
+function renderStructureQuiz() {
+  const q = STRUCTURE_QUIZ[state.structureQ];
+  const total = STRUCTURE_QUIZ.length;
+  const answered = Object.keys(state.structureAnswers).length;
+  const pct = Math.round((answered / total) * 100);
+
+  let correctCount = 0;
+  for (const [k, v] of Object.entries(state.structureAnswers)) {
+    if (v.correct) correctCount++;
+  }
+
+  if (state.structureQ >= total) {
+    return `
+      <div class="card text-center" style="padding:2rem">
+        <h2>🎉 Quiz Complete!</h2>
+        <div class="score-display" style="font-size:3rem; font-weight:800; color: ${correctCount >= total * 0.8 ? "var(--green)" : correctCount >= total * 0.6 ? "#f59e0b" : "var(--red)"}">
+          ${correctCount} / ${total}
+        </div>
+        <p style="font-size:1.2rem; margin:1rem 0">${
+          correctCount === total ? "PERFECT! You've mastered the essay structure!" :
+          correctCount >= total * 0.8 ? "Great job! You really know the structure." :
+          correctCount >= total * 0.6 ? "Good effort! Review the Learn tab to strengthen weak areas." :
+          "Keep studying! Go back to the Learn tab and review the structure diagram."
+        }</p>
+        <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; margin-top:1.5rem">
+          <button class="btn btn-primary" onclick="setStructureTab('quiz')">🔄 Retake Quiz</button>
+          <button class="btn btn-secondary" onclick="setStructureTab('learn')">📖 Review the Structure</button>
+          <button class="btn btn-text" onclick="navigate('essay')">← Back to Essay Lab</button>
+        </div>
+      </div>
+    `;
+  }
+
+  const currentAnswer = state.structureAnswers[state.structureQ];
+  const hasAnswered = currentAnswer !== undefined;
+
+  let questionHtml = "";
+
+  if (q.type === "mcq" || q.type === "identify") {
+    questionHtml = `
+      <div class="structure-q-card card">
+        <div class="sq-progress">Question ${state.structureQ + 1} of ${total}</div>
+        <div class="progress-bar-mini"><div class="progress-fill-mini" style="width:${Math.round(((state.structureQ + 1) / total) * 100)}%"></div></div>
+
+        ${q.passage ? `<div class="passage-box" style="margin: 1rem 0; font-style: italic; line-height:1.7">${q.passage}</div>` : ""}
+
+        <h3 style="margin: 1rem 0 1.5rem; line-height:1.5">${q.question}</h3>
+
+        <div class="sq-choices">
+          ${q.choices.map((c, i) => {
+            let cls = "sq-choice";
+            if (hasAnswered) {
+              if (i === q.correct) cls += " correct";
+              else if (currentAnswer.picked === i && i !== q.correct) cls += " wrong";
+            }
+            return `<button class="${cls}" ${hasAnswered ? "disabled" : `onclick="answerStructureQ(${i})"`}>${c}</button>`;
+          }).join("")}
+        </div>
+
+        ${hasAnswered ? `
+          <div class="sq-explanation ${currentAnswer.correct ? "correct" : "wrong"}">
+            <strong>${currentAnswer.correct ? "✅ Correct!" : "❌ Not quite."}</strong>
+            <p>${q.explanation}</p>
+          </div>
+          <button class="btn btn-primary mt-1" onclick="nextStructureQ()">${state.structureQ + 1 < total ? "Next Question →" : "See Results →"}</button>
+        ` : ""}
+      </div>
+    `;
+  } else if (q.type === "order") {
+    const items = state.structureOrderItems.length ? state.structureOrderItems : q.items.slice();
+    if (!state.structureOrderItems.length) {
+      state.structureOrderItems = items;
+    }
+
+    const isCorrect = hasAnswered && currentAnswer.correct;
+
+    questionHtml = `
+      <div class="structure-q-card card">
+        <div class="sq-progress">Question ${state.structureQ + 1} of ${total}</div>
+        <div class="progress-bar-mini"><div class="progress-fill-mini" style="width:${Math.round(((state.structureQ + 1) / total) * 100)}%"></div></div>
+
+        <h3 style="margin: 1rem 0 1rem; line-height:1.5">${q.instruction}</h3>
+        <p style="color: var(--muted); margin-bottom: 1rem">Use the ▲ ▼ buttons to move items up or down.</p>
+
+        <div class="order-list" id="order-list">
+          ${items.map((item, i) => `
+            <div class="order-item ${hasAnswered ? (item === q.correctOrder[i] ? "correct" : "wrong") : ""}" data-index="${i}">
+              <span class="order-num">${i + 1}</span>
+              <span class="order-text">${item}</span>
+              ${!hasAnswered ? `
+                <span class="order-btns">
+                  <button class="order-btn" onclick="moveOrderItem(${i}, -1)" ${i === 0 ? "disabled" : ""}>▲</button>
+                  <button class="order-btn" onclick="moveOrderItem(${i}, 1)" ${i === items.length - 1 ? "disabled" : ""}>▼</button>
+                </span>
+              ` : ""}
+            </div>
+          `).join("")}
+        </div>
+
+        ${!hasAnswered ? `
+          <button class="btn btn-primary mt-1" onclick="submitOrder()">Check My Order</button>
+        ` : `
+          <div class="sq-explanation ${isCorrect ? "correct" : "wrong"}">
+            <strong>${isCorrect ? "✅ Perfect order!" : "❌ Not quite right. The correct order is:"}</strong>
+            ${!isCorrect ? `<ol style="margin: .5rem 0; padding-left: 1.5rem">${q.correctOrder.map(item => `<li>${item}</li>`).join("")}</ol>` : ""}
+            <p>${q.explanation}</p>
+          </div>
+          <button class="btn btn-primary mt-1" onclick="nextStructureQ()">${state.structureQ + 1 < total ? "Next Question →" : "See Results →"}</button>
+        `}
+      </div>
+    `;
+  }
+
+  return questionHtml;
+}
+
+function answerStructureQ(choiceIndex) {
+  const q = STRUCTURE_QUIZ[state.structureQ];
+  state.structureAnswers[state.structureQ] = {
+    picked: choiceIndex,
+    correct: choiceIndex === q.correct
+  };
+  const body = document.getElementById("structure-body");
+  if (body) body.innerHTML = renderStructureQuiz();
+}
+
+function moveOrderItem(index, direction) {
+  const newIndex = index + direction;
+  if (newIndex < 0 || newIndex >= state.structureOrderItems.length) return;
+  const items = state.structureOrderItems;
+  [items[index], items[newIndex]] = [items[newIndex], items[index]];
+  const body = document.getElementById("structure-body");
+  if (body) body.innerHTML = renderStructureQuiz();
+}
+
+function submitOrder() {
+  const q = STRUCTURE_QUIZ[state.structureQ];
+  const isCorrect = state.structureOrderItems.every((item, i) => item === q.correctOrder[i]);
+  state.structureAnswers[state.structureQ] = { correct: isCorrect };
+  const body = document.getElementById("structure-body");
+  if (body) body.innerHTML = renderStructureQuiz();
+}
+
+function nextStructureQ() {
+  state.structureQ++;
+  state.structureOrderItems = [];
+  state.structureOrderLocked = false;
+  if (state.structureQ < STRUCTURE_QUIZ.length) {
+    const q = STRUCTURE_QUIZ[state.structureQ];
+    if (q.type === "order") {
+      state.structureOrderItems = q.items.slice();
+    }
+  }
+  const body = document.getElementById("structure-body");
+  if (body) body.innerHTML = renderStructureQuiz();
+  if (body) initOrderInteractions();
+}
+
+function initOrderInteractions() {
+  // placeholder for future drag-and-drop enhancement
 }
 
 // ─── PROGRESS ────────────────────────────────────────────────────────────────
