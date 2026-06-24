@@ -1,4 +1,4 @@
-// HiSET Language Arts – Writing: 265 multiple-choice practice questions
+// HiSET Language Arts – Writing: 340 multiple-choice practice questions
 // Format mirrors actual HiSET passage-based items
 
 const QUESTIONS = [
@@ -3491,7 +3491,1623 @@ const QUESTIONS = [
     ],
     correct: 0,
     explanation: "Option A is correct because it presents an effective conclusion of the passage's main ideas."
-  }
+  },
+
+  // === FPT6 — Released 2016 (IDs 266-290) ===
+  {
+    id: 266,
+    category: "Writing Conventions",
+    passage: `Ridge View High School
+1700 Ridge View Avenue
+Tacoma, Washington 98409
+
+Mr. Luis García, Principal
+Preparatoria Morelos
+Ignacio Mariscal 747
+58001 MORELIA, MICH
+MEXICO
+
+(1) Dear Mr. García — (1)
+
+¶1 Jeremy Hunt, who graduated from our high school last year, recently returned from Morelia, where he visited your school, (2) as I guess you should already know. (2) Last week he spoke to our (3) school's International Club (3) about his experiences. He described your school as being about the same sized as ours but having different (4) courses and also he thought it would be a great idea (4) for our schools to initiate an exchange program.
+
+¶2 Since Jeremy's visit, (5) we club members have been discussing (5) different kinds of exchanges: a letter or newspaper exchange, a video exchange, or perhaps even a club trip. The trip idea was naturally very appealing, but we decided that it was impractical because of the expenses that would necessairly be involved. We have concluded that a video exchange would be the funnest. Students at each school could prepare a fifteen- or twenty-minute video about various aspects of their school. Some of our club members are quite proficient at making videos, and the project would be benificial in helping us learn about our two schools' similarities and differences. Ms. Truong, our club advisor, is (6) real excited over this (6) (7) idea. She is encouraging us writing you. (7)
+
+¶3 Should you have any questions, please direct them to Ms. Truong at the address given above. We look forward to hearing from you.
+
+¶4 We hope your students will be as eager as we are to have a video exchange. Personally, I'm hoping to be a film major in college. Of course, we would welcome any other ideas for (8) the getting of an exchange program going. (8) We have enclosed a copy of our school newspaper to help you become acquainted with us.
+
+Yours Truly,
+Marcella Ramírez`,
+    question: "How should the salutation of the letter be written?",
+    choices: ["A. No change", "B. Dear Mr. García:", "C. Dear Sir —", "D. Dear Sir,"],
+    correct: 1,
+    explanation: "A formal business letter salutation should use a colon after the recipient's name, not a dash. 'Dear Mr. García:' is the correct format."
+  },
+  {
+    id: 267,
+    category: "Language Facility",
+    passage: `Ridge View High School
+1700 Ridge View Avenue
+Tacoma, Washington 98409
+
+Mr. Luis García, Principal
+Preparatoria Morelos
+Ignacio Mariscal 747
+58001 MORELIA, MICH
+MEXICO
+
+(1) Dear Mr. García — (1)
+
+¶1 Jeremy Hunt, who graduated from our high school last year, recently returned from Morelia, where he visited your school, (2) as I guess you should already know. (2) Last week he spoke to our (3) school's International Club (3) about his experiences. He described your school as being about the same sized as ours but having different (4) courses and also he thought it would be a great idea (4) for our schools to initiate an exchange program.
+
+¶2 Since Jeremy's visit, (5) we club members have been discussing (5) different kinds of exchanges: a letter or newspaper exchange, a video exchange, or perhaps even a club trip. The trip idea was naturally very appealing, but we decided that it was impractical because of the expenses that would necessairly be involved. We have concluded that a video exchange would be the funnest. Students at each school could prepare a fifteen- or twenty-minute video about various aspects of their school. Some of our club members are quite proficient at making videos, and the project would be benificial in helping us learn about our two schools' similarities and differences. Ms. Truong, our club advisor, is (6) real excited over this (6) (7) idea. She is encouraging us writing you. (7)
+
+¶3 Should you have any questions, please direct them to Ms. Truong at the address given above. We look forward to hearing from you.
+
+¶4 We hope your students will be as eager as we are to have a video exchange. Personally, I'm hoping to be a film major in college. Of course, we would welcome any other ideas for (8) the getting of an exchange program going. (8) We have enclosed a copy of our school newspaper to help you become acquainted with us.
+
+Yours Truly,
+Marcella Ramírez`,
+    question: "Which revision of the underlined portion (2) is most appropriate?",
+    choices: ["A. No change", "B. a fact you know.", "C. as I probably don't need to tell you.", "D. as you probably know."],
+    correct: 3,
+    explanation: "'As you probably know' is the most concise and appropriately formal phrasing for a business letter, avoiding the informal and wordy original."
+  },
+  {
+    id: 268,
+    category: "Writing Conventions",
+    passage: `Ridge View High School
+1700 Ridge View Avenue
+Tacoma, Washington 98409
+
+Mr. Luis García, Principal
+Preparatoria Morelos
+Ignacio Mariscal 747
+58001 MORELIA, MICH
+MEXICO
+
+(1) Dear Mr. García — (1)
+
+¶1 Jeremy Hunt, who graduated from our high school last year, recently returned from Morelia, where he visited your school, (2) as I guess you should already know. (2) Last week he spoke to our (3) school's International Club (3) about his experiences. He described your school as being about the same sized as ours but having different (4) courses and also he thought it would be a great idea (4) for our schools to initiate an exchange program.
+
+¶2 Since Jeremy's visit, (5) we club members have been discussing (5) different kinds of exchanges: a letter or newspaper exchange, a video exchange, or perhaps even a club trip. The trip idea was naturally very appealing, but we decided that it was impractical because of the expenses that would necessairly be involved. We have concluded that a video exchange would be the funnest. Students at each school could prepare a fifteen- or twenty-minute video about various aspects of their school. Some of our club members are quite proficient at making videos, and the project would be benificial in helping us learn about our two schools' similarities and differences. Ms. Truong, our club advisor, is (6) real excited over this (6) (7) idea. She is encouraging us writing you. (7)
+
+¶3 Should you have any questions, please direct them to Ms. Truong at the address given above. We look forward to hearing from you.
+
+¶4 We hope your students will be as eager as we are to have a video exchange. Personally, I'm hoping to be a film major in college. Of course, we would welcome any other ideas for (8) the getting of an exchange program going. (8) We have enclosed a copy of our school newspaper to help you become acquainted with us.
+
+Yours Truly,
+Marcella Ramírez`,
+    question: "Which version of the underlined portion (3) uses correct punctuation and capitalization?",
+    choices: ["A. No change", "B. schools International club", "C. schools International Club", "D. school's International club"],
+    correct: 0,
+    explanation: "The original 'school's International Club' is correct. The apostrophe shows possession (the club belonging to the school), and 'International Club' is a proper name that should be capitalized."
+  },
+  {
+    id: 269,
+    category: "Language Facility",
+    passage: `Ridge View High School
+1700 Ridge View Avenue
+Tacoma, Washington 98409
+
+Mr. Luis García, Principal
+Preparatoria Morelos
+Ignacio Mariscal 747
+58001 MORELIA, MICH
+MEXICO
+
+(1) Dear Mr. García — (1)
+
+¶1 Jeremy Hunt, who graduated from our high school last year, recently returned from Morelia, where he visited your school, (2) as I guess you should already know. (2) Last week he spoke to our (3) school's International Club (3) about his experiences. He described your school as being about the same sized as ours but having different (4) courses and also he thought it would be a great idea (4) for our schools to initiate an exchange program.
+
+¶2 Since Jeremy's visit, (5) we club members have been discussing (5) different kinds of exchanges: a letter or newspaper exchange, a video exchange, or perhaps even a club trip. The trip idea was naturally very appealing, but we decided that it was impractical because of the expenses that would necessairly be involved. We have concluded that a video exchange would be the funnest. Students at each school could prepare a fifteen- or twenty-minute video about various aspects of their school. Some of our club members are quite proficient at making videos, and the project would be benificial in helping us learn about our two schools' similarities and differences. Ms. Truong, our club advisor, is (6) real excited over this (6) (7) idea. She is encouraging us writing you. (7)
+
+¶3 Should you have any questions, please direct them to Ms. Truong at the address given above. We look forward to hearing from you.
+
+¶4 We hope your students will be as eager as we are to have a video exchange. Personally, I'm hoping to be a film major in college. Of course, we would welcome any other ideas for (8) the getting of an exchange program going. (8) We have enclosed a copy of our school newspaper to help you become acquainted with us.
+
+Yours Truly,
+Marcella Ramírez`,
+    question: "Which revision of the underlined portion (4) best connects the two ideas?",
+    choices: ["A. No change", "B. courses. He", "C. courses, besides which he", "D. courses mentioning he"],
+    correct: 1,
+    explanation: "'courses. He' correctly separates the two distinct ideas into separate sentences. The original is a run-on that awkwardly joins describing the school with proposing the exchange program."
+  },
+  {
+    id: 270,
+    category: "Writing Conventions",
+    passage: `Ridge View High School
+1700 Ridge View Avenue
+Tacoma, Washington 98409
+
+Mr. Luis García, Principal
+Preparatoria Morelos
+Ignacio Mariscal 747
+58001 MORELIA, MICH
+MEXICO
+
+(1) Dear Mr. García — (1)
+
+¶1 Jeremy Hunt, who graduated from our high school last year, recently returned from Morelia, where he visited your school, (2) as I guess you should already know. (2) Last week he spoke to our (3) school's International Club (3) about his experiences. He described your school as being about the same sized as ours but having different (4) courses and also he thought it would be a great idea (4) for our schools to initiate an exchange program.
+
+¶2 Since Jeremy's visit, (5) we club members have been discussing (5) different kinds of exchanges: a letter or newspaper exchange, a video exchange, or perhaps even a club trip. The trip idea was naturally very appealing, but we decided that it was impractical because of the expenses that would necessairly be involved. We have concluded that a video exchange would be the funnest. Students at each school could prepare a fifteen- or twenty-minute video about various aspects of their school. Some of our club members are quite proficient at making videos, and the project would be benificial in helping us learn about our two schools' similarities and differences. Ms. Truong, our club advisor, is (6) real excited over this (6) (7) idea. She is encouraging us writing you. (7)
+
+¶3 Should you have any questions, please direct them to Ms. Truong at the address given above. We look forward to hearing from you.
+
+¶4 We hope your students will be as eager as we are to have a video exchange. Personally, I'm hoping to be a film major in college. Of course, we would welcome any other ideas for (8) the getting of an exchange program going. (8) We have enclosed a copy of our school newspaper to help you become acquainted with us.
+
+Yours Truly,
+Marcella Ramírez`,
+    question: "Which version of the underlined portion (5) uses correct grammar?",
+    choices: ["A. No change", "B. us club members have been discussing", "C. we all are as a club discussing", "D. our club have been discussing"],
+    correct: 0,
+    explanation: "The original 'we club members have been discussing' is grammatically correct. 'We' is the correct pronoun as the subject of the verb 'have been discussing.'"
+  },
+  {
+    id: 271,
+    category: "Writing Conventions",
+    passage: `Ridge View High School
+1700 Ridge View Avenue
+Tacoma, Washington 98409
+
+Mr. Luis García, Principal
+Preparatoria Morelos
+Ignacio Mariscal 747
+58001 MORELIA, MICH
+MEXICO
+
+(1) Dear Mr. García — (1)
+
+¶1 Jeremy Hunt, who graduated from our high school last year, recently returned from Morelia, where he visited your school, (2) as I guess you should already know. (2) Last week he spoke to our (3) school's International Club (3) about his experiences. He described your school as being about the same sized as ours but having different (4) courses and also he thought it would be a great idea (4) for our schools to initiate an exchange program.
+
+¶2 Since Jeremy's visit, (5) we club members have been discussing (5) different kinds of exchanges: a letter or newspaper exchange, a video exchange, or perhaps even a club trip. The trip idea was naturally very appealing, but we decided that it was impractical because of the expenses that would necessairly be involved. We have concluded that a video exchange would be the funnest. Students at each school could prepare a fifteen- or twenty-minute video about various aspects of their school. Some of our club members are quite proficient at making videos, and the project would be benificial in helping us learn about our two schools' similarities and differences. Ms. Truong, our club advisor, is (6) real excited over this (6) (7) idea. She is encouraging us writing you. (7)
+
+¶3 Should you have any questions, please direct them to Ms. Truong at the address given above. We look forward to hearing from you.
+
+¶4 We hope your students will be as eager as we are to have a video exchange. Personally, I'm hoping to be a film major in college. Of course, we would welcome any other ideas for (8) the getting of an exchange program going. (8) We have enclosed a copy of our school newspaper to help you become acquainted with us.
+
+Yours Truly,
+Marcella Ramírez`,
+    question: "Which revision of the underlined portion (6) is most appropriate?",
+    choices: ["A. No change", "B. really excited concerning", "C. enthusiastic about", "D. so enthusiastic over"],
+    correct: 2,
+    explanation: "'Enthusiastic about' uses proper word choice. 'Real' should be 'really' (adverb), and 'over' is not the correct preposition. 'Enthusiastic about' is the most clear and grammatically correct option."
+  },
+  {
+    id: 272,
+    category: "Writing Conventions",
+    passage: `Ridge View High School
+1700 Ridge View Avenue
+Tacoma, Washington 98409
+
+Mr. Luis García, Principal
+Preparatoria Morelos
+Ignacio Mariscal 747
+58001 MORELIA, MICH
+MEXICO
+
+(1) Dear Mr. García — (1)
+
+¶1 Jeremy Hunt, who graduated from our high school last year, recently returned from Morelia, where he visited your school, (2) as I guess you should already know. (2) Last week he spoke to our (3) school's International Club (3) about his experiences. He described your school as being about the same sized as ours but having different (4) courses and also he thought it would be a great idea (4) for our schools to initiate an exchange program.
+
+¶2 Since Jeremy's visit, (5) we club members have been discussing (5) different kinds of exchanges: a letter or newspaper exchange, a video exchange, or perhaps even a club trip. The trip idea was naturally very appealing, but we decided that it was impractical because of the expenses that would necessairly be involved. We have concluded that a video exchange would be the funnest. Students at each school could prepare a fifteen- or twenty-minute video about various aspects of their school. Some of our club members are quite proficient at making videos, and the project would be benificial in helping us learn about our two schools' similarities and differences. Ms. Truong, our club advisor, is (6) real excited over this (6) (7) idea. She is encouraging us writing you. (7)
+
+¶3 Should you have any questions, please direct them to Ms. Truong at the address given above. We look forward to hearing from you.
+
+¶4 We hope your students will be as eager as we are to have a video exchange. Personally, I'm hoping to be a film major in college. Of course, we would welcome any other ideas for (8) the getting of an exchange program going. (8) We have enclosed a copy of our school newspaper to help you become acquainted with us.
+
+Yours Truly,
+Marcella Ramírez`,
+    question: "Which revision of the underlined portion (7) is best?",
+    choices: ["A. No change", "B. idea, encouraging us writing you.", "C. idea and has encouraged us to write you.", "D. idea. It was her that encouraged us to write."],
+    correct: 2,
+    explanation: "'Idea and has encouraged us to write you' correctly uses the infinitive 'to write' instead of the gerund 'writing,' and properly connects the two clauses."
+  },
+  {
+    id: 273,
+    category: "Language Facility",
+    passage: `Ridge View High School
+1700 Ridge View Avenue
+Tacoma, Washington 98409
+
+Mr. Luis García, Principal
+Preparatoria Morelos
+Ignacio Mariscal 747
+58001 MORELIA, MICH
+MEXICO
+
+(1) Dear Mr. García — (1)
+
+¶1 Jeremy Hunt, who graduated from our high school last year, recently returned from Morelia, where he visited your school, (2) as I guess you should already know. (2) Last week he spoke to our (3) school's International Club (3) about his experiences. He described your school as being about the same sized as ours but having different (4) courses and also he thought it would be a great idea (4) for our schools to initiate an exchange program.
+
+¶2 Since Jeremy's visit, (5) we club members have been discussing (5) different kinds of exchanges: a letter or newspaper exchange, a video exchange, or perhaps even a club trip. The trip idea was naturally very appealing, but we decided that it was impractical because of the expenses that would necessairly be involved. We have concluded that a video exchange would be the funnest. Students at each school could prepare a fifteen- or twenty-minute video about various aspects of their school. Some of our club members are quite proficient at making videos, and the project would be benificial in helping us learn about our two schools' similarities and differences. Ms. Truong, our club advisor, is (6) real excited over this (6) (7) idea. She is encouraging us writing you. (7)
+
+¶3 Should you have any questions, please direct them to Ms. Truong at the address given above. We look forward to hearing from you.
+
+¶4 We hope your students will be as eager as we are to have a video exchange. Personally, I'm hoping to be a film major in college. Of course, we would welcome any other ideas for (8) the getting of an exchange program going. (8) We have enclosed a copy of our school newspaper to help you become acquainted with us.
+
+Yours Truly,
+Marcella Ramírez`,
+    question: "Which revision of the underlined portion (8) is most appropriate?",
+    choices: ["A. No change", "B. starting an exchange program.", "C. the starting up of an exchange program.", "D. how to get an exchange program going."],
+    correct: 1,
+    explanation: "'Starting an exchange program' is the most concise and clear phrasing, eliminating the awkward nominalization 'the getting of' in the original."
+  },
+  {
+    id: 274,
+    category: "Organization of Ideas",
+    passage: `Ridge View High School
+1700 Ridge View Avenue
+Tacoma, Washington 98409
+
+Mr. Luis García, Principal
+Preparatoria Morelos
+Ignacio Mariscal 747
+58001 MORELIA, MICH
+MEXICO
+
+(1) Dear Mr. García — (1)
+
+¶1 Jeremy Hunt, who graduated from our high school last year, recently returned from Morelia, where he visited your school, (2) as I guess you should already know. (2) Last week he spoke to our (3) school's International Club (3) about his experiences. He described your school as being about the same sized as ours but having different (4) courses and also he thought it would be a great idea (4) for our schools to initiate an exchange program.
+
+¶2 Since Jeremy's visit, (5) we club members have been discussing (5) different kinds of exchanges: a letter or newspaper exchange, a video exchange, or perhaps even a club trip. The trip idea was naturally very appealing, but we decided that it was impractical because of the expenses that would necessairly be involved. We have concluded that a video exchange would be the funnest. Students at each school could prepare a fifteen- or twenty-minute video about various aspects of their school. Some of our club members are quite proficient at making videos, and the project would be benificial in helping us learn about our two schools' similarities and differences. Ms. Truong, our club advisor, is (6) real excited over this (6) (7) idea. She is encouraging us writing you. (7)
+
+¶3 Should you have any questions, please direct them to Ms. Truong at the address given above. We look forward to hearing from you.
+
+¶4 We hope your students will be as eager as we are to have a video exchange. Personally, I'm hoping to be a film major in college. Of course, we would welcome any other ideas for (8) the getting of an exchange program going. (8) We have enclosed a copy of our school newspaper to help you become acquainted with us.
+
+Yours Truly,
+Marcella Ramírez`,
+    question: "This question refers to the letter as a whole. Which of the following changes, if any, would improve the organization of ideas in this letter?",
+    choices: ["A. No change; the organization of ideas in the letter is best as written.", "B. Make paragraph 3 the second paragraph of the letter.", "C. Make paragraph 3 the last paragraph of the letter.", "D. Omit paragraph 3 from the letter."],
+    correct: 2,
+    explanation: "Paragraph 3, which directs questions to Ms. Truong and says 'We look forward to hearing from you,' serves as a natural closing. Moving it to the end improves the letter's organization by placing the closing remarks last."
+  },
+  {
+    id: 275,
+    category: "Organization of Ideas",
+    passage: `The Calculus Wars
+
+¶1 Mathematics may sometimes seem like an impersonal subject. Particularly with the most interesting mathematics, remembering that there were actual people behind it can be hard. (10) In some sense, then, it had to be so, and there is often more to their stories than just numbers and equations. (10) (11) Sometimes stuff like this can be really hard to believe. (11)
+
+¶2 Sir Isaac Newton (1643 – 1727) is often considered the greatest scientist of all time. (12) Defining laws of motion and universal gravitation up until the 20th century, he provided the framework for physics. (12) He also made enormous contributions to optics (the science of light) and to mathematics. In mathematics, Newton invented calculus.
+
+¶3 Gottfried Wilhelm Leibniz (1646 – 1716) was a German philosopher, (13) who was a scientist, made inventions, a lawyer, and a mathematician. (13) He has been called "the last man who knew everything." His ideas have been said to (14) anticipate (14) some in (14) contemporary (14) geology, psychology, computer science, and information theory. He has been claimed as an (14) originator (14) of library science. In mathematics, Leibniz also invented calculus.
+
+¶4 (15) In this case, Newton and Leibniz, (15) men who knew one another and were among the greatest geniuses in history, waged "the calculus wars." Their tactics included name calling, publishing attacks on each other's honesty, and allowing their allies to do more of the same. For example, Leibniz wrote an unsigned review of works by Newton (16) and in the unsigned review which he wrote, Leibniz compared Newton (16) to a known mathematical plagiarist. A few years later, the British Royal Society issued a report asserting that Leibniz had been dishonest in describing his work. Newton, the Society's president, had secretly written the entire report. Mathematics is often said to be "timeless," "eternal," and "beautiful." But mathematicians, even great ones, can never be timeless or eternal, and they may be far from beautiful as well.`,
+    question: "Which revision of the underlined portion (10) best fits the tone and content of the essay?",
+    choices: ["A. No change", "B. Yet they certainly did exist,", "C. As a result, this has to be true,", "D. Specifically, there always have been,"],
+    correct: 1,
+    explanation: "'Yet they certainly did exist' logically connects to the previous sentence about mathematics seeming impersonal and there being actual people behind it. It provides a clear transition to discussing the stories behind the mathematicians."
+  },
+  {
+    id: 276,
+    category: "Organization of Ideas",
+    passage: `The Calculus Wars
+
+¶1 Mathematics may sometimes seem like an impersonal subject. Particularly with the most interesting mathematics, remembering that there were actual people behind it can be hard. (10) In some sense, then, it had to be so, and there is often more to their stories than just numbers and equations. (10) (11) Sometimes stuff like this can be really hard to believe. (11)
+
+¶2 Sir Isaac Newton (1643 – 1727) is often considered the greatest scientist of all time. (12) Defining laws of motion and universal gravitation up until the 20th century, he provided the framework for physics. (12) He also made enormous contributions to optics (the science of light) and to mathematics. In mathematics, Newton invented calculus.
+
+¶3 Gottfried Wilhelm Leibniz (1646 – 1716) was a German philosopher, (13) who was a scientist, made inventions, a lawyer, and a mathematician. (13) He has been called "the last man who knew everything." His ideas have been said to (14) anticipate (14) some in (14) contemporary (14) geology, psychology, computer science, and information theory. He has been claimed as an (14) originator (14) of library science. In mathematics, Leibniz also invented calculus.
+
+¶4 (15) In this case, Newton and Leibniz, (15) men who knew one another and were among the greatest geniuses in history, waged "the calculus wars." Their tactics included name calling, publishing attacks on each other's honesty, and allowing their allies to do more of the same. For example, Leibniz wrote an unsigned review of works by Newton (16) and in the unsigned review which he wrote, Leibniz compared Newton (16) to a known mathematical plagiarist. A few years later, the British Royal Society issued a report asserting that Leibniz had been dishonest in describing his work. Newton, the Society's president, had secretly written the entire report. Mathematics is often said to be "timeless," "eternal," and "beautiful." But mathematicians, even great ones, can never be timeless or eternal, and they may be far from beautiful as well.`,
+    question: "Which revision of sentence (11) is best?",
+    choices: ["A. No change", "B. I'm pretty sure that this is one of the truly best of them.", "C. Here's one that you shouldn't be surprised if you haven't heard of.", "D. Delete this sentence; the essay is best without it."],
+    correct: 3,
+    explanation: "The sentence 'Sometimes stuff like this can be really hard to believe' is informal, vague, and does not contribute meaningfully to the essay. Deleting it improves the flow and tone."
+  },
+  {
+    id: 277,
+    category: "Language Facility",
+    passage: `The Calculus Wars
+
+¶1 Mathematics may sometimes seem like an impersonal subject. Particularly with the most interesting mathematics, remembering that there were actual people behind it can be hard. (10) In some sense, then, it had to be so, and there is often more to their stories than just numbers and equations. (10) (11) Sometimes stuff like this can be really hard to believe. (11)
+
+¶2 Sir Isaac Newton (1643 – 1727) is often considered the greatest scientist of all time. (12) Defining laws of motion and universal gravitation up until the 20th century, he provided the framework for physics. (12) He also made enormous contributions to optics (the science of light) and to mathematics. In mathematics, Newton invented calculus.
+
+¶3 Gottfried Wilhelm Leibniz (1646 – 1716) was a German philosopher, (13) who was a scientist, made inventions, a lawyer, and a mathematician. (13) He has been called "the last man who knew everything." His ideas have been said to (14) anticipate (14) some in (14) contemporary (14) geology, psychology, computer science, and information theory. He has been claimed as an (14) originator (14) of library science. In mathematics, Leibniz also invented calculus.
+
+¶4 (15) In this case, Newton and Leibniz, (15) men who knew one another and were among the greatest geniuses in history, waged "the calculus wars." Their tactics included name calling, publishing attacks on each other's honesty, and allowing their allies to do more of the same. For example, Leibniz wrote an unsigned review of works by Newton (16) and in the unsigned review which he wrote, Leibniz compared Newton (16) to a known mathematical plagiarist. A few years later, the British Royal Society issued a report asserting that Leibniz had been dishonest in describing his work. Newton, the Society's president, had secretly written the entire report. Mathematics is often said to be "timeless," "eternal," and "beautiful." But mathematicians, even great ones, can never be timeless or eternal, and they may be far from beautiful as well.`,
+    question: "Which revision of the underlined portion (12) best clarifies the sentence's meaning?",
+    choices: ["A. No change", "B. Up until the 20th century, defining laws of motion and universal gravitation, he provided the framework for physics.", "C. By defining laws of motion and universal gravitation, he provided the framework for physics up until the 20th century.", "D. He provided the framework for physics, by defining laws of motion and universal gravitation up until the 20th century."],
+    correct: 2,
+    explanation: "'By defining laws of motion and universal gravitation, he provided the framework for physics up until the 20th century' correctly places the modifying phrase and makes clear that the framework lasted until the 20th century."
+  },
+  {
+    id: 278,
+    category: "Language Facility",
+    passage: `The Calculus Wars
+
+¶1 Mathematics may sometimes seem like an impersonal subject. Particularly with the most interesting mathematics, remembering that there were actual people behind it can be hard. (10) In some sense, then, it had to be so, and there is often more to their stories than just numbers and equations. (10) (11) Sometimes stuff like this can be really hard to believe. (11)
+
+¶2 Sir Isaac Newton (1643 – 1727) is often considered the greatest scientist of all time. (12) Defining laws of motion and universal gravitation up until the 20th century, he provided the framework for physics. (12) He also made enormous contributions to optics (the science of light) and to mathematics. In mathematics, Newton invented calculus.
+
+¶3 Gottfried Wilhelm Leibniz (1646 – 1716) was a German philosopher, (13) who was a scientist, made inventions, a lawyer, and a mathematician. (13) He has been called "the last man who knew everything." His ideas have been said to (14) anticipate (14) some in (14) contemporary (14) geology, psychology, computer science, and information theory. He has been claimed as an (14) originator (14) of library science. In mathematics, Leibniz also invented calculus.
+
+¶4 (15) In this case, Newton and Leibniz, (15) men who knew one another and were among the greatest geniuses in history, waged "the calculus wars." Their tactics included name calling, publishing attacks on each other's honesty, and allowing their allies to do more of the same. For example, Leibniz wrote an unsigned review of works by Newton (16) and in the unsigned review which he wrote, Leibniz compared Newton (16) to a known mathematical plagiarist. A few years later, the British Royal Society issued a report asserting that Leibniz had been dishonest in describing his work. Newton, the Society's president, had secretly written the entire report. Mathematics is often said to be "timeless," "eternal," and "beautiful." But mathematicians, even great ones, can never be timeless or eternal, and they may be far from beautiful as well.`,
+    question: "Which revision of the underlined portion (13) uses correct parallel structure?",
+    choices: ["A. No change", "B. did science, inventing, law, and mathematics.", "C. scientist, inventor, lawyer, and mathematician.", "D. scientist, inventor, practiced law, and mathematics."],
+    correct: 2,
+    explanation: "'Scientist, inventor, lawyer, and mathematician' uses consistent parallel structure by listing all items as nouns describing roles/occupations."
+  },
+  {
+    id: 279,
+    category: "Writing Conventions",
+    passage: `The Calculus Wars
+
+¶1 Mathematics may sometimes seem like an impersonal subject. Particularly with the most interesting mathematics, remembering that there were actual people behind it can be hard. (10) In some sense, then, it had to be so, and there is often more to their stories than just numbers and equations. (10) (11) Sometimes stuff like this can be really hard to believe. (11)
+
+¶2 Sir Isaac Newton (1643 – 1727) is often considered the greatest scientist of all time. (12) Defining laws of motion and universal gravitation up until the 20th century, he provided the framework for physics. (12) He also made enormous contributions to optics (the science of light) and to mathematics. In mathematics, Newton invented calculus.
+
+¶3 Gottfried Wilhelm Leibniz (1646 – 1716) was a German philosopher, (13) who was a scientist, made inventions, a lawyer, and a mathematician. (13) He has been called "the last man who knew everything." His ideas have been said to (14) anticipate (14) some in (14) contemporary (14) geology, psychology, computer science, and information theory. He has been claimed as an (14) originator (14) of library science. In mathematics, Leibniz also invented calculus.
+
+¶4 (15) In this case, Newton and Leibniz, (15) men who knew one another and were among the greatest geniuses in history, waged "the calculus wars." Their tactics included name calling, publishing attacks on each other's honesty, and allowing their allies to do more of the same. For example, Leibniz wrote an unsigned review of works by Newton (16) and in the unsigned review which he wrote, Leibniz compared Newton (16) to a known mathematical plagiarist. A few years later, the British Royal Society issued a report asserting that Leibniz had been dishonest in describing his work. Newton, the Society's president, had secretly written the entire report. Mathematics is often said to be "timeless," "eternal," and "beautiful." But mathematicians, even great ones, can never be timeless or eternal, and they may be far from beautiful as well.`,
+    question: "Which word is misspelled, if any?",
+    choices: ["A. None", "B. anticipate", "C. contemporary", "D. originator"],
+    correct: 0,
+    explanation: "All three words -- anticipate, contemporary, and originator -- are spelled correctly."
+  },
+  {
+    id: 280,
+    category: "Organization of Ideas",
+    passage: `The Calculus Wars
+
+¶1 Mathematics may sometimes seem like an impersonal subject. Particularly with the most interesting mathematics, remembering that there were actual people behind it can be hard. (10) In some sense, then, it had to be so, and there is often more to their stories than just numbers and equations. (10) (11) Sometimes stuff like this can be really hard to believe. (11)
+
+¶2 Sir Isaac Newton (1643 – 1727) is often considered the greatest scientist of all time. (12) Defining laws of motion and universal gravitation up until the 20th century, he provided the framework for physics. (12) He also made enormous contributions to optics (the science of light) and to mathematics. In mathematics, Newton invented calculus.
+
+¶3 Gottfried Wilhelm Leibniz (1646 – 1716) was a German philosopher, (13) who was a scientist, made inventions, a lawyer, and a mathematician. (13) He has been called "the last man who knew everything." His ideas have been said to (14) anticipate (14) some in (14) contemporary (14) geology, psychology, computer science, and information theory. He has been claimed as an (14) originator (14) of library science. In mathematics, Leibniz also invented calculus.
+
+¶4 (15) In this case, Newton and Leibniz, (15) men who knew one another and were among the greatest geniuses in history, waged "the calculus wars." Their tactics included name calling, publishing attacks on each other's honesty, and allowing their allies to do more of the same. For example, Leibniz wrote an unsigned review of works by Newton (16) and in the unsigned review which he wrote, Leibniz compared Newton (16) to a known mathematical plagiarist. A few years later, the British Royal Society issued a report asserting that Leibniz had been dishonest in describing his work. Newton, the Society's president, had secretly written the entire report. Mathematics is often said to be "timeless," "eternal," and "beautiful." But mathematicians, even great ones, can never be timeless or eternal, and they may be far from beautiful as well.`,
+    question: "The writer wants to add an introductory sentence to paragraph 4. Which of the following would be the best choice?",
+    choices: ["A. Their approaches to calculus were somewhat different, and Leibniz developed notation that is still used today.", "B. At around this time in Japan, Seki Takakazu (or Seki Kowa) was independently doing related work.", "C. How common is it for contemporaries to separately make the same discovery or invention?", "D. Are there any effects when two people invent the same thing at about the same time?"],
+    correct: 3,
+    explanation: "'Are there any effects when two people invent the same thing at about the same time?' best introduces paragraph 4, which describes the conflict (the 'calculus wars') that resulted from Newton and Leibniz both inventing calculus."
+  },
+  {
+    id: 281,
+    category: "Language Facility",
+    passage: `The Calculus Wars
+
+¶1 Mathematics may sometimes seem like an impersonal subject. Particularly with the most interesting mathematics, remembering that there were actual people behind it can be hard. (10) In some sense, then, it had to be so, and there is often more to their stories than just numbers and equations. (10) (11) Sometimes stuff like this can be really hard to believe. (11)
+
+¶2 Sir Isaac Newton (1643 – 1727) is often considered the greatest scientist of all time. (12) Defining laws of motion and universal gravitation up until the 20th century, he provided the framework for physics. (12) He also made enormous contributions to optics (the science of light) and to mathematics. In mathematics, Newton invented calculus.
+
+¶3 Gottfried Wilhelm Leibniz (1646 – 1716) was a German philosopher, (13) who was a scientist, made inventions, a lawyer, and a mathematician. (13) He has been called "the last man who knew everything." His ideas have been said to (14) anticipate (14) some in (14) contemporary (14) geology, psychology, computer science, and information theory. He has been claimed as an (14) originator (14) of library science. In mathematics, Leibniz also invented calculus.
+
+¶4 (15) In this case, Newton and Leibniz, (15) men who knew one another and were among the greatest geniuses in history, waged "the calculus wars." Their tactics included name calling, publishing attacks on each other's honesty, and allowing their allies to do more of the same. For example, Leibniz wrote an unsigned review of works by Newton (16) and in the unsigned review which he wrote, Leibniz compared Newton (16) to a known mathematical plagiarist. A few years later, the British Royal Society issued a report asserting that Leibniz had been dishonest in describing his work. Newton, the Society's president, had secretly written the entire report. Mathematics is often said to be "timeless," "eternal," and "beautiful." But mathematicians, even great ones, can never be timeless or eternal, and they may be far from beautiful as well.`,
+    question: "Which revision of the underlined portion (16) is most clear and concise?",
+    choices: ["A. No change", "B. in which there is a comparison by Leibniz of Newton", "C. in which he is compared by him", "D. in which he compared Newton"],
+    correct: 3,
+    explanation: "'In which he compared Newton' is the most clear and concise revision, eliminating the redundant phrase 'the unsigned review which he wrote' and using active voice."
+  },
+  {
+    id: 282,
+    category: "Language Facility",
+    passage: `Ray Harryhausen
+
+¶1 Special effects in today's movies rely on computer-generated imagery, but this is a relatively recent (17) thing. (17) For most of movie history, what appeared on screen had to exist in real life. One simple but painstaking technique used in older movies was "stop-motion animation," in which a single photograph became one frame in a movie. To produce the illusion of movement, animators would take a series of photographs of three-dimensional miniature models, with tiny, progressive adjustments made to them by hand between the photos. It could take several individual frames to create just one second of film time, but when the frames ran at film speed, giant apes or dinosaurs came to life.
+
+¶2 Ray Harryhausen was to become an industry leader in this technique.
+
+¶3 Born in 1920, Harryhausen grew up in Los Angeles. At thirteen, he saw King Kong, one of the first two stop-motion movies and found his life's work. "I haven't been the same since," he was quoted as saying on numerous occasions. Harryhausen decided to try stop-motion himself. With the help of his father, he built tiny movie sets in the family garage. He then (18) congregated within them small, clay models (18) of apes and dinosaurs and photographed them using a borrowed camera.
+
+¶4 Living in Los Angeles, Harryhausen was able to meet Willis O'Brien, (19) he had created (19) the special effects on King Kong. After seeing the teenager's models and pictures, O'Brien encouraged him and recommended classes in art, photography, and (20) to learn anatomy. (20) By the early 1940s, Harryhausen (21) will do (21) animation first at the Paramount film studio and then for the Army. (22)
+
+¶5 After the war, O'Brien hired Harryhausen to work on (23) Mighty Joe Young another (23) stop-motion movie about a giant ape. The film won an Oscar for best special effects, a success that allowed Harryhausen to make his own feature, The Beast from 20,000 Fathoms. It was a preposterous, low-budget film that exuberently detailed a dinosaur's annihilation of New York City, but it looked gorgeous, and audiences loved it.
+
+¶6 Harryhausen made more monster movies, including It Came From Beneath the Sea. There were also fantasy, science-fiction, and mythology films such as The 7th Voyage of Sinbad, The First Men in the Moon, and Clash of the Titans. If a genre called for special effects, Harryhausen answered.
+
+¶7 Harryhausen always strove to improve his special effects. (24) Otherwise, (24) he insisted that his miniature monsters share the screen with live actors. In Jason and the Argonauts, Harryhausen engineered a complex sword fight between groups of actors and stop-motion skeletons. Realistically combining the two was often a challenge; indeed, a single scene in one movie took him five months to film.
+
+¶8 Harryhausen died in 2013, but his work is still worth checking out. It continues to inspire directors such as James Cameron, George Lucas, and Peter Jackson; Steven Spielberg even credits it for making both Star Wars and Jurassic Park possible. Harryhausen's career was itself an incredible sight to behold. In one frame, he was a teenager experimenting in his garage; in the next, he was the biggest special-effects legend in movie history.`,
+    question: "The writer wants to use a more precise word here. Which choice would best accomplish her goal?",
+    choices: ["A. style", "B. capability", "C. innovation", "D. occurrence"],
+    correct: 2,
+    explanation: "'Innovation' is the most precise replacement for the vague word 'thing.' Computer-generated imagery is a relatively recent innovation in the film industry."
+  },
+  {
+    id: 283,
+    category: "Language Facility",
+    passage: `Ray Harryhausen
+
+¶1 Special effects in today's movies rely on computer-generated imagery, but this is a relatively recent (17) thing. (17) For most of movie history, what appeared on screen had to exist in real life. One simple but painstaking technique used in older movies was "stop-motion animation," in which a single photograph became one frame in a movie. To produce the illusion of movement, animators would take a series of photographs of three-dimensional miniature models, with tiny, progressive adjustments made to them by hand between the photos. It could take several individual frames to create just one second of film time, but when the frames ran at film speed, giant apes or dinosaurs came to life.
+
+¶2 Ray Harryhausen was to become an industry leader in this technique.
+
+¶3 Born in 1920, Harryhausen grew up in Los Angeles. At thirteen, he saw King Kong, one of the first two stop-motion movies and found his life's work. "I haven't been the same since," he was quoted as saying on numerous occasions. Harryhausen decided to try stop-motion himself. With the help of his father, he built tiny movie sets in the family garage. He then (18) congregated within them small, clay models (18) of apes and dinosaurs and photographed them using a borrowed camera.
+
+¶4 Living in Los Angeles, Harryhausen was able to meet Willis O'Brien, (19) he had created (19) the special effects on King Kong. After seeing the teenager's models and pictures, O'Brien encouraged him and recommended classes in art, photography, and (20) to learn anatomy. (20) By the early 1940s, Harryhausen (21) will do (21) animation first at the Paramount film studio and then for the Army. (22)
+
+¶5 After the war, O'Brien hired Harryhausen to work on (23) Mighty Joe Young another (23) stop-motion movie about a giant ape. The film won an Oscar for best special effects, a success that allowed Harryhausen to make his own feature, The Beast from 20,000 Fathoms. It was a preposterous, low-budget film that exuberently detailed a dinosaur's annihilation of New York City, but it looked gorgeous, and audiences loved it.
+
+¶6 Harryhausen made more monster movies, including It Came From Beneath the Sea. There were also fantasy, science-fiction, and mythology films such as The 7th Voyage of Sinbad, The First Men in the Moon, and Clash of the Titans. If a genre called for special effects, Harryhausen answered.
+
+¶7 Harryhausen always strove to improve his special effects. (24) Otherwise, (24) he insisted that his miniature monsters share the screen with live actors. In Jason and the Argonauts, Harryhausen engineered a complex sword fight between groups of actors and stop-motion skeletons. Realistically combining the two was often a challenge; indeed, a single scene in one movie took him five months to film.
+
+¶8 Harryhausen died in 2013, but his work is still worth checking out. It continues to inspire directors such as James Cameron, George Lucas, and Peter Jackson; Steven Spielberg even credits it for making both Star Wars and Jurassic Park possible. Harryhausen's career was itself an incredible sight to behold. In one frame, he was a teenager experimenting in his garage; in the next, he was the biggest special-effects legend in movie history.`,
+    question: "Which revision of the underlined portion (18) uses the most appropriate word choice?",
+    choices: ["A. No change", "B. located into the sets", "C. thronged them full of", "D. populated the sets with"],
+    correct: 3,
+    explanation: "'Populated the sets with' uses the correct word for placing figures into a scene. 'Congregated' means to gather together voluntarily, which does not apply to inanimate models."
+  },
+  {
+    id: 284,
+    category: "Writing Conventions",
+    passage: `Ray Harryhausen
+
+¶1 Special effects in today's movies rely on computer-generated imagery, but this is a relatively recent (17) thing. (17) For most of movie history, what appeared on screen had to exist in real life. One simple but painstaking technique used in older movies was "stop-motion animation," in which a single photograph became one frame in a movie. To produce the illusion of movement, animators would take a series of photographs of three-dimensional miniature models, with tiny, progressive adjustments made to them by hand between the photos. It could take several individual frames to create just one second of film time, but when the frames ran at film speed, giant apes or dinosaurs came to life.
+
+¶2 Ray Harryhausen was to become an industry leader in this technique.
+
+¶3 Born in 1920, Harryhausen grew up in Los Angeles. At thirteen, he saw King Kong, one of the first two stop-motion movies and found his life's work. "I haven't been the same since," he was quoted as saying on numerous occasions. Harryhausen decided to try stop-motion himself. With the help of his father, he built tiny movie sets in the family garage. He then (18) congregated within them small, clay models (18) of apes and dinosaurs and photographed them using a borrowed camera.
+
+¶4 Living in Los Angeles, Harryhausen was able to meet Willis O'Brien, (19) he had created (19) the special effects on King Kong. After seeing the teenager's models and pictures, O'Brien encouraged him and recommended classes in art, photography, and (20) to learn anatomy. (20) By the early 1940s, Harryhausen (21) will do (21) animation first at the Paramount film studio and then for the Army. (22)
+
+¶5 After the war, O'Brien hired Harryhausen to work on (23) Mighty Joe Young another (23) stop-motion movie about a giant ape. The film won an Oscar for best special effects, a success that allowed Harryhausen to make his own feature, The Beast from 20,000 Fathoms. It was a preposterous, low-budget film that exuberently detailed a dinosaur's annihilation of New York City, but it looked gorgeous, and audiences loved it.
+
+¶6 Harryhausen made more monster movies, including It Came From Beneath the Sea. There were also fantasy, science-fiction, and mythology films such as The 7th Voyage of Sinbad, The First Men in the Moon, and Clash of the Titans. If a genre called for special effects, Harryhausen answered.
+
+¶7 Harryhausen always strove to improve his special effects. (24) Otherwise, (24) he insisted that his miniature monsters share the screen with live actors. In Jason and the Argonauts, Harryhausen engineered a complex sword fight between groups of actors and stop-motion skeletons. Realistically combining the two was often a challenge; indeed, a single scene in one movie took him five months to film.
+
+¶8 Harryhausen died in 2013, but his work is still worth checking out. It continues to inspire directors such as James Cameron, George Lucas, and Peter Jackson; Steven Spielberg even credits it for making both Star Wars and Jurassic Park possible. Harryhausen's career was itself an incredible sight to behold. In one frame, he was a teenager experimenting in his garage; in the next, he was the biggest special-effects legend in movie history.`,
+    question: "Which revision of the underlined portion (19) correctly connects the clause?",
+    choices: ["A. No change", "B. having created", "C. being creator of", "D. who had created"],
+    correct: 3,
+    explanation: "'Who had created' correctly introduces a relative clause modifying Willis O'Brien. The original 'he had created' creates a comma splice."
+  },
+  {
+    id: 285,
+    category: "Language Facility",
+    passage: `Ray Harryhausen
+
+¶1 Special effects in today's movies rely on computer-generated imagery, but this is a relatively recent (17) thing. (17) For most of movie history, what appeared on screen had to exist in real life. One simple but painstaking technique used in older movies was "stop-motion animation," in which a single photograph became one frame in a movie. To produce the illusion of movement, animators would take a series of photographs of three-dimensional miniature models, with tiny, progressive adjustments made to them by hand between the photos. It could take several individual frames to create just one second of film time, but when the frames ran at film speed, giant apes or dinosaurs came to life.
+
+¶2 Ray Harryhausen was to become an industry leader in this technique.
+
+¶3 Born in 1920, Harryhausen grew up in Los Angeles. At thirteen, he saw King Kong, one of the first two stop-motion movies and found his life's work. "I haven't been the same since," he was quoted as saying on numerous occasions. Harryhausen decided to try stop-motion himself. With the help of his father, he built tiny movie sets in the family garage. He then (18) congregated within them small, clay models (18) of apes and dinosaurs and photographed them using a borrowed camera.
+
+¶4 Living in Los Angeles, Harryhausen was able to meet Willis O'Brien, (19) he had created (19) the special effects on King Kong. After seeing the teenager's models and pictures, O'Brien encouraged him and recommended classes in art, photography, and (20) to learn anatomy. (20) By the early 1940s, Harryhausen (21) will do (21) animation first at the Paramount film studio and then for the Army. (22)
+
+¶5 After the war, O'Brien hired Harryhausen to work on (23) Mighty Joe Young another (23) stop-motion movie about a giant ape. The film won an Oscar for best special effects, a success that allowed Harryhausen to make his own feature, The Beast from 20,000 Fathoms. It was a preposterous, low-budget film that exuberently detailed a dinosaur's annihilation of New York City, but it looked gorgeous, and audiences loved it.
+
+¶6 Harryhausen made more monster movies, including It Came From Beneath the Sea. There were also fantasy, science-fiction, and mythology films such as The 7th Voyage of Sinbad, The First Men in the Moon, and Clash of the Titans. If a genre called for special effects, Harryhausen answered.
+
+¶7 Harryhausen always strove to improve his special effects. (24) Otherwise, (24) he insisted that his miniature monsters share the screen with live actors. In Jason and the Argonauts, Harryhausen engineered a complex sword fight between groups of actors and stop-motion skeletons. Realistically combining the two was often a challenge; indeed, a single scene in one movie took him five months to film.
+
+¶8 Harryhausen died in 2013, but his work is still worth checking out. It continues to inspire directors such as James Cameron, George Lucas, and Peter Jackson; Steven Spielberg even credits it for making both Star Wars and Jurassic Park possible. Harryhausen's career was itself an incredible sight to behold. In one frame, he was a teenager experimenting in his garage; in the next, he was the biggest special-effects legend in movie history.`,
+    question: "Which revision of the underlined portion (20) maintains parallel structure?",
+    choices: ["A. No change", "B. anatomy.", "C. taking anatomy.", "D. studying anatomy."],
+    correct: 1,
+    explanation: "'Anatomy' maintains parallel structure with the other items in the list: 'classes in art, photography, and anatomy.' The original 'to learn anatomy' breaks the parallel pattern."
+  },
+  {
+    id: 286,
+    category: "Writing Conventions",
+    passage: `Ray Harryhausen
+
+¶1 Special effects in today's movies rely on computer-generated imagery, but this is a relatively recent (17) thing. (17) For most of movie history, what appeared on screen had to exist in real life. One simple but painstaking technique used in older movies was "stop-motion animation," in which a single photograph became one frame in a movie. To produce the illusion of movement, animators would take a series of photographs of three-dimensional miniature models, with tiny, progressive adjustments made to them by hand between the photos. It could take several individual frames to create just one second of film time, but when the frames ran at film speed, giant apes or dinosaurs came to life.
+
+¶2 Ray Harryhausen was to become an industry leader in this technique.
+
+¶3 Born in 1920, Harryhausen grew up in Los Angeles. At thirteen, he saw King Kong, one of the first two stop-motion movies and found his life's work. "I haven't been the same since," he was quoted as saying on numerous occasions. Harryhausen decided to try stop-motion himself. With the help of his father, he built tiny movie sets in the family garage. He then (18) congregated within them small, clay models (18) of apes and dinosaurs and photographed them using a borrowed camera.
+
+¶4 Living in Los Angeles, Harryhausen was able to meet Willis O'Brien, (19) he had created (19) the special effects on King Kong. After seeing the teenager's models and pictures, O'Brien encouraged him and recommended classes in art, photography, and (20) to learn anatomy. (20) By the early 1940s, Harryhausen (21) will do (21) animation first at the Paramount film studio and then for the Army. (22)
+
+¶5 After the war, O'Brien hired Harryhausen to work on (23) Mighty Joe Young another (23) stop-motion movie about a giant ape. The film won an Oscar for best special effects, a success that allowed Harryhausen to make his own feature, The Beast from 20,000 Fathoms. It was a preposterous, low-budget film that exuberently detailed a dinosaur's annihilation of New York City, but it looked gorgeous, and audiences loved it.
+
+¶6 Harryhausen made more monster movies, including It Came From Beneath the Sea. There were also fantasy, science-fiction, and mythology films such as The 7th Voyage of Sinbad, The First Men in the Moon, and Clash of the Titans. If a genre called for special effects, Harryhausen answered.
+
+¶7 Harryhausen always strove to improve his special effects. (24) Otherwise, (24) he insisted that his miniature monsters share the screen with live actors. In Jason and the Argonauts, Harryhausen engineered a complex sword fight between groups of actors and stop-motion skeletons. Realistically combining the two was often a challenge; indeed, a single scene in one movie took him five months to film.
+
+¶8 Harryhausen died in 2013, but his work is still worth checking out. It continues to inspire directors such as James Cameron, George Lucas, and Peter Jackson; Steven Spielberg even credits it for making both Star Wars and Jurassic Park possible. Harryhausen's career was itself an incredible sight to behold. In one frame, he was a teenager experimenting in his garage; in the next, he was the biggest special-effects legend in movie history.`,
+    question: "Which revision of the underlined portion (21) uses the correct verb tense?",
+    choices: ["A. No change", "B. was doing", "C. having done", "D. would have done"],
+    correct: 1,
+    explanation: "'Was doing' is the correct past tense form. The passage describes events in the 1940s, so past tense is required. 'Will do' incorrectly uses future tense for a past event."
+  },
+  {
+    id: 287,
+    category: "Organization of Ideas",
+    passage: `Ray Harryhausen
+
+¶1 Special effects in today's movies rely on computer-generated imagery, but this is a relatively recent (17) thing. (17) For most of movie history, what appeared on screen had to exist in real life. One simple but painstaking technique used in older movies was "stop-motion animation," in which a single photograph became one frame in a movie. To produce the illusion of movement, animators would take a series of photographs of three-dimensional miniature models, with tiny, progressive adjustments made to them by hand between the photos. It could take several individual frames to create just one second of film time, but when the frames ran at film speed, giant apes or dinosaurs came to life.
+
+¶2 Ray Harryhausen was to become an industry leader in this technique.
+
+¶3 Born in 1920, Harryhausen grew up in Los Angeles. At thirteen, he saw King Kong, one of the first two stop-motion movies and found his life's work. "I haven't been the same since," he was quoted as saying on numerous occasions. Harryhausen decided to try stop-motion himself. With the help of his father, he built tiny movie sets in the family garage. He then (18) congregated within them small, clay models (18) of apes and dinosaurs and photographed them using a borrowed camera.
+
+¶4 Living in Los Angeles, Harryhausen was able to meet Willis O'Brien, (19) he had created (19) the special effects on King Kong. After seeing the teenager's models and pictures, O'Brien encouraged him and recommended classes in art, photography, and (20) to learn anatomy. (20) By the early 1940s, Harryhausen (21) will do (21) animation first at the Paramount film studio and then for the Army. (22)
+
+¶5 After the war, O'Brien hired Harryhausen to work on (23) Mighty Joe Young another (23) stop-motion movie about a giant ape. The film won an Oscar for best special effects, a success that allowed Harryhausen to make his own feature, The Beast from 20,000 Fathoms. It was a preposterous, low-budget film that exuberently detailed a dinosaur's annihilation of New York City, but it looked gorgeous, and audiences loved it.
+
+¶6 Harryhausen made more monster movies, including It Came From Beneath the Sea. There were also fantasy, science-fiction, and mythology films such as The 7th Voyage of Sinbad, The First Men in the Moon, and Clash of the Titans. If a genre called for special effects, Harryhausen answered.
+
+¶7 Harryhausen always strove to improve his special effects. (24) Otherwise, (24) he insisted that his miniature monsters share the screen with live actors. In Jason and the Argonauts, Harryhausen engineered a complex sword fight between groups of actors and stop-motion skeletons. Realistically combining the two was often a challenge; indeed, a single scene in one movie took him five months to film.
+
+¶8 Harryhausen died in 2013, but his work is still worth checking out. It continues to inspire directors such as James Cameron, George Lucas, and Peter Jackson; Steven Spielberg even credits it for making both Star Wars and Jurassic Park possible. Harryhausen's career was itself an incredible sight to behold. In one frame, he was a teenager experimenting in his garage; in the next, he was the biggest special-effects legend in movie history.`,
+    question: "Choose the sentence to add at the end of paragraph 4 that would best fit with the ideas in that paragraph.",
+    choices: ["A. During World War II he made humorous animated training films and worked alongside Theodor \"Dr. Seuss\" Geisel.", "B. Harryhausen benefited greatly from the support of his parents, especially his father Frederick, a machinist and inventor.", "C. Harryhausen's groundbreaking movie work was honored in 1992 with a career Academy Award for technical achievement.", "D. In 2004, he published his autobiography, and in 2012 the documentary film Ray Harryhausen: Special Effects Titan was released."],
+    correct: 0,
+    explanation: "Choice A best fits paragraph 4 because the paragraph discusses Harryhausen's early career development, ending with his work 'for the Army.' Adding a sentence about his wartime animation work logically extends this idea."
+  },
+  {
+    id: 288,
+    category: "Language Facility",
+    passage: `Ray Harryhausen
+
+¶1 Special effects in today's movies rely on computer-generated imagery, but this is a relatively recent (17) thing. (17) For most of movie history, what appeared on screen had to exist in real life. One simple but painstaking technique used in older movies was "stop-motion animation," in which a single photograph became one frame in a movie. To produce the illusion of movement, animators would take a series of photographs of three-dimensional miniature models, with tiny, progressive adjustments made to them by hand between the photos. It could take several individual frames to create just one second of film time, but when the frames ran at film speed, giant apes or dinosaurs came to life.
+
+¶2 Ray Harryhausen was to become an industry leader in this technique.
+
+¶3 Born in 1920, Harryhausen grew up in Los Angeles. At thirteen, he saw King Kong, one of the first two stop-motion movies and found his life's work. "I haven't been the same since," he was quoted as saying on numerous occasions. Harryhausen decided to try stop-motion himself. With the help of his father, he built tiny movie sets in the family garage. He then (18) congregated within them small, clay models (18) of apes and dinosaurs and photographed them using a borrowed camera.
+
+¶4 Living in Los Angeles, Harryhausen was able to meet Willis O'Brien, (19) he had created (19) the special effects on King Kong. After seeing the teenager's models and pictures, O'Brien encouraged him and recommended classes in art, photography, and (20) to learn anatomy. (20) By the early 1940s, Harryhausen (21) will do (21) animation first at the Paramount film studio and then for the Army. (22)
+
+¶5 After the war, O'Brien hired Harryhausen to work on (23) Mighty Joe Young another (23) stop-motion movie about a giant ape. The film won an Oscar for best special effects, a success that allowed Harryhausen to make his own feature, The Beast from 20,000 Fathoms. It was a preposterous, low-budget film that exuberently detailed a dinosaur's annihilation of New York City, but it looked gorgeous, and audiences loved it.
+
+¶6 Harryhausen made more monster movies, including It Came From Beneath the Sea. There were also fantasy, science-fiction, and mythology films such as The 7th Voyage of Sinbad, The First Men in the Moon, and Clash of the Titans. If a genre called for special effects, Harryhausen answered.
+
+¶7 Harryhausen always strove to improve his special effects. (24) Otherwise, (24) he insisted that his miniature monsters share the screen with live actors. In Jason and the Argonauts, Harryhausen engineered a complex sword fight between groups of actors and stop-motion skeletons. Realistically combining the two was often a challenge; indeed, a single scene in one movie took him five months to film.
+
+¶8 Harryhausen died in 2013, but his work is still worth checking out. It continues to inspire directors such as James Cameron, George Lucas, and Peter Jackson; Steven Spielberg even credits it for making both Star Wars and Jurassic Park possible. Harryhausen's career was itself an incredible sight to behold. In one frame, he was a teenager experimenting in his garage; in the next, he was the biggest special-effects legend in movie history.`,
+    question: "Which revision of the underlined portion (23) uses correct punctuation?",
+    choices: ["A. No change", "B. Mighty Joe Young: another", "C. Mighty Joe Young; another", "D. Mighty Joe Young, another"],
+    correct: 3,
+    explanation: "A comma is needed after the movie title 'Mighty Joe Young' to set off the appositive phrase 'another stop-motion movie about a giant ape,' which provides additional description."
+  },
+  {
+    id: 289,
+    category: "Organization of Ideas",
+    passage: `Ray Harryhausen
+
+¶1 Special effects in today's movies rely on computer-generated imagery, but this is a relatively recent (17) thing. (17) For most of movie history, what appeared on screen had to exist in real life. One simple but painstaking technique used in older movies was "stop-motion animation," in which a single photograph became one frame in a movie. To produce the illusion of movement, animators would take a series of photographs of three-dimensional miniature models, with tiny, progressive adjustments made to them by hand between the photos. It could take several individual frames to create just one second of film time, but when the frames ran at film speed, giant apes or dinosaurs came to life.
+
+¶2 Ray Harryhausen was to become an industry leader in this technique.
+
+¶3 Born in 1920, Harryhausen grew up in Los Angeles. At thirteen, he saw King Kong, one of the first two stop-motion movies and found his life's work. "I haven't been the same since," he was quoted as saying on numerous occasions. Harryhausen decided to try stop-motion himself. With the help of his father, he built tiny movie sets in the family garage. He then (18) congregated within them small, clay models (18) of apes and dinosaurs and photographed them using a borrowed camera.
+
+¶4 Living in Los Angeles, Harryhausen was able to meet Willis O'Brien, (19) he had created (19) the special effects on King Kong. After seeing the teenager's models and pictures, O'Brien encouraged him and recommended classes in art, photography, and (20) to learn anatomy. (20) By the early 1940s, Harryhausen (21) will do (21) animation first at the Paramount film studio and then for the Army. (22)
+
+¶5 After the war, O'Brien hired Harryhausen to work on (23) Mighty Joe Young another (23) stop-motion movie about a giant ape. The film won an Oscar for best special effects, a success that allowed Harryhausen to make his own feature, The Beast from 20,000 Fathoms. It was a preposterous, low-budget film that exuberently detailed a dinosaur's annihilation of New York City, but it looked gorgeous, and audiences loved it.
+
+¶6 Harryhausen made more monster movies, including It Came From Beneath the Sea. There were also fantasy, science-fiction, and mythology films such as The 7th Voyage of Sinbad, The First Men in the Moon, and Clash of the Titans. If a genre called for special effects, Harryhausen answered.
+
+¶7 Harryhausen always strove to improve his special effects. (24) Otherwise, (24) he insisted that his miniature monsters share the screen with live actors. In Jason and the Argonauts, Harryhausen engineered a complex sword fight between groups of actors and stop-motion skeletons. Realistically combining the two was often a challenge; indeed, a single scene in one movie took him five months to film.
+
+¶8 Harryhausen died in 2013, but his work is still worth checking out. It continues to inspire directors such as James Cameron, George Lucas, and Peter Jackson; Steven Spielberg even credits it for making both Star Wars and Jurassic Park possible. Harryhausen's career was itself an incredible sight to behold. In one frame, he was a teenager experimenting in his garage; in the next, he was the biggest special-effects legend in movie history.`,
+    question: "Which revision of the underlined portion (24) best connects the ideas in paragraph 7?",
+    choices: ["A. No change", "B. After all,", "C. In particular,", "D. On the one hand,"],
+    correct: 2,
+    explanation: "'In particular' correctly signals that insisting monsters share the screen with live actors is a specific example of how Harryhausen strove to improve his special effects. 'Otherwise' illogically suggests contrast."
+  },
+  {
+    id: 290,
+    category: "Writing Conventions",
+    passage: `Ray Harryhausen
+
+¶1 Special effects in today's movies rely on computer-generated imagery, but this is a relatively recent (17) thing. (17) For most of movie history, what appeared on screen had to exist in real life. One simple but painstaking technique used in older movies was "stop-motion animation," in which a single photograph became one frame in a movie. To produce the illusion of movement, animators would take a series of photographs of three-dimensional miniature models, with tiny, progressive adjustments made to them by hand between the photos. It could take several individual frames to create just one second of film time, but when the frames ran at film speed, giant apes or dinosaurs came to life.
+
+¶2 Ray Harryhausen was to become an industry leader in this technique.
+
+¶3 Born in 1920, Harryhausen grew up in Los Angeles. At thirteen, he saw King Kong, one of the first two stop-motion movies and found his life's work. "I haven't been the same since," he was quoted as saying on numerous occasions. Harryhausen decided to try stop-motion himself. With the help of his father, he built tiny movie sets in the family garage. He then (18) congregated within them small, clay models (18) of apes and dinosaurs and photographed them using a borrowed camera.
+
+¶4 Living in Los Angeles, Harryhausen was able to meet Willis O'Brien, (19) he had created (19) the special effects on King Kong. After seeing the teenager's models and pictures, O'Brien encouraged him and recommended classes in art, photography, and (20) to learn anatomy. (20) By the early 1940s, Harryhausen (21) will do (21) animation first at the Paramount film studio and then for the Army. (22)
+
+¶5 After the war, O'Brien hired Harryhausen to work on (23) Mighty Joe Young another (23) stop-motion movie about a giant ape. The film won an Oscar for best special effects, a success that allowed Harryhausen to make his own feature, The Beast from 20,000 Fathoms. It was a preposterous, low-budget film that exuberently detailed a dinosaur's annihilation of New York City, but it looked gorgeous, and audiences loved it.
+
+¶6 Harryhausen made more monster movies, including It Came From Beneath the Sea. There were also fantasy, science-fiction, and mythology films such as The 7th Voyage of Sinbad, The First Men in the Moon, and Clash of the Titans. If a genre called for special effects, Harryhausen answered.
+
+¶7 Harryhausen always strove to improve his special effects. (24) Otherwise, (24) he insisted that his miniature monsters share the screen with live actors. In Jason and the Argonauts, Harryhausen engineered a complex sword fight between groups of actors and stop-motion skeletons. Realistically combining the two was often a challenge; indeed, a single scene in one movie took him five months to film.
+
+¶8 Harryhausen died in 2013, but his work is still worth checking out. It continues to inspire directors such as James Cameron, George Lucas, and Peter Jackson; Steven Spielberg even credits it for making both Star Wars and Jurassic Park possible. Harryhausen's career was itself an incredible sight to behold. In one frame, he was a teenager experimenting in his garage; in the next, he was the biggest special-effects legend in movie history.`,
+    question: "This question concerns the report as a whole. The writer wants to include dates with the movies, fact check the movie titles, and spell check the various directors' names. Which specialized reference source would best help her accomplish these goals?",
+    choices: ["A. A database of popular magazine articles", "B. An archive of national newspaper content", "C. A film industry website devoted to film content", "D. A documentary about the entertainment business"],
+    correct: 2,
+    explanation: "A film industry website devoted to film content would be the best specialized reference source for verifying movie dates, titles, and directors' names, as it would contain comprehensive and searchable film data."
+  },
+
+  // === FPT8 — Released 2024 (IDs 291-315) ===
+  {
+    id: 291,
+    category: "Organization of Ideas",
+    passage: `Strategic Petroleum Reserves (SPR) in Salt Caverns
+
+¶1 The idea of resource conservation is not new, nor does it just involve humans. Tiny ants toil to carry grains and store them for later. Bees gather nectar, make honey out of it, and stash the honey in their hives. Other savvy savers, like birds and squirrels, tuck nuts and seeds into their nests, bury them in the ground, or wedge them in tree cracks. (1) These huge reserves of petroleum in salt caverns go by the name of Strategic Petroleum Reserves (SPRs). The oil crisis of the 1970s prompted the creation of the first SPRs in the salt caverns along the Gulf Coast. SPRs play a crucial role as they reduce the impact of supply disruptions, stabilize oil prices, and secure energy. Let’s explore the methods involved in the creation and operation of these SPRs and explore the advantages and challenges of SPRs.
+
+¶2 The creation of SPRs in salt caverns found deep underground (2) involves a tedious process. A deep well is dug, and pressurized water is injected into the cavern. This action dissolves the salt, creating the necessary storage space for petroleum. Then, petroleum is injected into the caverns with great force. As a result, the petroleum effectively displaces the dissolved salt or brine. This process hinges on the principle that water and oil do not mix, allowing crude oil to replace the brine. The steps are reversed while extracting petroleum from the cavern. The storage and extraction procedures are carried out with the utmost care. The goal is to prevent brine leakage, (3) contaminate groundwater, or damage to the salt formation itself.
+
+¶3 Salt caverns offer several advantages for the storage of petroleum. These advantages include their stability, low permeability, and self-sealing properties. Their high storage capacity, rapid access, and cost-effectiveness are some other features of SPRs. Salt caverns are geologically stable, i.e., they are less prone to leaks or collapses. Additionally, the rocks are impermeable, and in cases of minor leakage, the cracks are self-sealed owing to high pressure. These properties prevent leakage and contamination. They make salt caverns ideal for storing valuable resources such as oil, natural gas, and even nuclear waste. Moreover, their high storage capacity and easy availability during emergencies (4) makes SPRs a strategic measure against oil supply disruptions and import restrictions. Notably, millions of barrels of crude oil were stored in these caverns and exchanged during the COVID-19 pandemic. With the exception of the initial cost of oil drilling and construction, the SPRs have proven to be cost-efficient.
+
+¶4 Besides their high initial costs, SPRs do have some other challenges as well. (5) Firstly, Salt Caverns are not widely available so, finding suitable locations for SPRs, can be difficult. Secondly, despite being comparatively stable, these caverns may collapse or leak due to underground disturbances. Although rare, the chances of brine or oil leakage and groundwater contamination mandate careful management and monitoring of SPRs.
+
+¶5 To conclude, SPRs represent a secure, efficient, and affordable alternative to conventional crude oil storage. Together with their stability, low permeability, and high storage capacity, SPRs prove to be a viable solution to the challenges of energy security and access to fuel during emergencies. Their advantages exceed their risks and challenges. With the expansion of SPR programs worldwide, these reserves have proven their utility over time.`,
+    question: "Choose a suitable transitional sentence to be placed before the indicated sentence in paragraph 1.",
+    choices: [
+      "A. So, some animals and birds are, by nature, inclined to gather and save food resources for future use.",
+      "B. This process may remind you of the ant, from Aesop's fable, who works hard to save grains for winter.",
+      "C. Akin to nature's age-old practices of conserving resources is the storage of petroleum in salt caverns for use in emergencies.",
+      "D. Petroleum is stored in salt caverns so that we can access and exchange the stored oil easily during supply cuts and emergencies."
+    ],
+    correct: 2,
+    explanation: "Option C is correct because the sentence acts as a suitable transitional or linking sentence, connecting the ideas of how birds and animals in nature conserve food and how SPRs deal with the same idea."
+  },
+  {
+    id: 292,
+    category: "Language Facility",
+    passage: `Strategic Petroleum Reserves (SPR) in Salt Caverns
+
+¶1 The idea of resource conservation is not new, nor does it just involve humans. Tiny ants toil to carry grains and store them for later. Bees gather nectar, make honey out of it, and stash the honey in their hives. Other savvy savers, like birds and squirrels, tuck nuts and seeds into their nests, bury them in the ground, or wedge them in tree cracks. (1) These huge reserves of petroleum in salt caverns go by the name of Strategic Petroleum Reserves (SPRs). The oil crisis of the 1970s prompted the creation of the first SPRs in the salt caverns along the Gulf Coast. SPRs play a crucial role as they reduce the impact of supply disruptions, stabilize oil prices, and secure energy. Let’s explore the methods involved in the creation and operation of these SPRs and explore the advantages and challenges of SPRs.
+
+¶2 The creation of SPRs in salt caverns found deep underground (2) involves a tedious process. A deep well is dug, and pressurized water is injected into the cavern. This action dissolves the salt, creating the necessary storage space for petroleum. Then, petroleum is injected into the caverns with great force. As a result, the petroleum effectively displaces the dissolved salt or brine. This process hinges on the principle that water and oil do not mix, allowing crude oil to replace the brine. The steps are reversed while extracting petroleum from the cavern. The storage and extraction procedures are carried out with the utmost care. The goal is to prevent brine leakage, (3) contaminate groundwater, or damage to the salt formation itself.
+
+¶3 Salt caverns offer several advantages for the storage of petroleum. These advantages include their stability, low permeability, and self-sealing properties. Their high storage capacity, rapid access, and cost-effectiveness are some other features of SPRs. Salt caverns are geologically stable, i.e., they are less prone to leaks or collapses. Additionally, the rocks are impermeable, and in cases of minor leakage, the cracks are self-sealed owing to high pressure. These properties prevent leakage and contamination. They make salt caverns ideal for storing valuable resources such as oil, natural gas, and even nuclear waste. Moreover, their high storage capacity and easy availability during emergencies (4) makes SPRs a strategic measure against oil supply disruptions and import restrictions. Notably, millions of barrels of crude oil were stored in these caverns and exchanged during the COVID-19 pandemic. With the exception of the initial cost of oil drilling and construction, the SPRs have proven to be cost-efficient.
+
+¶4 Besides their high initial costs, SPRs do have some other challenges as well. (5) Firstly, Salt Caverns are not widely available so, finding suitable locations for SPRs, can be difficult. Secondly, despite being comparatively stable, these caverns may collapse or leak due to underground disturbances. Although rare, the chances of brine or oil leakage and groundwater contamination mandate careful management and monitoring of SPRs.
+
+¶5 To conclude, SPRs represent a secure, efficient, and affordable alternative to conventional crude oil storage. Together with their stability, low permeability, and high storage capacity, SPRs prove to be a viable solution to the challenges of energy security and access to fuel during emergencies. Their advantages exceed their risks and challenges. With the expansion of SPR programs worldwide, these reserves have proven their utility over time.`,
+    question: "Choose the correct idiom that can replace the underlined phrase.",
+    choices: [
+      "A. is out of hand",
+      "B. is a long haul",
+      "C. is like flying in the face of danger",
+      "D. is like getting blood out of stone"
+    ],
+    correct: 1,
+    explanation: "Option B is correct because the idiom 'is a long haul' is the closest to the underlined phrase 'involves a tedious process' in terms of meaning and context."
+  },
+  {
+    id: 293,
+    category: "Language Facility",
+    passage: `Strategic Petroleum Reserves (SPR) in Salt Caverns
+
+¶1 The idea of resource conservation is not new, nor does it just involve humans. Tiny ants toil to carry grains and store them for later. Bees gather nectar, make honey out of it, and stash the honey in their hives. Other savvy savers, like birds and squirrels, tuck nuts and seeds into their nests, bury them in the ground, or wedge them in tree cracks. (1) These huge reserves of petroleum in salt caverns go by the name of Strategic Petroleum Reserves (SPRs). The oil crisis of the 1970s prompted the creation of the first SPRs in the salt caverns along the Gulf Coast. SPRs play a crucial role as they reduce the impact of supply disruptions, stabilize oil prices, and secure energy. Let’s explore the methods involved in the creation and operation of these SPRs and explore the advantages and challenges of SPRs.
+
+¶2 The creation of SPRs in salt caverns found deep underground (2) involves a tedious process. A deep well is dug, and pressurized water is injected into the cavern. This action dissolves the salt, creating the necessary storage space for petroleum. Then, petroleum is injected into the caverns with great force. As a result, the petroleum effectively displaces the dissolved salt or brine. This process hinges on the principle that water and oil do not mix, allowing crude oil to replace the brine. The steps are reversed while extracting petroleum from the cavern. The storage and extraction procedures are carried out with the utmost care. The goal is to prevent brine leakage, (3) contaminate groundwater, or damage to the salt formation itself.
+
+¶3 Salt caverns offer several advantages for the storage of petroleum. These advantages include their stability, low permeability, and self-sealing properties. Their high storage capacity, rapid access, and cost-effectiveness are some other features of SPRs. Salt caverns are geologically stable, i.e., they are less prone to leaks or collapses. Additionally, the rocks are impermeable, and in cases of minor leakage, the cracks are self-sealed owing to high pressure. These properties prevent leakage and contamination. They make salt caverns ideal for storing valuable resources such as oil, natural gas, and even nuclear waste. Moreover, their high storage capacity and easy availability during emergencies (4) makes SPRs a strategic measure against oil supply disruptions and import restrictions. Notably, millions of barrels of crude oil were stored in these caverns and exchanged during the COVID-19 pandemic. With the exception of the initial cost of oil drilling and construction, the SPRs have proven to be cost-efficient.
+
+¶4 Besides their high initial costs, SPRs do have some other challenges as well. (5) Firstly, Salt Caverns are not widely available so, finding suitable locations for SPRs, can be difficult. Secondly, despite being comparatively stable, these caverns may collapse or leak due to underground disturbances. Although rare, the chances of brine or oil leakage and groundwater contamination mandate careful management and monitoring of SPRs.
+
+¶5 To conclude, SPRs represent a secure, efficient, and affordable alternative to conventional crude oil storage. Together with their stability, low permeability, and high storage capacity, SPRs prove to be a viable solution to the challenges of energy security and access to fuel during emergencies. Their advantages exceed their risks and challenges. With the expansion of SPR programs worldwide, these reserves have proven their utility over time.`,
+    question: "The goal is to prevent brine leakage, contaminate groundwater, or damage to the salt formation itself.",
+    choices: [
+      "A. No change",
+      "B. contaminates groundwater, or damages the salt formation itself.",
+      "C. contaminated groundwater, or damage to the salt formation itself.",
+      "D. groundwater contamination, or damage to the salt formation itself."
+    ],
+    correct: 3,
+    explanation: "Option D is correct because it corrects the error of parallel structure. The words 'contamination' and 'damage' are the same part of speech (noun), as is the word 'leakage.' Therefore, they have a parallel structure."
+  },
+  {
+    id: 294,
+    category: "Writing Conventions",
+    passage: `Strategic Petroleum Reserves (SPR) in Salt Caverns
+
+¶1 The idea of resource conservation is not new, nor does it just involve humans. Tiny ants toil to carry grains and store them for later. Bees gather nectar, make honey out of it, and stash the honey in their hives. Other savvy savers, like birds and squirrels, tuck nuts and seeds into their nests, bury them in the ground, or wedge them in tree cracks. (1) These huge reserves of petroleum in salt caverns go by the name of Strategic Petroleum Reserves (SPRs). The oil crisis of the 1970s prompted the creation of the first SPRs in the salt caverns along the Gulf Coast. SPRs play a crucial role as they reduce the impact of supply disruptions, stabilize oil prices, and secure energy. Let’s explore the methods involved in the creation and operation of these SPRs and explore the advantages and challenges of SPRs.
+
+¶2 The creation of SPRs in salt caverns found deep underground (2) involves a tedious process. A deep well is dug, and pressurized water is injected into the cavern. This action dissolves the salt, creating the necessary storage space for petroleum. Then, petroleum is injected into the caverns with great force. As a result, the petroleum effectively displaces the dissolved salt or brine. This process hinges on the principle that water and oil do not mix, allowing crude oil to replace the brine. The steps are reversed while extracting petroleum from the cavern. The storage and extraction procedures are carried out with the utmost care. The goal is to prevent brine leakage, (3) contaminate groundwater, or damage to the salt formation itself.
+
+¶3 Salt caverns offer several advantages for the storage of petroleum. These advantages include their stability, low permeability, and self-sealing properties. Their high storage capacity, rapid access, and cost-effectiveness are some other features of SPRs. Salt caverns are geologically stable, i.e., they are less prone to leaks or collapses. Additionally, the rocks are impermeable, and in cases of minor leakage, the cracks are self-sealed owing to high pressure. These properties prevent leakage and contamination. They make salt caverns ideal for storing valuable resources such as oil, natural gas, and even nuclear waste. Moreover, their high storage capacity and easy availability during emergencies (4) makes SPRs a strategic measure against oil supply disruptions and import restrictions. Notably, millions of barrels of crude oil were stored in these caverns and exchanged during the COVID-19 pandemic. With the exception of the initial cost of oil drilling and construction, the SPRs have proven to be cost-efficient.
+
+¶4 Besides their high initial costs, SPRs do have some other challenges as well. (5) Firstly, Salt Caverns are not widely available so, finding suitable locations for SPRs, can be difficult. Secondly, despite being comparatively stable, these caverns may collapse or leak due to underground disturbances. Although rare, the chances of brine or oil leakage and groundwater contamination mandate careful management and monitoring of SPRs.
+
+¶5 To conclude, SPRs represent a secure, efficient, and affordable alternative to conventional crude oil storage. Together with their stability, low permeability, and high storage capacity, SPRs prove to be a viable solution to the challenges of energy security and access to fuel during emergencies. Their advantages exceed their risks and challenges. With the expansion of SPR programs worldwide, these reserves have proven their utility over time.`,
+    question: "Moreover, their high storage capacity and easy availability during emergencies makes SPRs a strategic measure against oil supply disruptions and import restrictions.",
+    choices: [
+      "A. No change",
+      "B. make SPRs a strategic measure",
+      "C. can make SPRs a strategic measure",
+      "D. has made SPRs a strategic measure"
+    ],
+    correct: 1,
+    explanation: "Option B is correct because the sentence has a plural or compound subject: 'high storage capacity and easy availability.' It agrees with the plural verb 'make.'"
+  },
+  {
+    id: 295,
+    category: "Writing Conventions",
+    passage: `Strategic Petroleum Reserves (SPR) in Salt Caverns
+
+¶1 The idea of resource conservation is not new, nor does it just involve humans. Tiny ants toil to carry grains and store them for later. Bees gather nectar, make honey out of it, and stash the honey in their hives. Other savvy savers, like birds and squirrels, tuck nuts and seeds into their nests, bury them in the ground, or wedge them in tree cracks. (1) These huge reserves of petroleum in salt caverns go by the name of Strategic Petroleum Reserves (SPRs). The oil crisis of the 1970s prompted the creation of the first SPRs in the salt caverns along the Gulf Coast. SPRs play a crucial role as they reduce the impact of supply disruptions, stabilize oil prices, and secure energy. Let’s explore the methods involved in the creation and operation of these SPRs and explore the advantages and challenges of SPRs.
+
+¶2 The creation of SPRs in salt caverns found deep underground (2) involves a tedious process. A deep well is dug, and pressurized water is injected into the cavern. This action dissolves the salt, creating the necessary storage space for petroleum. Then, petroleum is injected into the caverns with great force. As a result, the petroleum effectively displaces the dissolved salt or brine. This process hinges on the principle that water and oil do not mix, allowing crude oil to replace the brine. The steps are reversed while extracting petroleum from the cavern. The storage and extraction procedures are carried out with the utmost care. The goal is to prevent brine leakage, (3) contaminate groundwater, or damage to the salt formation itself.
+
+¶3 Salt caverns offer several advantages for the storage of petroleum. These advantages include their stability, low permeability, and self-sealing properties. Their high storage capacity, rapid access, and cost-effectiveness are some other features of SPRs. Salt caverns are geologically stable, i.e., they are less prone to leaks or collapses. Additionally, the rocks are impermeable, and in cases of minor leakage, the cracks are self-sealed owing to high pressure. These properties prevent leakage and contamination. They make salt caverns ideal for storing valuable resources such as oil, natural gas, and even nuclear waste. Moreover, their high storage capacity and easy availability during emergencies (4) makes SPRs a strategic measure against oil supply disruptions and import restrictions. Notably, millions of barrels of crude oil were stored in these caverns and exchanged during the COVID-19 pandemic. With the exception of the initial cost of oil drilling and construction, the SPRs have proven to be cost-efficient.
+
+¶4 Besides their high initial costs, SPRs do have some other challenges as well. (5) Firstly, Salt Caverns are not widely available so, finding suitable locations for SPRs, can be difficult. Secondly, despite being comparatively stable, these caverns may collapse or leak due to underground disturbances. Although rare, the chances of brine or oil leakage and groundwater contamination mandate careful management and monitoring of SPRs.
+
+¶5 To conclude, SPRs represent a secure, efficient, and affordable alternative to conventional crude oil storage. Together with their stability, low permeability, and high storage capacity, SPRs prove to be a viable solution to the challenges of energy security and access to fuel during emergencies. Their advantages exceed their risks and challenges. With the expansion of SPR programs worldwide, these reserves have proven their utility over time.`,
+    question: "Firstly, Salt Caverns are not widely available so, finding suitable locations for SPRs, can be difficult.",
+    choices: [
+      "A. No change",
+      "B. Firstly, Salt Caverns are not widely available so finding suitable locations for SPRs, can be difficult.",
+      "C. Firstly, salt caverns are not widely available, so finding suitable locations for SPRs can be difficult.",
+      "D. Firstly, Salt caverns are not widely available; so, finding suitable locations for SPRs, can be difficult."
+    ],
+    correct: 2,
+    explanation: "Option C is correct because it correctly uses a comma before the coordinating conjunction 'so,' corrects the capitalization error in 'salt caverns,' and removes the unnecessary comma before 'can.'"
+  },
+  {
+    id: 296,
+    category: "Language Facility",
+    passage: `My Journey in Bordeaux
+
+¶1 I'm Aulia from Indonesia. Few experiences in my life have left such a profound mark on my personality as studying abroad in Bordeaux, France. Stepping foot on French soil for the first time, little did I know that I was beginning a journey that would not only reshape my career but also challenge my limits.
+
+¶2 The first week was a mix-up of excitement and anxiety. I found myself struggling to communicate with my fellow students due to my unfamiliarity with the French language. Despite my efforts to learn some French prior to the trip, I could only retain a handful of usable phrases. (6) My French vocabulary was limited. It was like a (7) delicate thread connecting me to the world around me. I viewed myself as an outsider among my classmates. It was this vulnerability that compelled me to rely more on body language, gestures, and tone to comprehend others. It was a sink or swim situation. There was no familiar ground to fall back on. (8) Therefore, while slightly daunting, it gradually brought a newfound sense of independence.
+
+¶3 The master's program in product design taught me about different areas of design thinking. It aimed to make students able to analyze current industry trends and anticipate future directions. Midway through my first semester, I found myself immersed in my initial project. It was a collaborative effort with a diverse team comprising students from various nationalities. Our task was to develop a sustainable product concept for a local design competition. The stakes were (9) high this project mattered a lot for my final grade.
+
+¶4 With time running out, I sought assistance from professors and classmates to guide me and improve my language skills. This effort was crucial not only for navigating everyday situations but also for contributing effectively to the project. What was initially perceived as a language barrier gradually transformed into a bridge - an avenue for cooperative understanding and team unity. Along the way, I even managed to pick up more French, fostering a deeper connection with the culture and the people around me.
+
+¶5 Undoubtedly, studying overseas molded me into a more resilient individual, ready to enter the 21st-century workforce. I understood that being a global citizen means more than just traveling or living in another country. It means developing a combination of knowledge, skills, attitudes, and values that enables a person to interact respectfully and effectively with people from different cultures, examine local, global, and intercultural issues, and act for collective well-being and sustainable development. These are the key elements of global competence and intercultural competence, which I believe are essential for anyone's personal and professional success in the 21st-century scenario.
+
+¶6 (10) [Sentence 1] I departed Bordeaux with a heart brimming with gratitude. [Sentence 2] I felt a newfound enthusiasm for my career. [Sentence 3] It wouldn't be hyperbole to say that this experience remains in my mind as a reminder of the transformative power of breaking out of my comfort zone. [Sentence 4] As Eleanor Roosevelt once said, "You must do the thing you think you cannot do."`,
+    question: "Choose the best way to combine the indicated sentences.",
+    choices: [
+      "A. My French vocabulary, connecting me to my classmates, made me an outsider and was like a delicate thread to me in the world.",
+      "B. I viewed myself as an outsider among my classmates due to my limited French vocabulary, a delicate thread connecting me to the world around me.",
+      "C. Because I had a limited French vocabulary, I felt as if I am an outsider and a delicate thread was connecting me to my classmates and the world around me.",
+      "D. Due to a delicate thread connecting me to my classmates and my limited French vocabulary, I was viewed like an outsider in the world."
+    ],
+    correct: 1,
+    explanation: "Option B is correct because it is the closest to the indicated sentences in terms of meaning and maintains a clear and concise expression, making it the best choice among the options provided."
+  },
+  {
+    id: 297,
+    category: "Writing Conventions",
+    passage: `My Journey in Bordeaux
+
+¶1 I'm Aulia from Indonesia. Few experiences in my life have left such a profound mark on my personality as studying abroad in Bordeaux, France. Stepping foot on French soil for the first time, little did I know that I was beginning a journey that would not only reshape my career but also challenge my limits.
+
+¶2 The first week was a mix-up of excitement and anxiety. I found myself struggling to communicate with my fellow students due to my unfamiliarity with the French language. Despite my efforts to learn some French prior to the trip, I could only retain a handful of usable phrases. (6) My French vocabulary was limited. It was like a (7) delicate thread connecting me to the world around me. I viewed myself as an outsider among my classmates. It was this vulnerability that compelled me to rely more on body language, gestures, and tone to comprehend others. It was a sink or swim situation. There was no familiar ground to fall back on. (8) Therefore, while slightly daunting, it gradually brought a newfound sense of independence.
+
+¶3 The master's program in product design taught me about different areas of design thinking. It aimed to make students able to analyze current industry trends and anticipate future directions. Midway through my first semester, I found myself immersed in my initial project. It was a collaborative effort with a diverse team comprising students from various nationalities. Our task was to develop a sustainable product concept for a local design competition. The stakes were (9) high this project mattered a lot for my final grade.
+
+¶4 With time running out, I sought assistance from professors and classmates to guide me and improve my language skills. This effort was crucial not only for navigating everyday situations but also for contributing effectively to the project. What was initially perceived as a language barrier gradually transformed into a bridge - an avenue for cooperative understanding and team unity. Along the way, I even managed to pick up more French, fostering a deeper connection with the culture and the people around me.
+
+¶5 Undoubtedly, studying overseas molded me into a more resilient individual, ready to enter the 21st-century workforce. I understood that being a global citizen means more than just traveling or living in another country. It means developing a combination of knowledge, skills, attitudes, and values that enables a person to interact respectfully and effectively with people from different cultures, examine local, global, and intercultural issues, and act for collective well-being and sustainable development. These are the key elements of global competence and intercultural competence, which I believe are essential for anyone's personal and professional success in the 21st-century scenario.
+
+¶6 (10) [Sentence 1] I departed Bordeaux with a heart brimming with gratitude. [Sentence 2] I felt a newfound enthusiasm for my career. [Sentence 3] It wouldn't be hyperbole to say that this experience remains in my mind as a reminder of the transformative power of breaking out of my comfort zone. [Sentence 4] As Eleanor Roosevelt once said, "You must do the thing you think you cannot do."`,
+    question: "The author describes her limited French vocabulary as \"a delicate thread.\" Which of the following resources would be most helpful in determining the precise meaning of the phrase \"a delicate thread\"?",
+    choices: [
+      "A. A glossary of literary terms",
+      "B. A workbook on English dialects",
+      "C. A preface of a linguistics book",
+      "D. A documentary on French culture"
+    ],
+    correct: 0,
+    explanation: "Option A is correct because it identifies the most relevant resource for determining the precise meaning of the metaphorical phrase 'delicate thread' in a literary context."
+  },
+  {
+    id: 298,
+    category: "Organization of Ideas",
+    passage: `My Journey in Bordeaux
+
+¶1 I'm Aulia from Indonesia. Few experiences in my life have left such a profound mark on my personality as studying abroad in Bordeaux, France. Stepping foot on French soil for the first time, little did I know that I was beginning a journey that would not only reshape my career but also challenge my limits.
+
+¶2 The first week was a mix-up of excitement and anxiety. I found myself struggling to communicate with my fellow students due to my unfamiliarity with the French language. Despite my efforts to learn some French prior to the trip, I could only retain a handful of usable phrases. (6) My French vocabulary was limited. It was like a (7) delicate thread connecting me to the world around me. I viewed myself as an outsider among my classmates. It was this vulnerability that compelled me to rely more on body language, gestures, and tone to comprehend others. It was a sink or swim situation. There was no familiar ground to fall back on. (8) Therefore, while slightly daunting, it gradually brought a newfound sense of independence.
+
+¶3 The master's program in product design taught me about different areas of design thinking. It aimed to make students able to analyze current industry trends and anticipate future directions. Midway through my first semester, I found myself immersed in my initial project. It was a collaborative effort with a diverse team comprising students from various nationalities. Our task was to develop a sustainable product concept for a local design competition. The stakes were (9) high this project mattered a lot for my final grade.
+
+¶4 With time running out, I sought assistance from professors and classmates to guide me and improve my language skills. This effort was crucial not only for navigating everyday situations but also for contributing effectively to the project. What was initially perceived as a language barrier gradually transformed into a bridge - an avenue for cooperative understanding and team unity. Along the way, I even managed to pick up more French, fostering a deeper connection with the culture and the people around me.
+
+¶5 Undoubtedly, studying overseas molded me into a more resilient individual, ready to enter the 21st-century workforce. I understood that being a global citizen means more than just traveling or living in another country. It means developing a combination of knowledge, skills, attitudes, and values that enables a person to interact respectfully and effectively with people from different cultures, examine local, global, and intercultural issues, and act for collective well-being and sustainable development. These are the key elements of global competence and intercultural competence, which I believe are essential for anyone's personal and professional success in the 21st-century scenario.
+
+¶6 (10) [Sentence 1] I departed Bordeaux with a heart brimming with gratitude. [Sentence 2] I felt a newfound enthusiasm for my career. [Sentence 3] It wouldn't be hyperbole to say that this experience remains in my mind as a reminder of the transformative power of breaking out of my comfort zone. [Sentence 4] As Eleanor Roosevelt once said, "You must do the thing you think you cannot do."`,
+    question: "Therefore, while slightly daunting, it gradually brought a newfound sense of independence.",
+    choices: [
+      "A. No change",
+      "B. Thereafter,",
+      "C. Accordingly,",
+      "D. Nevertheless,"
+    ],
+    correct: 3,
+    explanation: "Option D is correct because it provides a logical contrast between the two statements. The sentence transitions from describing the challenging situation of relying on non-verbal communication to the positive outcome of newfound independence."
+  },
+  {
+    id: 299,
+    category: "Writing Conventions",
+    passage: `My Journey in Bordeaux
+
+¶1 I'm Aulia from Indonesia. Few experiences in my life have left such a profound mark on my personality as studying abroad in Bordeaux, France. Stepping foot on French soil for the first time, little did I know that I was beginning a journey that would not only reshape my career but also challenge my limits.
+
+¶2 The first week was a mix-up of excitement and anxiety. I found myself struggling to communicate with my fellow students due to my unfamiliarity with the French language. Despite my efforts to learn some French prior to the trip, I could only retain a handful of usable phrases. (6) My French vocabulary was limited. It was like a (7) delicate thread connecting me to the world around me. I viewed myself as an outsider among my classmates. It was this vulnerability that compelled me to rely more on body language, gestures, and tone to comprehend others. It was a sink or swim situation. There was no familiar ground to fall back on. (8) Therefore, while slightly daunting, it gradually brought a newfound sense of independence.
+
+¶3 The master's program in product design taught me about different areas of design thinking. It aimed to make students able to analyze current industry trends and anticipate future directions. Midway through my first semester, I found myself immersed in my initial project. It was a collaborative effort with a diverse team comprising students from various nationalities. Our task was to develop a sustainable product concept for a local design competition. The stakes were (9) high this project mattered a lot for my final grade.
+
+¶4 With time running out, I sought assistance from professors and classmates to guide me and improve my language skills. This effort was crucial not only for navigating everyday situations but also for contributing effectively to the project. What was initially perceived as a language barrier gradually transformed into a bridge - an avenue for cooperative understanding and team unity. Along the way, I even managed to pick up more French, fostering a deeper connection with the culture and the people around me.
+
+¶5 Undoubtedly, studying overseas molded me into a more resilient individual, ready to enter the 21st-century workforce. I understood that being a global citizen means more than just traveling or living in another country. It means developing a combination of knowledge, skills, attitudes, and values that enables a person to interact respectfully and effectively with people from different cultures, examine local, global, and intercultural issues, and act for collective well-being and sustainable development. These are the key elements of global competence and intercultural competence, which I believe are essential for anyone's personal and professional success in the 21st-century scenario.
+
+¶6 (10) [Sentence 1] I departed Bordeaux with a heart brimming with gratitude. [Sentence 2] I felt a newfound enthusiasm for my career. [Sentence 3] It wouldn't be hyperbole to say that this experience remains in my mind as a reminder of the transformative power of breaking out of my comfort zone. [Sentence 4] As Eleanor Roosevelt once said, "You must do the thing you think you cannot do."`,
+    question: "The stakes were high this project mattered a lot for my final grade.",
+    choices: [
+      "A. No change",
+      "B. high! This",
+      "C. high; this",
+      "D. high: this"
+    ],
+    correct: 2,
+    explanation: "Option C is correct because it corrects the inappropriate run-on structure by using a semicolon (;) and suitably separates the two closely related independent clauses."
+  },
+  {
+    id: 300,
+    category: "Language Facility",
+    passage: `My Journey in Bordeaux
+
+¶1 I'm Aulia from Indonesia. Few experiences in my life have left such a profound mark on my personality as studying abroad in Bordeaux, France. Stepping foot on French soil for the first time, little did I know that I was beginning a journey that would not only reshape my career but also challenge my limits.
+
+¶2 The first week was a mix-up of excitement and anxiety. I found myself struggling to communicate with my fellow students due to my unfamiliarity with the French language. Despite my efforts to learn some French prior to the trip, I could only retain a handful of usable phrases. (6) My French vocabulary was limited. It was like a (7) delicate thread connecting me to the world around me. I viewed myself as an outsider among my classmates. It was this vulnerability that compelled me to rely more on body language, gestures, and tone to comprehend others. It was a sink or swim situation. There was no familiar ground to fall back on. (8) Therefore, while slightly daunting, it gradually brought a newfound sense of independence.
+
+¶3 The master's program in product design taught me about different areas of design thinking. It aimed to make students able to analyze current industry trends and anticipate future directions. Midway through my first semester, I found myself immersed in my initial project. It was a collaborative effort with a diverse team comprising students from various nationalities. Our task was to develop a sustainable product concept for a local design competition. The stakes were (9) high this project mattered a lot for my final grade.
+
+¶4 With time running out, I sought assistance from professors and classmates to guide me and improve my language skills. This effort was crucial not only for navigating everyday situations but also for contributing effectively to the project. What was initially perceived as a language barrier gradually transformed into a bridge - an avenue for cooperative understanding and team unity. Along the way, I even managed to pick up more French, fostering a deeper connection with the culture and the people around me.
+
+¶5 Undoubtedly, studying overseas molded me into a more resilient individual, ready to enter the 21st-century workforce. I understood that being a global citizen means more than just traveling or living in another country. It means developing a combination of knowledge, skills, attitudes, and values that enables a person to interact respectfully and effectively with people from different cultures, examine local, global, and intercultural issues, and act for collective well-being and sustainable development. These are the key elements of global competence and intercultural competence, which I believe are essential for anyone's personal and professional success in the 21st-century scenario.
+
+¶6 (10) [Sentence 1] I departed Bordeaux with a heart brimming with gratitude. [Sentence 2] I felt a newfound enthusiasm for my career. [Sentence 3] It wouldn't be hyperbole to say that this experience remains in my mind as a reminder of the transformative power of breaking out of my comfort zone. [Sentence 4] As Eleanor Roosevelt once said, "You must do the thing you think you cannot do."`,
+    question: "Which numbered sentence in paragraph 6 contains wording which is redundant?",
+    choices: [
+      "A. Sentence 1",
+      "B. Sentence 2",
+      "C. Sentence 3",
+      "D. Sentence 4"
+    ],
+    correct: 2,
+    explanation: "Option C is correct because sentence 3 contains redundancy with the phrase 'It wouldn't be hyperbole to say that this experience remains in my mind...' which adds unnecessary repetition and length to the sentence."
+  },
+  {
+    id: 301,
+    category: "Writing Conventions",
+    passage: `Navigating Bear Encounters on the Appalachian Trail
+
+¶1 The Appalachian Trail, a serpentine trail weaving through the eastern United States, entices hikers with its promise of adventure. It snakes its way over 2,190 miles through 14 states, offering anyone brave enough the journey of a lifetime. This makes it the longest continuous hiking footpath in the world! It starts from the sun-dappled forests of Georgia and ends beside the windswept ruggedness of Mount Katahdin. It leads hikers through a morphing landscape of sublime vistas, frothy waterfalls, and dense woodlands. The footpath was carved out of the wilderness by the dedicated hands of passionate hikers, volunteers, and forest rangers. The journey on the trail offers not just a physical challenge but also a passage of self-discovery. It is not uncommon to encounter wildlife along the trail, most of which are harmless. (11) The woods, teeming with deer, coyotes, foxes, raccoons, turkeys, rabbits, and mountain lions, adds to the thrill. However, there is one shy and elusive creature whose strength and moodiness make them a liability. (12) Several thousand black bears lurk in these woods. The sight of which can make one's blood freeze. Hikers need to be aware of safety measures and techniques to minimize risks in the case of an encounter.
+
+¶2 Black bears are (13) deceitful omnivores who eat almost anything from plants, insects, and small mammals to carrion. They have an acute sense of smell, sharp ears, and good vision that help them locate food. (14) Besides their imposing size, most bears are not aggressive towards humans. The percentage of bear encounters that turn violent is extremely low. Most encounters end with the bears retreating into the woods avoiding confrontation. (15) Black bears' psychology is shaped by their survival instincts. Like other animals, they also exhibit either fear or aggression when these reflexes kick in. They are likely to resort to aggression only when they feel threatened or cornered. A majority of bear attacks are usually females protecting their young ones from a perceived dangerous situation. Some attacks occurred when the bear found its path of retreat blocked by physical barriers, causing it to panic.
+
+¶3 Here are a few tips to minimize the chances of confrontations:
+• Be as noisy as possible – Make sure to talk and sing loudly, play music, or clap your hands in bear territory to alert them of your presence. This would prevent them from being surprised by your sudden appearance.
+• Store food away from the campsite – Hang your food away from the campsite using a bear-proof line and odor-proof containers to avoid attracting hungry bears.
+• Avoid hiking in low light – Since bears are most active during the low-light hours, avoid hiking during dawn and dusk. Be sure to get most of your hiking done during daylight hours.
+• Stick to the beaten path – You're better off sticking to the established trail. Wandering through dense foliage with low visibility may increase your chances of surprising a feeding bear.
+• Travel in groups – While out on the trail there is safety in numbers. Bears are less likely to aggress larger groups of hikers.
+• Keep bear spray handy – There have been many instances where charging bears were warded off with bear spray. Always keep the can unsealed and handy in case it needs to be used.
+
+¶4 So, as you don your hiking gear and lace up your boots, remember this mantra: When dealing with bears, give them the space they need and practice the "bear necessities" of safety.`,
+    question: "The woods, teeming with deer, coyotes, foxes, raccoons, turkeys, rabbits, and mountain lions, adds to the thrill.",
+    choices: [
+      "A. No change",
+      "B. Change \"adds\" to \"offers\"",
+      "C. Change \"adds\" to \"add\"",
+      "D. Insert \"which\" before \"adds\""
+    ],
+    correct: 2,
+    explanation: "Option C is correct as it addresses the subject-verb agreement issue by changing 'adds' to 'add,' making it grammatically correct."
+  },
+  {
+    id: 302,
+    category: "Writing Conventions",
+    passage: `Navigating Bear Encounters on the Appalachian Trail
+
+¶1 The Appalachian Trail, a serpentine trail weaving through the eastern United States, entices hikers with its promise of adventure. It snakes its way over 2,190 miles through 14 states, offering anyone brave enough the journey of a lifetime. This makes it the longest continuous hiking footpath in the world! It starts from the sun-dappled forests of Georgia and ends beside the windswept ruggedness of Mount Katahdin. It leads hikers through a morphing landscape of sublime vistas, frothy waterfalls, and dense woodlands. The footpath was carved out of the wilderness by the dedicated hands of passionate hikers, volunteers, and forest rangers. The journey on the trail offers not just a physical challenge but also a passage of self-discovery. It is not uncommon to encounter wildlife along the trail, most of which are harmless. (11) The woods, teeming with deer, coyotes, foxes, raccoons, turkeys, rabbits, and mountain lions, adds to the thrill. However, there is one shy and elusive creature whose strength and moodiness make them a liability. (12) Several thousand black bears lurk in these woods. The sight of which can make one's blood freeze. Hikers need to be aware of safety measures and techniques to minimize risks in the case of an encounter.
+
+¶2 Black bears are (13) deceitful omnivores who eat almost anything from plants, insects, and small mammals to carrion. They have an acute sense of smell, sharp ears, and good vision that help them locate food. (14) Besides their imposing size, most bears are not aggressive towards humans. The percentage of bear encounters that turn violent is extremely low. Most encounters end with the bears retreating into the woods avoiding confrontation. (15) Black bears' psychology is shaped by their survival instincts. Like other animals, they also exhibit either fear or aggression when these reflexes kick in. They are likely to resort to aggression only when they feel threatened or cornered. A majority of bear attacks are usually females protecting their young ones from a perceived dangerous situation. Some attacks occurred when the bear found its path of retreat blocked by physical barriers, causing it to panic.
+
+¶3 Here are a few tips to minimize the chances of confrontations:
+• Be as noisy as possible – Make sure to talk and sing loudly, play music, or clap your hands in bear territory to alert them of your presence. This would prevent them from being surprised by your sudden appearance.
+• Store food away from the campsite – Hang your food away from the campsite using a bear-proof line and odor-proof containers to avoid attracting hungry bears.
+• Avoid hiking in low light – Since bears are most active during the low-light hours, avoid hiking during dawn and dusk. Be sure to get most of your hiking done during daylight hours.
+• Stick to the beaten path – You're better off sticking to the established trail. Wandering through dense foliage with low visibility may increase your chances of surprising a feeding bear.
+• Travel in groups – While out on the trail there is safety in numbers. Bears are less likely to aggress larger groups of hikers.
+• Keep bear spray handy – There have been many instances where charging bears were warded off with bear spray. Always keep the can unsealed and handy in case it needs to be used.
+
+¶4 So, as you don your hiking gear and lace up your boots, remember this mantra: When dealing with bears, give them the space they need and practice the "bear necessities" of safety.`,
+    question: "Several thousand black bears lurk in these woods. The sight of which can make one's blood freeze.",
+    choices: [
+      "A. Several thousand black bears lurk in these woods: the sight of which can make one's blood freeze.",
+      "B. Several thousand black bears lurk in these woods, the sight of which can make one's blood freeze.",
+      "C. Several thousand black bears lurk in these woods; the sight of which can make one's blood freeze.",
+      "D. Several thousand black bears lurk in these woods! Which can make one's blood really freeze."
+    ],
+    correct: 1,
+    explanation: "Option B is correct because it uses a comma to isolate the non-restrictive relative clause ('the sight of which can make one's blood freeze')."
+  },
+  {
+    id: 303,
+    category: "Language Facility",
+    passage: `Navigating Bear Encounters on the Appalachian Trail
+
+¶1 The Appalachian Trail, a serpentine trail weaving through the eastern United States, entices hikers with its promise of adventure. It snakes its way over 2,190 miles through 14 states, offering anyone brave enough the journey of a lifetime. This makes it the longest continuous hiking footpath in the world! It starts from the sun-dappled forests of Georgia and ends beside the windswept ruggedness of Mount Katahdin. It leads hikers through a morphing landscape of sublime vistas, frothy waterfalls, and dense woodlands. The footpath was carved out of the wilderness by the dedicated hands of passionate hikers, volunteers, and forest rangers. The journey on the trail offers not just a physical challenge but also a passage of self-discovery. It is not uncommon to encounter wildlife along the trail, most of which are harmless. (11) The woods, teeming with deer, coyotes, foxes, raccoons, turkeys, rabbits, and mountain lions, adds to the thrill. However, there is one shy and elusive creature whose strength and moodiness make them a liability. (12) Several thousand black bears lurk in these woods. The sight of which can make one's blood freeze. Hikers need to be aware of safety measures and techniques to minimize risks in the case of an encounter.
+
+¶2 Black bears are (13) deceitful omnivores who eat almost anything from plants, insects, and small mammals to carrion. They have an acute sense of smell, sharp ears, and good vision that help them locate food. (14) Besides their imposing size, most bears are not aggressive towards humans. The percentage of bear encounters that turn violent is extremely low. Most encounters end with the bears retreating into the woods avoiding confrontation. (15) Black bears' psychology is shaped by their survival instincts. Like other animals, they also exhibit either fear or aggression when these reflexes kick in. They are likely to resort to aggression only when they feel threatened or cornered. A majority of bear attacks are usually females protecting their young ones from a perceived dangerous situation. Some attacks occurred when the bear found its path of retreat blocked by physical barriers, causing it to panic.
+
+¶3 Here are a few tips to minimize the chances of confrontations:
+• Be as noisy as possible – Make sure to talk and sing loudly, play music, or clap your hands in bear territory to alert them of your presence. This would prevent them from being surprised by your sudden appearance.
+• Store food away from the campsite – Hang your food away from the campsite using a bear-proof line and odor-proof containers to avoid attracting hungry bears.
+• Avoid hiking in low light – Since bears are most active during the low-light hours, avoid hiking during dawn and dusk. Be sure to get most of your hiking done during daylight hours.
+• Stick to the beaten path – You're better off sticking to the established trail. Wandering through dense foliage with low visibility may increase your chances of surprising a feeding bear.
+• Travel in groups – While out on the trail there is safety in numbers. Bears are less likely to aggress larger groups of hikers.
+• Keep bear spray handy – There have been many instances where charging bears were warded off with bear spray. Always keep the can unsealed and handy in case it needs to be used.
+
+¶4 So, as you don your hiking gear and lace up your boots, remember this mantra: When dealing with bears, give them the space they need and practice the "bear necessities" of safety.`,
+    question: "The writer wants to replace the indicated word with one that is more precise in meaning. Which word would be the best choice?",
+    choices: [
+      "A. opportunistic",
+      "B. conniving",
+      "C. sneaky",
+      "D. tricky"
+    ],
+    correct: 0,
+    explanation: "Option A is correct because 'opportunistic' means taking advantage of opportunities as they arise, especially with regard to food. It conveys the idea that black bears are flexible in their food choices, eating whatever is available, which aligns with the context of the sentence."
+  },
+  {
+    id: 304,
+    category: "Organization of Ideas",
+    passage: `Navigating Bear Encounters on the Appalachian Trail
+
+¶1 The Appalachian Trail, a serpentine trail weaving through the eastern United States, entices hikers with its promise of adventure. It snakes its way over 2,190 miles through 14 states, offering anyone brave enough the journey of a lifetime. This makes it the longest continuous hiking footpath in the world! It starts from the sun-dappled forests of Georgia and ends beside the windswept ruggedness of Mount Katahdin. It leads hikers through a morphing landscape of sublime vistas, frothy waterfalls, and dense woodlands. The footpath was carved out of the wilderness by the dedicated hands of passionate hikers, volunteers, and forest rangers. The journey on the trail offers not just a physical challenge but also a passage of self-discovery. It is not uncommon to encounter wildlife along the trail, most of which are harmless. (11) The woods, teeming with deer, coyotes, foxes, raccoons, turkeys, rabbits, and mountain lions, adds to the thrill. However, there is one shy and elusive creature whose strength and moodiness make them a liability. (12) Several thousand black bears lurk in these woods. The sight of which can make one's blood freeze. Hikers need to be aware of safety measures and techniques to minimize risks in the case of an encounter.
+
+¶2 Black bears are (13) deceitful omnivores who eat almost anything from plants, insects, and small mammals to carrion. They have an acute sense of smell, sharp ears, and good vision that help them locate food. (14) Besides their imposing size, most bears are not aggressive towards humans. The percentage of bear encounters that turn violent is extremely low. Most encounters end with the bears retreating into the woods avoiding confrontation. (15) Black bears' psychology is shaped by their survival instincts. Like other animals, they also exhibit either fear or aggression when these reflexes kick in. They are likely to resort to aggression only when they feel threatened or cornered. A majority of bear attacks are usually females protecting their young ones from a perceived dangerous situation. Some attacks occurred when the bear found its path of retreat blocked by physical barriers, causing it to panic.
+
+¶3 Here are a few tips to minimize the chances of confrontations:
+• Be as noisy as possible – Make sure to talk and sing loudly, play music, or clap your hands in bear territory to alert them of your presence. This would prevent them from being surprised by your sudden appearance.
+• Store food away from the campsite – Hang your food away from the campsite using a bear-proof line and odor-proof containers to avoid attracting hungry bears.
+• Avoid hiking in low light – Since bears are most active during the low-light hours, avoid hiking during dawn and dusk. Be sure to get most of your hiking done during daylight hours.
+• Stick to the beaten path – You're better off sticking to the established trail. Wandering through dense foliage with low visibility may increase your chances of surprising a feeding bear.
+• Travel in groups – While out on the trail there is safety in numbers. Bears are less likely to aggress larger groups of hikers.
+• Keep bear spray handy – There have been many instances where charging bears were warded off with bear spray. Always keep the can unsealed and handy in case it needs to be used.
+
+¶4 So, as you don your hiking gear and lace up your boots, remember this mantra: When dealing with bears, give them the space they need and practice the "bear necessities" of safety.`,
+    question: "Which replacement, if any, for the indicated word best maintains the logical flow of the passage?",
+    choices: [
+      "A. Despite",
+      "B. However",
+      "C. Nevertheless",
+      "D. Since"
+    ],
+    correct: 0,
+    explanation: "Option A is correct because 'despite' is the most suitable replacement for 'besides' in this context. 'Despite' is generally used to contrast two ideas and fits perfectly when you want to emphasize that the first condition (bear's imposing size) doesn't necessarily lead to the second condition (aggressiveness)."
+  },
+  {
+    id: 305,
+    category: "Language Facility",
+    passage: `Navigating Bear Encounters on the Appalachian Trail
+
+¶1 The Appalachian Trail, a serpentine trail weaving through the eastern United States, entices hikers with its promise of adventure. It snakes its way over 2,190 miles through 14 states, offering anyone brave enough the journey of a lifetime. This makes it the longest continuous hiking footpath in the world! It starts from the sun-dappled forests of Georgia and ends beside the windswept ruggedness of Mount Katahdin. It leads hikers through a morphing landscape of sublime vistas, frothy waterfalls, and dense woodlands. The footpath was carved out of the wilderness by the dedicated hands of passionate hikers, volunteers, and forest rangers. The journey on the trail offers not just a physical challenge but also a passage of self-discovery. It is not uncommon to encounter wildlife along the trail, most of which are harmless. (11) The woods, teeming with deer, coyotes, foxes, raccoons, turkeys, rabbits, and mountain lions, adds to the thrill. However, there is one shy and elusive creature whose strength and moodiness make them a liability. (12) Several thousand black bears lurk in these woods. The sight of which can make one's blood freeze. Hikers need to be aware of safety measures and techniques to minimize risks in the case of an encounter.
+
+¶2 Black bears are (13) deceitful omnivores who eat almost anything from plants, insects, and small mammals to carrion. They have an acute sense of smell, sharp ears, and good vision that help them locate food. (14) Besides their imposing size, most bears are not aggressive towards humans. The percentage of bear encounters that turn violent is extremely low. Most encounters end with the bears retreating into the woods avoiding confrontation. (15) Black bears' psychology is shaped by their survival instincts. Like other animals, they also exhibit either fear or aggression when these reflexes kick in. They are likely to resort to aggression only when they feel threatened or cornered. A majority of bear attacks are usually females protecting their young ones from a perceived dangerous situation. Some attacks occurred when the bear found its path of retreat blocked by physical barriers, causing it to panic.
+
+¶3 Here are a few tips to minimize the chances of confrontations:
+• Be as noisy as possible – Make sure to talk and sing loudly, play music, or clap your hands in bear territory to alert them of your presence. This would prevent them from being surprised by your sudden appearance.
+• Store food away from the campsite – Hang your food away from the campsite using a bear-proof line and odor-proof containers to avoid attracting hungry bears.
+• Avoid hiking in low light – Since bears are most active during the low-light hours, avoid hiking during dawn and dusk. Be sure to get most of your hiking done during daylight hours.
+• Stick to the beaten path – You're better off sticking to the established trail. Wandering through dense foliage with low visibility may increase your chances of surprising a feeding bear.
+• Travel in groups – While out on the trail there is safety in numbers. Bears are less likely to aggress larger groups of hikers.
+• Keep bear spray handy – There have been many instances where charging bears were warded off with bear spray. Always keep the can unsealed and handy in case it needs to be used.
+
+¶4 So, as you don your hiking gear and lace up your boots, remember this mantra: When dealing with bears, give them the space they need and practice the "bear necessities" of safety.`,
+    question: "Choose the best way to combine the indicated sentences.",
+    choices: [
+      "A. Like other animals, black bears' psychology is shaped by their survival instincts, who elicit a flight or fight reflex when in danger.",
+      "B. Black bears' psychology is shaped by their survival instincts, that also cause them to exhibit either fear or aggression when these reflexes kick in.",
+      "C. Black bears' psychology is shaped by their survival instincts, and like other animals, they also exhibit either fear or aggression when these reflexes kick in.",
+      "D. Black bears' psychology is shaped by their survival instincts, leading to the exhibition of either fear or aggression, just like other animals, when these reflexes kick in."
+    ],
+    correct: 2,
+    explanation: "Option C is correct because it correctly combines the two sentences to form a compound sentence using the conjunction 'and.'"
+  },
+  {
+    id: 306,
+    category: "Organization of Ideas",
+    passage: `Agroforestry: Its Benefits and Adoption
+By Aalia Powell
+Published: September 5, 2023
+
+¶1 Step back to pre-industrial times before the era of machines and industrial landscapes. Picture a farmland where trees and crops intermingled, livestock roamed freely in the pastures, and every element had a role to play. It was a realm where every element wove a story of give and take and mutual support. This is known as agroforestry: the intentional integration of trees, crops, and livestock, resolving three main environmental problems. These are low crop productivity, low water tables, and land degradation. Each of the three elements, trees, livestock and crops, have a role to play.
+
+¶2 Trees are more than just shade. Here's how:
+• They offer nutritious food for livestock.
+• Hidden beneath the earth's surface, their roots work to prevent soil erosion.
+• (16) Otherwise, by keeping the soil covered, trees stop rain from washing away valuable nutrients.
+• The fallen fruits, leaves, and branches of a tree decompose over time, adding nutrients back into the soil. Thus, trees improve the nutrient cycle, an essential defense against nature's forces.
+• When trees help recycle nutrients, a healthier ecosystem where crops and cattle can thrive is created.
+• In areas with low water tables, trees can help alter the balance between groundwater and surface water. By consuming water through their roots and releasing it through transpiration, trees can contribute to a more sustainable water balance.
+
+¶3 Similarly, livestock also helps the crops to grow:
+• Animal manure is like a natural booster for the soil.
+• When farmers spread manure on their fields, it's like giving the soil natural fertilizer.
+• Using manure reduces the need for synthetic chemicals.
+
+¶4 (17) Forest trees and shrubs, fruit orchards, and meadows can capture a lot of carbon, which help with climate action. On the other hand, growing crops in fields produces more greenhouse gasses due to soil disturbance. Just one big tree can take in about 50 pounds of CO2 every year. This is how an agroforest can effectively capture and store significant amounts of carbon emissions.
+Moreover, this climate-smart cultivation has manifold benefits:
+• boosting biodiversity
+• increasing annual crop
+• creating habitats for various species
+• improving soil health
+• making ecosystems resilient
+It serves to underscore the pressing importance of adopting agroforestry practices - an age-old yet regrettably less-adopted method of safeguarding the planet's future.
+
+¶5 (18) For some unfortunate reasons, agroforestry became disjointed over time; let's discuss them:
+• Rise of mono-cropping: As societies shifted toward more intensive (19) agricultural practices mono-cropping became the prevailing norm. Thus, the practice of integrating trees on farms faded away.
+• Diminished knowledge: Over time, the traditional wisdom surrounding the benefits of agroforestry began to fade. This resulted in a decline in incorporating agroforestry into modern agricultural systems.
+• Lack of understanding: Many farmers aren't fully familiar with the benefits of agroforestry.
+• Cost barriers: Farmers often have limited assets or no start-up capital. Subsequently, they can't manage the establishment cost. In some cases, farmers do not plant trees on their lands as the maintenance costs erode their economic returns.
+
+¶6 This is why governments and other groups should help small farmers in using agroforestry practices. This need for support is exemplified by Kenya. Kenya has taken proactive steps like:
+• The National Adaptation Plan (NAP 2015-2030)
+• Kenya Climate Smart Agriculture Strategy (KCSAS 2017-2026)
+• Bringing on the International Centre for Research in Agroforestry (ICRAF) to focus on the sustainable management of tropical rainforests and natural reserves
+(20) Also, collaborations, like those between Kenyan farmers and ICRAF, showcase the potential of regreening lands while concurrently contributing to carbon storage efforts.`,
+    question: "Otherwise, by keeping the soil covered, trees stop rain from washing away valuable nutrients.",
+    choices: [
+      "A. No change",
+      "B. Hence,",
+      "C. Anyhow,",
+      "D. Moreover,"
+    ],
+    correct: 3,
+    explanation: "Option D is correct because 'moreover' logically connects the benefit of the tree roots preventing soil erosion with the subsequent idea about keeping the soil covered."
+  },
+  {
+    id: 307,
+    category: "Writing Conventions",
+    passage: `Agroforestry: Its Benefits and Adoption
+By Aalia Powell
+Published: September 5, 2023
+
+¶1 Step back to pre-industrial times before the era of machines and industrial landscapes. Picture a farmland where trees and crops intermingled, livestock roamed freely in the pastures, and every element had a role to play. It was a realm where every element wove a story of give and take and mutual support. This is known as agroforestry: the intentional integration of trees, crops, and livestock, resolving three main environmental problems. These are low crop productivity, low water tables, and land degradation. Each of the three elements, trees, livestock and crops, have a role to play.
+
+¶2 Trees are more than just shade. Here's how:
+• They offer nutritious food for livestock.
+• Hidden beneath the earth's surface, their roots work to prevent soil erosion.
+• (16) Otherwise, by keeping the soil covered, trees stop rain from washing away valuable nutrients.
+• The fallen fruits, leaves, and branches of a tree decompose over time, adding nutrients back into the soil. Thus, trees improve the nutrient cycle, an essential defense against nature's forces.
+• When trees help recycle nutrients, a healthier ecosystem where crops and cattle can thrive is created.
+• In areas with low water tables, trees can help alter the balance between groundwater and surface water. By consuming water through their roots and releasing it through transpiration, trees can contribute to a more sustainable water balance.
+
+¶3 Similarly, livestock also helps the crops to grow:
+• Animal manure is like a natural booster for the soil.
+• When farmers spread manure on their fields, it's like giving the soil natural fertilizer.
+• Using manure reduces the need for synthetic chemicals.
+
+¶4 (17) Forest trees and shrubs, fruit orchards, and meadows can capture a lot of carbon, which help with climate action. On the other hand, growing crops in fields produces more greenhouse gasses due to soil disturbance. Just one big tree can take in about 50 pounds of CO2 every year. This is how an agroforest can effectively capture and store significant amounts of carbon emissions.
+Moreover, this climate-smart cultivation has manifold benefits:
+• boosting biodiversity
+• increasing annual crop
+• creating habitats for various species
+• improving soil health
+• making ecosystems resilient
+It serves to underscore the pressing importance of adopting agroforestry practices - an age-old yet regrettably less-adopted method of safeguarding the planet's future.
+
+¶5 (18) For some unfortunate reasons, agroforestry became disjointed over time; let's discuss them:
+• Rise of mono-cropping: As societies shifted toward more intensive (19) agricultural practices mono-cropping became the prevailing norm. Thus, the practice of integrating trees on farms faded away.
+• Diminished knowledge: Over time, the traditional wisdom surrounding the benefits of agroforestry began to fade. This resulted in a decline in incorporating agroforestry into modern agricultural systems.
+• Lack of understanding: Many farmers aren't fully familiar with the benefits of agroforestry.
+• Cost barriers: Farmers often have limited assets or no start-up capital. Subsequently, they can't manage the establishment cost. In some cases, farmers do not plant trees on their lands as the maintenance costs erode their economic returns.
+
+¶6 This is why governments and other groups should help small farmers in using agroforestry practices. This need for support is exemplified by Kenya. Kenya has taken proactive steps like:
+• The National Adaptation Plan (NAP 2015-2030)
+• Kenya Climate Smart Agriculture Strategy (KCSAS 2017-2026)
+• Bringing on the International Centre for Research in Agroforestry (ICRAF) to focus on the sustainable management of tropical rainforests and natural reserves
+(20) Also, collaborations, like those between Kenyan farmers and ICRAF, showcase the potential of regreening lands while concurrently contributing to carbon storage efforts.`,
+    question: "Which revision should be made to the indicated sentence?",
+    choices: [
+      "A. Change \"help\" to \"helps\"",
+      "B. Change \"which\" to \"who\"",
+      "C. Change \"capture\" to \"captures\"",
+      "D. Change \"a lot\" to \"a great deal of\""
+    ],
+    correct: 0,
+    explanation: "Option A is correct because it fixes the subject-verb disagreement by changing 'help' to 'helps' to agree with the singular relative pronoun 'which' referring to 'carbon.'"
+  },
+  {
+    id: 308,
+    category: "Language Facility",
+    passage: `Agroforestry: Its Benefits and Adoption
+By Aalia Powell
+Published: September 5, 2023
+
+¶1 Step back to pre-industrial times before the era of machines and industrial landscapes. Picture a farmland where trees and crops intermingled, livestock roamed freely in the pastures, and every element had a role to play. It was a realm where every element wove a story of give and take and mutual support. This is known as agroforestry: the intentional integration of trees, crops, and livestock, resolving three main environmental problems. These are low crop productivity, low water tables, and land degradation. Each of the three elements, trees, livestock and crops, have a role to play.
+
+¶2 Trees are more than just shade. Here's how:
+• They offer nutritious food for livestock.
+• Hidden beneath the earth's surface, their roots work to prevent soil erosion.
+• (16) Otherwise, by keeping the soil covered, trees stop rain from washing away valuable nutrients.
+• The fallen fruits, leaves, and branches of a tree decompose over time, adding nutrients back into the soil. Thus, trees improve the nutrient cycle, an essential defense against nature's forces.
+• When trees help recycle nutrients, a healthier ecosystem where crops and cattle can thrive is created.
+• In areas with low water tables, trees can help alter the balance between groundwater and surface water. By consuming water through their roots and releasing it through transpiration, trees can contribute to a more sustainable water balance.
+
+¶3 Similarly, livestock also helps the crops to grow:
+• Animal manure is like a natural booster for the soil.
+• When farmers spread manure on their fields, it's like giving the soil natural fertilizer.
+• Using manure reduces the need for synthetic chemicals.
+
+¶4 (17) Forest trees and shrubs, fruit orchards, and meadows can capture a lot of carbon, which help with climate action. On the other hand, growing crops in fields produces more greenhouse gasses due to soil disturbance. Just one big tree can take in about 50 pounds of CO2 every year. This is how an agroforest can effectively capture and store significant amounts of carbon emissions.
+Moreover, this climate-smart cultivation has manifold benefits:
+• boosting biodiversity
+• increasing annual crop
+• creating habitats for various species
+• improving soil health
+• making ecosystems resilient
+It serves to underscore the pressing importance of adopting agroforestry practices - an age-old yet regrettably less-adopted method of safeguarding the planet's future.
+
+¶5 (18) For some unfortunate reasons, agroforestry became disjointed over time; let's discuss them:
+• Rise of mono-cropping: As societies shifted toward more intensive (19) agricultural practices mono-cropping became the prevailing norm. Thus, the practice of integrating trees on farms faded away.
+• Diminished knowledge: Over time, the traditional wisdom surrounding the benefits of agroforestry began to fade. This resulted in a decline in incorporating agroforestry into modern agricultural systems.
+• Lack of understanding: Many farmers aren't fully familiar with the benefits of agroforestry.
+• Cost barriers: Farmers often have limited assets or no start-up capital. Subsequently, they can't manage the establishment cost. In some cases, farmers do not plant trees on their lands as the maintenance costs erode their economic returns.
+
+¶6 This is why governments and other groups should help small farmers in using agroforestry practices. This need for support is exemplified by Kenya. Kenya has taken proactive steps like:
+• The National Adaptation Plan (NAP 2015-2030)
+• Kenya Climate Smart Agriculture Strategy (KCSAS 2017-2026)
+• Bringing on the International Centre for Research in Agroforestry (ICRAF) to focus on the sustainable management of tropical rainforests and natural reserves
+(20) Also, collaborations, like those between Kenyan farmers and ICRAF, showcase the potential of regreening lands while concurrently contributing to carbon storage efforts.`,
+    question: "For some unfortunate reasons, agroforestry became disjointed over time; let's discuss them:",
+    choices: [
+      "A. No change",
+      "B. Let's quickly peek into the fast-declining popularity of agroforestry.",
+      "C. Let's understand why agroforestry was overlooked over time.",
+      "D. Let's understand the bitter-sad reasons why agroforestry flopped."
+    ],
+    correct: 2,
+    explanation: "Option C is correct because it aligns with the informative and neutral tone of the passage, providing a clear direction without emotionally charged words."
+  },
+  {
+    id: 309,
+    category: "Writing Conventions",
+    passage: `Agroforestry: Its Benefits and Adoption
+By Aalia Powell
+Published: September 5, 2023
+
+¶1 Step back to pre-industrial times before the era of machines and industrial landscapes. Picture a farmland where trees and crops intermingled, livestock roamed freely in the pastures, and every element had a role to play. It was a realm where every element wove a story of give and take and mutual support. This is known as agroforestry: the intentional integration of trees, crops, and livestock, resolving three main environmental problems. These are low crop productivity, low water tables, and land degradation. Each of the three elements, trees, livestock and crops, have a role to play.
+
+¶2 Trees are more than just shade. Here's how:
+• They offer nutritious food for livestock.
+• Hidden beneath the earth's surface, their roots work to prevent soil erosion.
+• (16) Otherwise, by keeping the soil covered, trees stop rain from washing away valuable nutrients.
+• The fallen fruits, leaves, and branches of a tree decompose over time, adding nutrients back into the soil. Thus, trees improve the nutrient cycle, an essential defense against nature's forces.
+• When trees help recycle nutrients, a healthier ecosystem where crops and cattle can thrive is created.
+• In areas with low water tables, trees can help alter the balance between groundwater and surface water. By consuming water through their roots and releasing it through transpiration, trees can contribute to a more sustainable water balance.
+
+¶3 Similarly, livestock also helps the crops to grow:
+• Animal manure is like a natural booster for the soil.
+• When farmers spread manure on their fields, it's like giving the soil natural fertilizer.
+• Using manure reduces the need for synthetic chemicals.
+
+¶4 (17) Forest trees and shrubs, fruit orchards, and meadows can capture a lot of carbon, which help with climate action. On the other hand, growing crops in fields produces more greenhouse gasses due to soil disturbance. Just one big tree can take in about 50 pounds of CO2 every year. This is how an agroforest can effectively capture and store significant amounts of carbon emissions.
+Moreover, this climate-smart cultivation has manifold benefits:
+• boosting biodiversity
+• increasing annual crop
+• creating habitats for various species
+• improving soil health
+• making ecosystems resilient
+It serves to underscore the pressing importance of adopting agroforestry practices - an age-old yet regrettably less-adopted method of safeguarding the planet's future.
+
+¶5 (18) For some unfortunate reasons, agroforestry became disjointed over time; let's discuss them:
+• Rise of mono-cropping: As societies shifted toward more intensive (19) agricultural practices mono-cropping became the prevailing norm. Thus, the practice of integrating trees on farms faded away.
+• Diminished knowledge: Over time, the traditional wisdom surrounding the benefits of agroforestry began to fade. This resulted in a decline in incorporating agroforestry into modern agricultural systems.
+• Lack of understanding: Many farmers aren't fully familiar with the benefits of agroforestry.
+• Cost barriers: Farmers often have limited assets or no start-up capital. Subsequently, they can't manage the establishment cost. In some cases, farmers do not plant trees on their lands as the maintenance costs erode their economic returns.
+
+¶6 This is why governments and other groups should help small farmers in using agroforestry practices. This need for support is exemplified by Kenya. Kenya has taken proactive steps like:
+• The National Adaptation Plan (NAP 2015-2030)
+• Kenya Climate Smart Agriculture Strategy (KCSAS 2017-2026)
+• Bringing on the International Centre for Research in Agroforestry (ICRAF) to focus on the sustainable management of tropical rainforests and natural reserves
+(20) Also, collaborations, like those between Kenyan farmers and ICRAF, showcase the potential of regreening lands while concurrently contributing to carbon storage efforts.`,
+    question: "As societies shifted toward more intensive agricultural practices mono-cropping became the prevailing norm.",
+    choices: [
+      "A. No change",
+      "B. agriculture practices. Mono-cropping",
+      "C. agricultural practices, mono-cropping",
+      "D. agricultural practices – mono cropping"
+    ],
+    correct: 2,
+    explanation: "Option C is correct because it places a comma after 'agricultural practices,' which helps to separate the introductory dependent clause from the main independent clause. This correction fixes the fused (run-on) sentence error."
+  },
+  {
+    id: 310,
+    category: "Language Facility",
+    passage: `Agroforestry: Its Benefits and Adoption
+By Aalia Powell
+Published: September 5, 2023
+
+¶1 Step back to pre-industrial times before the era of machines and industrial landscapes. Picture a farmland where trees and crops intermingled, livestock roamed freely in the pastures, and every element had a role to play. It was a realm where every element wove a story of give and take and mutual support. This is known as agroforestry: the intentional integration of trees, crops, and livestock, resolving three main environmental problems. These are low crop productivity, low water tables, and land degradation. Each of the three elements, trees, livestock and crops, have a role to play.
+
+¶2 Trees are more than just shade. Here's how:
+• They offer nutritious food for livestock.
+• Hidden beneath the earth's surface, their roots work to prevent soil erosion.
+• (16) Otherwise, by keeping the soil covered, trees stop rain from washing away valuable nutrients.
+• The fallen fruits, leaves, and branches of a tree decompose over time, adding nutrients back into the soil. Thus, trees improve the nutrient cycle, an essential defense against nature's forces.
+• When trees help recycle nutrients, a healthier ecosystem where crops and cattle can thrive is created.
+• In areas with low water tables, trees can help alter the balance between groundwater and surface water. By consuming water through their roots and releasing it through transpiration, trees can contribute to a more sustainable water balance.
+
+¶3 Similarly, livestock also helps the crops to grow:
+• Animal manure is like a natural booster for the soil.
+• When farmers spread manure on their fields, it's like giving the soil natural fertilizer.
+• Using manure reduces the need for synthetic chemicals.
+
+¶4 (17) Forest trees and shrubs, fruit orchards, and meadows can capture a lot of carbon, which help with climate action. On the other hand, growing crops in fields produces more greenhouse gasses due to soil disturbance. Just one big tree can take in about 50 pounds of CO2 every year. This is how an agroforest can effectively capture and store significant amounts of carbon emissions.
+Moreover, this climate-smart cultivation has manifold benefits:
+• boosting biodiversity
+• increasing annual crop
+• creating habitats for various species
+• improving soil health
+• making ecosystems resilient
+It serves to underscore the pressing importance of adopting agroforestry practices - an age-old yet regrettably less-adopted method of safeguarding the planet's future.
+
+¶5 (18) For some unfortunate reasons, agroforestry became disjointed over time; let's discuss them:
+• Rise of mono-cropping: As societies shifted toward more intensive (19) agricultural practices mono-cropping became the prevailing norm. Thus, the practice of integrating trees on farms faded away.
+• Diminished knowledge: Over time, the traditional wisdom surrounding the benefits of agroforestry began to fade. This resulted in a decline in incorporating agroforestry into modern agricultural systems.
+• Lack of understanding: Many farmers aren't fully familiar with the benefits of agroforestry.
+• Cost barriers: Farmers often have limited assets or no start-up capital. Subsequently, they can't manage the establishment cost. In some cases, farmers do not plant trees on their lands as the maintenance costs erode their economic returns.
+
+¶6 This is why governments and other groups should help small farmers in using agroforestry practices. This need for support is exemplified by Kenya. Kenya has taken proactive steps like:
+• The National Adaptation Plan (NAP 2015-2030)
+• Kenya Climate Smart Agriculture Strategy (KCSAS 2017-2026)
+• Bringing on the International Centre for Research in Agroforestry (ICRAF) to focus on the sustainable management of tropical rainforests and natural reserves
+(20) Also, collaborations, like those between Kenyan farmers and ICRAF, showcase the potential of regreening lands while concurrently contributing to carbon storage efforts.`,
+    question: "Also, collaborations, like those between Kenyan farmers and ICRAF, showcase the potential of regreening lands while concurrently contributing to carbon storage efforts.",
+    choices: [
+      "A. No change",
+      "B. Also while aiding carbon storage, such as those among Kenyan farmers and ICRAF, collaborations showcase the potential of regreening the farmlands.",
+      "C. Also, which regreening the farmlands, such as those of Kenyan farmers and ICRAF, collaborations showcase the potential of carbon storage.",
+      "D. Also, the potential of regreening the farmlands, such as those among Kenyan farmers and ICRAF, which aiding carbon storage and showcase the collaborations."
+    ],
+    correct: 0,
+    explanation: "Option A is correct because no change is required; the indicated sentence has both clarity and coherence."
+  },
+  {
+    id: 311,
+    category: "Organization of Ideas",
+    passage: `Cautionary Words for the Overly Inquisitive
+
+¶1 The English saying, "Curiosity killed the cat," warns about the possible dangers of pointless investigation. (21) Curiosity may have its undesirable results. Why is being curious bad? Curiosity is the means to learning, discovery, and growth. Curiosity gives the person mastery in critical thinking. It opens new possibilities and enables the person to discover the unexplored. It is essential to remove fear to let curiosity work to discover and uncover new opportunities. One must adopt and seize curiosity and use it to gain knowledge. So, it's good to be curious, but not too much!
+
+¶2 (22) Scientific curiosity arises from a driving force that originates from the yearning to learn more about our suroundings. Galileo Galilei and Marie Curie discovered remarkable findings through scientific curiosity. Through his telescope, Galilei, the well-known astronomer, detected the moons of Jupiter and the laws of nature. However, it also led to his disapproval by the Catholic Church. Another example is 20th century physicist Marie Curie, who was driven by her curiosity to explore the elements polonium and radium. Similarly, she discovered radioactivity and created mobile X-ray units as she was also driven by scientific curiosity. But Marie Curie's scientific curiosity also led to her death, as she was exposed to high levels of radiation during her research.
+
+¶3 However, scientific curiosity has its negative consequences. Scientific curiosity can be disastrous if it is not handled with caution. One instance that illustrates the potential dangers of unbridled scientific exploration is the development of the atomic bomb. This led to the ruin of two Japanese cities, namely, Hiroshima and Nagasaki. This tragic atomic bombing killed countless innocent people and caused widespread destruction. The radiation from these bombings also caused long-lasting health problems and deaths. (23) The aftermath of the destruction of these two cities serves as an evident reminder being over-curious is highly dangerous.
+
+¶4 Curiosity brings out new and creative experiences that enrich and impact our personal lives. However, being curious all the time does not bring meaning to life. Binge-watching, internet surfing, and overuse of social media are examples of futile curiosity. This easy access to data leads to whims and deviation from goals. For example, a person who spends many hours on the internet watching videos on social media is not learning anything. Instead, they are only fulfilling their curiosity for needless entertainment. It's wise to avoid such time-wasting distractions. Instead, we should do what matters the most.
+
+¶5 So, curiosity is a mixed blessing that has both ups and downs (24) in terms of personal growth. However, too much curiosity can lead to harmful effects. As exemplified by Marie Curie's death, (25) it can harm the life of an overly curious person, while also motivate them to make new scientific findings. So, though over-inquisitiveness may not seem dangerous, it can lead to destructive inventions and distractions. However, the rewards of curiosity outweigh the risks when used wisely and cautiously. Whenever finding new interests, it's vital to be cautious and take steps to prevent any potential risks. As Samuel Johnson once said, "Curiosity is one of the most permanent and certain characteristics of a vigorous intellect. But it must be regulated by reason, and directed to a noble end."`,
+    question: "Should the writer retain or delete the indicated sentence?",
+    choices: [
+      "A. Keep it because it provides a relevant question that follows the previous sentence.",
+      "B. Keep it because it introduces an interesting perspective on curiosity's potential drawbacks.",
+      "C. Delete it because it creates confusion by abruptly shifting the topic from curiosity to an unrelated subject.",
+      "D. Delete it because it lacks a connection to the preceding sentence and assumes that being curious is a bad trait."
+    ],
+    correct: 3,
+    explanation: "Option D is correct because the sentence 'Why is being curious bad?' lacks a connection to the preceding sentence and presents an assumption that being curious is bad. It does not add anything to this discussion."
+  },
+  {
+    id: 312,
+    category: "Language Facility",
+    passage: `Cautionary Words for the Overly Inquisitive
+
+¶1 The English saying, "Curiosity killed the cat," warns about the possible dangers of pointless investigation. (21) Curiosity may have its undesirable results. Why is being curious bad? Curiosity is the means to learning, discovery, and growth. Curiosity gives the person mastery in critical thinking. It opens new possibilities and enables the person to discover the unexplored. It is essential to remove fear to let curiosity work to discover and uncover new opportunities. One must adopt and seize curiosity and use it to gain knowledge. So, it's good to be curious, but not too much!
+
+¶2 (22) Scientific curiosity arises from a driving force that originates from the yearning to learn more about our suroundings. Galileo Galilei and Marie Curie discovered remarkable findings through scientific curiosity. Through his telescope, Galilei, the well-known astronomer, detected the moons of Jupiter and the laws of nature. However, it also led to his disapproval by the Catholic Church. Another example is 20th century physicist Marie Curie, who was driven by her curiosity to explore the elements polonium and radium. Similarly, she discovered radioactivity and created mobile X-ray units as she was also driven by scientific curiosity. But Marie Curie's scientific curiosity also led to her death, as she was exposed to high levels of radiation during her research.
+
+¶3 However, scientific curiosity has its negative consequences. Scientific curiosity can be disastrous if it is not handled with caution. One instance that illustrates the potential dangers of unbridled scientific exploration is the development of the atomic bomb. This led to the ruin of two Japanese cities, namely, Hiroshima and Nagasaki. This tragic atomic bombing killed countless innocent people and caused widespread destruction. The radiation from these bombings also caused long-lasting health problems and deaths. (23) The aftermath of the destruction of these two cities serves as an evident reminder being over-curious is highly dangerous.
+
+¶4 Curiosity brings out new and creative experiences that enrich and impact our personal lives. However, being curious all the time does not bring meaning to life. Binge-watching, internet surfing, and overuse of social media are examples of futile curiosity. This easy access to data leads to whims and deviation from goals. For example, a person who spends many hours on the internet watching videos on social media is not learning anything. Instead, they are only fulfilling their curiosity for needless entertainment. It's wise to avoid such time-wasting distractions. Instead, we should do what matters the most.
+
+¶5 So, curiosity is a mixed blessing that has both ups and downs (24) in terms of personal growth. However, too much curiosity can lead to harmful effects. As exemplified by Marie Curie's death, (25) it can harm the life of an overly curious person, while also motivate them to make new scientific findings. So, though over-inquisitiveness may not seem dangerous, it can lead to destructive inventions and distractions. However, the rewards of curiosity outweigh the risks when used wisely and cautiously. Whenever finding new interests, it's vital to be cautious and take steps to prevent any potential risks. As Samuel Johnson once said, "Curiosity is one of the most permanent and certain characteristics of a vigorous intellect. But it must be regulated by reason, and directed to a noble end."`,
+    question: "One of the four indicated words is misspelled. Which change in spelling corrects the error?",
+    choices: [
+      "A. scientific",
+      "B. originaetes",
+      "C. surroundings",
+      "D. yearening"
+    ],
+    correct: 2,
+    explanation: "Option C is correct because the correct spelling of the word is 'surroundings.' The passage has it misspelled as 'suroundings.'"
+  },
+  {
+    id: 313,
+    category: "Language Facility",
+    passage: `Cautionary Words for the Overly Inquisitive
+
+¶1 The English saying, "Curiosity killed the cat," warns about the possible dangers of pointless investigation. (21) Curiosity may have its undesirable results. Why is being curious bad? Curiosity is the means to learning, discovery, and growth. Curiosity gives the person mastery in critical thinking. It opens new possibilities and enables the person to discover the unexplored. It is essential to remove fear to let curiosity work to discover and uncover new opportunities. One must adopt and seize curiosity and use it to gain knowledge. So, it's good to be curious, but not too much!
+
+¶2 (22) Scientific curiosity arises from a driving force that originates from the yearning to learn more about our suroundings. Galileo Galilei and Marie Curie discovered remarkable findings through scientific curiosity. Through his telescope, Galilei, the well-known astronomer, detected the moons of Jupiter and the laws of nature. However, it also led to his disapproval by the Catholic Church. Another example is 20th century physicist Marie Curie, who was driven by her curiosity to explore the elements polonium and radium. Similarly, she discovered radioactivity and created mobile X-ray units as she was also driven by scientific curiosity. But Marie Curie's scientific curiosity also led to her death, as she was exposed to high levels of radiation during her research.
+
+¶3 However, scientific curiosity has its negative consequences. Scientific curiosity can be disastrous if it is not handled with caution. One instance that illustrates the potential dangers of unbridled scientific exploration is the development of the atomic bomb. This led to the ruin of two Japanese cities, namely, Hiroshima and Nagasaki. This tragic atomic bombing killed countless innocent people and caused widespread destruction. The radiation from these bombings also caused long-lasting health problems and deaths. (23) The aftermath of the destruction of these two cities serves as an evident reminder being over-curious is highly dangerous.
+
+¶4 Curiosity brings out new and creative experiences that enrich and impact our personal lives. However, being curious all the time does not bring meaning to life. Binge-watching, internet surfing, and overuse of social media are examples of futile curiosity. This easy access to data leads to whims and deviation from goals. For example, a person who spends many hours on the internet watching videos on social media is not learning anything. Instead, they are only fulfilling their curiosity for needless entertainment. It's wise to avoid such time-wasting distractions. Instead, we should do what matters the most.
+
+¶5 So, curiosity is a mixed blessing that has both ups and downs (24) in terms of personal growth. However, too much curiosity can lead to harmful effects. As exemplified by Marie Curie's death, (25) it can harm the life of an overly curious person, while also motivate them to make new scientific findings. So, though over-inquisitiveness may not seem dangerous, it can lead to destructive inventions and distractions. However, the rewards of curiosity outweigh the risks when used wisely and cautiously. Whenever finding new interests, it's vital to be cautious and take steps to prevent any potential risks. As Samuel Johnson once said, "Curiosity is one of the most permanent and certain characteristics of a vigorous intellect. But it must be regulated by reason, and directed to a noble end."`,
+    question: "Which relative pronoun should be used to complete the sentence in the passage?",
+    choices: [
+      "A. that",
+      "B. which",
+      "C. whose",
+      "D. whom"
+    ],
+    correct: 0,
+    explanation: "Option A is correct because the relative pronoun 'that' is the most specific pronoun, introducing the essential information 'being over-curious is highly dangerous.'"
+  },
+  {
+    id: 314,
+    category: "Language Facility",
+    passage: `Cautionary Words for the Overly Inquisitive
+
+¶1 The English saying, "Curiosity killed the cat," warns about the possible dangers of pointless investigation. (21) Curiosity may have its undesirable results. Why is being curious bad? Curiosity is the means to learning, discovery, and growth. Curiosity gives the person mastery in critical thinking. It opens new possibilities and enables the person to discover the unexplored. It is essential to remove fear to let curiosity work to discover and uncover new opportunities. One must adopt and seize curiosity and use it to gain knowledge. So, it's good to be curious, but not too much!
+
+¶2 (22) Scientific curiosity arises from a driving force that originates from the yearning to learn more about our suroundings. Galileo Galilei and Marie Curie discovered remarkable findings through scientific curiosity. Through his telescope, Galilei, the well-known astronomer, detected the moons of Jupiter and the laws of nature. However, it also led to his disapproval by the Catholic Church. Another example is 20th century physicist Marie Curie, who was driven by her curiosity to explore the elements polonium and radium. Similarly, she discovered radioactivity and created mobile X-ray units as she was also driven by scientific curiosity. But Marie Curie's scientific curiosity also led to her death, as she was exposed to high levels of radiation during her research.
+
+¶3 However, scientific curiosity has its negative consequences. Scientific curiosity can be disastrous if it is not handled with caution. One instance that illustrates the potential dangers of unbridled scientific exploration is the development of the atomic bomb. This led to the ruin of two Japanese cities, namely, Hiroshima and Nagasaki. This tragic atomic bombing killed countless innocent people and caused widespread destruction. The radiation from these bombings also caused long-lasting health problems and deaths. (23) The aftermath of the destruction of these two cities serves as an evident reminder being over-curious is highly dangerous.
+
+¶4 Curiosity brings out new and creative experiences that enrich and impact our personal lives. However, being curious all the time does not bring meaning to life. Binge-watching, internet surfing, and overuse of social media are examples of futile curiosity. This easy access to data leads to whims and deviation from goals. For example, a person who spends many hours on the internet watching videos on social media is not learning anything. Instead, they are only fulfilling their curiosity for needless entertainment. It's wise to avoid such time-wasting distractions. Instead, we should do what matters the most.
+
+¶5 So, curiosity is a mixed blessing that has both ups and downs (24) in terms of personal growth. However, too much curiosity can lead to harmful effects. As exemplified by Marie Curie's death, (25) it can harm the life of an overly curious person, while also motivate them to make new scientific findings. So, though over-inquisitiveness may not seem dangerous, it can lead to destructive inventions and distractions. However, the rewards of curiosity outweigh the risks when used wisely and cautiously. Whenever finding new interests, it's vital to be cautious and take steps to prevent any potential risks. As Samuel Johnson once said, "Curiosity is one of the most permanent and certain characteristics of a vigorous intellect. But it must be regulated by reason, and directed to a noble end."`,
+    question: "So, curiosity is a mixed blessing that has both ups and downs in terms of personal growth.",
+    choices: [
+      "A. No change",
+      "B. for personal growth",
+      "C. about personal growth",
+      "D. between personal growth"
+    ],
+    correct: 0,
+    explanation: "Option A is correct because the preposition 'in terms of' is used to indicate the context or perspective in which something is being considered. In this case, the context is 'personal growth.'"
+  },
+  {
+    id: 315,
+    category: "Language Facility",
+    passage: `Cautionary Words for the Overly Inquisitive
+
+¶1 The English saying, "Curiosity killed the cat," warns about the possible dangers of pointless investigation. (21) Curiosity may have its undesirable results. Why is being curious bad? Curiosity is the means to learning, discovery, and growth. Curiosity gives the person mastery in critical thinking. It opens new possibilities and enables the person to discover the unexplored. It is essential to remove fear to let curiosity work to discover and uncover new opportunities. One must adopt and seize curiosity and use it to gain knowledge. So, it's good to be curious, but not too much!
+
+¶2 (22) Scientific curiosity arises from a driving force that originates from the yearning to learn more about our suroundings. Galileo Galilei and Marie Curie discovered remarkable findings through scientific curiosity. Through his telescope, Galilei, the well-known astronomer, detected the moons of Jupiter and the laws of nature. However, it also led to his disapproval by the Catholic Church. Another example is 20th century physicist Marie Curie, who was driven by her curiosity to explore the elements polonium and radium. Similarly, she discovered radioactivity and created mobile X-ray units as she was also driven by scientific curiosity. But Marie Curie's scientific curiosity also led to her death, as she was exposed to high levels of radiation during her research.
+
+¶3 However, scientific curiosity has its negative consequences. Scientific curiosity can be disastrous if it is not handled with caution. One instance that illustrates the potential dangers of unbridled scientific exploration is the development of the atomic bomb. This led to the ruin of two Japanese cities, namely, Hiroshima and Nagasaki. This tragic atomic bombing killed countless innocent people and caused widespread destruction. The radiation from these bombings also caused long-lasting health problems and deaths. (23) The aftermath of the destruction of these two cities serves as an evident reminder being over-curious is highly dangerous.
+
+¶4 Curiosity brings out new and creative experiences that enrich and impact our personal lives. However, being curious all the time does not bring meaning to life. Binge-watching, internet surfing, and overuse of social media are examples of futile curiosity. This easy access to data leads to whims and deviation from goals. For example, a person who spends many hours on the internet watching videos on social media is not learning anything. Instead, they are only fulfilling their curiosity for needless entertainment. It's wise to avoid such time-wasting distractions. Instead, we should do what matters the most.
+
+¶5 So, curiosity is a mixed blessing that has both ups and downs (24) in terms of personal growth. However, too much curiosity can lead to harmful effects. As exemplified by Marie Curie's death, (25) it can harm the life of an overly curious person, while also motivate them to make new scientific findings. So, though over-inquisitiveness may not seem dangerous, it can lead to destructive inventions and distractions. However, the rewards of curiosity outweigh the risks when used wisely and cautiously. Whenever finding new interests, it's vital to be cautious and take steps to prevent any potential risks. As Samuel Johnson once said, "Curiosity is one of the most permanent and certain characteristics of a vigorous intellect. But it must be regulated by reason, and directed to a noble end."`,
+    question: "it can harm the life of an overly curious person, while also motivate them to make new scientific findings.",
+    choices: [
+      "A. it can harm the life of an overly curious person while also motivate them to make new scientific findings.",
+      "B. it can harm the life of an overly curious person while also motivates them to make new scientific findings.",
+      "C. it can harm the life of an overly curious person while also motivated them to make new scientific findings.",
+      "D. it can harm the life of an overly curious person, while also motivating them to make new scientific findings."
+    ],
+    correct: 3,
+    explanation: "Option D is correct because the present participle 'motivating' is appropriate to show the ongoing effect of being overly curious."
+  },
+
+  // === FPT9 — Released 2025 (IDs 316-340) ===
+  {
+    id: 316,
+    category: "Writing Conventions",
+    passage: `WE WANT TO SEE YOU THERE!\nBenning High's Back-to-School Cookout\nSeptember 6 at 7.00 P.M.\n\n¶1 Let's have a big turnout at City Park for this year's Back-to-School Cookout. Members of the student senate (1) has been planning an evening of fun, food, and foot-tapping (2) festivities to celebrate the beginning of another extrordinary year.\n\n¶2 From 7.00 to 9.00, (3) Faculty advisor's Robert Henderson, Joseph Weinstein, and Andrea Wu will be serving everyone's favorites hot off the grill. The International Club will provide a mouth-watering assortment of desserts from around the world.\n\n¶3 Leading off the entertainment for the evening will be our award-winning Benny's Jazz Band, followed by a performance by our (4) own, show choir The Benning Transfer.\n\n¶4 (5) Don't miss it, in that it's the year's first big party!\n\n¶5 Admission is $2.00 for students with an activity card. (6) $3.00 without one. (7) Students having their Benning ID card along with them will only be admitted.`,
+    question: "Which revision should be made to the underlined portion (1)?",
+    choices: ["A. No change", "B. were planning", "C. have planned", "D. has planned"],
+    correct: 2,
+    explanation: "The sentence has a plural subject, 'Members,' which agrees with the plural verb 'have planned.' The verb tense also fits more accurately, showing that the activity has been taking place till the present communication."
+  },
+  {
+    id: 317,
+    category: "Writing Conventions",
+    passage: `WE WANT TO SEE YOU THERE!\nBenning High's Back-to-School Cookout\nSeptember 6 at 7.00 P.M.\n\n¶1 Let's have a big turnout at City Park for this year's Back-to-School Cookout. Members of the student senate (1) has been planning an evening of fun, food, and foot-tapping (2) festivities to celebrate the beginning of another extrordinary year.\n\n¶2 From 7.00 to 9.00, (3) Faculty advisor's Robert Henderson, Joseph Weinstein, and Andrea Wu will be serving everyone's favorites hot off the grill. The International Club will provide a mouth-watering assortment of desserts from around the world.\n\n¶3 Leading off the entertainment for the evening will be our award-winning Benny's Jazz Band, followed by a performance by our (4) own, show choir The Benning Transfer.\n\n¶4 (5) Don't miss it, in that it's the year's first big party!\n\n¶5 Admission is $2.00 for students with an activity card. (6) $3.00 without one. (7) Students having their Benning ID card along with them will only be admitted.`,
+    question: "Which of these words, if any, is misspelled?",
+    choices: ["A. None", "B. festivities", "C. celebrate", "D. extrordinary"],
+    correct: 3,
+    explanation: "The correct spelling of the word is 'extraordinary.'"
+  },
+  {
+    id: 318,
+    category: "Writing Conventions",
+    passage: `WE WANT TO SEE YOU THERE!\nBenning High's Back-to-School Cookout\nSeptember 6 at 7.00 P.M.\n\n¶1 Let's have a big turnout at City Park for this year's Back-to-School Cookout. Members of the student senate (1) has been planning an evening of fun, food, and foot-tapping (2) festivities to celebrate the beginning of another extrordinary year.\n\n¶2 From 7.00 to 9.00, (3) Faculty advisor's Robert Henderson, Joseph Weinstein, and Andrea Wu will be serving everyone's favorites hot off the grill. The International Club will provide a mouth-watering assortment of desserts from around the world.\n\n¶3 Leading off the entertainment for the evening will be our award-winning Benny's Jazz Band, followed by a performance by our (4) own, show choir The Benning Transfer.\n\n¶4 (5) Don't miss it, in that it's the year's first big party!\n\n¶5 Admission is $2.00 for students with an activity card. (6) $3.00 without one. (7) Students having their Benning ID card along with them will only be admitted.`,
+    question: "Which revision should be made to the underlined portion (3)?",
+    choices: ["A. No change", "B. faculty advisors", "C. faculty Advisors", "D. Faculty Advisor's"],
+    correct: 1,
+    explanation: "The words 'faculty' and 'advisors' are not proper nouns. 'Advisors' is also a plural noun, not a possessive noun."
+  },
+  {
+    id: 319,
+    category: "Writing Conventions",
+    passage: `WE WANT TO SEE YOU THERE!\nBenning High's Back-to-School Cookout\nSeptember 6 at 7.00 P.M.\n\n¶1 Let's have a big turnout at City Park for this year's Back-to-School Cookout. Members of the student senate (1) has been planning an evening of fun, food, and foot-tapping (2) festivities to celebrate the beginning of another extrordinary year.\n\n¶2 From 7.00 to 9.00, (3) Faculty advisor's Robert Henderson, Joseph Weinstein, and Andrea Wu will be serving everyone's favorites hot off the grill. The International Club will provide a mouth-watering assortment of desserts from around the world.\n\n¶3 Leading off the entertainment for the evening will be our award-winning Benny's Jazz Band, followed by a performance by our (4) own, show choir The Benning Transfer.\n\n¶4 (5) Don't miss it, in that it's the year's first big party!\n\n¶5 Admission is $2.00 for students with an activity card. (6) $3.00 without one. (7) Students having their Benning ID card along with them will only be admitted.`,
+    question: "Which revision should be made to the underlined portion (4)?",
+    choices: ["A. No change", "B. own show, choir The", "C. own show choir, The", "D. own show choir The"],
+    correct: 2,
+    explanation: "The comma separates the description 'our show choir' from the name of the choir, 'The Benning Transfer.'"
+  },
+  {
+    id: 320,
+    category: "Language Facility",
+    passage: `WE WANT TO SEE YOU THERE!\nBenning High's Back-to-School Cookout\nSeptember 6 at 7.00 P.M.\n\n¶1 Let's have a big turnout at City Park for this year's Back-to-School Cookout. Members of the student senate (1) has been planning an evening of fun, food, and foot-tapping (2) festivities to celebrate the beginning of another extrordinary year.\n\n¶2 From 7.00 to 9.00, (3) Faculty advisor's Robert Henderson, Joseph Weinstein, and Andrea Wu will be serving everyone's favorites hot off the grill. The International Club will provide a mouth-watering assortment of desserts from around the world.\n\n¶3 Leading off the entertainment for the evening will be our award-winning Benny's Jazz Band, followed by a performance by our (4) own, show choir The Benning Transfer.\n\n¶4 (5) Don't miss it, in that it's the year's first big party!\n\n¶5 Admission is $2.00 for students with an activity card. (6) $3.00 without one. (7) Students having their Benning ID card along with them will only be admitted.`,
+    question: "Which revision should be made to the underlined portion (5)?",
+    choices: ["A. No change", "B. The first big party of the year does not want you to be missing!", "C. It being the year's first big party, don't miss it!", "D. Don't miss the first big party of the year!"],
+    correct: 3,
+    explanation: "\"Don't miss the first big party of the year!\" is a simple command, telling the reader exactly what they shouldn't miss, directly and concisely. The original is clunky and wordy, with an unnecessary connector, 'in that.'"
+  },
+  {
+    id: 321,
+    category: "Writing Conventions",
+    passage: `WE WANT TO SEE YOU THERE!\nBenning High's Back-to-School Cookout\nSeptember 6 at 7.00 P.M.\n\n¶1 Let's have a big turnout at City Park for this year's Back-to-School Cookout. Members of the student senate (1) has been planning an evening of fun, food, and foot-tapping (2) festivities to celebrate the beginning of another extrordinary year.\n\n¶2 From 7.00 to 9.00, (3) Faculty advisor's Robert Henderson, Joseph Weinstein, and Andrea Wu will be serving everyone's favorites hot off the grill. The International Club will provide a mouth-watering assortment of desserts from around the world.\n\n¶3 Leading off the entertainment for the evening will be our award-winning Benny's Jazz Band, followed by a performance by our (4) own, show choir The Benning Transfer.\n\n¶4 (5) Don't miss it, in that it's the year's first big party!\n\n¶5 Admission is $2.00 for students with an activity card. (6) $3.00 without one. (7) Students having their Benning ID card along with them will only be admitted.`,
+    question: "Which revision should be made to the underlined portion (6)?",
+    choices: ["A. No change", "B. $3.00, for without.", "C. $3.00 for those without one.", "D. $3.00 for you're without."],
+    correct: 2,
+    explanation: "This option eliminates the sentence fragment '$3.00 without one.' It is more concise and clearer, resulting in a natural rhythm in the announcement."
+  },
+  {
+    id: 322,
+    category: "Language Facility",
+    passage: `WE WANT TO SEE YOU THERE!\nBenning High's Back-to-School Cookout\nSeptember 6 at 7.00 P.M.\n\n¶1 Let's have a big turnout at City Park for this year's Back-to-School Cookout. Members of the student senate (1) has been planning an evening of fun, food, and foot-tapping (2) festivities to celebrate the beginning of another extrordinary year.\n\n¶2 From 7.00 to 9.00, (3) Faculty advisor's Robert Henderson, Joseph Weinstein, and Andrea Wu will be serving everyone's favorites hot off the grill. The International Club will provide a mouth-watering assortment of desserts from around the world.\n\n¶3 Leading off the entertainment for the evening will be our award-winning Benny's Jazz Band, followed by a performance by our (4) own, show choir The Benning Transfer.\n\n¶4 (5) Don't miss it, in that it's the year's first big party!\n\n¶5 Admission is $2.00 for students with an activity card. (6) $3.00 without one. (7) Students having their Benning ID card along with them will only be admitted.`,
+    question: "Which revision should be made to the underlined portion (7)?",
+    choices: ["A. No change", "B. Students must show their Benning ID card to be admitted.", "C. Bringing your Benning ID card is necessary because you can't get in without one.", "D. Only students will be admitted carrying a Benning ID card with them."],
+    correct: 1,
+    explanation: "This option is written in the active voice, making it more direct, concise, and clear, adhering to the tone and style of the announcement."
+  },
+  {
+    id: 323,
+    category: "Writing Conventions",
+    passage: `Monarch Migration\n\n¶1 Perhaps North America's most beautiful natural phenomanon is the annual migration of the monarch butterfly. Each fall and spring, generations of monarchs flood the sky above certain parts of the continent. While a single monarch butterfly is only ten centimeters wide and weighing less than one gram, clouds of migrating monarchs can actually be seen in satellite imagery.\n\n¶2 Monarchs thrive only under specific environmental conditions. With respect to the formation of the ideal monarch habitat, weather proves to be the predominant component. Monarchs require a temperate habitat; therefore, the changeable climate of the United States forces most monarchs to migrate south for the winter. No individual butterfly lives long enough to complete the entire round trip.\n\n¶3 {1} Typical male monarchs travel eighty miles per day, though in a single day a tagged male once was reported to have covered 265 miles. {2} The season and location of a monarch's birth can do the total distance traveled during its lifetime. {3} Consider, for example, if a monarch were born in the northern United States in late summer or early fall. {4} Such a butterfly might migrate south to central Mexico but then might complete only one-half of the return trip before dying the next spring. {5} Even in so short a lifetime, such a monarch would have traveled nearly 3,000 miles. {6} Any offspring of such a butterfly, the next generation, then will have completed the remainder of the journey back to the northern United States.\n\n¶4 Possible tools butterflies rely on to help navigate these pathways for migration include instinct, chemical markers left along their route by previous generations, and even the sun's position and the Earth's magnetic pull. Scientists still lack a full explanation for this successful yearly migration. Therefore, well-documented and researched theories provide partial insights into one of nature's most eye-catching events.`,
+    question: "One of the four indicated words is misspelled. Which change in spelling corrects the error?",
+    choices: ["A. beautifull", "B. phenomenon", "C. anual", "D. contenent"],
+    correct: 1,
+    explanation: "The correct spelling of the word is 'phenomenon.' The passage contains the misspelling 'phenomanon.'"
+  },
+  {
+    id: 324,
+    category: "Writing Conventions",
+    passage: `Monarch Migration\n\n¶1 Perhaps North America's most beautiful natural phenomanon is the annual migration of the monarch butterfly. Each fall and spring, generations of monarchs flood the sky above certain parts of the continent. While a single monarch butterfly is only ten centimeters wide and weighing less than one gram, clouds of migrating monarchs can actually be seen in satellite imagery.\n\n¶2 Monarchs thrive only under specific environmental conditions. With respect to the formation of the ideal monarch habitat, weather proves to be the predominant component. Monarchs require a temperate habitat; therefore, the changeable climate of the United States forces most monarchs to migrate south for the winter. No individual butterfly lives long enough to complete the entire round trip.\n\n¶3 {1} Typical male monarchs travel eighty miles per day, though in a single day a tagged male once was reported to have covered 265 miles. {2} The season and location of a monarch's birth can do the total distance traveled during its lifetime. {3} Consider, for example, if a monarch were born in the northern United States in late summer or early fall. {4} Such a butterfly might migrate south to central Mexico but then might complete only one-half of the return trip before dying the next spring. {5} Even in so short a lifetime, such a monarch would have traveled nearly 3,000 miles. {6} Any offspring of such a butterfly, the next generation, then will have completed the remainder of the journey back to the northern United States.\n\n¶4 Possible tools butterflies rely on to help navigate these pathways for migration include instinct, chemical markers left along their route by previous generations, and even the sun's position and the Earth's magnetic pull. Scientists still lack a full explanation for this successful yearly migration. Therefore, well-documented and researched theories provide partial insights into one of nature's most eye-catching events.`,
+    question: "Which revision should be made to the underlined portion (9)?",
+    choices: ["A. No change", "B. wide, weighs", "C. wide weighing", "D. wide and weighs"],
+    correct: 3,
+    explanation: "This follows the grammatical principle of parallelism, using active verbs ('is...wide' and 'weighs') to describe the subject ('a single monarch butterfly')."
+  },
+  {
+    id: 325,
+    category: "Organization of Ideas",
+    passage: `Monarch Migration\n\n¶1 Perhaps North America's most beautiful natural phenomanon is the annual migration of the monarch butterfly. Each fall and spring, generations of monarchs flood the sky above certain parts of the continent. While a single monarch butterfly is only ten centimeters wide and weighing less than one gram, clouds of migrating monarchs can actually be seen in satellite imagery.\n\n¶2 Monarchs thrive only under specific environmental conditions. With respect to the formation of the ideal monarch habitat, weather proves to be the predominant component. Monarchs require a temperate habitat; therefore, the changeable climate of the United States forces most monarchs to migrate south for the winter. No individual butterfly lives long enough to complete the entire round trip.\n\n¶3 {1} Typical male monarchs travel eighty miles per day, though in a single day a tagged male once was reported to have covered 265 miles. {2} The season and location of a monarch's birth can do the total distance traveled during its lifetime. {3} Consider, for example, if a monarch were born in the northern United States in late summer or early fall. {4} Such a butterfly might migrate south to central Mexico but then might complete only one-half of the return trip before dying the next spring. {5} Even in so short a lifetime, such a monarch would have traveled nearly 3,000 miles. {6} Any offspring of such a butterfly, the next generation, then will have completed the remainder of the journey back to the northern United States.\n\n¶4 Possible tools butterflies rely on to help navigate these pathways for migration include instinct, chemical markers left along their route by previous generations, and even the sun's position and the Earth's magnetic pull. Scientists still lack a full explanation for this successful yearly migration. Therefore, well-documented and researched theories provide partial insights into one of nature's most eye-catching events.`,
+    question: "The writer is considering whether or not to add a concluding sentence to paragraph 1. Which choice is best?",
+    choices: ["A. No change; the paragraph is best as written.", "B. Isn't that amazing?", "C. I know that fact surprised me.", "D. That would really be a sight to see."],
+    correct: 0,
+    explanation: "The paragraph is informative and objective. It does not need an opinion statement, which could confuse the reader."
+  },
+  {
+    id: 326,
+    category: "Language Facility",
+    passage: `Monarch Migration\n\n¶1 Perhaps North America's most beautiful natural phenomanon is the annual migration of the monarch butterfly. Each fall and spring, generations of monarchs flood the sky above certain parts of the continent. While a single monarch butterfly is only ten centimeters wide and weighing less than one gram, clouds of migrating monarchs can actually be seen in satellite imagery.\n\n¶2 Monarchs thrive only under specific environmental conditions. With respect to the formation of the ideal monarch habitat, weather proves to be the predominant component. Monarchs require a temperate habitat; therefore, the changeable climate of the United States forces most monarchs to migrate south for the winter. No individual butterfly lives long enough to complete the entire round trip.\n\n¶3 {1} Typical male monarchs travel eighty miles per day, though in a single day a tagged male once was reported to have covered 265 miles. {2} The season and location of a monarch's birth can do the total distance traveled during its lifetime. {3} Consider, for example, if a monarch were born in the northern United States in late summer or early fall. {4} Such a butterfly might migrate south to central Mexico but then might complete only one-half of the return trip before dying the next spring. {5} Even in so short a lifetime, such a monarch would have traveled nearly 3,000 miles. {6} Any offspring of such a butterfly, the next generation, then will have completed the remainder of the journey back to the northern United States.\n\n¶4 Possible tools butterflies rely on to help navigate these pathways for migration include instinct, chemical markers left along their route by previous generations, and even the sun's position and the Earth's magnetic pull. Scientists still lack a full explanation for this successful yearly migration. Therefore, well-documented and researched theories provide partial insights into one of nature's most eye-catching events.`,
+    question: "Which revision should be made to the underlined portion (11)?",
+    choices: ["A. No change", "B. How the ideal monarch habitat formed is with the weather playing the major role.", "C. Weather plays the most important role in forming the ideal monarch habitat.", "D. Weather emerges as the main ideal monarch habitat formation factor."],
+    correct: 2,
+    explanation: "This option eliminates unnecessary phrasing and clearly states that weather is the most important factor in forming the ideal monarch habitat."
+  },
+  {
+    id: 327,
+    category: "Writing Conventions",
+    passage: `Monarch Migration\n\n¶1 Perhaps North America's most beautiful natural phenomanon is the annual migration of the monarch butterfly. Each fall and spring, generations of monarchs flood the sky above certain parts of the continent. While a single monarch butterfly is only ten centimeters wide and weighing less than one gram, clouds of migrating monarchs can actually be seen in satellite imagery.\n\n¶2 Monarchs thrive only under specific environmental conditions. With respect to the formation of the ideal monarch habitat, weather proves to be the predominant component. Monarchs require a temperate habitat; therefore, the changeable climate of the United States forces most monarchs to migrate south for the winter. No individual butterfly lives long enough to complete the entire round trip.\n\n¶3 {1} Typical male monarchs travel eighty miles per day, though in a single day a tagged male once was reported to have covered 265 miles. {2} The season and location of a monarch's birth can do the total distance traveled during its lifetime. {3} Consider, for example, if a monarch were born in the northern United States in late summer or early fall. {4} Such a butterfly might migrate south to central Mexico but then might complete only one-half of the return trip before dying the next spring. {5} Even in so short a lifetime, such a monarch would have traveled nearly 3,000 miles. {6} Any offspring of such a butterfly, the next generation, then will have completed the remainder of the journey back to the northern United States.\n\n¶4 Possible tools butterflies rely on to help navigate these pathways for migration include instinct, chemical markers left along their route by previous generations, and even the sun's position and the Earth's magnetic pull. Scientists still lack a full explanation for this successful yearly migration. Therefore, well-documented and researched theories provide partial insights into one of nature's most eye-catching events.`,
+    question: "Which revision should be made to the underlined portion (12)?",
+    choices: ["A. No change", "B. habitat and therefore,", "C. habitat, therefore,", "D. habitat therefore,"],
+    correct: 0,
+    explanation: "The compound sentence effectively uses a semicolon and a conjunctive adverb ('therefore') to connect two independent clauses: 'Monarchs require a temperate habitat' and 'the seasonal climate of the United States forces most monarchs to migrate south for the winter.'"
+  },
+  {
+    id: 328,
+    category: "Language Facility",
+    passage: `Monarch Migration\n\n¶1 Perhaps North America's most beautiful natural phenomanon is the annual migration of the monarch butterfly. Each fall and spring, generations of monarchs flood the sky above certain parts of the continent. While a single monarch butterfly is only ten centimeters wide and weighing less than one gram, clouds of migrating monarchs can actually be seen in satellite imagery.\n\n¶2 Monarchs thrive only under specific environmental conditions. With respect to the formation of the ideal monarch habitat, weather proves to be the predominant component. Monarchs require a temperate habitat; therefore, the changeable climate of the United States forces most monarchs to migrate south for the winter. No individual butterfly lives long enough to complete the entire round trip.\n\n¶3 {1} Typical male monarchs travel eighty miles per day, though in a single day a tagged male once was reported to have covered 265 miles. {2} The season and location of a monarch's birth can do the total distance traveled during its lifetime. {3} Consider, for example, if a monarch were born in the northern United States in late summer or early fall. {4} Such a butterfly might migrate south to central Mexico but then might complete only one-half of the return trip before dying the next spring. {5} Even in so short a lifetime, such a monarch would have traveled nearly 3,000 miles. {6} Any offspring of such a butterfly, the next generation, then will have completed the remainder of the journey back to the northern United States.\n\n¶4 Possible tools butterflies rely on to help navigate these pathways for migration include instinct, chemical markers left along their route by previous generations, and even the sun's position and the Earth's magnetic pull. Scientists still lack a full explanation for this successful yearly migration. Therefore, well-documented and researched theories provide partial insights into one of nature's most eye-catching events.`,
+    question: "The writer wants to replace the indicated word with one that is both more precise and appropriate. Which choice is best?",
+    choices: ["A. mutable", "B. seasonal", "C. irregular", "D. uncertain"],
+    correct: 1,
+    explanation: "'Seasonal' is a more precise and accurate term, indicating that the climate has distinct, predictable changes throughout the year."
+  },
+  {
+    id: 329,
+    category: "Organization of Ideas",
+    passage: `Monarch Migration\n\n¶1 Perhaps North America's most beautiful natural phenomanon is the annual migration of the monarch butterfly. Each fall and spring, generations of monarchs flood the sky above certain parts of the continent. While a single monarch butterfly is only ten centimeters wide and weighing less than one gram, clouds of migrating monarchs can actually be seen in satellite imagery.\n\n¶2 Monarchs thrive only under specific environmental conditions. With respect to the formation of the ideal monarch habitat, weather proves to be the predominant component. Monarchs require a temperate habitat; therefore, the changeable climate of the United States forces most monarchs to migrate south for the winter. No individual butterfly lives long enough to complete the entire round trip.\n\n¶3 {1} Typical male monarchs travel eighty miles per day, though in a single day a tagged male once was reported to have covered 265 miles. {2} The season and location of a monarch's birth can do the total distance traveled during its lifetime. {3} Consider, for example, if a monarch were born in the northern United States in late summer or early fall. {4} Such a butterfly might migrate south to central Mexico but then might complete only one-half of the return trip before dying the next spring. {5} Even in so short a lifetime, such a monarch would have traveled nearly 3,000 miles. {6} Any offspring of such a butterfly, the next generation, then will have completed the remainder of the journey back to the northern United States.\n\n¶4 Possible tools butterflies rely on to help navigate these pathways for migration include instinct, chemical markers left along their route by previous generations, and even the sun's position and the Earth's magnetic pull. Scientists still lack a full explanation for this successful yearly migration. Therefore, well-documented and researched theories provide partial insights into one of nature's most eye-catching events.`,
+    question: "The writer wants to add a sentence before the last sentence of paragraph 2. Which choice is best?",
+    choices: ["A. How is it that the butterflies are able to migrate so far?", "B. It is not just the butterflies that do this, as many birds do it too.", "C. The butterflies begin their journey in the fall, returning north each spring.", "D. The butterflies are sensitive to temperature, so they have to migrate south every single year."],
+    correct: 2,
+    explanation: "This option provides more information about the seasonal migration habits of the monarch."
+  },
+  {
+    id: 330,
+    category: "Language Facility",
+    passage: `Monarch Migration\n\n¶1 Perhaps North America's most beautiful natural phenomanon is the annual migration of the monarch butterfly. Each fall and spring, generations of monarchs flood the sky above certain parts of the continent. While a single monarch butterfly is only ten centimeters wide and weighing less than one gram, clouds of migrating monarchs can actually be seen in satellite imagery.\n\n¶2 Monarchs thrive only under specific environmental conditions. With respect to the formation of the ideal monarch habitat, weather proves to be the predominant component. Monarchs require a temperate habitat; therefore, the changeable climate of the United States forces most monarchs to migrate south for the winter. No individual butterfly lives long enough to complete the entire round trip.\n\n¶3 {1} Typical male monarchs travel eighty miles per day, though in a single day a tagged male once was reported to have covered 265 miles. {2} The season and location of a monarch's birth can do the total distance traveled during its lifetime. {3} Consider, for example, if a monarch were born in the northern United States in late summer or early fall. {4} Such a butterfly might migrate south to central Mexico but then might complete only one-half of the return trip before dying the next spring. {5} Even in so short a lifetime, such a monarch would have traveled nearly 3,000 miles. {6} Any offspring of such a butterfly, the next generation, then will have completed the remainder of the journey back to the northern United States.\n\n¶4 Possible tools butterflies rely on to help navigate these pathways for migration include instinct, chemical markers left along their route by previous generations, and even the sun's position and the Earth's magnetic pull. Scientists still lack a full explanation for this successful yearly migration. Therefore, well-documented and researched theories provide partial insights into one of nature's most eye-catching events.`,
+    question: "What is the best place in sentence 1, paragraph 3, for the indicated phrase?",
+    choices: ["A. No change", "B. Directly after \"tagged male\"", "C. Directly after \"was reported\"", "D. Directly after \"265 miles\""],
+    correct: 3,
+    explanation: "The prepositional phrase 'in a single day' clarifies the amount of time it took for the male monarch to cover 265 miles. Prepositional phrases of time generally tend to come at the end of the sentence."
+  },
+  {
+    id: 331,
+    category: "Organization of Ideas",
+    passage: `Monarch Migration\n\n¶1 Perhaps North America's most beautiful natural phenomanon is the annual migration of the monarch butterfly. Each fall and spring, generations of monarchs flood the sky above certain parts of the continent. While a single monarch butterfly is only ten centimeters wide and weighing less than one gram, clouds of migrating monarchs can actually be seen in satellite imagery.\n\n¶2 Monarchs thrive only under specific environmental conditions. With respect to the formation of the ideal monarch habitat, weather proves to be the predominant component. Monarchs require a temperate habitat; therefore, the changeable climate of the United States forces most monarchs to migrate south for the winter. No individual butterfly lives long enough to complete the entire round trip.\n\n¶3 {1} Typical male monarchs travel eighty miles per day, though in a single day a tagged male once was reported to have covered 265 miles. {2} The season and location of a monarch's birth can do the total distance traveled during its lifetime. {3} Consider, for example, if a monarch were born in the northern United States in late summer or early fall. {4} Such a butterfly might migrate south to central Mexico but then might complete only one-half of the return trip before dying the next spring. {5} Even in so short a lifetime, such a monarch would have traveled nearly 3,000 miles. {6} Any offspring of such a butterfly, the next generation, then will have completed the remainder of the journey back to the northern United States.\n\n¶4 Possible tools butterflies rely on to help navigate these pathways for migration include instinct, chemical markers left along their route by previous generations, and even the sun's position and the Earth's magnetic pull. Scientists still lack a full explanation for this successful yearly migration. Therefore, well-documented and researched theories provide partial insights into one of nature's most eye-catching events.`,
+    question: "The writer is considering whether or not to add the following sentence before sentence 2 in paragraph 3: \"That is a very impressive distance for a monarch butterfly to travel.\" The writer should",
+    choices: ["A. add it; it improves the transition between sentence 1 and sentence 2.", "B. add it; it provides supporting evidence for claims made in sentence 1.", "C. omit it; it makes a claim that is contradicted in another paragraph.", "D. omit it; it states an opinion and does not belong in the paragraph."],
+    correct: 3,
+    explanation: "This is an informational piece of writing. An opinion is not needed."
+  },
+  {
+    id: 332,
+    category: "Language Facility",
+    passage: `Monarch Migration\n\n¶1 Perhaps North America's most beautiful natural phenomanon is the annual migration of the monarch butterfly. Each fall and spring, generations of monarchs flood the sky above certain parts of the continent. While a single monarch butterfly is only ten centimeters wide and weighing less than one gram, clouds of migrating monarchs can actually be seen in satellite imagery.\n\n¶2 Monarchs thrive only under specific environmental conditions. With respect to the formation of the ideal monarch habitat, weather proves to be the predominant component. Monarchs require a temperate habitat; therefore, the changeable climate of the United States forces most monarchs to migrate south for the winter. No individual butterfly lives long enough to complete the entire round trip.\n\n¶3 {1} Typical male monarchs travel eighty miles per day, though in a single day a tagged male once was reported to have covered 265 miles. {2} The season and location of a monarch's birth can do the total distance traveled during its lifetime. {3} Consider, for example, if a monarch were born in the northern United States in late summer or early fall. {4} Such a butterfly might migrate south to central Mexico but then might complete only one-half of the return trip before dying the next spring. {5} Even in so short a lifetime, such a monarch would have traveled nearly 3,000 miles. {6} Any offspring of such a butterfly, the next generation, then will have completed the remainder of the journey back to the northern United States.\n\n¶4 Possible tools butterflies rely on to help navigate these pathways for migration include instinct, chemical markers left along their route by previous generations, and even the sun's position and the Earth's magnetic pull. Scientists still lack a full explanation for this successful yearly migration. Therefore, well-documented and researched theories provide partial insights into one of nature's most eye-catching events.`,
+    question: "The writer wants to replace the indicated word with one that is both more precise and appropriate. Which choice is best?",
+    choices: ["A. determine", "B. decide", "C. select", "D. pick"],
+    correct: 0,
+    explanation: "'Determine' is more specific, describing how the birthplace can directly affect the distance the monarch can travel in its lifetime."
+  },
+  {
+    id: 333,
+    category: "Writing Conventions",
+    passage: `Monarch Migration\n\n¶1 Perhaps North America's most beautiful natural phenomanon is the annual migration of the monarch butterfly. Each fall and spring, generations of monarchs flood the sky above certain parts of the continent. While a single monarch butterfly is only ten centimeters wide and weighing less than one gram, clouds of migrating monarchs can actually be seen in satellite imagery.\n\n¶2 Monarchs thrive only under specific environmental conditions. With respect to the formation of the ideal monarch habitat, weather proves to be the predominant component. Monarchs require a temperate habitat; therefore, the changeable climate of the United States forces most monarchs to migrate south for the winter. No individual butterfly lives long enough to complete the entire round trip.\n\n¶3 {1} Typical male monarchs travel eighty miles per day, though in a single day a tagged male once was reported to have covered 265 miles. {2} The season and location of a monarch's birth can do the total distance traveled during its lifetime. {3} Consider, for example, if a monarch were born in the northern United States in late summer or early fall. {4} Such a butterfly might migrate south to central Mexico but then might complete only one-half of the return trip before dying the next spring. {5} Even in so short a lifetime, such a monarch would have traveled nearly 3,000 miles. {6} Any offspring of such a butterfly, the next generation, then will have completed the remainder of the journey back to the northern United States.\n\n¶4 Possible tools butterflies rely on to help navigate these pathways for migration include instinct, chemical markers left along their route by previous generations, and even the sun's position and the Earth's magnetic pull. Scientists still lack a full explanation for this successful yearly migration. Therefore, well-documented and researched theories provide partial insights into one of nature's most eye-catching events.`,
+    question: "Which revision should be made to the underlined portion (18)?",
+    choices: ["A. No change", "B. completes", "C. are completing", "D. would complete"],
+    correct: 3,
+    explanation: "This is a conditional statement, which matches the thoughts conveyed in the paragraph."
+  },
+  {
+    id: 334,
+    category: "Organization of Ideas",
+    passage: `Monarch Migration\n\n¶1 Perhaps North America's most beautiful natural phenomanon is the annual migration of the monarch butterfly. Each fall and spring, generations of monarchs flood the sky above certain parts of the continent. While a single monarch butterfly is only ten centimeters wide and weighing less than one gram, clouds of migrating monarchs can actually be seen in satellite imagery.\n\n¶2 Monarchs thrive only under specific environmental conditions. With respect to the formation of the ideal monarch habitat, weather proves to be the predominant component. Monarchs require a temperate habitat; therefore, the changeable climate of the United States forces most monarchs to migrate south for the winter. No individual butterfly lives long enough to complete the entire round trip.\n\n¶3 {1} Typical male monarchs travel eighty miles per day, though in a single day a tagged male once was reported to have covered 265 miles. {2} The season and location of a monarch's birth can do the total distance traveled during its lifetime. {3} Consider, for example, if a monarch were born in the northern United States in late summer or early fall. {4} Such a butterfly might migrate south to central Mexico but then might complete only one-half of the return trip before dying the next spring. {5} Even in so short a lifetime, such a monarch would have traveled nearly 3,000 miles. {6} Any offspring of such a butterfly, the next generation, then will have completed the remainder of the journey back to the northern United States.\n\n¶4 Possible tools butterflies rely on to help navigate these pathways for migration include instinct, chemical markers left along their route by previous generations, and even the sun's position and the Earth's magnetic pull. Scientists still lack a full explanation for this successful yearly migration. Therefore, well-documented and researched theories provide partial insights into one of nature's most eye-catching events.`,
+    question: "The writer is considering whether or not to add an introductory sentence at the beginning of paragraph 4. Which choice is best?",
+    choices: ["A. No change; the paragraph is best as written.", "B. How different monarchs are able to find the same migration pathways each year is mysterious.", "C. The way that every year different migrating monarchs are able to get those pathways is a pretty big puzzle.", "D. The consistent pathways different migrating monarchs are able to follow year after year are undetermined as of yet"],
+    correct: 1,
+    explanation: "All the sentences in the paragraph support the idea that the migration pattern of monarchs is a mystery. It is the best topic sentence."
+  },
+  {
+    id: 335,
+    category: "Language Facility",
+    passage: `Buying Used Cars\n\n¶1 Buying a used car takes research as well as money. Having your license and saving enough money for an older car and insurance are just the beginning. Finding the right car will require some time and effort. Where do you start? What should you look for?\n\n¶2 Surprisingly, your local library is good. There you can access online consumer guides that rate such things as performance, comfort, and mechanical reliability. Don't forget how helpful reference librarians can be.\n\n¶3 When you have located a used car that you think will meet your needs, try to find out the repair history on the vehicle. Was the oil changed as scheduled to prevent wear on the engine? Has the car had any ongoing or repeated problems? Don't forget to take mileage into consideration, as well as the number of owners the car has had and also seeing if you can get information about any damage the car may have sustained as a result of accidents. It's a good idea to take the car to an independent auto mechanic for an inspection. It's worth the cost to identify potential problems. Before you make a major investment.\n\n¶4 Finally, check the vehicle's appearance. If the body has numerous dents and scratches and the inside is ruined, chances are the engine hasn't been well maintained. If there are major rust spots, you can expect the body to deteriorate rapidly. While these suggestions won't guarantee a foolproof purchase, they can help you make an informed decision. Researching a car before making an investment is always time well spent. Remember, once you buy a used car, it's yours.`,
+    question: "Which revision should be made to the underlined portion (20)?",
+    choices: ["A. No change", "B. a good place is your local library", "C. a good place to start shopping for a car is your local library", "D. for starting car shopping, your local library is a good place"],
+    correct: 2,
+    explanation: "This option provides the best transition between paragraphs 1 and 2, expressing ideas about the library's usefulness clearly and precisely, using appropriate word order."
+  },
+  {
+    id: 336,
+    category: "Language Facility",
+    passage: `Buying Used Cars\n\n¶1 Buying a used car takes research as well as money. Having your license and saving enough money for an older car and insurance are just the beginning. Finding the right car will require some time and effort. Where do you start? What should you look for?\n\n¶2 Surprisingly, your local library is good. There you can access online consumer guides that rate such things as performance, comfort, and mechanical reliability. Don't forget how helpful reference librarians can be.\n\n¶3 When you have located a used car that you think will meet your needs, try to find out the repair history on the vehicle. Was the oil changed as scheduled to prevent wear on the engine? Has the car had any ongoing or repeated problems? Don't forget to take mileage into consideration, as well as the number of owners the car has had and also seeing if you can get information about any damage the car may have sustained as a result of accidents. It's a good idea to take the car to an independent auto mechanic for an inspection. It's worth the cost to identify potential problems. Before you make a major investment.\n\n¶4 Finally, check the vehicle's appearance. If the body has numerous dents and scratches and the inside is ruined, chances are the engine hasn't been well maintained. If there are major rust spots, you can expect the body to deteriorate rapidly. While these suggestions won't guarantee a foolproof purchase, they can help you make an informed decision. Researching a car before making an investment is always time well spent. Remember, once you buy a used car, it's yours.`,
+    question: "Which of the following would be the best choice for this sentence?",
+    choices: ["A. No change", "B. Move the sentence so that it comes before the preceding sentence.", "C. Move the sentence to become the first sentence of the next paragraph (Paragraph 3).", "D. Omit the sentence."],
+    correct: 3,
+    explanation: "The general statement about reference librarians is not relevant to the topic of buying a car. It is best to omit the sentence."
+  },
+  {
+    id: 337,
+    category: "Language Facility",
+    passage: `Buying Used Cars\n\n¶1 Buying a used car takes research as well as money. Having your license and saving enough money for an older car and insurance are just the beginning. Finding the right car will require some time and effort. Where do you start? What should you look for?\n\n¶2 Surprisingly, your local library is good. There you can access online consumer guides that rate such things as performance, comfort, and mechanical reliability. Don't forget how helpful reference librarians can be.\n\n¶3 When you have located a used car that you think will meet your needs, try to find out the repair history on the vehicle. Was the oil changed as scheduled to prevent wear on the engine? Has the car had any ongoing or repeated problems? Don't forget to take mileage into consideration, as well as the number of owners the car has had and also seeing if you can get information about any damage the car may have sustained as a result of accidents. It's a good idea to take the car to an independent auto mechanic for an inspection. It's worth the cost to identify potential problems. Before you make a major investment.\n\n¶4 Finally, check the vehicle's appearance. If the body has numerous dents and scratches and the inside is ruined, chances are the engine hasn't been well maintained. If there are major rust spots, you can expect the body to deteriorate rapidly. While these suggestions won't guarantee a foolproof purchase, they can help you make an informed decision. Researching a car before making an investment is always time well spent. Remember, once you buy a used car, it's yours.`,
+    question: "Which revision should be made to the underlined portion (22)?",
+    choices: ["A. No change", "B. To prevent wear on the engine, the oil was changed as scheduled?", "C. Oil changed as scheduled to prevent wear on the engine?", "D. Was the oil changed to prevent wear on the engine as scheduled?"],
+    correct: 0,
+    explanation: "The original wording is a well-formed question with no misplaced modifier that leads to the next question posed in the paragraph."
+  },
+  {
+    id: 338,
+    category: "Language Facility",
+    passage: `Buying Used Cars\n\n¶1 Buying a used car takes research as well as money. Having your license and saving enough money for an older car and insurance are just the beginning. Finding the right car will require some time and effort. Where do you start? What should you look for?\n\n¶2 Surprisingly, your local library is good. There you can access online consumer guides that rate such things as performance, comfort, and mechanical reliability. Don't forget how helpful reference librarians can be.\n\n¶3 When you have located a used car that you think will meet your needs, try to find out the repair history on the vehicle. Was the oil changed as scheduled to prevent wear on the engine? Has the car had any ongoing or repeated problems? Don't forget to take mileage into consideration, as well as the number of owners the car has had and also seeing if you can get information about any damage the car may have sustained as a result of accidents. It's a good idea to take the car to an independent auto mechanic for an inspection. It's worth the cost to identify potential problems. Before you make a major investment.\n\n¶4 Finally, check the vehicle's appearance. If the body has numerous dents and scratches and the inside is ruined, chances are the engine hasn't been well maintained. If there are major rust spots, you can expect the body to deteriorate rapidly. While these suggestions won't guarantee a foolproof purchase, they can help you make an informed decision. Researching a car before making an investment is always time well spent. Remember, once you buy a used car, it's yours.`,
+    question: "Which revision should be made to the underlined portion (23)?",
+    choices: ["A. No change", "B. had, also obtaining", "C. had getting also", "D. had. Try to obtain"],
+    correct: 3,
+    explanation: "The expression of these ideas in two separate sentences creates clarity as well as parallelism in sentence structure."
+  },
+  {
+    id: 339,
+    category: "Writing Conventions",
+    passage: `Buying Used Cars\n\n¶1 Buying a used car takes research as well as money. Having your license and saving enough money for an older car and insurance are just the beginning. Finding the right car will require some time and effort. Where do you start? What should you look for?\n\n¶2 Surprisingly, your local library is good. There you can access online consumer guides that rate such things as performance, comfort, and mechanical reliability. Don't forget how helpful reference librarians can be.\n\n¶3 When you have located a used car that you think will meet your needs, try to find out the repair history on the vehicle. Was the oil changed as scheduled to prevent wear on the engine? Has the car had any ongoing or repeated problems? Don't forget to take mileage into consideration, as well as the number of owners the car has had and also seeing if you can get information about any damage the car may have sustained as a result of accidents. It's a good idea to take the car to an independent auto mechanic for an inspection. It's worth the cost to identify potential problems. Before you make a major investment.\n\n¶4 Finally, check the vehicle's appearance. If the body has numerous dents and scratches and the inside is ruined, chances are the engine hasn't been well maintained. If there are major rust spots, you can expect the body to deteriorate rapidly. While these suggestions won't guarantee a foolproof purchase, they can help you make an informed decision. Researching a car before making an investment is always time well spent. Remember, once you buy a used car, it's yours.`,
+    question: "Which revision should be made to the underlined portion (24)?",
+    choices: ["A. No change", "B. problems before", "C. problems; before", "D. problems: before"],
+    correct: 1,
+    explanation: "The last sentence in this paragraph is a fragment. The idea is easily combined with the previous sentence as a subordinate clause that requires no beginning punctuation."
+  },
+  {
+    id: 340,
+    category: "Organization of Ideas",
+    passage: `Buying Used Cars\n\n¶1 Buying a used car takes research as well as money. Having your license and saving enough money for an older car and insurance are just the beginning. Finding the right car will require some time and effort. Where do you start? What should you look for?\n\n¶2 Surprisingly, your local library is good. There you can access online consumer guides that rate such things as performance, comfort, and mechanical reliability. Don't forget how helpful reference librarians can be.\n\n¶3 When you have located a used car that you think will meet your needs, try to find out the repair history on the vehicle. Was the oil changed as scheduled to prevent wear on the engine? Has the car had any ongoing or repeated problems? Don't forget to take mileage into consideration, as well as the number of owners the car has had and also seeing if you can get information about any damage the car may have sustained as a result of accidents. It's a good idea to take the car to an independent auto mechanic for an inspection. It's worth the cost to identify potential problems. Before you make a major investment.\n\n¶4 Finally, check the vehicle's appearance. If the body has numerous dents and scratches and the inside is ruined, chances are the engine hasn't been well maintained. If there are major rust spots, you can expect the body to deteriorate rapidly. While these suggestions won't guarantee a foolproof purchase, they can help you make an informed decision. Researching a car before making an investment is always time well spent. Remember, once you buy a used car, it's yours.`,
+    question: "Which of these sentences, if any, should begin a new paragraph?",
+    choices: ["A. There should be no new paragraph.", "B. \"If there are major rust spots, you can expect the body to deteriorate rapidly.\"", "C. \"While these suggestions won't guarantee a foolproof purchase, they can help you make an informed decision.\"", "D. \"Researching a car before making an investment is always time well spent.\""],
+    correct: 2,
+    explanation: "This sentence leaves the specific issues of paragraph 4 and returns to the general topic of the passage, so it should begin a new paragraph."
+  },
+
 ];
 
 // Essay Prompts
