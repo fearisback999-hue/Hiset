@@ -1,9 +1,9 @@
 // AI-powered features for HiSET Writing Prep
-// Uses Claude API for essay grading, wrong-answer explanations, and tutoring
+// Uses Google Gemini API for essay grading, wrong-answer explanations, and tutoring
 
 const AI_CONFIG = {
   apiKey: "",
-  model: "claude-haiku-4-5-20251001",
+  model: "gemini-1.5-flash",
   maxTokens: 1500
 };
 
@@ -25,33 +25,35 @@ function loadAIKey() {
 
 loadAIKey();
 
-async function callClaude(systemPrompt, userPrompt, maxTokens) {
+async function callAI(systemPrompt, userPrompt, maxTokens) {
   if (!aiConfigured()) throw new Error("NO_KEY");
 
-  const resp = await fetch("https://api.anthropic.com/v1/messages", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "x-api-key": AI_CONFIG.apiKey,
-      "anthropic-version": "2023-06-01",
-      "anthropic-dangerous-direct-browser-access": "true"
-    },
-    body: JSON.stringify({
-      model: AI_CONFIG.model,
-      max_tokens: maxTokens || AI_CONFIG.maxTokens,
-      system: systemPrompt,
-      messages: [{ role: "user", content: userPrompt }]
-    })
-  });
+  const fullPrompt = systemPrompt + "\n\n" + userPrompt;
+
+  const resp = await fetch(
+    `https://generativelanguage.googleapis.com/v1beta/models/${AI_CONFIG.model}:generateContent?key=${AI_CONFIG.apiKey}`,
+    {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        contents: [{ parts: [{ text: fullPrompt }] }],
+        generationConfig: { maxOutputTokens: maxTokens || AI_CONFIG.maxTokens }
+      })
+    }
+  );
 
   if (!resp.ok) {
     const err = await resp.text();
-    if (resp.status === 401) throw new Error("INVALID_KEY");
-    throw new Error(`API error ${resp.status}: ${err}`);
+    if (resp.status === 400 && err.includes("API key")) throw new Error("INVALID_KEY");
+    if (resp.status === 429) throw new Error("RATE_LIMIT");
+    throw new Error(`API error ${resp.status}`);
   }
 
   const data = await resp.json();
-  return data.content[0].text;
+  if (!data.candidates || !data.candidates[0] || !data.candidates[0].content) {
+    throw new Error("Invalid response from Gemini API");
+  }
+  return data.candidates[0].content.parts[0].text;
 }
 
 // Grade a full essay using AI
@@ -92,7 +94,7 @@ ${essayText}
 
 Grade this essay on the HiSET 1-6 holistic scale. Be honest but encouraging. Give specific, actionable feedback referencing their actual text.`;
 
-  return await callClaude(system, user, 2000);
+  return await callAI(system, user, 2000);
 }
 
 // Explain why a specific answer is wrong and teach the concept

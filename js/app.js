@@ -2051,14 +2051,14 @@ function renderAISetup() {
   const connected = aiConfigured();
   const div = el("div", "ai-setup-view");
   div.innerHTML = `
-    <h1>AI Tutor Setup</h1>
-    <p class="subtitle">Connect Claude AI to unlock smart features that help you score higher.</p>
+    <h1>AI Tutor Setup (Free)</h1>
+    <p class="subtitle">Connect Google Gemini AI to unlock smart features that help you score higher — free tier!</p>
 
     <div class="card" style="border-left: 4px solid ${connected ? "var(--success)" : "var(--primary)"}">
       <h2 style="margin-top:0">${connected ? "AI Connected" : "Enter Your API Key"}</h2>
       <p>${connected
-        ? "Claude AI is active. You have access to all AI features."
-        : "You need a Claude API key from <strong>console.anthropic.com</strong>. The key stays in your browser — it's never sent anywhere except directly to Anthropic's API."}</p>
+        ? "Google Gemini AI is active. You have access to all AI features."
+        : "Get a free Google Gemini API key from <strong>ai.google.dev</strong> (1,500 requests/day free). The key stays in your browser — it's never sent anywhere except directly to Google's API."}</p>
 
       <div class="ai-key-form">
         <input type="password" id="ai-key-input" class="ai-key-input"
@@ -2095,8 +2095,8 @@ function renderAISetup() {
     </div>
 
     <div class="card" style="background: linear-gradient(135deg, #fffbeb, #fef3c7); border: 2px solid #fbbf24;">
-      <h3 style="margin-top:0">Privacy</h3>
-      <p style="margin:0">Your API key is stored only in your browser's local storage. Essay text is sent directly to Anthropic's API for grading — nothing is stored on any server. This app runs entirely in your browser.</p>
+      <h3 style="margin-top:0">Privacy & Free Tier</h3>
+      <p style="margin:0"><strong>Free:</strong> Google Gemini free tier includes 1,500 requests/day. Perfect for personal study.<br><strong>Private:</strong> Your API key is stored only in your browser's local storage. Essay text is sent directly to Google's API for grading — nothing is stored on any server. This app runs entirely in your browser.</p>
     </div>
   `;
   return div;
@@ -2151,7 +2151,7 @@ function renderAITutor() {
           <div class="tutor-welcome">
             <div class="tutor-avatar">AI</div>
             <div class="tutor-bubble">
-              Hey! I'm your HiSET writing tutor. Ask me anything about grammar, essay writing, or test strategies. I'm here to help you score a 5 or higher on the writing section.
+              Hey! I'm your HiSET writing tutor powered by Google Gemini (free!). Ask me anything about grammar, essay writing, or test strategies. I'm here to help you score a 5 or higher on the writing section.
             </div>
           </div>
         ` : tutorMessages.map(m => `
@@ -2244,8 +2244,9 @@ function getWeakCategories() {
 }
 
 function handleAIError(err) {
-  if (err.message === "NO_KEY") return "Please set up your API key first. Go to the AI Setup page.";
-  if (err.message === "INVALID_KEY") return "Your API key is invalid. Please check it in AI Setup.";
+  if (err.message === "NO_KEY") return "Please set up your Google Gemini API key first. Go to the AI Setup page.";
+  if (err.message === "INVALID_KEY") return "Your Google Gemini API key is invalid. Check it at ai.google.dev";
+  if (err.message === "RATE_LIMIT") return "You've hit the free tier rate limit (15 requests/minute). Wait a moment and try again.";
   return `Something went wrong: ${err.message}. Please try again.`;
 }
 
@@ -2353,11 +2354,11 @@ function renderAIPractice() {
     ${!connected ? `
       <div class="card" style="text-align:center; padding:3rem">
         <h2>Connect AI First</h2>
-        <p>Set up your Claude API key to use AI practice.</p>
+        <p>Set up your free Google Gemini API key to use AI practice.</p>
         <button class="btn btn-primary" onclick="navigate('ai-setup')">Set Up AI</button>
       </div>
     ` : `
-      <p class="subtitle">AI creates fresh questions targeting your weak areas. Every question is unique.</p>
+      <p class="subtitle">Google Gemini creates fresh questions targeting your weak areas. Every question is unique (free!).</p>
 
       ${weakAreas.length > 0 ? `
         <div class="card" style="border-left: 4px solid var(--warning);">
