@@ -3,7 +3,7 @@
 
 const AI_CONFIG = {
   apiKey: "",
-  model: "gemini-1.5-flash",
+  model: "gemini-2.0-flash",
   maxTokens: 1500
 };
 
