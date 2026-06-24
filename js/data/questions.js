@@ -1,4 +1,4 @@
-// HiSET Language Arts – Writing: 240 multiple-choice practice questions
+// HiSET Language Arts – Writing: 265 multiple-choice practice questions
 // Format mirrors actual HiSET passage-based items
 
 const QUESTIONS = [
@@ -3130,6 +3130,367 @@ const QUESTIONS = [
     ],
     correct: 1,
     explanation: "When singular subjects are joined by 'and' but preceded by 'every' or 'each,' the compound subject is treated as singular. 'Every parent and teacher' takes the singular verb 'wants,' not the plural 'want.'"
+  },
+
+  // ── OFFICIAL HiSET FPT7 PRACTICE TEST (IDs 241–265) ──────────────────────
+
+  // — Passage 1: The National Archives (Questions 1–10 → IDs 241–250) —
+
+  {
+    id: 241,
+    category: "Writing Conventions",
+    passage: "The National Archives\n\n¶1 On our class trip to the U.S. (1)__Capital, Washington, D.C., the__ teachers insisted on taking us to the National Archives, where the government's most important records are kept.",
+    question: "Which is the best version of the underlined portion marked (1)?",
+    choices: [
+      "(No change) Capital, Washington, D.C., the",
+      "capital Washington, D.C. the",
+      "capital, Washington, D.C., the",
+      "Capital, Washington, D.C. the"
+    ],
+    correct: 2,
+    explanation: "Option C is correct because 'capital' is a common noun and should be lowercase, and commas are correctly used to set off 'D.C.' from the sentence the same way they would be used with the name of a state."
+  },
+  {
+    id: 242,
+    category: "Language Facility",
+    passage: "The National Archives\n\n¶1 (2)__Now admitting at first that__ I did not want to go because a building full of papers and records sounded like a pretty dull thing to see.",
+    question: "Which is the best version of the underlined portion marked (2)?",
+    choices: [
+      "(No change) Now admitting at first that",
+      "Now I have to admit that at first",
+      "At first admitting that",
+      "First I admitted that"
+    ],
+    correct: 1,
+    explanation: "Option B is correct because the revision of 'Now admitting at first that' to 'Now I have to admit that at first' corrects the sentence fragment."
+  },
+  {
+    id: 243,
+    category: "Writing Conventions",
+    passage: "The National Archives\n\n¶2 The National Archives is located near what is known as the National Mall, a long parkway (3)__stretching__ westward from the Capitol building. On either side are various Smithsonian museums.",
+    question: "Which is the best version of the underlined word marked (3)?",
+    choices: [
+      "(No change) stretching",
+      "stretched",
+      "it stretches",
+      "which is stretched"
+    ],
+    correct: 0,
+    explanation: "Option A is correct because no revision is needed; the present participle 'stretching' is used to most precisely describe the 'long parkway' while maintaining the present verb tense of the sentence."
+  },
+  {
+    id: 244,
+    category: "Language Facility",
+    passage: "The National Archives\n\n¶3 Before me were the handwritten principles that have allowed our country to operate according to law (4)__and undergoing__ change peacefully for 200 years.",
+    question: "Which is the best version of the underlined portion marked (4)?",
+    choices: [
+      "(No change) and undergoing",
+      "and to undergo",
+      "and it can undergo",
+      "and the undergoing of"
+    ],
+    correct: 1,
+    explanation: "Option B is correct because the infinitive 'and to undergo' is parallel in form to the infinitive 'to operate' that precedes it in the sentence."
+  },
+  {
+    id: 245,
+    category: "Spelling",
+    passage: "The National Archives\n\n¶3 At the bottom of the documents were extravagantly embellished signitures — those of Ben Franklin, George Washington, and Thomas Jefferson, among many others.",
+    question: "Which of these words, if any, is misspelled?",
+    choices: [
+      "None",
+      "extravagantly",
+      "embellished",
+      "signitures"
+    ],
+    correct: 3,
+    explanation: "Option D is correct because 'signatures' is the correct spelling of 'signitures.'"
+  },
+  {
+    id: 246,
+    category: "Language Facility",
+    passage: "The National Archives\n\n¶4 One by one, people passed in front of them and (6)__paused looking__. No one just hurried by.",
+    question: "Which is the best version of the underlined portion marked (6)?",
+    choices: [
+      "(No change) paused looking.",
+      "pausing looked.",
+      "paused to look.",
+      "looked pausing."
+    ],
+    correct: 2,
+    explanation: "Option C is correct because 'paused to look' maintains the past verb tense used in the sentence and expresses the idea most precisely."
+  },
+  {
+    id: 247,
+    category: "Organization",
+    passage: "The National Archives\n\n¶5 To ensure that the documents continue to be well preserved, they are sealed in helium-filled glass cases. (7)__To protect the documents further, the__ lights in the Exhibition Hall are kept low, and the temperature and humidity are carefully controlled.",
+    question: "Which is the best version of the underlined portion marked (7)?",
+    choices: [
+      "(No change) To protect the documents further, the",
+      "To also protect the documents, the",
+      "To protect the documents besides, the",
+      "To increasingly protect the documents, the"
+    ],
+    correct: 0,
+    explanation: "Option A is correct because no revision is needed; 'To protect the documents further' expresses how the documents are protected to a greater extent."
+  },
+  {
+    id: 248,
+    category: "Language Facility",
+    passage: "The National Archives\n\n¶5 Each night the cases are lowered into a fireproof and shockproof vault beneath (8)__the building, in case__ of an emergency, they can be lowered instantly.",
+    question: "Which is the best version of the underlined portion marked (8)?",
+    choices: [
+      "(No change) the building, in case",
+      "the building. In case",
+      "the building in case",
+      "the building; and so in case"
+    ],
+    correct: 1,
+    explanation: "Option B is correct because replacing the comma after 'building' with a period and capitalizing 'In' revises the run-on sentence."
+  },
+  {
+    id: 249,
+    category: "Language Facility",
+    passage: "The National Archives\n\n¶6 Much to my surprise, of all the places we visited, the Archives turned out to be my (9)__most favorite__.",
+    question: "Which is the best version of the underlined portion marked (9)?",
+    choices: [
+      "(No change) most favorite.",
+      "very favorite of them all.",
+      "favorite above all others.",
+      "favorite."
+    ],
+    correct: 3,
+    explanation: "Option D is correct because it eliminates the redundancy in the phrase 'most favorite.' The adjective 'favorite' implies something is the best without the addition of the superlative 'most.'"
+  },
+  {
+    id: 250,
+    category: "Organization",
+    passage: "The National Archives\n\nThis question concerns the draft as a whole.\n\n¶1 Introduction and first impressions\n¶2 Location of the Archives near the National Mall\n¶3 Writer's personal experience viewing the documents up close\n¶4 Arriving at the Archives and standing in line\n¶5 How the documents are preserved\n¶6 Conclusion",
+    question: "For the best organization of ideas, where should paragraph 3 be placed?",
+    choices: [
+      "(No change)",
+      "After paragraph 1",
+      "After paragraph 4",
+      "After paragraph 5"
+    ],
+    correct: 2,
+    explanation: "Option C is correct because in paragraph 3 the writer describes his/her turn viewing the historic documents, which logically comes after paragraph 4, in which the writer described the initial arrival at the Archives and standing in line to see the documents."
+  },
+
+  // — Passage 2: Tips for a Successful Job Interview (Questions 11–18 → IDs 251–258) —
+
+  {
+    id: 251,
+    category: "Language Facility",
+    passage: "Tips for a Successful Job Interview\n\nStep One: Research the Employer\n\n¶2 First, applicants should try to learn about the business or organization. Use the company's website as well as other resources to gather information about its products, (11)__services, who the staff is, and__ accomplishments.",
+    question: "Which is the best version of the underlined portion marked (11)?",
+    choices: [
+      "(No change) services, who the staff is, and",
+      "what services it provides, staff,",
+      "services, staff employed,",
+      "services, staff,"
+    ],
+    correct: 3,
+    explanation: "Option D is correct because 'staff' maintains parallel form with the other nouns in the series, 'products' and 'services.'"
+  },
+  {
+    id: 252,
+    category: "Organization",
+    passage: "Tips for a Successful Job Interview\n\nStep Two: Know What to Say\n\n¶3 During interviews applicants should describe themselves in ways that best show how well they fit the position. (12)__Nonetheless__, be ready to provide information in the following areas.",
+    question: "Which is the best version of the underlined word marked (12)?",
+    choices: [
+      "(No change) Nonetheless,",
+      "For that reason,",
+      "So why not",
+      "Instead"
+    ],
+    correct: 1,
+    explanation: "Option B is correct because 'For that reason' logically transitions from the need for applicants to describe themselves to examples of how they can accomplish this objective."
+  },
+  {
+    id: 253,
+    category: "Writing Conventions",
+    passage: "Tips for a Successful Job Interview\n\n¶3 ...be ready to provide information in the following (13)__areas. Education__ and training; any former jobs, especially ones related to the new position; strengths and weaknesses; past challenges; and goals for the future.",
+    question: "Which is the best version of the underlined portion marked (13)?",
+    choices: [
+      "(No change) areas. Education",
+      "areas; education",
+      "areas: education",
+      "areas, education"
+    ],
+    correct: 2,
+    explanation: "Option C is correct because a colon is used to introduce a series of items."
+  },
+  {
+    id: 254,
+    category: "Writing Conventions",
+    passage: "Tips for a Successful Job Interview\n\n• What would you like to tell me about yourself? Applicants can talk about (14)__qualities especially talents and prior experiences, that__ make them a particularly good fit for the job.",
+    question: "Which is the best version of the underlined portion marked (14)?",
+    choices: [
+      "(No change) qualities especially talents and prior experiences, that",
+      "qualities, especially talents and prior experiences, that",
+      "qualities, especially talents and prior experiences that",
+      "qualities especially talents and prior experiences that"
+    ],
+    correct: 1,
+    explanation: "Option B is correct because the parenthetical element 'especially talents and prior experiences' is correctly set off from the sentence with commas."
+  },
+  {
+    id: 255,
+    category: "Language Facility",
+    passage: "Tips for a Successful Job Interview\n\n• Tell me about a time you made a mistake. How did you resolve it? Choose a mistake that taught a lesson. (15)__Emphasize the lesson. Talk about how, in later situations, to act differently.__",
+    question: "Choose the best way to combine the indicated sentences.",
+    choices: [
+      "Emphasizing the lesson, talk about acting differently in later situations.",
+      "Talk about how to act differently in later situations that emphasize the lesson.",
+      "With the lesson being emphasized, talk in later situations about acting differently.",
+      "Talk about how to act differently in later situations with the emphasized lesson."
+    ],
+    correct: 0,
+    explanation: "Option A is correct because it most precisely and logically combines the ideas in the two sentences without changing the sentences' intended meanings."
+  },
+  {
+    id: 256,
+    category: "Language Facility",
+    passage: "Tips for a Successful Job Interview\n\n• Do you have any questions for me? (16)__Ask for more information about the job. For example, this can be a time to ask about hours or pay. It is also the time to ask for clarification of anything discussed during the interview.__",
+    question: "Choose the best way to express the information in the indicated sentences.",
+    choices: [
+      "Ask for more information about the job, such as the hours or pay, and for clarification of anything discussed during the interview.",
+      "Ask for more information about the job hours or job pay and that clarifies anything discussed during the interview.",
+      "Ask for more information about the job's hours or pay and its clarifying anything discussed during the interview.",
+      "Ask for more information about the job, such as the hours, pay, and to clarify anything discussed during the interview."
+    ],
+    correct: 0,
+    explanation: "Option A is correct because it greatly reduces the wordiness of the sentence while preserving the original intended meaning."
+  },
+  {
+    id: 257,
+    category: "Language Facility",
+    passage: "Tips for a Successful Job Interview\n\nStep Three: Practice Being Interviewed\n\n¶4 At the conclusion of the role-playing, ask (17)__that friend of yours to tell you what he or she really, really thought__.",
+    question: "Which is the best version of the underlined portion marked (17)?",
+    choices: [
+      "(No change) that friend of yours to tell you what he or she really, really thought.",
+      "to hear something that could help.",
+      "for constructive feedback.",
+      "if it went ok."
+    ],
+    correct: 2,
+    explanation: "Option C is correct because it maintains the formal tone of the passage."
+  },
+  {
+    id: 258,
+    category: "Writing Conventions",
+    passage: "Tips for a Successful Job Interview\n\nStep Four: Look Sharp, Plan Ahead, Be Confident, and Expect Surprises\n\n¶5 Before the interview, get plenty of rest, make sure to eat a nutritious meal, and (18)__allowing__ extra time to get to the destination.",
+    question: "Which is the best version of the underlined word marked (18)?",
+    choices: [
+      "(No change) allowing",
+      "to allow",
+      "allows",
+      "allow"
+    ],
+    correct: 3,
+    explanation: "Option D is correct because it maintains the parallel structure of the imperative verb forms that appear in the paragraph: 'wear,' 'bring,' 'get,' and 'make sure.'"
+  },
+
+  // — Passage 3: Holcombe Rucker (Questions 19–25 → IDs 259–265) —
+
+  {
+    id: 259,
+    category: "Writing Conventions",
+    passage: "Holcombe Rucker\n\n¶1 By 1965 'The Rucker,' as the program had come to be called, (19)__has expanded__ to include youth, college, and professional divisions that played on several playgrounds in Harlem.",
+    question: "Which is the best version of the underlined portion marked (19)?",
+    choices: [
+      "(No change) has expanded",
+      "will have expanded",
+      "had expanded",
+      "expanded"
+    ],
+    correct: 2,
+    explanation: "Option C is correct because 'had expanded' maintains the verb tense of the sentence established with the verb 'had come.'"
+  },
+  {
+    id: 260,
+    category: "Writing Conventions",
+    passage: "Holcombe Rucker\n\n¶1 As The Rucker continued to thrive, its reputation (20)__grew, and, in 1974__ New York City renamed its home.",
+    question: "Which is the best version of the underlined portion marked (20)?",
+    choices: [
+      "(No change) grew, and, in 1974",
+      "grew and in 1974,",
+      "grew and, in 1974",
+      "grew, and in 1974"
+    ],
+    correct: 3,
+    explanation: "Option D is correct because a comma is only needed before the coordinating conjunction 'and,' not after it."
+  },
+  {
+    id: 261,
+    category: "Organization",
+    passage: "Holcombe Rucker\n\nThe writer is considering whether or not to add the following sentence at the start of paragraph 2:\n\n\"Athletic contests have two basic forms: matches between highly coordinated teams (e.g., football) or lone individuals competing against each other (e.g., boxing).\"",
+    question: "Would this be an appropriate sentence to add at the start of paragraph 2?",
+    choices: [
+      "Yes; it summarizes previously discussed information.",
+      "Yes; it introduces subjects developed in paragraph 2.",
+      "No; it contradicts assertions made in paragraph 1.",
+      "No; it presents opinions as documented facts."
+    ],
+    correct: 1,
+    explanation: "Option B is correct because the sentence would provide an effective introduction for paragraph 2, which explains the interaction between team sports and individual athletic skills."
+  },
+  {
+    id: 262,
+    category: "Spelling",
+    passage: "Holcombe Rucker\n\n¶2 Crucial to this (22)__innovation__ was the fact that The Rucker, though it (22)__administered__ leagues with coaches, referees, and champions, did not have teams that provided the players or coaches with a (22)__livelyhood__ or that represented (22)__institutions__ such as schools.",
+    question: "One of the four indicated words is misspelled. Which change in spelling corrects the error?",
+    choices: [
+      "inovation",
+      "adminestered",
+      "livelihood",
+      "instituitions"
+    ],
+    correct: 2,
+    explanation: "Option C is correct because 'livelihood' is the correct spelling of 'livelyhood.'"
+  },
+  {
+    id: 263,
+    category: "Organization",
+    passage: "Holcombe Rucker\n\n¶2 ...there were no significant pressures or incentives to do so, other than their own competitive desires. (23)__This environment__ allowed the players more freedom to reinvent how the game was played, opening it up particularly to displays of individual creativity and skill.",
+    question: "Which is the best version of the underlined portion marked (23)?",
+    choices: [
+      "(No change) This environment",
+      "On the other hand, this environment",
+      "Nevertheless, this environment",
+      "Similarly, this environment"
+    ],
+    correct: 0,
+    explanation: "Option A is correct because 'This environment' effectively connects the ideas in the previous sentence without the use of an additional transitional phrase."
+  },
+  {
+    id: 264,
+    category: "Language Facility",
+    passage: "Holcombe Rucker\n\n¶2 Beginning in the 1960s, such moments of individual brilliance (24)__grew enormously in frequency and__ at the highest levels of play as well-known professional stars played in The Rucker, often being challenged by legendary playground players.",
+    question: "Which is the best version of the underlined portion marked (24)?",
+    choices: [
+      "(No change) grew enormously in frequency and",
+      "became increasingly common and exemplified",
+      "happened repeatedly and the demonstration of",
+      "were occurring very much more often and"
+    ],
+    correct: 1,
+    explanation: "Option B is correct because it most precisely expresses the ideas in the sentence while maintaining the tone."
+  },
+  {
+    id: 265,
+    category: "Organization",
+    passage: "Holcombe Rucker\n\n¶3 Helping players to leave the playgrounds and continue their educations, not changing basketball, was what had motivated Holcombe Rucker. He started his program to give young people something to do outside of school, he monitored how players did in school, and he sent hundreds on to prep schools and to college. He himself provided a model, obtaining a high school equivalency diploma, an undergraduate degree, and a position as a junior high school English teacher while running his program. For Rucker, running his program, including enlarging its size and scope, was always a means to achieve his educational goals for the players. (25)___",
+    question: "Choose the best sentence to add at the end of paragraph 3.",
+    choices: [
+      "Yet it has been the unintended changes in basketball itself that have done the most to expand educational opportunities for the players, as schools have embraced the individual virtuosity first brought to organized basketball by The Rucker.",
+      "Perhaps year-round organized basketball did not begin entirely with Holcombe Rucker in the summers of the late 1940s and early 1950s in New York City, but no other person or place has been put forward as an alternative origin.",
+      "The Rucker still continues today, with its outdoor displays of individual virtuosity presented on a removable wooden court at Holcombe Rucker Park in upper Manhattan.",
+      "In addition to the city park, there is also a New York public school, the Holcombe Rucker School of Community Research, named for him."
+    ],
+    correct: 0,
+    explanation: "Option A is correct because it presents an effective conclusion of the passage's main ideas."
   }
 ];
 
@@ -3277,5 +3638,18 @@ const ESSAY_PROMPTS = [
       text: `While recycling sounds environmentally responsible, mandatory recycling programs often create more problems than they solve and impose unnecessary burdens on residents and local governments. Many materials that consumers dutifully place in recycling bins — including most plastics, contaminated paper, and mixed materials — end up in landfills anyway because they are too costly or technically difficult to recycle. A 2019 investigation found that only 9 percent of all plastic ever produced has actually been recycled; the rest was burned or buried in landfills. Mandatory programs also impose significant costs on municipalities: collection and processing of recyclables can cost two to three times more than landfill disposal per ton. These costs are passed on to residents through higher taxes and utility fees. Furthermore, mandatory programs create enforcement challenges — cities must hire inspectors, issue fines, and manage appeals, adding bureaucratic overhead. Rather than mandating recycling, communities should focus on reducing waste at the source through packaging regulations and encouraging manufacturers to design products with end-of-life disposal in mind. Voluntary recycling programs with strong education campaigns can achieve meaningful participation without the coercive and costly aspects of mandates.`
     },
     prompt: "The passages above present two perspectives on mandatory community recycling programs. Analyze both arguments and explain which position is more convincingly supported by evidence and reasoning. Use specific evidence from both passages in your response."
+  },
+  {
+    id: 12,
+    title: "GatesburgGoGreen Initiative (Official FPT7)",
+    passageA: {
+      title: "Going Green for Gatesburg",
+      text: `The GatesburgGoGreen Initiative is a joint proposal crafted by environmental groups, businesses, city officials, and citizens. The goal is to reduce the amount of waste we add to the county landfill by 90% over the next five years. This plan is ambitious but achievable. It is a goal shared by cities like San Francisco and Cleveland, both of which are much larger than Gatesburg.\n\nThe proposal began as a discussion about extending the life of the county landfill, which will close in ten years if we do nothing. Several years ago, the city banned the dumping of construction waste, such as wood, that can be effectively recycled. The city later banned yard waste and started a composting program for leaves and grass clippings. Requiring recycling and composting is nothing new. We are just taking the idea to the next level to save our landfill.\n\nThe new plan calls for every resident to have three trashcans: a green one for compost such as food waste, a blue one for recyclable paper and plastic, and a black one for the landfill. According to the Environmental Protection Agency, the average American produces more than four pounds of trash each day and recycles only about a third of that amount. Those daily pounds of trash add up. They result in tons added unnecessarily to our landfill each year.\n\nPurchasing bins and hiring staff will cost money. However, those investments will pay dividends. The city will follow the example of Phoenix, Arizona, which has made more than 500 million dollars in a year by selling its recyclables. We will produce compost that citizens can use in their gardens. We will save money by not having to open a new landfill. We will improve the environment and our budget at the same time.`
+    },
+    passageB: {
+      title: "No Recycling Laws for Gatesburg",
+      text: `Recycling is a great idea. Americans already recycle at a high rate, which is around 95% of lead-acid batteries and 70% of steel cans and newspapers. That is one reason we oppose the GatesburgGoGreen Initiative. It burdens citizens by taking a good idea to ridiculous extremes.\n\nThe so-called initiative is a law, plain and simple. If passed, it would criminalize violations of its complicated rules. A newspaper goes into the blue bin, but what about a flyer insert? Well, it depends. Coffee grounds go in the green bin, but what about a plastic container of yogurt that has gone out of date? Careful — make a mistake, and you will be fined. Those fines, along with the increased taxes to pay for the services and personnel, make this a bad idea for taxpayers.\n\nPrivacy is another concern. The proposal requires that radio-frequency identification computer chips be attached to each bin. These chips track the pounds of trash each person discards versus how much is recycled. City officials know the average weights thrown out per day, and they know what the numbers should be with mandatory recycling and composting. Falling outside of acceptable ranges summons the trash police to check your bins to see if you have thrown a banana peel into the trash bin instead of the compost bin. The law calls for "administrative personnel" who will have the authority to write tickets. If we aren't careful, Gatesburg will start to feel like the United Kingdom. In some locations in the UK, compliance with trash laws is monitored with surveillance cameras.\n\nThis proposed law is not only unnecessary but also radical in how it sacrifices the needs and comfort of citizens to reach an impossible ideal. We already recycle, and we do not need a law forcing us to go beyond what is reasonable.`
+    },
+    prompt: "Write an essay in which you explain your own position on the issue of whether or not recycling and composting initiatives such as the one described in the flyer should be adopted and put into practice in communities throughout the United States.\n\nBe sure to use specific reasons and examples from your own experience and knowledge to support your position. Evidence from the passages provided should also be used to support your ideas. Remember that every position exists within the context of a larger discussion of the issue, so your essay should, at minimum, acknowledge alternate and/or opposing ideas. When you have finished your essay, review your writing to check for correct spelling, punctuation, and grammar."
   }
 ];

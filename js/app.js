@@ -406,7 +406,8 @@ const FIXED_TESTS = [
   { title: "Comprehensive Exam C", ids: range(81, 120) },
   { title: "Exam D: Passage & Style Focus", ids: range(121, 160) },
   { title: "Exam E: Passage-Based Editing", ids: range(161, 200) },
-  { title: "Exam F: Official HiSET Format", ids: range(201, 240) }
+  { title: "Exam F: Official HiSET Format", ids: range(201, 240) },
+  { title: "Official HiSET FPT7 Practice Test", ids: range(241, 265) }
 ];
 
 function range(a, b) {
