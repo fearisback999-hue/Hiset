@@ -1,6 +1,6 @@
 // HiSET Writing Study App — Main Application Logic
 
-const APP_VERSION = "1.0.0";
+const APP_VERSION = "2.0.0";
 const STORAGE_KEY = "hiset_progress";
 
 // ─── State ────────────────────────────────────────────────────────────────────
@@ -97,8 +97,12 @@ function render() {
     case "essay-structure": app.appendChild(renderEssayStructure()); break;
     case "progress":     app.appendChild(renderProgress()); break;
     case "cheatsheet":   app.appendChild(renderCheatSheet()); break;
+    case "ai-setup":     app.appendChild(renderAISetup()); break;
+    case "ai-tutor":     app.appendChild(renderAITutor()); break;
+    case "ai-practice":  app.appendChild(renderAIPractice()); break;
     default:             app.appendChild(renderHome());
   }
+  updateAIBadge();
 }
 
 function updateNav() {
@@ -124,7 +128,7 @@ function renderHome() {
   div.innerHTML = `
     <div class="home-hero">
       <h1>HiSET Writing Prep</h1>
-      <p class="subtitle">Master every topic. Score a 20.</p>
+      <p class="subtitle">Master every topic. Ace the test.</p>
     </div>
 
     <div class="stat-cards">
@@ -147,21 +151,40 @@ function renderHome() {
       </div>
     </div>
 
+    ${!aiConfigured() ? `
+      <div class="ai-cta-banner card" onclick="navigate('ai-setup')" style="cursor:pointer; background: linear-gradient(135deg, #4f46e5, #7c3aed); color: #fff; margin-bottom: 1.5rem; text-align: center;">
+        <h2 style="color:#fff; margin:0 0 .5rem">Unlock AI-Powered Learning</h2>
+        <p style="color:#e0e7ff; margin:0">Get personalized essay grading, wrong-answer explanations, and an AI tutor to help you score a 5+.</p>
+        <button class="btn" style="background:#fff; color:#4f46e5; font-weight:700; margin-top:1rem;">Connect Claude AI</button>
+      </div>
+    ` : `
+      <div class="ai-quick-actions" style="margin-bottom: 1.5rem;">
+        <button class="ai-action-card" onclick="navigate('ai-tutor')">
+          <span class="ai-action-icon">💬</span>
+          <span class="ai-action-text">Ask AI Tutor</span>
+        </button>
+        <button class="ai-action-card" onclick="navigate('ai-practice')">
+          <span class="ai-action-icon">🎯</span>
+          <span class="ai-action-text">AI Practice</span>
+        </button>
+      </div>
+    `}
+
     <div class="home-grid">
       <button class="home-card card-lessons" onclick="navigate('lessons')">
         <div class="card-icon">📚</div>
         <div class="card-title">Lessons</div>
-        <div class="card-desc">15 topics — grammar, punctuation, style, and organization</div>
+        <div class="card-desc">${LESSONS.length} topics — grammar, punctuation, style, and organization</div>
       </button>
       <button class="home-card card-practice" onclick="navigate('practice')">
         <div class="card-icon">✏️</div>
         <div class="card-title">Practice Tests</div>
-        <div class="card-desc">Full 50-question test or quick 10-question drills by topic</div>
+        <div class="card-desc">${QUESTIONS.length} questions · ${FIXED_TESTS.length} exams · drills by topic</div>
       </button>
       <button class="home-card card-essay" onclick="navigate('essay')">
         <div class="card-icon">📝</div>
         <div class="card-title">Essay Lab</div>
-        <div class="card-desc">Practice extended responses with the official scoring rubric</div>
+        <div class="card-desc">Practice extended responses${aiConfigured() ? " with AI grading" : ""}</div>
       </button>
       <button class="home-card card-cheat" onclick="navigate('cheatsheet')">
         <div class="card-icon">⚡</div>
@@ -199,7 +222,7 @@ function renderHome() {
         </div>
         <div class="overview-item">
           <span class="ov-label">Essay Scoring</span>
-          <span class="ov-val">4 traits, 0–3 each (0–12 total)</span>
+          <span class="ov-val">Holistic 1–6 per rater (2–12 combined)</span>
         </div>
         <div class="overview-item">
           <span class="ov-label">Content</span>
@@ -368,6 +391,14 @@ function renderPracticeMenu() {
         <div class="pc-desc">10 random questions · No time limit · Great for daily practice</div>
         <button class="btn btn-secondary mt-1">Start Quick Drill</button>
       </div>
+      ${aiConfigured() ? `
+        <div class="practice-card card" onclick="navigate('ai-practice')" style="border-color: #7c3aed;">
+          <div class="pc-icon">🤖</div>
+          <div class="pc-title">AI Practice</div>
+          <div class="pc-desc">Fresh AI-generated questions targeting your weak areas</div>
+          <button class="btn btn-ai mt-1" style="font-size:.95rem; padding:.6rem 1.2rem">Generate Questions</button>
+        </div>
+      ` : ""}
     </div>
 
     <h2 class="section-title">🎯 Practice by Topic</h2>
@@ -500,8 +531,12 @@ function renderTest() {
 
       ${hasAnswered ? `
         <div class="explanation-box ${isCorrect ? "exp-correct" : "exp-wrong"}">
-          <strong>${isCorrect ? "✅ Correct!" : "❌ Not quite."}</strong> ${q.explanation}
+          <strong>${isCorrect ? "Correct!" : "Not quite."}</strong> ${q.explanation}
         </div>
+        ${!isCorrect && aiConfigured() ? `
+          <button class="btn btn-ai btn-ai-sm" style="margin-top:.75rem" onclick="aiExplainWrongAnswer(${q.id}, ${answered})">AI: Explain This</button>
+          <div id="ai-explain-${q.id}"></div>
+        ` : ""}
       ` : ""}
     </div>
 
@@ -663,6 +698,8 @@ function renderResults() {
               `).join("")}
             </div>
             <div class="review-explanation">💡 ${q.explanation}</div>
+            ${aiConfigured() ? `<button class="btn btn-ai btn-ai-sm" onclick="aiExplainWrongAnswer(${q.id}, ${answered})">AI: Explain What I Got Wrong</button>` : ""}
+            <div id="ai-explain-${q.id}"></div>
           </div>
         `).join("")}
       </div>
@@ -852,9 +889,12 @@ function renderEssayWrite() {
         oninput="updateWordCount()">${state.essayText || ""}</textarea>
     </div>
 
+    <div id="ai-essay-result" style="display:none"></div>
+
     <div class="essay-write-footer">
       <button class="btn btn-secondary" onclick="navigate('essay-rubric')">View Rubric</button>
       <button class="btn btn-primary" onclick="saveEssay()">Save Essay</button>
+      ${aiConfigured() ? `<button class="btn btn-ai" onclick="aiGradeMyEssay()">AI Grade My Essay</button>` : `<button class="btn btn-ai-disabled" onclick="navigate('ai-setup')">Set Up AI Grading</button>`}
     </div>
   `;
 
@@ -1902,7 +1942,7 @@ function renderCheatSheet() {
         <li><strong>Multiple Choice:</strong> 50 questions, 75 minutes — passage-based editing/revision items</li>
         <li><strong>Extended Response:</strong> 1 essay, 45 minutes — argue which of two passages makes a better case</li>
         <li><strong>Score:</strong> 1–20 scale. Minimum passing is usually 8 (check your state).</li>
-        <li><strong>Essay scored on 4 traits:</strong> Development (0–3), Organization (0–3), Clarity (0–3), Conventions (0–3)</li>
+        <li><strong>Essay scoring:</strong> Holistic 1–6 per rater (two raters). Score of 2–12 combined. Aim for 4+ per rater.</li>
       </ul>
     </div>
 
@@ -1991,6 +2031,415 @@ function renderCheatSheet() {
     </div>
   `;
   return div;
+}
+
+// ─── AI FEATURES ────────────────────────────────────────────────────────────
+
+function updateAIBadge() {
+  const badge = document.getElementById("ai-badge");
+  if (!badge) return;
+  if (aiConfigured()) {
+    badge.innerHTML = '<span class="ai-dot active"></span> AI On';
+    badge.classList.add("active");
+  } else {
+    badge.innerHTML = '<span class="ai-dot"></span> Set up AI';
+    badge.classList.remove("active");
+  }
+}
+
+function renderAISetup() {
+  const connected = aiConfigured();
+  const div = el("div", "ai-setup-view");
+  div.innerHTML = `
+    <h1>AI Tutor Setup</h1>
+    <p class="subtitle">Connect Claude AI to unlock smart features that help you score higher.</p>
+
+    <div class="card" style="border-left: 4px solid ${connected ? "var(--success)" : "var(--primary)"}">
+      <h2 style="margin-top:0">${connected ? "AI Connected" : "Enter Your API Key"}</h2>
+      <p>${connected
+        ? "Claude AI is active. You have access to all AI features."
+        : "You need a Claude API key from <strong>console.anthropic.com</strong>. The key stays in your browser — it's never sent anywhere except directly to Anthropic's API."}</p>
+
+      <div class="ai-key-form">
+        <input type="password" id="ai-key-input" class="ai-key-input"
+          placeholder="sk-ant-api03-..." value="${connected ? "••••••••••••••••••" : ""}" />
+        <button class="btn btn-primary" onclick="saveAIKeyFromInput()">
+          ${connected ? "Update Key" : "Connect"}
+        </button>
+        ${connected ? `<button class="btn btn-secondary" onclick="clearAIKey()">Disconnect</button>` : ""}
+      </div>
+    </div>
+
+    <h2>What AI Unlocks</h2>
+    <div class="ai-features-grid">
+      <div class="ai-feature-card card">
+        <div class="ai-feature-icon">📝</div>
+        <h3>Essay Grading</h3>
+        <p>Get your essay scored on the real HiSET 1-6 rubric with specific feedback on what to improve.</p>
+      </div>
+      <div class="ai-feature-card card">
+        <div class="ai-feature-icon">💡</div>
+        <h3>Wrong Answer Help</h3>
+        <p>When you miss a question, tap "Explain with AI" for a personalized lesson on what you got wrong.</p>
+      </div>
+      <div class="ai-feature-card card">
+        <div class="ai-feature-icon">💬</div>
+        <h3>AI Tutor Chat</h3>
+        <p>Ask any writing question — grammar rules, essay strategies, test tips — and get an expert answer.</p>
+      </div>
+      <div class="ai-feature-card card">
+        <div class="ai-feature-icon">🎯</div>
+        <h3>Smart Practice</h3>
+        <p>AI generates fresh practice questions targeting your weak areas.</p>
+      </div>
+    </div>
+
+    <div class="card" style="background: linear-gradient(135deg, #fffbeb, #fef3c7); border: 2px solid #fbbf24;">
+      <h3 style="margin-top:0">Privacy</h3>
+      <p style="margin:0">Your API key is stored only in your browser's local storage. Essay text is sent directly to Anthropic's API for grading — nothing is stored on any server. This app runs entirely in your browser.</p>
+    </div>
+  `;
+  return div;
+}
+
+function saveAIKeyFromInput() {
+  const input = document.getElementById("ai-key-input");
+  if (!input) return;
+  const key = input.value.trim();
+  if (!key || key.includes("•")) return;
+  setAIKey(key);
+  render();
+}
+
+function clearAIKey() {
+  AI_CONFIG.apiKey = "";
+  try { localStorage.removeItem("hiset_ai_key"); } catch {}
+  render();
+}
+
+// AI Tutor Chat
+let tutorMessages = [];
+
+function renderAITutor() {
+  const div = el("div", "ai-tutor-view");
+  const connected = aiConfigured();
+
+  div.innerHTML = `
+    <div class="tutor-header">
+      <button class="btn-back" onclick="navigate('home')">← Home</button>
+      <h1>AI Writing Tutor</h1>
+    </div>
+
+    ${!connected ? `
+      <div class="card" style="text-align:center; padding:3rem">
+        <h2>Connect AI First</h2>
+        <p>Set up your Claude API key to use the AI tutor.</p>
+        <button class="btn btn-primary" onclick="navigate('ai-setup')">Set Up AI</button>
+      </div>
+    ` : `
+      <div class="tutor-suggestions">
+        <button class="tutor-chip" onclick="askTutor('What\\'s the structure of a perfect HiSET essay?')">Essay structure</button>
+        <button class="tutor-chip" onclick="askTutor('Explain comma splice vs. run-on sentence with examples')">Comma splices</button>
+        <button class="tutor-chip" onclick="askTutor('How do I write a strong thesis for the HiSET essay?')">Thesis writing</button>
+        <button class="tutor-chip" onclick="askTutor('What are the most common grammar mistakes on the HiSET?')">Common mistakes</button>
+        <button class="tutor-chip" onclick="askTutor('How should I address the counterargument in my essay?')">Counterarguments</button>
+        <button class="tutor-chip" onclick="askTutor('Give me a test-day strategy for the HiSET writing section')">Test strategy</button>
+      </div>
+
+      <div class="tutor-chat" id="tutor-chat">
+        ${tutorMessages.length === 0 ? `
+          <div class="tutor-welcome">
+            <div class="tutor-avatar">AI</div>
+            <div class="tutor-bubble">
+              Hey! I'm your HiSET writing tutor. Ask me anything about grammar, essay writing, or test strategies. I'm here to help you score a 5 or higher on the writing section.
+            </div>
+          </div>
+        ` : tutorMessages.map(m => `
+          <div class="tutor-msg ${m.role}">
+            <div class="tutor-avatar">${m.role === "user" ? "You" : "AI"}</div>
+            <div class="tutor-bubble">${m.role === "user" ? escapeHtml(m.text) : mdToHtml(m.text)}</div>
+          </div>
+        `).join("")}
+        <div id="tutor-loading" class="tutor-loading" style="display:none">
+          <div class="tutor-avatar">AI</div>
+          <div class="tutor-bubble typing">Thinking<span class="dots">...</span></div>
+        </div>
+      </div>
+
+      <div class="tutor-input-bar">
+        <textarea id="tutor-input" class="tutor-input" placeholder="Ask about grammar, essays, test strategies..."
+          onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendTutorMessage()}"></textarea>
+        <button class="btn btn-primary tutor-send" onclick="sendTutorMessage()">Send</button>
+      </div>
+    `}
+  `;
+  setTimeout(() => scrollTutorToBottom(), 50);
+  return div;
+}
+
+function escapeHtml(text) {
+  const d = document.createElement("div");
+  d.textContent = text;
+  return d.innerHTML;
+}
+
+async function askTutor(question) {
+  const input = document.getElementById("tutor-input");
+  if (input) input.value = question;
+  sendTutorMessage();
+}
+
+async function sendTutorMessage() {
+  const input = document.getElementById("tutor-input");
+  if (!input) return;
+  const msg = input.value.trim();
+  if (!msg) return;
+
+  tutorMessages.push({ role: "user", text: msg });
+  input.value = "";
+  renderTutorChat();
+
+  const loading = document.getElementById("tutor-loading");
+  if (loading) loading.style.display = "flex";
+  scrollTutorToBottom();
+
+  try {
+    const weakAreas = getWeakCategories();
+    const context = weakAreas.length > 0
+      ? `The student's weak areas are: ${weakAreas.join(", ")}. Focus help on these if relevant.`
+      : "";
+    const reply = await aiTutor(msg, context);
+    tutorMessages.push({ role: "assistant", text: reply });
+  } catch (err) {
+    tutorMessages.push({ role: "assistant", text: handleAIError(err) });
+  }
+
+  if (loading) loading.style.display = "none";
+  renderTutorChat();
+}
+
+function renderTutorChat() {
+  const chat = document.getElementById("tutor-chat");
+  if (!chat) return;
+  chat.innerHTML = tutorMessages.map(m => `
+    <div class="tutor-msg ${m.role}">
+      <div class="tutor-avatar">${m.role === "user" ? "You" : "AI"}</div>
+      <div class="tutor-bubble">${m.role === "user" ? escapeHtml(m.text) : mdToHtml(m.text)}</div>
+    </div>
+  `).join("") + '<div id="tutor-loading" class="tutor-loading" style="display:none"><div class="tutor-avatar">AI</div><div class="tutor-bubble typing">Thinking<span class="dots">...</span></div></div>';
+  scrollTutorToBottom();
+}
+
+function scrollTutorToBottom() {
+  const chat = document.getElementById("tutor-chat");
+  if (chat) chat.scrollTop = chat.scrollHeight;
+}
+
+function getWeakCategories() {
+  const categories = [...new Set(QUESTIONS.map(q => q.category))];
+  return categories.filter(cat => {
+    const s = getCategoryStats(cat);
+    return s.total >= 5 && (s.correct / s.total) < 0.7;
+  });
+}
+
+function handleAIError(err) {
+  if (err.message === "NO_KEY") return "Please set up your API key first. Go to the AI Setup page.";
+  if (err.message === "INVALID_KEY") return "Your API key is invalid. Please check it in AI Setup.";
+  return `Something went wrong: ${err.message}. Please try again.`;
+}
+
+// AI Explain for wrong answers (called from the test results)
+async function aiExplainWrongAnswer(qId, studentAnswer) {
+  const q = QUESTIONS.find(q => q.id === qId);
+  if (!q) return;
+
+  const container = document.getElementById(`ai-explain-${qId}`);
+  if (!container) return;
+
+  container.innerHTML = '<div class="ai-loading">Generating explanation<span class="dots">...</span></div>';
+
+  try {
+    const reply = await aiExplainQuestion(
+      q.question,
+      q.passage ? q.passage.substring(0, 800) : "",
+      q.choices,
+      q.correct,
+      studentAnswer,
+      q.category
+    );
+    container.innerHTML = `<div class="ai-explanation"><div class="ai-explain-header">AI Tutor</div>${mdToHtml(reply)}</div>`;
+  } catch (err) {
+    container.innerHTML = `<div class="ai-error">${handleAIError(err)}</div>`;
+  }
+}
+
+// AI Essay Grading
+async function aiGradeMyEssay() {
+  const ta = document.getElementById("essay-textarea");
+  if (!ta) return;
+  const text = ta.value.trim();
+  if (!text || text.split(/\s+/).length < 30) {
+    alert("Write at least 30 words before grading.");
+    return;
+  }
+
+  const ep = ESSAY_PROMPTS.find(e => e.id === state.essayPromptId);
+  if (!ep) return;
+
+  const resultDiv = document.getElementById("ai-essay-result");
+  if (!resultDiv) return;
+
+  resultDiv.innerHTML = '<div class="ai-loading ai-loading-lg">AI is reading and scoring your essay<span class="dots">...</span></div>';
+  resultDiv.style.display = "block";
+
+  try {
+    const raw = await aiGradeEssay(text, ep.passageA.text, ep.passageB.text, ep.prompt);
+    const grade = parseAIGrade(raw);
+
+    const scoreColors = { 1: "#ef4444", 2: "#f97316", 3: "#eab308", 4: "#22c55e", 5: "#3b82f6", 6: "#8b5cf6" };
+    const scoreLabels = { 1: "Weak", 2: "Limited", 3: "Partial", 4: "Adequate", 5: "Strong", 6: "Superior" };
+    const color = scoreColors[grade.score] || "#6366f1";
+
+    resultDiv.innerHTML = `
+      <div class="ai-grade-card">
+        <div class="ai-grade-header" style="background: ${color}">
+          <div class="ai-grade-score">${grade.score}/6</div>
+          <div class="ai-grade-label">${scoreLabels[grade.score] || ""} Command</div>
+        </div>
+        <div class="ai-grade-body">
+          <div class="ai-grade-section">
+            <h3>Strengths</h3>
+            <ul>${grade.strengths.map(s => `<li class="strength-item">${s}</li>`).join("")}</ul>
+          </div>
+          <div class="ai-grade-section">
+            <h3>Areas to Improve</h3>
+            <ul>${grade.improvements.map(s => `<li class="improve-item">${s}</li>`).join("")}</ul>
+          </div>
+          ${grade.rewriteTip ? `
+            <div class="ai-grade-section rewrite-section">
+              <h3>Rewrite Example</h3>
+              <p>${grade.rewriteTip}</p>
+            </div>
+          ` : ""}
+          <div class="ai-grade-section next-section">
+            <h3>How to Score a ${Math.min(6, (grade.score || 3) + 1)}</h3>
+            <p>${grade.nextScore}</p>
+          </div>
+        </div>
+      </div>
+    `;
+  } catch (err) {
+    resultDiv.innerHTML = `<div class="ai-error">${handleAIError(err)}</div>`;
+  }
+}
+
+// AI Practice — generate questions on weak areas
+let aiPracticeQ = null;
+let aiPracticeAnswer = null;
+let aiPracticeLoading = false;
+
+function renderAIPractice() {
+  const div = el("div", "ai-practice-view");
+  const connected = aiConfigured();
+  const weakAreas = getWeakCategories();
+
+  div.innerHTML = `
+    <div class="tutor-header">
+      <button class="btn-back" onclick="navigate('practice')">← Practice</button>
+      <h1>AI-Generated Practice</h1>
+    </div>
+
+    ${!connected ? `
+      <div class="card" style="text-align:center; padding:3rem">
+        <h2>Connect AI First</h2>
+        <p>Set up your Claude API key to use AI practice.</p>
+        <button class="btn btn-primary" onclick="navigate('ai-setup')">Set Up AI</button>
+      </div>
+    ` : `
+      <p class="subtitle">AI creates fresh questions targeting your weak areas. Every question is unique.</p>
+
+      ${weakAreas.length > 0 ? `
+        <div class="card" style="border-left: 4px solid var(--warning);">
+          <strong>Your weak areas:</strong> ${weakAreas.join(", ")}
+          <p style="margin:0;margin-top:.5rem;color:var(--text-muted)">AI will focus on these categories.</p>
+        </div>
+      ` : ""}
+
+      <div class="ai-practice-area">
+        ${aiPracticeLoading ? '<div class="ai-loading ai-loading-lg">Generating a fresh question<span class="dots">...</span></div>' : ""}
+        ${aiPracticeQ && !aiPracticeLoading ? renderAIPracticeQuestion() : ""}
+        ${!aiPracticeQ && !aiPracticeLoading ? `
+          <div class="card" style="text-align:center; padding:2rem">
+            <p>Choose a category to practice:</p>
+            <div class="ai-cat-chips">
+              ${[...new Set(QUESTIONS.map(q => q.category))].map(cat => `
+                <button class="tutor-chip" onclick="generateAIQuestion('${cat}')">${cat}</button>
+              `).join("")}
+            </div>
+          </div>
+        ` : ""}
+      </div>
+    `}
+  `;
+  return div;
+}
+
+function renderAIPracticeQuestion() {
+  const q = aiPracticeQ;
+  if (!q) return "";
+  const answered = aiPracticeAnswer !== null;
+  const isCorrect = answered && aiPracticeAnswer === q.correct;
+
+  return `
+    <div class="question-card card">
+      ${q.passage ? `<div class="passage-box">${q.passage}</div>` : ""}
+      <div class="question-text">${q.question}</div>
+      <div class="choices">
+        ${q.choices.map((c, i) => {
+          let cls = "choice";
+          if (answered) {
+            if (i === q.correct) cls += " correct";
+            else if (i === aiPracticeAnswer) cls += " incorrect";
+          }
+          return `<button class="${cls}" ${answered ? "disabled" : ""}
+            onclick="answerAIPractice(${i})">
+            <span class="choice-letter">${"ABCD"[i]}</span>
+            <span class="choice-text">${c}</span>
+          </button>`;
+        }).join("")}
+      </div>
+      ${answered ? `
+        <div class="explanation-box ${isCorrect ? "exp-correct" : "exp-wrong"}">
+          <strong>${isCorrect ? "Correct!" : "Not quite."}</strong> ${q.explanation}
+        </div>
+        <div class="skill-cta" style="margin-top:1rem">
+          <button class="btn btn-primary" onclick="aiPracticeQ=null;aiPracticeAnswer=null;render()">Next Question</button>
+        </div>
+      ` : ""}
+    </div>
+  `;
+}
+
+function answerAIPractice(i) {
+  aiPracticeAnswer = i;
+  render();
+}
+
+async function generateAIQuestion(category) {
+  aiPracticeLoading = true;
+  aiPracticeQ = null;
+  aiPracticeAnswer = null;
+  render();
+
+  try {
+    aiPracticeQ = await aiGenerateQuestion(category);
+  } catch (err) {
+    aiPracticeQ = null;
+    alert("Failed to generate question: " + err.message);
+  }
+  aiPracticeLoading = false;
+  render();
 }
 
 // ─── Utilities ────────────────────────────────────────────────────────────────
