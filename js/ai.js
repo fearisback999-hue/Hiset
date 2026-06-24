@@ -29,31 +29,38 @@ async function callAI(systemPrompt, userPrompt, maxTokens) {
   if (!aiConfigured()) throw new Error("NO_KEY");
 
   const fullPrompt = systemPrompt + "\n\n" + userPrompt;
+  const body = JSON.stringify({
+    contents: [{ parts: [{ text: fullPrompt }] }],
+    generationConfig: { maxOutputTokens: maxTokens || AI_CONFIG.maxTokens }
+  });
+  const headers = { "Content-Type": "application/json" };
 
-  const resp = await fetch(
-    `https://generativelanguage.googleapis.com/v1beta/models/${AI_CONFIG.model}:generateContent?key=${AI_CONFIG.apiKey}`,
-    {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        contents: [{ parts: [{ text: fullPrompt }] }],
-        generationConfig: { maxOutputTokens: maxTokens || AI_CONFIG.maxTokens }
-      })
+  const models = [AI_CONFIG.model, "gemini-2.0-flash-lite", "gemini-1.5-flash"];
+  let lastErr;
+
+  for (const model of models) {
+    const resp = await fetch(
+      `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${AI_CONFIG.apiKey}`,
+      { method: "POST", headers, body }
+    );
+
+    if (resp.status === 404) { lastErr = `Model ${model} not found`; continue; }
+
+    if (!resp.ok) {
+      const err = await resp.text();
+      if (resp.status === 400 && err.includes("API key")) throw new Error("INVALID_KEY");
+      if (resp.status === 429) throw new Error("RATE_LIMIT");
+      throw new Error(`API error ${resp.status}`);
     }
-  );
 
-  if (!resp.ok) {
-    const err = await resp.text();
-    if (resp.status === 400 && err.includes("API key")) throw new Error("INVALID_KEY");
-    if (resp.status === 429) throw new Error("RATE_LIMIT");
-    throw new Error(`API error ${resp.status}`);
+    const data = await resp.json();
+    if (!data.candidates || !data.candidates[0] || !data.candidates[0].content) {
+      throw new Error("Invalid response from Gemini API");
+    }
+    return data.candidates[0].content.parts[0].text;
   }
 
-  const data = await resp.json();
-  if (!data.candidates || !data.candidates[0] || !data.candidates[0].content) {
-    throw new Error("Invalid response from Gemini API");
-  }
-  return data.candidates[0].content.parts[0].text;
+  throw new Error(lastErr || "API error 404");
 }
 
 // Grade a full essay using AI
