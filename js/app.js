@@ -481,7 +481,7 @@ function renderTest() {
 
     <div class="question-card card">
       ${q.passage ? `<div class="passage-box">${formatPassage(q.passage)}</div>` : ""}
-      <div class="question-text">${q.question}</div>
+      <div class="question-text">${formatQuestion(q.question)}</div>
       <div class="choices" id="choices">
         ${q.choices.map((c, i) => {
           let cls = "choice";
@@ -519,7 +519,34 @@ function renderTest() {
 }
 
 function formatPassage(text) {
-  return text.replace(/\((\d+)\)__(.*?)__/g, '<span class="underline-q">($1) <u>$2</u></span>');
+  // Pattern 1: (N)__text__ (FPT7 format)
+  text = text.replace(/\((\d+)\)__(.*?)__/gs,
+    '<span class="uline-mark"><sup class="uline-num">$1</sup><u>$2</u></span>');
+
+  const remaining = (text.match(/\((\d+)\)/g) || []);
+  if (remaining.length > 0) {
+    const counts = {};
+    remaining.forEach(m => { const n = m.slice(1, -1); counts[n] = (counts[n] || 0) + 1; });
+    const hasPaired = Object.values(counts).some(c => c >= 2);
+
+    if (hasPaired) {
+      // Pattern 2: paired (N)...text...(N) (FPT6 format)
+      text = text.replace(/\((\d+)\)\s*([\s\S]*?)\s*\(\1\)/g,
+        '<span class="uline-mark"><sup class="uline-num">$1</sup><u>$2</u></span>');
+    } else {
+      // Pattern 3: unpaired (N) markers (FPT8/9) — underline to next marker or sentence end
+      text = text.replace(/\((\d+)\)\s*(.*?)(?=\s*\(\d+\)|[.!?](?:\s|\n|$)|\n\n|$)/g,
+        '<span class="uline-mark"><sup class="uline-num">$1</sup><u>$2</u></span>');
+    }
+  }
+
+  text = text.replace(/¶(\d+)/g, '<span class="para-num">¶$1</span>');
+  text = text.replace(/\n/g, '<br>');
+  return text;
+}
+
+function formatQuestion(text) {
+  return text.replace(/\((\d+)\)/g, '<span class="q-ref">$1</span>');
 }
 
 function selectAnswer(choiceIndex) {
@@ -627,7 +654,7 @@ function renderResults() {
           <div class="review-card card">
             <div class="review-category">${q.category}</div>
             ${q.passage ? `<div class="review-passage">${formatPassage(q.passage)}</div>` : ""}
-            <div class="review-question">${q.question}</div>
+            <div class="review-question">${formatQuestion(q.question)}</div>
             <div class="review-choices">
               ${q.choices.map((c, i) => `
                 <div class="review-choice ${i === q.correct ? "correct" : i === answered ? "incorrect" : ""}">
