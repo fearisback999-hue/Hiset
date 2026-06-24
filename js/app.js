@@ -100,6 +100,9 @@ function render() {
     case "ai-setup":     app.appendChild(renderAISetup()); break;
     case "ai-tutor":     app.appendChild(renderAITutor()); break;
     case "ai-practice":  app.appendChild(renderAIPractice()); break;
+    case "smart-review": app.appendChild(renderSmartReview()); break;
+    case "model-essays": app.appendChild(renderModelEssays()); break;
+    case "score-predict": app.appendChild(renderScorePredictor()); break;
     default:             app.appendChild(renderHome());
   }
   updateAIBadge();
@@ -192,6 +195,25 @@ function renderHome() {
         <div class="card-desc">Grammar rules, transition words, and test tips at a glance</div>
       </button>
     </div>
+
+    ${state.progress.totalQuestionsAnswered >= 10 ? `
+      <div class="home-score-row">
+        <button class="score-row-card card" onclick="navigate('smart-review')">
+          <span class="score-row-icon">🔄</span>
+          <div>
+            <div class="score-row-title">Smart Review</div>
+            <div class="score-row-sub">${getMissedQuestionIds().length} weak questions to drill</div>
+          </div>
+        </button>
+        <button class="score-row-card card" onclick="navigate('score-predict')">
+          <span class="score-row-icon">🎯</span>
+          <div>
+            <div class="score-row-title">Score Predictor</div>
+            <div class="score-row-sub">Predicted: ${predictScore()?.mcScaled || "?"}/20</div>
+          </div>
+        </button>
+      </div>
+    ` : ""}
 
     <div class="exam-overview card">
       <h2>About the HiSET Writing Test</h2>
@@ -358,6 +380,13 @@ function renderPracticeMenu() {
   div.innerHTML = `
     <h1>Practice Tests</h1>
     <p class="subtitle">Test yourself under timed conditions — just like the real HiSET.</p>
+
+    ${getMissedQuestionIds().length > 0 ? `
+      <div class="smart-review-banner card" onclick="navigate('smart-review')" style="cursor:pointer; background: linear-gradient(135deg, #dc2626, #b91c1c); color: #fff; margin-bottom: 1.5rem;">
+        <h3 style="color:#fff; margin:0">🔄 ${getMissedQuestionIds().length} Weak Questions Need Review</h3>
+        <p style="color:#fecaca; margin:.5rem 0 0">Drilling these will raise your score the fastest. Tap to start Smart Review.</p>
+      </div>
+    ` : ""}
 
     <h2 class="section-title">📘 Full-Length Practice Exams</h2>
     <p class="subtitle" style="margin-bottom:1rem">Fixed, exam-style sets of 40 questions — the same questions every time, so you can track real improvement.</p>
@@ -678,9 +707,35 @@ function renderResults() {
 
     <div class="results-actions">
       <button class="btn btn-primary" onclick="${state.testMode === "exam" ? `startFixedTest(${state.testExamNum})` : `startTest('${state.testMode}', ${state.testCategory ? `'${state.testCategory}'` : "null"})`}">Retake Test</button>
-      <button class="btn btn-secondary" onclick="navigate('practice')">Other Tests</button>
+      <button class="btn btn-secondary" onclick="navigate('smart-review')">Smart Review</button>
       <button class="btn btn-secondary" onclick="navigate('home')">Home</button>
     </div>
+
+    ${(() => {
+      const catBreakdown = {};
+      state.testQuestions.forEach((q, i) => {
+        const cat = q.category;
+        if (!catBreakdown[cat]) catBreakdown[cat] = { correct: 0, total: 0 };
+        catBreakdown[cat].total++;
+        if (state.testAnswers[i] === q.correct) catBreakdown[cat].correct++;
+      });
+      const entries = Object.entries(catBreakdown).sort((a, b) => (a[1].correct / a[1].total) - (b[1].correct / b[1].total));
+      if (entries.length <= 1) return "";
+      return `
+        <div class="results-breakdown card">
+          <h2 style="margin-top:0">Performance Breakdown</h2>
+          ${entries.map(([cat, s]) => {
+            const cpct = Math.round((s.correct / s.total) * 100);
+            return `<div class="rb-row">
+              <span class="rb-cat">${cat}</span>
+              <div class="rb-bar"><div class="rb-fill ${cpct >= 80 ? "bar-green" : cpct >= 60 ? "bar-yellow" : "bar-red"}" style="width:${cpct}%"></div></div>
+              <span class="rb-pct">${s.correct}/${s.total}</span>
+            </div>`;
+          }).join("")}
+          ${pct < 88 ? `<p style="margin:1rem 0 0; color:var(--text-muted); font-size:.9rem">You need <strong>88%+</strong> to score 18/20. Focus on the red/yellow categories above.</p>` : ""}
+        </div>
+      `;
+    })()}
 
     ${missed.length > 0 ? `
       <div class="missed-section">
@@ -803,10 +858,17 @@ function renderEssayMenu() {
       <button class="btn btn-text" onclick="navigate('essay-rubric')">View Full Scoring Rubric →</button>
     </div>
 
-    <div class="structure-cta card" style="background: linear-gradient(135deg, #4f46e5, #7c3aed); color: #fff; cursor: pointer;" onclick="navigate('essay-structure')">
-      <h2 style="color:#fff; margin:0 0 .5rem">🏗️ Essay Structure Quiz</h2>
-      <p style="color:#e0e7ff; margin:0; font-size:1.1rem">Learn the exact structure of a perfect HiSET argumentative essay — then prove you know it with interactive quizzes.</p>
-      <button class="btn" style="background:#fff; color:#4f46e5; font-weight:700; margin-top:1rem;">Start the Structure Quiz →</button>
+    <div class="essay-cta-row">
+      <div class="structure-cta card" style="background: linear-gradient(135deg, #4f46e5, #7c3aed); color: #fff; cursor: pointer; flex:1;" onclick="navigate('essay-structure')">
+        <h2 style="color:#fff; margin:0 0 .5rem">🏗️ Essay Structure Quiz</h2>
+        <p style="color:#e0e7ff; margin:0; font-size:1rem">Learn the exact structure of a perfect argumentative essay.</p>
+        <button class="btn" style="background:#fff; color:#4f46e5; font-weight:700; margin-top:1rem;">Structure Quiz →</button>
+      </div>
+      <div class="structure-cta card" style="background: linear-gradient(135deg, #0f766e, #0d9488); color: #fff; cursor: pointer; flex:1;" onclick="navigate('model-essays')">
+        <h2 style="color:#fff; margin:0 0 .5rem">📖 Model Essays</h2>
+        <p style="color:#ccfbf1; margin:0; font-size:1rem">See what a Score 3 vs Score 5 actually looks like side by side.</p>
+        <button class="btn" style="background:#fff; color:#0f766e; font-weight:700; margin-top:1rem;">Study Examples →</button>
+      </div>
     </div>
 
     <h2>Practice One Piece at a Time</h2>
@@ -2062,7 +2124,7 @@ function renderAISetup() {
 
       <div class="ai-key-form">
         <input type="password" id="ai-key-input" class="ai-key-input"
-          placeholder="sk-ant-api03-..." value="${connected ? "••••••••••••••••••" : ""}" />
+          placeholder="AIza..." value="${connected ? "••••••••••••••••••" : ""}" />
         <button class="btn btn-primary" onclick="saveAIKeyFromInput()">
           ${connected ? "Update Key" : "Connect"}
         </button>
@@ -2441,6 +2503,302 @@ async function generateAIQuestion(category) {
   }
   aiPracticeLoading = false;
   render();
+}
+
+// ─── SMART REVIEW (Spaced Repetition for Missed Questions) ──────────────────
+
+function getMissedQuestionIds() {
+  const stats = state.progress.questionStats;
+  return Object.entries(stats)
+    .filter(([, s]) => s.total > 0 && (s.correct / s.total) < 0.7)
+    .map(([id]) => parseInt(id))
+    .filter(id => QUESTIONS.some(q => q.id === id));
+}
+
+function getWeakestCategories() {
+  const catStats = {};
+  QUESTIONS.forEach(q => {
+    const s = state.progress.questionStats[q.id];
+    if (!s || s.total === 0) return;
+    const cat = q.category;
+    if (!catStats[cat]) catStats[cat] = { correct: 0, total: 0 };
+    catStats[cat].correct += s.correct;
+    catStats[cat].total += s.total;
+  });
+  return Object.entries(catStats)
+    .map(([cat, s]) => ({ cat, pct: Math.round((s.correct / s.total) * 100), total: s.total }))
+    .filter(d => d.total >= 3)
+    .sort((a, b) => a.pct - b.pct);
+}
+
+function renderSmartReview() {
+  const missed = getMissedQuestionIds();
+  const weakCats = getWeakestCategories();
+  const totalAnswered = state.progress.totalQuestionsAnswered;
+
+  const div = el("div", "smart-review-view");
+  div.innerHTML = `
+    <div class="tutor-header">
+      <button class="btn-back" onclick="navigate('practice')">← Practice</button>
+      <h1>Smart Review</h1>
+    </div>
+    <p class="subtitle">Focus on questions you've missed. This is the fastest way to raise your score.</p>
+
+    ${totalAnswered < 20 ? `
+      <div class="card" style="text-align:center; padding:2rem">
+        <h2>Keep Practicing</h2>
+        <p>Answer at least 20 questions first so Smart Review can identify your weak areas. You've answered ${totalAnswered} so far.</p>
+        <button class="btn btn-primary" onclick="startTest('quick')">Start a Quick Drill</button>
+      </div>
+    ` : `
+      ${missed.length > 0 ? `
+        <div class="card" style="border-left: 4px solid var(--danger);">
+          <h2 style="margin-top:0">You have ${missed.length} weak question${missed.length === 1 ? "" : "s"}</h2>
+          <p style="margin:0">These are questions you've gotten wrong more than 30% of the time. Drilling these will have the biggest impact on your score.</p>
+          <button class="btn btn-primary mt-1" onclick="startSmartReview()">Drill Weak Questions (${Math.min(missed.length, 20)})</button>
+        </div>
+      ` : `
+        <div class="card" style="border-left: 4px solid var(--success); text-align:center">
+          <h2 style="margin-top:0">No Weak Questions!</h2>
+          <p>You're scoring above 70% on every question you've tried. Keep taking new tests to find areas to improve.</p>
+        </div>
+      `}
+
+      ${weakCats.length > 0 ? `
+        <h2>Weakest Categories</h2>
+        <p class="subtitle" style="margin-bottom:1rem">Tap a category to drill only those questions.</p>
+        <div class="weak-cats">
+          ${weakCats.slice(0, 8).map(d => `
+            <button class="weak-cat-card card" onclick="startTest('category', '${d.cat.replace(/'/g, "\\'")}')">
+              <div class="weak-cat-top">
+                <span class="weak-cat-name">${d.cat}</span>
+                <span class="weak-cat-pct ${d.pct >= 70 ? "green" : d.pct >= 50 ? "yellow" : "red"}">${d.pct}%</span>
+              </div>
+              <div class="weak-cat-bar">
+                <div class="weak-cat-fill ${d.pct >= 70 ? "bar-green" : d.pct >= 50 ? "bar-yellow" : "bar-red"}" style="width:${d.pct}%"></div>
+              </div>
+              <div class="weak-cat-tip">${d.pct < 50 ? "Needs serious work" : d.pct < 70 ? "Review this topic" : "Almost there"}</div>
+            </button>
+          `).join("")}
+        </div>
+      ` : ""}
+
+      <div class="card mt-2" style="background: linear-gradient(135deg, #1e1b4b, #312e81); color: #fff;">
+        <h3 style="color:#fff; margin-top:0">How to get 18-20 on MCQ</h3>
+        <ul style="color:#c7d2fe; line-height:2; margin:0; padding-left:1.5rem">
+          <li><strong>Drill weak questions daily</strong> — use Smart Review every session</li>
+          <li><strong>Learn the rule, not just the answer</strong> — read every explanation carefully</li>
+          <li><strong>"No change" IS an answer</strong> — don't change things that are already correct</li>
+          <li><strong>Read the full passage first</strong> — context determines many answers</li>
+          <li><strong>Eliminate 2 choices fast</strong> — on tough questions, narrow to 2 then decide</li>
+          <li><strong>Watch for trap answers</strong> — they sound right but violate a specific rule</li>
+        </ul>
+      </div>
+    `}
+  `;
+  return div;
+}
+
+function startSmartReview() {
+  const missed = getMissedQuestionIds();
+  const pool = shuffle(missed.map(id => QUESTIONS.find(q => q.id === id)).filter(Boolean)).slice(0, 20);
+  if (!pool.length) return;
+
+  state.testQuestions = pool;
+  state.testIndex = 0;
+  state.testAnswers = new Array(pool.length).fill(null);
+  state.testMode = "review";
+  state.testCategory = null;
+  state.testExamNum = null;
+  state.testStartTime = Date.now();
+  navigate("test");
+}
+
+// ─── SCORE PREDICTOR ────────────────────────────────────────────────────────
+
+function predictScore() {
+  const p = state.progress;
+  if (p.totalQuestionsAnswered < 10) return null;
+
+  const mcPct = p.totalCorrect / p.totalQuestionsAnswered;
+
+  // HiSET MCQ raw → scaled score (approximate based on published conversion tables)
+  // 50 questions. Score scale 1-20.
+  // ~90%+ = 18-20, ~80% = 15-17, ~70% = 12-14, ~60% = 9-11, ~50% = 7-8, <50% = 1-6
+  let mcScaled;
+  if (mcPct >= 0.96) mcScaled = 20;
+  else if (mcPct >= 0.92) mcScaled = 19;
+  else if (mcPct >= 0.88) mcScaled = 18;
+  else if (mcPct >= 0.84) mcScaled = 17;
+  else if (mcPct >= 0.80) mcScaled = 16;
+  else if (mcPct >= 0.76) mcScaled = 15;
+  else if (mcPct >= 0.72) mcScaled = 14;
+  else if (mcPct >= 0.68) mcScaled = 13;
+  else if (mcPct >= 0.64) mcScaled = 12;
+  else if (mcPct >= 0.60) mcScaled = 11;
+  else if (mcPct >= 0.56) mcScaled = 10;
+  else if (mcPct >= 0.52) mcScaled = 9;
+  else if (mcPct >= 0.48) mcScaled = 8;
+  else if (mcPct >= 0.40) mcScaled = 6;
+  else mcScaled = 4;
+
+  const missed = getMissedQuestionIds().length;
+  const weakCats = getWeakestCategories().filter(c => c.pct < 60);
+  const toImprove = [];
+
+  if (mcPct < 0.90) {
+    if (weakCats.length > 0) toImprove.push(`Drill these weak categories: ${weakCats.slice(0, 3).map(c => c.cat).join(", ")}`);
+    if (missed > 5) toImprove.push(`Review your ${missed} frequently-missed questions using Smart Review`);
+    if (p.totalQuestionsAnswered < 200) toImprove.push("Take more practice tests — you need at least 200 questions answered for a reliable prediction");
+  }
+
+  return {
+    mcPct: Math.round(mcPct * 100),
+    mcScaled,
+    totalAnswered: p.totalQuestionsAnswered,
+    missedCount: missed,
+    weakCategories: weakCats,
+    toImprove,
+    isReliable: p.totalQuestionsAnswered >= 100
+  };
+}
+
+function renderScorePredictor() {
+  const pred = predictScore();
+  const div = el("div", "score-predict-view");
+
+  div.innerHTML = `
+    <div class="tutor-header">
+      <button class="btn-back" onclick="navigate('progress')">← Progress</button>
+      <h1>Score Predictor</h1>
+    </div>
+
+    ${!pred ? `
+      <div class="card" style="text-align:center; padding:2rem">
+        <h2>Not Enough Data</h2>
+        <p>Answer at least 10 practice questions to see your predicted score.</p>
+        <button class="btn btn-primary" onclick="startTest('quick')">Start Practicing</button>
+      </div>
+    ` : `
+      <div class="score-pred-hero ${pred.mcScaled >= 18 ? "hero-green" : pred.mcScaled >= 14 ? "hero-yellow" : "hero-red"}">
+        <div class="pred-score-box">
+          <div class="pred-score-num">${pred.mcScaled}</div>
+          <div class="pred-score-label">/ 20 predicted</div>
+        </div>
+        <div class="pred-accuracy">${pred.mcPct}% accuracy across ${pred.totalAnswered} questions</div>
+        ${!pred.isReliable ? `<div class="pred-warning">Answer 100+ questions for a more reliable prediction</div>` : ""}
+      </div>
+
+      <div class="pred-target card">
+        <h2 style="margin-top:0">Your Target: 18-20</h2>
+        <div class="pred-gap">
+          ${pred.mcScaled >= 18 ? `
+            <div style="color: var(--success); font-weight: 800; font-size: 1.2rem;">You're in the target range! Keep it up.</div>
+          ` : `
+            <p>You need to improve your accuracy from <strong>${pred.mcPct}%</strong> to at least <strong>88%</strong> to hit 18/20.</p>
+            <p>That means getting <strong>${Math.max(0, Math.ceil(pred.totalAnswered * 0.88) - state.progress.totalCorrect)} more questions right</strong> out of your next attempts — or fixing the ${pred.missedCount} questions you keep getting wrong.</p>
+          `}
+        </div>
+      </div>
+
+      ${pred.toImprove.length > 0 ? `
+        <div class="card" style="border-left: 4px solid var(--warning);">
+          <h3 style="margin-top:0">Action Plan to Score 18+</h3>
+          <ol style="margin:0; padding-left:1.5rem; line-height:2">
+            ${pred.toImprove.map(t => `<li>${t}</li>`).join("")}
+          </ol>
+        </div>
+      ` : ""}
+
+      ${pred.weakCategories.length > 0 ? `
+        <h2>Categories Holding You Back</h2>
+        ${pred.weakCategories.slice(0, 5).map(c => `
+          <div class="weak-row">
+            <span class="weak-row-name">${c.cat}</span>
+            <div class="weak-row-bar"><div class="weak-row-fill ${c.pct >= 70 ? "bar-green" : c.pct >= 50 ? "bar-yellow" : "bar-red"}" style="width:${c.pct}%"></div></div>
+            <span class="weak-row-pct">${c.pct}%</span>
+            <button class="btn btn-secondary" style="padding:.3rem .8rem; font-size:.8rem" onclick="startTest('category', '${c.cat.replace(/'/g, "\\'")}')">Drill</button>
+          </div>
+        `).join("")}
+      ` : ""}
+
+      <div class="card mt-2">
+        <h3 style="margin-top:0">How the Prediction Works</h3>
+        <p style="margin:0">This estimates your HiSET scaled score based on your practice accuracy. The real test has 50 MC questions scored 1-20. Your accuracy percentage maps to an approximate scaled score. The more questions you answer, the more reliable this prediction becomes.</p>
+      </div>
+    `}
+  `;
+  return div;
+}
+
+// ─── MODEL ESSAYS ───────────────────────────────────────────────────────────
+
+function renderModelEssays() {
+  const div = el("div", "model-essays-view");
+  const essays = (typeof MODEL_ESSAYS !== "undefined") ? MODEL_ESSAYS : [];
+
+  div.innerHTML = `
+    <div class="tutor-header">
+      <button class="btn-back" onclick="navigate('essay')">← Essay Lab</button>
+      <h1>Model Essays: See What Each Score Looks Like</h1>
+    </div>
+    <p class="subtitle">Study these real-scoring examples. Compare the Score 3 to the Score 5 — notice what changes.</p>
+
+    <div class="model-essay-tip card" style="border-left: 4px solid var(--primary);">
+      <h3 style="margin-top:0">How to use these</h3>
+      <ol style="margin:0; padding-left:1.5rem; line-height:2">
+        <li><strong>Read the Score 3 first</strong> — notice what's weak (thin evidence, choppy sentences, no counterargument)</li>
+        <li><strong>Then read the Score 5</strong> — notice the specific improvements (integrated evidence, varied sentences, fair counterargument)</li>
+        <li><strong>Study the annotations</strong> — tap the highlighted sections to see why they score high or low</li>
+        <li><strong>Practice the difference</strong> — go write your own essay aiming for what the Score 5 does</li>
+      </ol>
+    </div>
+
+    ${essays.length === 0 ? `
+      <div class="card" style="text-align:center; padding:2rem">
+        <p>Model essays are loading...</p>
+      </div>
+    ` : essays.map((me, idx) => `
+      <div class="model-essay-card card">
+        <div class="me-header me-score-${me.score}">
+          <div class="me-score">${me.score}/6</div>
+          <div>
+            <div class="me-label">${me.label}</div>
+            <div class="me-topic">${me.topic}</div>
+          </div>
+        </div>
+        <div class="me-essay">${me.essay.split("\n\n").map(p => `<p>${p}</p>`).join("")}</div>
+        <div class="me-why">
+          <strong>Why this scores a ${me.score}:</strong> ${me.whatMakesThisScore}
+        </div>
+        ${me.annotations ? `
+          <details class="me-annotations">
+            <summary>View ${me.annotations.length} annotations</summary>
+            <div class="me-annot-list">
+              ${me.annotations.map(a => `
+                <div class="me-annot ${a.type}">
+                  <div class="me-annot-quote">"${a.text}"</div>
+                  <div class="me-annot-note">${a.note}</div>
+                </div>
+              `).join("")}
+            </div>
+          </details>
+        ` : ""}
+      </div>
+    `).join("")}
+
+    <div class="card mt-2" style="background: linear-gradient(135deg, #1e1b4b, #312e81); color: #fff;">
+      <h3 style="color:#fff; margin-top:0">The 5 Key Differences Between a 3 and a 5</h3>
+      <ol style="color:#c7d2fe; line-height:2.2; margin:0; padding-left:1.5rem">
+        <li><strong>Thesis specificity</strong> — "Passage A is better" (3) vs "Passage A presents a more convincing argument because it provides research data and real-world examples" (5)</li>
+        <li><strong>Evidence integration</strong> — Dropping a quote (3) vs weaving evidence into your own sentence (5)</li>
+        <li><strong>Counterargument</strong> — Ignoring the other side (3) vs acknowledging it fairly then explaining why it's weaker (5)</li>
+        <li><strong>Sentence variety</strong> — Same length and structure every sentence (3) vs mixing short punchy sentences with longer complex ones (5)</li>
+        <li><strong>Transitions</strong> — Jumping between ideas (3) vs "Furthermore," "However," "In contrast," connecting everything smoothly (5)</li>
+      </ol>
+    </div>
+  `;
+  return div;
 }
 
 // ─── Utilities ────────────────────────────────────────────────────────────────

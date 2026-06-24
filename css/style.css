@@ -945,3 +945,83 @@ th { background: var(--bg); font-weight: 700; }
 
 /* AI Practice */
 .ai-cat-chips { display: flex; flex-wrap: wrap; gap: .5rem; justify-content: center; margin-top: 1rem; }
+
+/* ─── Smart Review ───────────────────────────────────────────────────────── */
+.weak-cats { display: grid; grid-template-columns: 1fr 1fr; gap: .75rem; }
+.weak-cat-card { cursor: pointer; text-align: left; padding: 1rem 1.2rem; }
+.weak-cat-card:hover { border-color: var(--primary); }
+.weak-cat-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: .5rem; }
+.weak-cat-name { font-weight: 800; font-size: .95rem; color: var(--text); }
+.weak-cat-pct { font-weight: 900; font-size: .95rem; }
+.weak-cat-pct.green { color: var(--success); }
+.weak-cat-pct.yellow { color: var(--warning); }
+.weak-cat-pct.red { color: var(--danger); }
+.weak-cat-bar { height: 8px; background: var(--border); border-radius: 99px; overflow: hidden; margin-bottom: .4rem; }
+.weak-cat-fill { height: 100%; border-radius: 99px; }
+.weak-cat-tip { font-size: .8rem; color: var(--text-muted); font-weight: 600; }
+
+/* ─── Score Predictor ────────────────────────────────────────────────────── */
+.score-pred-hero { text-align: center; border-radius: var(--radius); padding: 2.5rem 1.5rem; margin-bottom: 1.5rem; }
+.pred-score-box { margin-bottom: .75rem; }
+.pred-score-num { font-size: 4rem; font-weight: 900; line-height: 1; }
+.pred-score-label { font-size: 1.2rem; font-weight: 700; opacity: .8; }
+.pred-accuracy { font-size: 1.1rem; font-weight: 700; }
+.pred-warning { font-size: .85rem; opacity: .7; margin-top: .5rem; }
+.pred-gap p { font-size: 1.05rem; line-height: 1.7; }
+
+.weak-row { display: grid; grid-template-columns: 180px 1fr 45px auto; align-items: center; gap: .75rem; margin-bottom: .6rem; }
+.weak-row-name { font-weight: 700; font-size: .9rem; }
+.weak-row-bar { height: 10px; background: var(--border); border-radius: 99px; overflow: hidden; }
+.weak-row-fill { height: 100%; border-radius: 99px; }
+.weak-row-pct { font-weight: 900; font-size: .9rem; text-align: right; }
+
+/* Home Score Row */
+.home-score-row { display: flex; gap: .75rem; margin-bottom: 1.5rem; }
+.score-row-card { flex: 1; display: flex; align-items: center; gap: .75rem; cursor: pointer; padding: 1rem 1.2rem; }
+.score-row-card:hover { border-color: var(--primary); }
+.score-row-icon { font-size: 1.8rem; }
+.score-row-title { font-weight: 800; font-size: 1rem; color: var(--text); }
+.score-row-sub { font-size: .85rem; color: var(--text-muted); font-weight: 600; }
+
+/* Essay CTA Row */
+.essay-cta-row { display: flex; gap: 1rem; margin-bottom: 1.5rem; }
+
+/* Results Breakdown */
+.results-breakdown { margin-bottom: 1.5rem; }
+.rb-row { display: grid; grid-template-columns: 160px 1fr 55px; align-items: center; gap: .6rem; margin-bottom: .5rem; }
+.rb-cat { font-weight: 700; font-size: .85rem; color: var(--text); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.rb-bar { height: 10px; background: var(--border); border-radius: 99px; overflow: hidden; }
+.rb-fill { height: 100%; border-radius: 99px; }
+.rb-pct { font-weight: 900; font-size: .85rem; text-align: right; }
+
+/* ─── Model Essays ───────────────────────────────────────────────────────── */
+.model-essay-card { margin-bottom: 1.5rem; overflow: hidden; }
+.me-header { display: flex; align-items: center; gap: 1rem; padding: 1rem 1.3rem; border-radius: 12px 12px 0 0; margin: -1.6rem -1.8rem 1.2rem; }
+.me-header.me-score-3 { background: linear-gradient(135deg, #fef3c7, #fde68a); }
+.me-header.me-score-4 { background: linear-gradient(135deg, #d1fae5, #a7f3d0); }
+.me-header.me-score-5 { background: linear-gradient(135deg, #dbeafe, #93c5fd); }
+.me-header.me-score-6 { background: linear-gradient(135deg, #e9d5ff, #c084fc); }
+.me-score { font-size: 2rem; font-weight: 900; background: rgba(255,255,255,.7); width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.me-label { font-weight: 800; font-size: 1.1rem; }
+.me-topic { font-size: .9rem; color: var(--text-muted); }
+.me-essay { font-family: Georgia, 'Times New Roman', serif; font-size: 1rem; line-height: 1.9; padding: 0 .5rem; }
+.me-essay p { color: var(--text); margin-bottom: 1rem; }
+.me-why { background: var(--bg); border: 2px solid var(--border); border-radius: 10px; padding: 1rem 1.2rem; margin-top: 1rem; font-size: .95rem; line-height: 1.7; }
+
+.me-annotations { margin-top: 1rem; }
+.me-annotations summary { font-weight: 800; color: var(--primary); cursor: pointer; font-size: 1rem; padding: .5rem 0; }
+.me-annot-list { display: flex; flex-direction: column; gap: .6rem; margin-top: .5rem; }
+.me-annot { border-radius: 10px; padding: .85rem 1.1rem; }
+.me-annot.strength { background: linear-gradient(135deg, #f0fdf4, #ecfdf5); border: 2px solid #86efac; }
+.me-annot.weakness { background: linear-gradient(135deg, #fef2f2, #fef5f5); border: 2px solid #fca5a5; }
+.me-annot-quote { font-style: italic; font-size: .9rem; margin-bottom: .4rem; color: var(--text); }
+.me-annot-note { font-size: .85rem; color: var(--text-muted); font-weight: 600; }
+
+@media (max-width: 500px) {
+  .weak-cats { grid-template-columns: 1fr; }
+  .essay-cta-row { flex-direction: column; }
+  .home-score-row { flex-direction: column; }
+  .rb-row { grid-template-columns: 120px 1fr 45px; }
+  .weak-row { grid-template-columns: 1fr; gap: .25rem; }
+  .weak-row-bar { display: none; }
+}

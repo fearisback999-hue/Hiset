@@ -58,15 +58,21 @@ async function callAI(systemPrompt, userPrompt, maxTokens) {
 
 // Grade a full essay using AI
 async function aiGradeEssay(essayText, passageA, passageB, prompt) {
-  const system = `You are an expert HiSET essay grader. Score essays using the official HiSET holistic rubric (1-6 scale).
+  const system = `You are an expert HiSET essay grader. The student is targeting a Score 5 (Strong Command). Score their essay using the official HiSET holistic rubric (1-6 scale).
 
 SCORING GUIDE:
 1 = Weak: No clear position, no organization, minimal language control, frequent errors
 2 = Limited: Unclear position, basic paragraphing, developing language, errors interfere
 3 = Partial: Some development, groups ideas in paragraphs, general word choice, regular errors
-4 = Adequate: Clear position, discusses alternate claims, specific evidence, some errors
-5 = Strong: Competent development, balanced discussion, varied vocabulary, few errors
-6 = Superior: Expert development, nuanced position, compelling evidence, near-perfect grammar
+4 = Adequate: Clear position, discusses alternate claims, specific evidence from texts, some errors. Uses transitions consistently. Formal style established.
+5 = Strong: Competent development with BALANCED discussion of alternate claims. Clear, considered position. Complete explanation with specific, elaborated details. Relevant evidence SKILLFULLY INTEGRATED from texts. Precise, varied vocabulary. Well-controlled sentences varied in length and complexity. Formal style and objective tone maintained. Counterclaims discussed FAIRLY. Few errors.
+6 = Superior: Expert development. Discusses strengths AND limitations of alternate claims. Nuanced position. Compelling evidence effectively integrated. Purposeful vocabulary. Near-perfect grammar.
+
+CRITICAL DIFFERENCES (4 vs 5):
+- A 4 MENTIONS evidence; a 5 INTEGRATES it into the argument seamlessly
+- A 4 ACKNOWLEDGES the other side; a 5 ENGAGES with it fairly and explains why it's weaker
+- A 4 has adequate sentences; a 5 varies sentence length and structure deliberately
+- A 4 uses transitions; a 5 uses VARIED transitions that connect ideas logically
 
 You must respond in this exact format:
 SCORE: [number 1-6]
@@ -75,11 +81,11 @@ STRENGTHS:
 - [strength 2]
 - [strength 3]
 IMPROVEMENTS:
-- [specific actionable improvement 1]
-- [specific actionable improvement 2]
-- [specific actionable improvement 3]
-REWRITE_TIP: [One specific sentence from their essay rewritten to demonstrate better writing]
-NEXT_SCORE: [what they need to do to move up one score level - be specific]`;
+- [specific actionable improvement 1 — quote the exact weak sentence and show how to fix it]
+- [specific actionable improvement 2 — quote the exact weak sentence and show how to fix it]
+- [specific actionable improvement 3 — quote the exact weak sentence and show how to fix it]
+REWRITE_TIP: [Take their weakest paragraph and rewrite 2-3 sentences to show Score 5 quality. Show the before and after.]
+NEXT_SCORE: [Exactly what they need to change to move up one score level — be brutally specific about sentences, evidence, structure]`;
 
   const user = `The student was given two passages and asked to write an argumentative essay.
 
@@ -115,7 +121,7 @@ Correct answer: ${String.fromCharCode(65 + correctIndex)} (${choices[correctInde
 
 Explain why they're wrong and teach the rule.`;
 
-  return await callClaude(system, user, 800);
+  return await callAI(system, user, 800);
 }
 
 // AI tutor chat for any writing question
@@ -132,7 +138,7 @@ Help the student understand grammar rules, essay structure, test strategies, and
 
 ${context ? `Current context: ${context}` : ""}`;
 
-  return await callClaude(system, userMessage, 1200);
+  return await callAI(system, userMessage, 1200);
 }
 
 // Generate practice on weak areas
@@ -154,7 +160,7 @@ The correct field is 0-based (A=0, B=1, C=2, D=3).`;
 
 Make it realistic — use a passage context, include "No change" as option A when appropriate, and test real grammar/writing skills.`;
 
-  const text = await callClaude(system, user, 800);
+  const text = await callAI(system, user, 800);
   try {
     const cleaned = text.replace(/```json\n?/g, "").replace(/```\n?/g, "").trim();
     return JSON.parse(cleaned);
