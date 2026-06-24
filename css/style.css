@@ -715,9 +715,65 @@ th { background: var(--bg); font-weight: 700; }
 
 .score-display { margin: 1rem 0; }
 
+/* ─── Official Tests Tab ─────────────────────────────────────────────────── */
+
+.official-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+.official-card {
+  text-align: left;
+  cursor: pointer;
+  transition: all .15s;
+  border: 2px solid var(--border);
+  font-family: inherit;
+  color: var(--text);
+  background: var(--surface);
+}
+.official-card:hover:not(.disabled) {
+  border-color: var(--primary);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(79,70,229,.15);
+}
+.official-card.disabled { opacity: .5; cursor: not-allowed; }
+.official-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: .5rem;
+}
+.official-badge {
+  background: linear-gradient(135deg, #1e1b4b, #312e81);
+  color: #fff;
+  padding: .25rem .6rem;
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: .8rem;
+  letter-spacing: .03em;
+}
+.official-card-title {
+  font-weight: 700;
+  font-size: 1.1rem;
+  margin-bottom: .25rem;
+}
+.official-card-sub {
+  font-size: .85rem;
+  color: var(--muted);
+  margin-bottom: .5rem;
+  line-height: 1.4;
+}
+.official-card-meta {
+  font-size: .8rem;
+  color: var(--primary);
+  font-weight: 600;
+}
+
 @media (max-width: 600px) {
   .transition-grid { grid-template-columns: 1fr; }
   .structure-block { padding: 1rem; }
   .block-part { flex-direction: column; }
   .part-num { margin-bottom: .25rem; }
+  .official-grid { grid-template-columns: 1fr; }
 }

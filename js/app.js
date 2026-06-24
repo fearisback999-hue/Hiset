@@ -89,6 +89,7 @@ function render() {
     case "practice":     app.appendChild(renderPracticeMenu()); break;
     case "test":         app.appendChild(renderTest()); break;
     case "results":      app.appendChild(renderResults()); break;
+    case "official":     app.appendChild(renderOfficialTests()); break;
     case "essay":        app.appendChild(renderEssayMenu()); break;
     case "essay-write":  app.appendChild(renderEssayWrite()); break;
     case "essay-rubric": app.appendChild(renderEssayRubric()); break;
@@ -406,8 +407,7 @@ const FIXED_TESTS = [
   { title: "Comprehensive Exam C", ids: range(81, 120) },
   { title: "Exam D: Passage & Style Focus", ids: range(121, 160) },
   { title: "Exam E: Passage-Based Editing", ids: range(161, 200) },
-  { title: "Exam F: Official HiSET Format", ids: range(201, 240) },
-  { title: "Official HiSET FPT7 Practice Test", ids: range(241, 265) }
+  { title: "Exam F: Official HiSET Format", ids: range(201, 240) }
 ];
 
 function range(a, b) {
@@ -642,6 +642,74 @@ function renderResults() {
     ` : "<div class='perfect-score card'>🎉 Perfect Score! You answered every question correctly!</div>"}
   `;
   return div;
+}
+
+// ─── OFFICIAL PRACTICE TESTS ─────────────────────────────────────────────────
+
+const OFFICIAL_TESTS = [
+  { title: "FPT6 — Released 2016", subtitle: "Letter to Mexico, The Calculus Wars, Ray Harryhausen", ids: range(266, 290), count: 25 },
+  { title: "FPT7 — Released 2017", subtitle: "The National Archives, Job Interview Tips, Holcombe Rucker", ids: range(241, 265), count: 25 },
+  { title: "FPT8 — Released 2024", subtitle: "Petroleum Reserves, Bordeaux Journey, Bear Encounters, Agroforestry, +1", ids: range(291, 315), count: 25 },
+  { title: "FPT9 — Released 2025", subtitle: "Latest official practice test", ids: range(316, 340), count: 25 }
+];
+
+function renderOfficialTests() {
+  const div = el("div", "official-view");
+  div.innerHTML = `
+    <h1>🏛️ Official HiSET Practice Tests</h1>
+    <p class="subtitle">Real questions from official HiSET Free Practice Tests released by the test maker.</p>
+
+    <div class="official-banner card" style="background: linear-gradient(135deg, #1e1b4b, #312e81); color: #fff; margin-bottom: 1.5rem;">
+      <h2 style="color:#fff; margin:0 0 .5rem">About These Tests</h2>
+      <p style="color:#c7d2fe; margin:0; line-height:1.6">These are the actual multiple-choice questions from the official HiSET Free Half-Length Practice Tests (FPTs). Each test has 25 questions across 3–5 passages. Use these to experience the real exam format and difficulty level.</p>
+    </div>
+
+    <div class="official-grid">
+      ${OFFICIAL_TESTS.map((t, i) => {
+        const hist = state.progress.testHistory.filter(h => h.mode === "exam" && h.examNum === (FIXED_TESTS.length + i + 1));
+        const best = hist.length ? Math.max(...hist.map(h => Math.round((h.score / h.total) * 100))) : null;
+        const available = QUESTIONS.some(q => q.id === t.ids[0]);
+        return `
+        <button class="official-card card ${!available ? 'disabled' : ''}" ${available ? `onclick="startOfficialTest(${i})"` : ''}>
+          <div class="official-card-top">
+            <span class="official-badge">${t.title.split(" —")[0]}</span>
+            ${best !== null ? `<span class="exam-best ${best >= 80 ? "green" : best >= 60 ? "yellow" : "red"}">Best: ${best}%</span>` : `<span class="exam-best gray">${available ? 'New' : 'Loading...'}</span>`}
+          </div>
+          <div class="official-card-title">${t.title}</div>
+          <div class="official-card-sub">${t.subtitle}</div>
+          <div class="official-card-meta">${t.count} questions · timed · official format</div>
+        </button>`;
+      }).join("")}
+    </div>
+
+    <div class="card mt-2" style="background: var(--surface); border: 2px dashed var(--border);">
+      <h3>Tips for Official Practice Tests</h3>
+      <ul style="margin:0; padding-left:1.5rem; line-height:1.8">
+        <li><strong>Time yourself</strong> — the real test gives 85 minutes for 50 MC + essay. These half-length tests have 25 MC.</li>
+        <li><strong>Read the full passage first</strong> — skim the boxed version, then answer from the spread-out version.</li>
+        <li><strong>Don't skip "No change"</strong> — sometimes the original IS correct.</li>
+        <li><strong>Spelling questions</strong> — read each underlined word carefully. "None" is a valid answer.</li>
+        <li><strong>Organization questions</strong> — look at the boxed passage to understand the overall flow.</li>
+      </ul>
+    </div>
+  `;
+  return div;
+}
+
+function startOfficialTest(index) {
+  const test = OFFICIAL_TESTS[index];
+  const pool = test.ids.map(id => QUESTIONS.find(q => q.id === id)).filter(Boolean);
+  if (!pool.length) return;
+
+  state.testQuestions = pool;
+  state.testIndex = 0;
+  state.testAnswers = new Array(pool.length).fill(null);
+  state.testMode = "exam";
+  state.testCategory = null;
+  state.testExamNum = FIXED_TESTS.length + index + 1;
+  state.testStartTime = Date.now();
+  state.currentView = "test";
+  render();
 }
 
 // ─── ESSAY ───────────────────────────────────────────────────────────────────
