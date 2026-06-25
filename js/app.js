@@ -12,7 +12,7 @@ const state = {
   testQuestions: [],
   testIndex: 0,
   testAnswers: [],
-  testMode: "full",        // "full" | "quick" | "category" | "exam"
+  testMode: "full",        // "full" | "quick" | "category" | "exam" | "fullexam"
   testCategory: null,
   testExamNum: null,
   testStartTime: null,
@@ -32,6 +32,16 @@ const state = {
   structureAnswers: {},
   structureOrderItems: [],
   structureOrderLocked: false,
+  // Full exam simulation state
+  fullExamPhase: null,       // null | "intro" | "mcq" | "break" | "essay" | "results"
+  fullExamMcqTimer: null,    // remaining seconds for MCQ
+  fullExamEssayTimer: null,  // remaining seconds for essay
+  fullExamMcqScore: null,
+  fullExamMcqTotal: null,
+  fullExamMcqElapsed: null,
+  fullExamEssayPrompt: null, // the essay prompt object
+  fullExamEssayText: "",
+  fullExamTimerInterval: null,
   progress: loadProgress()
 };
 
@@ -63,10 +73,13 @@ function saveProgress() {
 // ─── Router ──────────────────────────────────────────────────────────────────
 
 function navigate(view, params = {}) {
-  // Clear test timer if leaving test
   if (state.testTimerInterval) {
     clearInterval(state.testTimerInterval);
     state.testTimerInterval = null;
+  }
+  if (view !== "full-exam" && view !== "full-exam-results" && state.fullExamTimerInterval) {
+    clearInterval(state.fullExamTimerInterval);
+    state.fullExamTimerInterval = null;
   }
   state.currentView = view;
   Object.assign(state, params);
@@ -103,6 +116,8 @@ function render() {
     case "smart-review": app.appendChild(renderSmartReview()); break;
     case "model-essays": app.appendChild(renderModelEssays()); break;
     case "score-predict": app.appendChild(renderScorePredictor()); break;
+    case "full-exam":    app.appendChild(renderFullExam()); break;
+    case "full-exam-results": app.appendChild(renderFullExamResults()); break;
     default:             app.appendChild(renderHome());
   }
   updateAIBadge();
@@ -158,7 +173,7 @@ function renderHome() {
       <div class="ai-cta-banner card" onclick="navigate('ai-setup')" style="cursor:pointer; background: linear-gradient(135deg, #4f46e5, #7c3aed); color: #fff; margin-bottom: 1.5rem; text-align: center;">
         <h2 style="color:#fff; margin:0 0 .5rem">Unlock AI-Powered Learning</h2>
         <p style="color:#e0e7ff; margin:0">Get personalized essay grading, wrong-answer explanations, and an AI tutor to help you score a 5+.</p>
-        <button class="btn" style="background:#fff; color:#4f46e5; font-weight:700; margin-top:1rem;">Connect Claude AI</button>
+        <button class="btn" style="background:#fff; color:#4f46e5; font-weight:700; margin-top:1rem;">Connect Gemini AI (Free)</button>
       </div>
     ` : `
       <div class="ai-quick-actions" style="margin-bottom: 1.5rem;">
@@ -172,6 +187,12 @@ function renderHome() {
         </button>
       </div>
     `}
+
+    <div class="fe-cta card" onclick="startFullExam()" style="cursor:pointer; background: linear-gradient(135deg, #dc2626, #991b1b); color: #fff; margin-bottom: 1.5rem; text-align: center; padding: 1.5rem;">
+      <h2 style="color:#fff; margin:0 0 .5rem; font-size:1.4rem">FULL EXAM SIMULATION</h2>
+      <p style="color:#fecaca; margin:0; font-size:1rem">50 MCQ (75 min) + Essay (45 min) — exactly like test day</p>
+      <button class="btn" style="background:#fff; color:#dc2626; font-weight:700; margin-top:1rem; font-size:1.05rem;">Start 2-Hour Exam</button>
+    </div>
 
     <div class="home-grid">
       <button class="home-card card-lessons" onclick="navigate('lessons')">
@@ -381,6 +402,12 @@ function renderPracticeMenu() {
     <h1>Practice Tests</h1>
     <p class="subtitle">Test yourself under timed conditions — just like the real HiSET.</p>
 
+    <div class="fe-practice-cta card" onclick="startFullExam()" style="cursor:pointer; background: linear-gradient(135deg, #dc2626, #991b1b); color: #fff; margin-bottom: 1.5rem; text-align:center; padding:1.25rem;">
+      <h3 style="color:#fff; margin:0 0 .25rem">FULL EXAM SIMULATION — 2 Hours</h3>
+      <p style="color:#fecaca; margin:0; font-size:.95rem">50 MCQ (75 min) + Essay (45 min) with countdown timers — exactly like the real test</p>
+      <button class="btn" style="background:#fff; color:#dc2626; font-weight:700; margin-top:.75rem;">Start Full Exam</button>
+    </div>
+
     ${getMissedQuestionIds().length > 0 ? `
       <div class="smart-review-banner card" onclick="navigate('smart-review')" style="cursor:pointer; background: linear-gradient(135deg, #dc2626, #b91c1c); color: #fff; margin-bottom: 1.5rem;">
         <h3 style="color:#fff; margin:0">🔄 ${getMissedQuestionIds().length} Weak Questions Need Review</h3>
@@ -526,13 +553,16 @@ function renderTest() {
   const hasAnswered = answered !== null && answered !== undefined;
   const isCorrect = hasAnswered && answered === q.correct;
   const pct = ((state.testIndex) / total) * 100;
+  const isFullExam = state.testMode === "fullexam";
 
   const div = el("div", "test-view");
   div.innerHTML = `
     <div class="test-header">
       <div class="test-meta">
+        ${isFullExam ? `<span class="fe-part-badge">Part 1: Multiple Choice</span>` : ""}
         <span>Question ${state.testIndex + 1} of ${total}</span>
-        <span class="test-category-tag">${q.category}</span>
+        ${!isFullExam ? `<span class="test-category-tag">${q.category}</span>` : ""}
+        ${isFullExam ? `<span id="fe-mcq-timer" class="fe-timer">75:00</span>` : ""}
       </div>
       <div class="test-progress-bar">
         <div class="test-progress-fill" style="width:${pct}%"></div>
@@ -545,12 +575,16 @@ function renderTest() {
       <div class="choices" id="choices">
         ${q.choices.map((c, i) => {
           let cls = "choice";
-          if (hasAnswered) {
-            if (i === q.correct) cls += " correct";
-            else if (i === answered) cls += " incorrect";
+          if (isFullExam) {
+            if (hasAnswered && i === answered) cls += " selected";
+          } else {
+            if (hasAnswered) {
+              if (i === q.correct) cls += " correct";
+              else if (i === answered) cls += " incorrect";
+            }
           }
           return `
-          <button class="${cls}" ${hasAnswered ? "disabled" : ""}
+          <button class="${cls}" ${!isFullExam && hasAnswered ? "disabled" : ""}
                   onclick="selectAnswer(${i})" data-index="${i}">
             <span class="choice-letter">${"ABCD"[i]}</span>
             <span class="choice-text">${c}</span>
@@ -558,7 +592,7 @@ function renderTest() {
         }).join("")}
       </div>
 
-      ${hasAnswered ? `
+      ${!isFullExam && hasAnswered ? `
         <div class="explanation-box ${isCorrect ? "exp-correct" : "exp-wrong"}">
           <strong>${isCorrect ? "Correct!" : "Not quite."}</strong> ${q.explanation}
         </div>
@@ -569,6 +603,25 @@ function renderTest() {
       ` : ""}
     </div>
 
+    ${isFullExam ? `
+    <div class="test-nav">
+      <button class="btn btn-secondary" onclick="prevQuestion()" ${state.testIndex === 0 ? "disabled" : ""}>← Back</button>
+      <div class="test-nav-center">
+        <span class="test-counter">${state.testAnswers.filter(a => a !== null && a !== undefined).length}/${total} answered</span>
+      </div>
+      ${state.testIndex === total - 1
+        ? `<button class="btn btn-primary" onclick="finishFullExamMcq()">Submit Part 1 ✓</button>`
+        : `<button class="btn btn-primary" onclick="nextQuestion()">Next →</button>`}
+    </div>
+    <div class="fe-question-nav">
+      ${state.testQuestions.map((_, i) => {
+        const a = state.testAnswers[i];
+        const done = a !== null && a !== undefined;
+        const cur = i === state.testIndex;
+        return `<button class="fe-q-dot ${done ? "done" : ""} ${cur ? "current" : ""}" onclick="jumpToQuestion(${i})">${i + 1}</button>`;
+      }).join("")}
+    </div>
+    ` : `
     <div class="test-nav">
       <button class="btn btn-secondary" onclick="prevQuestion()" ${state.testIndex === 0 ? "disabled" : ""}>← Back</button>
       <div class="test-nav-center">
@@ -578,7 +631,13 @@ function renderTest() {
         ${state.testIndex === total - 1 ? "Finish Test ✓" : "Next →"}
       </button>
     </div>
+    `}
   `;
+
+  if (isFullExam) {
+    setTimeout(() => startFullExamMcqTimer(), 0);
+  }
+
   return div;
 }
 
@@ -614,15 +673,22 @@ function formatQuestion(text) {
 }
 
 function selectAnswer(choiceIndex) {
-  // Guard: ignore if this question was already answered
-  if (state.testAnswers[state.testIndex] !== null && state.testAnswers[state.testIndex] !== undefined) return;
+  const isFullExam = state.testMode === "fullexam";
+  const prev = state.testAnswers[state.testIndex];
+
+  if (!isFullExam && prev !== null && prev !== undefined) return;
+
+  if (isFullExam) {
+    state.testAnswers[state.testIndex] = choiceIndex;
+    render();
+    return;
+  }
 
   state.testAnswers[state.testIndex] = choiceIndex;
 
   const q = state.testQuestions[state.testIndex];
   const isCorrect = choiceIndex === q.correct;
 
-  // Update stats
   const qId = q.id;
   if (!state.progress.questionStats[qId]) {
     state.progress.questionStats[qId] = { correct: 0, total: 0 };
@@ -634,7 +700,11 @@ function selectAnswer(choiceIndex) {
   if (isCorrect) state.progress.totalCorrect++;
   saveProgress();
 
-  // Full re-render — guarantees choices highlight, explanation shows, and Next enables
+  render();
+}
+
+function jumpToQuestion(index) {
+  state.testIndex = index;
   render();
 }
 
@@ -642,7 +712,7 @@ function nextQuestion() {
   if (state.testIndex < state.testQuestions.length - 1) {
     state.testIndex++;
     render();
-  } else {
+  } else if (state.testMode !== "fullexam") {
     finishTest();
   }
 }
@@ -2799,6 +2869,462 @@ function renderModelEssays() {
     </div>
   `;
   return div;
+}
+
+// ─── FULL EXAM SIMULATION ────────────────────────────────────────────────────
+
+function startFullExam() {
+  if (state.fullExamTimerInterval) clearInterval(state.fullExamTimerInterval);
+  state.fullExamTimerInterval = null;
+
+  const pool = shuffle([...QUESTIONS]).slice(0, 50);
+  state.testQuestions = pool;
+  state.testIndex = 0;
+  state.testAnswers = new Array(50).fill(null);
+  state.testMode = "fullexam";
+  state.testCategory = null;
+  state.testExamNum = null;
+  state.testStartTime = Date.now();
+
+  state.fullExamPhase = "intro";
+  state.fullExamMcqTimer = 75 * 60;
+  state.fullExamEssayTimer = 45 * 60;
+  state.fullExamMcqScore = null;
+  state.fullExamMcqTotal = null;
+  state.fullExamMcqElapsed = null;
+  state.fullExamEssayPrompt = ESSAY_PROMPTS[Math.floor(Math.random() * ESSAY_PROMPTS.length)];
+  state.fullExamEssayText = "";
+
+  navigate("full-exam");
+}
+
+function renderFullExam() {
+  switch (state.fullExamPhase) {
+    case "intro":  return renderFullExamIntro();
+    case "mcq":    return renderTest();
+    case "break":  return renderFullExamBreak();
+    case "essay":  return renderFullExamEssay();
+    default:       return renderFullExamIntro();
+  }
+}
+
+function renderFullExamIntro() {
+  const div = el("div", "fe-intro-view");
+  div.innerHTML = `
+    <div class="fe-intro-card">
+      <div class="fe-intro-badge">FULL EXAM SIMULATION</div>
+      <h1>HiSET Language Arts — Writing</h1>
+      <p class="fe-intro-sub">This simulation mirrors the real HiSET Writing exam. Treat it like test day.</p>
+
+      <div class="fe-parts-grid">
+        <div class="fe-part-card">
+          <div class="fe-part-num">Part 1</div>
+          <div class="fe-part-title">Multiple Choice</div>
+          <div class="fe-part-detail">50 Questions</div>
+          <div class="fe-part-time">75 Minutes</div>
+          <p>Passage-based editing questions covering grammar, sentence structure, organization, punctuation, and word choice.</p>
+        </div>
+        <div class="fe-part-card">
+          <div class="fe-part-num">Part 2</div>
+          <div class="fe-part-title">Essay (Extended Response)</div>
+          <div class="fe-part-detail">1 Prompt</div>
+          <div class="fe-part-time">45 Minutes</div>
+          <p>Read two opposing passages and write an argumentative essay analyzing which position is better supported.</p>
+        </div>
+      </div>
+
+      <div class="fe-rules card">
+        <h3>Test Rules</h3>
+        <ul>
+          <li>Total time: <strong>2 hours</strong> (75 min MCQ + 45 min essay)</li>
+          <li>You may go back and change answers within each part</li>
+          <li>No feedback is shown until the exam is fully complete</li>
+          <li>The timer counts down — when it hits zero, that part auto-submits</li>
+          <li>You will get a 5-minute break between parts</li>
+          <li>Aim for <strong>44/50+ on MCQ</strong> and <strong>5/6 on the essay</strong></li>
+        </ul>
+      </div>
+
+      <button class="btn btn-primary btn-lg" onclick="beginFullExamMcq()" style="display:block;margin:2rem auto;font-size:1.2rem;padding:1rem 3rem">
+        Begin Exam
+      </button>
+      <button class="btn btn-secondary" onclick="navigate('home')" style="display:block;margin:0 auto">Cancel</button>
+    </div>
+  `;
+  return div;
+}
+
+function beginFullExamMcq() {
+  state.fullExamPhase = "mcq";
+  state.testStartTime = Date.now();
+  state.currentView = "full-exam";
+  render();
+  window.scrollTo(0, 0);
+}
+
+function startFullExamMcqTimer() {
+  if (state.fullExamTimerInterval) clearInterval(state.fullExamTimerInterval);
+  const tick = () => {
+    const el = document.getElementById("fe-mcq-timer");
+    if (!el) return;
+    const r = state.fullExamMcqTimer;
+    const m = Math.floor(r / 60);
+    const s = r % 60;
+    el.textContent = `${String(m).padStart(2, "0")}:${String(s).padStart(2, "0")}`;
+    if (r <= 300) el.classList.add("timer-warning");
+    if (r <= 0) {
+      clearInterval(state.fullExamTimerInterval);
+      state.fullExamTimerInterval = null;
+      el.textContent = "TIME";
+      finishFullExamMcq();
+      return;
+    }
+    state.fullExamMcqTimer--;
+  };
+  tick();
+  state.fullExamTimerInterval = setInterval(tick, 1000);
+}
+
+function finishFullExamMcq() {
+  if (state.fullExamTimerInterval) clearInterval(state.fullExamTimerInterval);
+  state.fullExamTimerInterval = null;
+
+  const score = state.testAnswers.reduce((acc, ans, i) => {
+    return acc + (ans === state.testQuestions[i].correct ? 1 : 0);
+  }, 0);
+  state.fullExamMcqScore = score;
+  state.fullExamMcqTotal = state.testQuestions.length;
+  state.fullExamMcqElapsed = Math.round((Date.now() - state.testStartTime) / 1000);
+
+  state.testQuestions.forEach((q, i) => {
+    const ans = state.testAnswers[i];
+    if (ans === null || ans === undefined) return;
+    const qId = q.id;
+    if (!state.progress.questionStats[qId]) {
+      state.progress.questionStats[qId] = { correct: 0, total: 0 };
+    }
+    state.progress.questionStats[qId].total++;
+    if (ans === q.correct) state.progress.questionStats[qId].correct++;
+    state.progress.totalQuestionsAnswered++;
+    if (ans === q.correct) state.progress.totalCorrect++;
+  });
+
+  state.progress.testHistory.push({
+    date: new Date().toLocaleDateString(),
+    mode: "fullexam",
+    category: null,
+    examNum: null,
+    total: state.fullExamMcqTotal,
+    score: state.fullExamMcqScore,
+    elapsed: state.fullExamMcqElapsed
+  });
+  saveProgress();
+
+  state.fullExamPhase = "break";
+  state.currentView = "full-exam";
+  render();
+  window.scrollTo(0, 0);
+}
+
+function renderFullExamBreak() {
+  let breakSeconds = 300;
+  const div = el("div", "fe-break-view");
+  div.innerHTML = `
+    <div class="fe-break-card">
+      <div class="fe-break-icon">☕</div>
+      <h1>Part 1 Complete</h1>
+      <p class="fe-break-sub">Take a short break. Part 2 (Essay) begins in:</p>
+      <div id="fe-break-timer" class="fe-break-countdown">05:00</div>
+      <p class="fe-break-hint">Stretch, get water, clear your head. On the real test you get a short break between sections.</p>
+      <button class="btn btn-primary btn-lg" onclick="beginFullExamEssay()" style="margin-top:2rem;font-size:1.1rem;padding:.9rem 2.5rem">
+        Skip Break — Start Essay Now
+      </button>
+    </div>
+  `;
+
+  if (state.fullExamTimerInterval) clearInterval(state.fullExamTimerInterval);
+  const tick = () => {
+    const el = document.getElementById("fe-break-timer");
+    if (!el) return;
+    breakSeconds--;
+    if (breakSeconds <= 0) {
+      clearInterval(state.fullExamTimerInterval);
+      state.fullExamTimerInterval = null;
+      beginFullExamEssay();
+      return;
+    }
+    const m = Math.floor(breakSeconds / 60);
+    const s = breakSeconds % 60;
+    el.textContent = `${String(m).padStart(2, "0")}:${String(s).padStart(2, "0")}`;
+  };
+  state.fullExamTimerInterval = setInterval(tick, 1000);
+
+  return div;
+}
+
+function beginFullExamEssay() {
+  if (state.fullExamTimerInterval) clearInterval(state.fullExamTimerInterval);
+  state.fullExamTimerInterval = null;
+  state.fullExamPhase = "essay";
+  state.fullExamEssayTimer = 45 * 60;
+  state.currentView = "full-exam";
+  render();
+  window.scrollTo(0, 0);
+}
+
+function renderFullExamEssay() {
+  const ep = state.fullExamEssayPrompt;
+  if (!ep) return renderFullExamIntro();
+
+  const div = el("div", "fe-essay-view");
+  div.innerHTML = `
+    <div class="fe-essay-header">
+      <span class="fe-part-badge">Part 2: Essay (Extended Response)</span>
+      <span id="fe-essay-timer" class="fe-timer">45:00</span>
+    </div>
+
+    <div class="fe-essay-instructions card">
+      <h3>Directions</h3>
+      <p>Read the two passages below carefully. Then write a well-organized essay in which you explain your position on the issue. Use specific evidence and reasoning from <strong>both</strong> passages to support your argument. Be sure to acknowledge and address the opposing viewpoint.</p>
+      <p><strong>You have 45 minutes.</strong> Aim for 4–6 paragraphs (300–500 words).</p>
+    </div>
+
+    <div class="passages-grid">
+      <div class="passage-col card">
+        <h3>${ep.passageA.title}</h3>
+        <p>${ep.passageA.text}</p>
+      </div>
+      <div class="passage-col card">
+        <h3>${ep.passageB.title}</h3>
+        <p>${ep.passageB.text}</p>
+      </div>
+    </div>
+
+    <div class="essay-task card">
+      <strong>Writing Task:</strong> ${ep.prompt}
+    </div>
+
+    <div class="essay-write-area card">
+      <div class="essay-write-toolbar">
+        <span id="fe-word-count" class="word-count">0 words</span>
+        <span class="target">Target: 300–500 words</span>
+      </div>
+      <textarea id="fe-essay-textarea" class="essay-textarea" placeholder="Write your essay here..."
+        oninput="updateFullExamWordCount()">${state.fullExamEssayText || ""}</textarea>
+    </div>
+
+    <div class="fe-essay-footer">
+      <button class="btn btn-primary btn-lg" onclick="submitFullExam()" style="font-size:1.1rem;padding:.9rem 2.5rem">
+        Submit Exam
+      </button>
+    </div>
+  `;
+
+  setTimeout(() => startFullExamEssayTimer(), 0);
+  return div;
+}
+
+function updateFullExamWordCount() {
+  const ta = document.getElementById("fe-essay-textarea");
+  const wc = document.getElementById("fe-word-count");
+  if (ta && wc) {
+    const words = ta.value.trim() === "" ? 0 : ta.value.trim().split(/\s+/).length;
+    wc.textContent = `${words} word${words !== 1 ? "s" : ""}`;
+    state.fullExamEssayText = ta.value;
+  }
+}
+
+function startFullExamEssayTimer() {
+  if (state.fullExamTimerInterval) clearInterval(state.fullExamTimerInterval);
+  const tick = () => {
+    const el = document.getElementById("fe-essay-timer");
+    if (!el) return;
+    const r = state.fullExamEssayTimer;
+    const m = Math.floor(r / 60);
+    const s = r % 60;
+    el.textContent = `${String(m).padStart(2, "0")}:${String(s).padStart(2, "0")}`;
+    if (r <= 300) el.classList.add("timer-warning");
+    if (r <= 0) {
+      clearInterval(state.fullExamTimerInterval);
+      state.fullExamTimerInterval = null;
+      el.textContent = "TIME";
+      submitFullExam();
+      return;
+    }
+    state.fullExamEssayTimer--;
+  };
+  tick();
+  state.fullExamTimerInterval = setInterval(tick, 1000);
+}
+
+function submitFullExam() {
+  if (state.fullExamTimerInterval) clearInterval(state.fullExamTimerInterval);
+  state.fullExamTimerInterval = null;
+
+  const ta = document.getElementById("fe-essay-textarea");
+  if (ta) state.fullExamEssayText = ta.value;
+
+  navigate("full-exam-results");
+}
+
+function renderFullExamResults() {
+  const mcqScore = state.fullExamMcqScore || 0;
+  const mcqTotal = state.fullExamMcqTotal || 50;
+  const mcqPct = Math.round((mcqScore / mcqTotal) * 100);
+  const mcqMins = Math.floor((state.fullExamMcqElapsed || 0) / 60);
+  const ep = state.fullExamEssayPrompt;
+  const essayWords = state.fullExamEssayText.trim() ? state.fullExamEssayText.trim().split(/\s+/).length : 0;
+
+  const scaledScore = mcqPct >= 95 ? 20 : mcqPct >= 90 ? 19 : mcqPct >= 88 ? 18 : mcqPct >= 82 ? 17 : mcqPct >= 76 ? 16 : mcqPct >= 70 ? 15 : mcqPct >= 64 ? 14 : mcqPct >= 58 ? 13 : mcqPct >= 50 ? 12 : mcqPct >= 42 ? 11 : 10;
+
+  const missed = state.testQuestions
+    .map((q, i) => ({ q, answered: state.testAnswers[i] }))
+    .filter(({ q, answered }) => answered !== q.correct);
+
+  const catBreakdown = {};
+  state.testQuestions.forEach((q, i) => {
+    const cat = q.category;
+    if (!catBreakdown[cat]) catBreakdown[cat] = { correct: 0, total: 0 };
+    catBreakdown[cat].total++;
+    if (state.testAnswers[i] === q.correct) catBreakdown[cat].correct++;
+  });
+  const entries = Object.entries(catBreakdown).sort((a, b) => (a[1].correct / a[1].total) - (b[1].correct / b[1].total));
+
+  const div = el("div", "fe-results-view");
+  div.innerHTML = `
+    <div class="fe-results-header">
+      <div class="fe-results-badge">EXAM COMPLETE</div>
+      <h1>HiSET Writing — Full Exam Results</h1>
+    </div>
+
+    <div class="fe-results-summary">
+      <div class="fe-result-card fe-result-mcq">
+        <div class="fe-result-label">Part 1: Multiple Choice</div>
+        <div class="fe-result-score">${mcqScore}/${mcqTotal}</div>
+        <div class="fe-result-pct">${mcqPct}%</div>
+        <div class="fe-result-scaled">Estimated scaled: ${scaledScore}/20</div>
+        <div class="fe-result-time">Time used: ${mcqMins} min</div>
+      </div>
+      <div class="fe-result-card fe-result-essay">
+        <div class="fe-result-label">Part 2: Essay</div>
+        <div class="fe-result-words">${essayWords} words written</div>
+        ${essayWords < 30
+          ? `<div class="fe-result-warn">Essay too short to grade</div>`
+          : aiConfigured()
+            ? `<button class="btn btn-ai" onclick="aiGradeFullExamEssay()" style="margin-top:.75rem">AI: Grade My Essay</button>`
+            : `<div class="fe-result-hint">Connect AI to get your essay scored (AI Setup in header)</div>`}
+        <div id="fe-essay-grade"></div>
+      </div>
+    </div>
+
+    <div class="fe-mcq-grade ${mcqPct >= 88 ? "grade-pass" : "grade-needs-work"}">
+      ${mcqPct >= 88
+        ? `<strong>On track for 18+/20.</strong> You're hitting your MCQ target.`
+        : `<strong>Target: 88%+ (44/50) for a scaled score of 18+.</strong> You need ${Math.max(0, 44 - mcqScore)} more correct answers to reach your goal.`}
+    </div>
+
+    ${entries.length > 1 ? `
+      <div class="results-breakdown card">
+        <h2 style="margin-top:0">Category Breakdown</h2>
+        ${entries.map(([cat, s]) => {
+          const cpct = Math.round((s.correct / s.total) * 100);
+          return `<div class="rb-row">
+            <span class="rb-cat">${cat}</span>
+            <div class="rb-bar"><div class="rb-fill ${cpct >= 80 ? "bar-green" : cpct >= 60 ? "bar-yellow" : "bar-red"}" style="width:${cpct}%"></div></div>
+            <span class="rb-pct">${s.correct}/${s.total}</span>
+          </div>`;
+        }).join("")}
+      </div>
+    ` : ""}
+
+    ${state.fullExamEssayText.trim() ? `
+      <div class="card" style="margin-top:1.5rem">
+        <h2 style="margin-top:0">Your Essay</h2>
+        <div class="fe-essay-review">${state.fullExamEssayText.replace(/\n/g, "<br>")}</div>
+      </div>
+    ` : ""}
+
+    ${missed.length > 0 ? `
+      <div class="missed-section" style="margin-top:1.5rem">
+        <h2>Missed Questions (${missed.length})</h2>
+        ${missed.map(({ q, answered }) => `
+          <div class="review-card card">
+            <div class="review-category">${q.category}</div>
+            ${q.passage ? `<div class="review-passage">${formatPassage(q.passage)}</div>` : ""}
+            <div class="review-question">${formatQuestion(q.question)}</div>
+            <div class="review-choices">
+              ${q.choices.map((c, i) => `
+                <div class="review-choice ${i === q.correct ? "correct" : i === answered ? "incorrect" : ""}">
+                  <span class="choice-letter">${"ABCD"[i]}</span> ${c}
+                </div>
+              `).join("")}
+            </div>
+            <div class="review-explanation">${q.explanation}</div>
+            ${aiConfigured() ? `<button class="btn btn-ai btn-ai-sm" onclick="aiExplainWrongAnswer(${q.id}, ${answered})">AI: Explain This</button>` : ""}
+            <div id="ai-explain-${q.id}"></div>
+          </div>
+        `).join("")}
+      </div>
+    ` : `<div class="perfect-score card" style="margin-top:1.5rem">Perfect MCQ Score! Every question correct!</div>`}
+
+    <div class="fe-results-actions" style="margin-top:2rem;text-align:center">
+      <button class="btn btn-primary" onclick="startFullExam()">Retake Full Exam</button>
+      <button class="btn btn-secondary" onclick="navigate('home')">Home</button>
+      <button class="btn btn-secondary" onclick="navigate('smart-review')">Smart Review</button>
+    </div>
+  `;
+  return div;
+}
+
+async function aiGradeFullExamEssay() {
+  const ep = state.fullExamEssayPrompt;
+  const text = state.fullExamEssayText.trim();
+  if (!text || text.split(/\s+/).length < 30 || !ep) return;
+
+  const container = document.getElementById("fe-essay-grade");
+  if (!container) return;
+
+  container.innerHTML = '<div class="ai-loading ai-loading-lg">AI is reading and scoring your essay<span class="dots">...</span></div>';
+
+  try {
+    const raw = await aiGradeEssay(text, ep.passageA.text, ep.passageB.text, ep.prompt);
+    const grade = parseAIGrade(raw);
+
+    const scoreColors = { 1: "#ef4444", 2: "#f97316", 3: "#eab308", 4: "#22c55e", 5: "#3b82f6", 6: "#8b5cf6" };
+    const scoreLabels = { 1: "Weak", 2: "Limited", 3: "Partial", 4: "Adequate", 5: "Strong", 6: "Superior" };
+    const color = scoreColors[grade.score] || "#6366f1";
+
+    container.innerHTML = `
+      <div class="ai-grade-card" style="margin-top:1rem">
+        <div class="ai-grade-header" style="background: ${color}">
+          <div class="ai-grade-score">${grade.score}/6</div>
+          <div class="ai-grade-label">${scoreLabels[grade.score] || ""} Command</div>
+        </div>
+        <div class="ai-grade-body">
+          <div class="ai-grade-section">
+            <h3>Strengths</h3>
+            <ul>${grade.strengths.map(s => `<li class="strength-item">${s}</li>`).join("")}</ul>
+          </div>
+          <div class="ai-grade-section">
+            <h3>Areas to Improve</h3>
+            <ul>${grade.improvements.map(s => `<li class="improve-item">${s}</li>`).join("")}</ul>
+          </div>
+          ${grade.rewriteTip ? `
+            <div class="ai-grade-section rewrite-section">
+              <h3>Rewrite Example</h3>
+              <p>${mdToHtml(grade.rewriteTip)}</p>
+            </div>
+          ` : ""}
+          <div class="ai-grade-section next-section">
+            <h3>How to Score a ${Math.min(6, (grade.score || 3) + 1)}</h3>
+            <p>${mdToHtml(grade.nextScore)}</p>
+          </div>
+        </div>
+      </div>
+    `;
+  } catch (err) {
+    container.innerHTML = `<div class="ai-error">${handleAIError(err)}</div>`;
+  }
 }
 
 // ─── Utilities ────────────────────────────────────────────────────────────────
