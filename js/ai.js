@@ -13,6 +13,7 @@ function aiConfigured() {
 
 function setAIKey(key) {
   AI_CONFIG.apiKey = key.trim();
+  _workingModel = null;
   try { localStorage.setItem("hiset_ai_key", AI_CONFIG.apiKey); } catch {}
 }
 
@@ -25,6 +26,16 @@ function loadAIKey() {
 
 loadAIKey();
 
+let _workingModel = null;
+
+async function _geminiRequest(model, body, headers) {
+  const resp = await fetch(
+    `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${AI_CONFIG.apiKey}`,
+    { method: "POST", headers, body }
+  );
+  return resp;
+}
+
 async function callAI(systemPrompt, userPrompt, maxTokens) {
   if (!aiConfigured()) throw new Error("NO_KEY");
 
@@ -35,24 +46,32 @@ async function callAI(systemPrompt, userPrompt, maxTokens) {
   });
   const headers = { "Content-Type": "application/json" };
 
-  const models = [AI_CONFIG.model, "gemini-2.0-flash-lite", "gemini-1.5-flash"];
-  let lastErr;
+  const models = _workingModel
+    ? [_workingModel]
+    : [AI_CONFIG.model, "gemini-2.0-flash-lite", "gemini-1.5-flash"];
 
   for (const model of models) {
-    const resp = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${AI_CONFIG.apiKey}`,
-      { method: "POST", headers, body }
-    );
+    let resp = await _geminiRequest(model, body, headers);
 
-    if (resp.status === 404) { lastErr = `Model ${model} not found`; continue; }
+    if (resp.status === 404) continue;
+
+    if (resp.status === 429) {
+      await new Promise(r => setTimeout(r, 4000));
+      resp = await _geminiRequest(model, body, headers);
+      if (resp.status === 429) {
+        await new Promise(r => setTimeout(r, 8000));
+        resp = await _geminiRequest(model, body, headers);
+      }
+      if (resp.status === 429) throw new Error("RATE_LIMIT");
+    }
 
     if (!resp.ok) {
       const err = await resp.text();
       if (resp.status === 400 && err.includes("API key")) throw new Error("INVALID_KEY");
-      if (resp.status === 429) throw new Error("RATE_LIMIT");
       throw new Error(`API error ${resp.status}`);
     }
 
+    _workingModel = model;
     const data = await resp.json();
     if (!data.candidates || !data.candidates[0] || !data.candidates[0].content) {
       throw new Error("Invalid response from Gemini API");
@@ -60,7 +79,8 @@ async function callAI(systemPrompt, userPrompt, maxTokens) {
     return data.candidates[0].content.parts[0].text;
   }
 
-  throw new Error(lastErr || "API error 404");
+  _workingModel = null;
+  throw new Error("No available Gemini model. Check your API key at ai.google.dev");
 }
 
 // Grade a full essay using AI
